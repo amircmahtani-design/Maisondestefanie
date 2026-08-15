@@ -490,6 +490,30 @@ async function houseLook(input,L,report){
   const bmp = await loadBitmap(input);
   const work = drawToCanvas(bmp, 1600);
   const wctx = work.getContext('2d',{willReadFrequently:true});
+
+  /* Editorial: the big pictures in the mosaic. No cutout — they are
+     cropped to the shape the layout needs and given the same grade,
+     so the photographs and the product shots read as one house. */
+  if(L.editorial){
+    const [rw,rh] = String(L.ratio||'1/1').split('/').map(Number);
+    const long = L.canvas, W = rw>=rh ? long : Math.round(long*rw/rh),
+                            H = rh>rw ? long : Math.round(long*rh/rw);
+    const oc=document.createElement('canvas'); oc.width=W; oc.height=H;
+    const c=oc.getContext('2d');
+    const sc=Math.max(W/work.width,H/work.height);
+    const dw=work.width*sc, dh=work.height*sc;
+    const fx = (L.focusX==null?0.5:L.focusX), fy = (L.focusY==null?0.42:L.focusY);
+    c.drawImage(work, (W-dw)*fx, (H-dh)*fy, dw, dh);
+    grade(c,W,H,L);
+    grainAndVignette(c,W,H,L);
+    let q=0.88, url=oc.toDataURL('image/jpeg',q);
+    while(url.length/1.37/1024 > (L.maxKB||360) && q>0.42){ q-=0.07; url=oc.toDataURL('image/jpeg',q); }
+    const keep=drawToCanvas(bmp,1200);
+    const src=keep.toDataURL('image/jpeg',0.78);
+    report && report({mode:'editorial',kb:Math.round(url.length/1.37/1024)});
+    return {out:url, src, mode:'editorial'};
+  }
+
   const N = L.canvas;
   const out = document.createElement('canvas'); out.width=out.height=N;
   const ctx = out.getContext('2d');
@@ -605,7 +629,7 @@ addEventListener('keydown',e=>{ if(e.key==='Escape' && $('#modal').classList.con
    ============================================================ */
 const VIEWS=[
   ['shelf','The shelf'],['cats','Categories'],['look','House look'],
-  ['bench','The bench'],['words','Words'],['reviews','Reviews'],
+  ['pics','Pictures'],['threads','The threads'],['words','Words'],['reviews','Reviews'],
   ['faq','Questions'],['settings','Shop details']
 ];
 function renderRail(){
@@ -615,7 +639,7 @@ function renderRail(){
 function head(title,sub,actions=''){
   return `<div class="head"><div><h1>${esc(title)}</h1><p>${esc(sub)}</p></div><div style="display:flex;gap:.5rem;flex-wrap:wrap">${actions}</div></div>`;
 }
-function renderView(){ ({shelf:vShelf,cats:vCats,look:vLook,bench:vBench,words:vWords,reviews:vReviews,faq:vFaq,settings:vSettings})[VIEW](); }
+function renderView(){ ({shelf:vShelf,cats:vCats,look:vLook,pics:vPics,threads:vThreads,words:vWords,reviews:vReviews,faq:vFaq,settings:vSettings})[VIEW](); }
 
 /* ---------- shelf ---------- */
 function catName(id){ const c=(DATA.categories||[]).find(x=>x.id===id); return c?c.en.name:'—'; }
@@ -909,60 +933,18 @@ async function reapplyAll(){
   renderView();
 }
 
-/* ---------- the bench ---------- */
-function vBench(){
-  const list=DATA.organ?.memories||[];
-  $('#stage').innerHTML = head('The bench','The memories people can pick on the front page. Each one carries its own notes, which build the pyramid they send you.',
-    `<button class="btn btn-solid" id="addM">Add a memory</button>`)+
-    `<div class="card">${list.map(m=>`
-      <div class="line">
-        <span style="width:.8rem;height:.8rem;border-radius:50%;background:${esc(m.colour)};flex:none"></span>
-        <div class="txt"><b>${esc(m.en.label)}</b><small>${esc([...(m.en.top||[]),...(m.en.heart||[]),...(m.en.base||[])].join(' · '))}</small></div>
-        <button class="btn btn-ghost" data-m="${m.id}">Edit</button></div>`).join('')}</div>`;
-  $('#addM').onclick=()=>editMem(null);
-  $$('[data-m]').forEach(b=>b.onclick=()=>editMem(b.dataset.m));
-}
-function editMem(id){
-  const isNew=!id;
-  const m = isNew ? {id:uid('m'),colour:'#C68A3C',en:{label:'',top:[],heart:[],base:[]},el:{label:'',top:[],heart:[],base:[]}}
-                  : clone(DATA.organ.memories.find(x=>x.id===id));
-  const mo=openModal(`
-    <div class="modal-head"><h2>${isNew?'New memory':'Memory'}</h2>
-      <button class="btn btn-ghost" id="mClose">Close</button>
-      <button class="btn btn-solid" id="mDone">Done</button></div>
-    <div class="row two">${F('Memory (English)','en.label',m.en.label,{ph:'A church in August'})}
-      ${F('Memory (Greek)','el.label',m.el.label)}</div>
-    <div class="row"><div><label>Colour in the bottle</label><input type="color" data-k="colour" value="${m.colour}" style="height:2.6rem;padding:.2rem;max-width:8rem"></div></div>
-    <h3 style="font-size:1rem;margin:.6rem 0 .8rem">Notes, English</h3>
-    <div class="row three">${F('Top','en.top',m.en.top,{list:true})}${F('Heart','en.heart',m.en.heart,{list:true})}${F('Base','en.base',m.en.base,{list:true})}</div>
-    <h3 style="font-size:1rem;margin:.6rem 0 .8rem">Notes, Greek</h3>
-    <div class="row three">${F('Κορυφή','el.top',m.el.top,{list:true})}${F('Καρδιά','el.heart',m.el.heart,{list:true})}${F('Βάση','el.base',m.el.base,{list:true})}</div>
-    ${isNew?'':'<hr class="sep"><button class="btn btn-danger" id="mDel">Delete this memory</button>'}`);
-  bindForm(mo,m);
-  $('#mClose').onclick=closeModal;
-  $('#mDone').onclick=()=>{
-    if(!m.en.label.trim()){toast('Give the memory a name.');return}
-    if(!m.el.label.trim()) m.el.label=m.en.label;
-    DATA.organ=DATA.organ||{memories:[]};
-    const i=DATA.organ.memories.findIndex(x=>x.id===m.id);
-    if(i>-1) DATA.organ.memories[i]=m; else DATA.organ.memories.push(m);
-    setDirty(); closeModal(); vBench();
-  };
-  $('#mDel')&&($('#mDel').onclick=()=>{
-    if(!confirm('Delete this memory?'))return;
-    DATA.organ.memories=DATA.organ.memories.filter(x=>x.id!==m.id);
-    setDirty(); closeModal(); vBench();
-  });
-}
-
 /* ---------- words ---------- */
 const WORDS=[
-  ['hero','The first screen',[['eyebrow','Small line above'],['titleA','Headline, first part'],['titleB','Headline, italic part'],['lede','Paragraph',4],['ctaPrimary','Main button'],['ctaSecondary','Second button']]],
-  ['organ','The bench',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',4],['cta','Button'],['picked','Label above the notes'],['empty','Before anything is picked']]],
-  ['story','The house',[['eyebrow','Small line above'],['title','Headline'],['quote','Pull quote',3],['quoteBy','Signature']]],
-  ['shop','The shelf',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',3],['all','Name of the “everything” tab']]],
+  ['hero','The first screen',[['eyebrow','Small line above'],['titleA','Headline, line one'],['titleB','Headline, gold line'],['titleC','Headline, last line'],['lede','Paragraph',3],['ctaPrimary','First link'],['ctaSecondary','Second link'],['aside','Line down the right side'],['discover','Circle link, bottom right']]],
+  ['quote','Her words',[['eyebrow','Small line above'],['quote','The quote',3],['sig','Signature'],['body','Column beside it',5],['link','Link under it']]],
+  ['organ','The five threads',[['eyebrow','Question above'],['title','Headline, first part'],['titleEm','Headline, gold part'],['lede','Paragraph beside it',5],['coda','Line under the five cards',2],['select','Select-one label'],['open','Word on each card'],['picked','Label above the notes'],['empty','Before anything is picked',2],['chipNote','Note under the memories'],['cta','Send button'],['reset','Start-again link']]],
+  ['alchemy','Luxury is handmade',[['eyebrow','Small line above'],['title','Headline, first part'],['titleEm','Headline, gold part'],['quote','Her quote',3],['sig','Signature'],['formulaLabel','Label on the formula card'],['link','Link under it']]],
+  ['legacy','The story',[['eyebrow','Small line above'],['title','Headline, first part'],['titleEm','Headline, gold part']]],
+  ['shop','The shelf',[['eyebrow','Small line above'],['title','Headline, first part'],['titleEm','Headline, gold part'],['lede','Paragraph',3],['all','Name of the \u201ceverything\u201d tab']]],
   ['bespoke','The session',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',3],['priceNote','Price line'],['cta','Button']]],
-  ['visit','Visit',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',3],['book','Message button'],['directions','Directions button'],['mapNote','Note under the map',2],['mapLoad','Show-the-map button']]],
+  ['reviews_intro','The guest book',[['eyebrow','Small line above'],['lead','Line under the score',2],['sub','Line under that',2],['link','Link to Google'],['pull','The big quote after the reviews',2]]],
+  ['visit','Visit',[['eyebrow','Small line above'],['title','Headline, first part'],['titleEm','Headline, gold part'],['lede','Paragraph',3],['near','Line over the Plaka picture',2],['hoursLabel','Hours label'],['book','Message button'],['directions','Directions link'],['mapNote','Note above the map',2],['mapLoad','Show-the-map button']]],
+  ['faq','Good to know',[['eyebrow','Small line above'],['title','Headline']]],
   ['seo','What Google shows',[['title','Page title'],['description','Description under it',3]]]
 ];
 function vWords(){
@@ -971,8 +953,15 @@ function vWords(){
     `<div class="tabs"><button data-w="en" class="${lang==='en'?'on':''}">English</button><button data-w="el" class="${lang==='el'?'on':''}">Ελληνικά</button></div>
      <div id="wordbox"></div>
      <div class="card"><h3>The story paragraphs</h3>
-       <textarea id="storyPara" rows="9">${esc((DATA.story[lang]?.body||[]).join('\n\n'))}</textarea>
-       <p class="hint">One paragraph per block, separated by an empty line.</p></div>
+       <textarea id="storyPara" rows="12">${esc((DATA.legacy?.[lang]?.body||[]).join('\n\n'))}</textarea>
+       <p class="hint">One paragraph per block, separated by an empty line. The first letter is set large automatically.</p></div>
+     <div class="card"><h3>The handwritten formula</h3>
+       <p class="hint" style="margin-bottom:.7rem">What is written out by hand on the paper card, one line at a time. It is the same in both languages unless you change it.</p>
+       <textarea id="formLines" rows="8">${esc((DATA.formula?.lines||[]).join('\n'))}</textarea>
+       <div class="row two" style="margin-top:1rem">
+         <div><label>Reference line</label><input id="formRef" value="${esc(DATA.formula?.ref||'')}"></div>
+         <div><label>Made for</label><input id="formFor" value="${esc(DATA.formula?.for||'')}"></div>
+       </div></div>
      <div class="card"><h3>The four steps of a session</h3><div id="steps"></div></div>`;
   $$('[data-w]').forEach(b=>b.onclick=()=>{localStorage.setItem('lms-wl',b.dataset.w);vWords()});
 
@@ -982,10 +971,14 @@ function vWords(){
   bindForm($('#wordbox'),DATA);
 
   $('#storyPara').oninput=e=>{
-    DATA.story[lang]=DATA.story[lang]||{};
-    DATA.story[lang].body=e.target.value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+    DATA.legacy=DATA.legacy||{}; DATA.legacy[lang]=DATA.legacy[lang]||{};
+    DATA.legacy[lang].body=e.target.value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
     setDirty();
   };
+  $('#formLines').oninput=e=>{ DATA.formula=DATA.formula||{};
+    DATA.formula.lines=e.target.value.split('\n').map(s=>s.trim()).filter(Boolean); setDirty(); };
+  $('#formRef').oninput=e=>{ DATA.formula=DATA.formula||{}; DATA.formula.ref=e.target.value; setDirty(); };
+  $('#formFor').oninput=e=>{ DATA.formula=DATA.formula||{}; DATA.formula.for=e.target.value; setDirty(); };
   const steps=DATA.bespoke[lang]?.steps||[];
   $('#steps').innerHTML = steps.map((s,i)=>`
     <div class="row two" style="margin-bottom:.6rem">
@@ -1082,6 +1075,202 @@ function vSettings(){
       <div class="row two">${F('Latitude','settings.lat',s.lat,{num:true})}${F('Longitude','settings.lng',s.lng,{num:true})}</div>
     </div>`;
   bindForm($('#setbox'),DATA);
+}
+
+/* ============================================================
+   PICTURES — every photograph in the layout, in one place
+   ============================================================ */
+async function vPics(){
+  const P=DATA.pictures||{};
+  const keys=Object.keys(P).filter(k=>P[k].kind!=='video');
+  $('#stage').innerHTML = head('Pictures',
+    'Every photograph on the page has its own place here. Whatever you upload is cropped to fit and given the same house treatment, so the page reads as one shoot.','')+
+    `<div class="warn">Photographs are graded, not cut out — that is only for products on the shelf. Shoot wide and slightly dark; the treatment does the rest.</div>
+     <div id="picList"></div>
+     <div class="card"><h3>The hero film</h3>
+       <div class="row two">
+         ${F('Video file (desktop)','pictures.heroVideo.src',P.heroVideo?.src||'',{ph:'assets/stefanie_hero_loop.webm'})}
+         ${F('Video file (phone)','pictures.heroVideoMob.src',P.heroVideoMob?.src||'',{ph:'assets/stefanie_hero_loop_mobile.webm'})}
+       </div>
+       <div class="row">${F('Still shown before it plays','pictures.heroPoster.src',P.heroPoster?.src||'',{ph:'assets/og-image.jpg'})}</div>
+       <p class="hint">Videos are uploaded to the assets folder on the site, not through the Studio — they are too large. Type the filename here.</p>
+     </div>`;
+  bindForm($('#stage'),DATA);
+  const box=$('#picList');
+  box.innerHTML = keys.map(k=>`
+    <div class="card" data-slot="${k}">
+      <div class="lab-row" style="display:flex;gap:1rem;align-items:baseline;justify-content:space-between;flex-wrap:wrap">
+        <h3 style="margin:0">${esc(P[k].label||k)}</h3>
+        <small style="color:var(--dim);font-size:.75rem">${esc(P[k].ratio||'1/1')}</small>
+      </div>
+      ${P[k].note?`<p class="hint" style="margin:.4rem 0 .9rem">${esc(P[k].note)}</p>`:'<div style="height:.6rem"></div>'}
+      <div data-lab></div>
+    </div>`).join('');
+  for(const k of keys) await picSlot($(`[data-slot="${k}"] [data-lab]`,box),k);
+}
+async function picSlot(host,key){
+  const P=DATA.pictures, slot=P[key];
+  host.innerHTML=`
+    <div class="lab">
+      <div><div class="preview" data-pv style="aspect-ratio:${(slot.ratio||'1/1').replace('/','/')}">
+        <span class="ph">Nothing here yet</span></div></div>
+      <div>
+        <div class="drop" data-drop>Tap to choose a photograph, or drop one here
+          <input type="file" accept="image/*" hidden data-file></div>
+        <div class="sl" style="margin-top:.9rem"><label>Move the crop up or down <i data-fyv>42%</i></label>
+          <input type="range" min="0" max="100" value="42" data-fy></div>
+        <div class="sl"><label>Move the crop left or right <i data-fxv>50%</i></label>
+          <input type="range" min="0" max="100" value="50" data-fx></div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem">
+          <button class="btn btn-ghost" data-re>Re-apply</button>
+          ${slot.src?'<button class="btn btn-danger" data-rm>Remove</button>':''}
+        </div>
+      </div>
+    </div>`;
+  const pv=$('[data-pv]',host);
+  let original=null;
+  const show=u=>{ pv.innerHTML=''; const i=new Image(); i.src=u; pv.append(i); };
+  const cur=await getMedia(slot.src);
+  if(cur) show(cur); else if(slot.src) show(slot.src);
+  original = await getMediaSource(slot.src) || (slot.src && !slot.src.startsWith('media:') ? slot.src : null);
+
+  async function run(input){
+    if(!input) return toast('Choose a photograph first.');
+    const busy=document.createElement('div'); busy.className='busy'; busy.textContent='Working…'; pv.append(busy);
+    try{
+      const r=await houseLook(input,{editorial:true,ratio:slot.ratio||'1/1',
+        focusX:+$('[data-fx]',host).value/100, focusY:+$('[data-fy]',host).value/100});
+      slot.src=putMedia(r.out,r.src); original=r.src; show(r.out); setDirty();
+    }catch(e){ console.error(e); busy.remove(); toast('That image could not be read.'); }
+  }
+  $('[data-drop]',host).onclick=()=>$('[data-file]',host).click();
+  $('[data-drop]',host).ondragover=e=>{e.preventDefault();e.target.classList.add('over')};
+  $('[data-drop]',host).ondragleave=e=>e.target.classList.remove('over');
+  $('[data-drop]',host).ondrop=e=>{e.preventDefault();e.currentTarget.classList.remove('over');
+    const f=e.dataTransfer.files[0]; if(f){original=f;run(f);}};
+  $('[data-file]',host).onchange=e=>{const f=e.target.files[0]; if(f){original=f;run(f);}};
+  $('[data-re]',host).onclick=()=>run(original);
+  $('[data-rm]',host)&&($('[data-rm]',host).onclick=()=>{slot.src='';setDirty();picSlot(host,key)});
+  ['fx','fy'].forEach(a=>{
+    const el=$(`[data-${a}]`,host);
+    el.oninput=()=>$(`[data-${a}v]`,host).textContent=el.value+'%';
+    el.onchange=()=>original&&run(original);
+  });
+}
+
+/* ============================================================
+   THE FIVE THREADS
+   ============================================================ */
+function vThreads(){
+  const ts=DATA.organ?.threads||[];
+  $('#stage').innerHTML = head('The five threads',
+    'The five cards under “Your Story. Your Scent.” Each opens full screen, with its own memories and its own notes.',
+    `<button class="btn btn-solid" id="addT">Add a thread</button>`)+
+    `<div class="card">${ts.map(t=>`
+      <div class="line"><span style="font-family:var(--ff-d);font-size:1.3rem;color:var(--amber);width:2rem">${esc(t.num)}</span>
+        <div class="txt"><b>${esc(t.en.label)}</b>
+          <small>${t.memories.length} memories${t.image?'':' · no picture yet'}</small></div>
+        <button class="btn btn-ghost" data-t="${t.id}">Edit</button></div>`).join('')}</div>`;
+  $('#addT').onclick=()=>editThread(null);
+  $$('[data-t]').forEach(b=>b.onclick=()=>editThread(b.dataset.t));
+}
+function editThread(id){
+  const isNew=!id;
+  const t=isNew
+    ? {id:uid('t'),num:String((DATA.organ.threads.length+1)).padStart(2,'0'),image:'',
+       en:{label:'',blurb:''},el:{label:'',blurb:''},memories:[]}
+    : clone(DATA.organ.threads.find(x=>x.id===id));
+  const m=openModal(`
+    <div class="modal-head"><h2>${isNew?'New thread':'Thread '+esc(t.num)}</h2>
+      <button class="btn btn-ghost" id="mClose">Close</button>
+      <button class="btn btn-solid" id="mDone">Done</button></div>
+    <div class="row three">
+      ${F('Number','num',t.num)}
+      ${F('Name (English)','en.label',t.en.label)}
+      ${F('Name (Greek)','el.label',t.el.label)}
+    </div>
+    <div class="row two">
+      ${F('One line (English)','en.blurb',t.en.blurb,{rows:2})}
+      ${F('One line (Greek)','el.blurb',t.el.blurb,{rows:2})}
+    </div>
+    <h3 style="font-size:1rem;margin:1.2rem 0 .8rem">The picture on the card</h3>
+    <div id="thPic"></div>
+    <h3 style="font-size:1rem;margin:1.6rem 0 .8rem">Memories inside this thread</h3>
+    <div class="card" id="memList"></div>
+    <button class="btn btn-ghost" id="addMem">Add a memory</button>
+    ${isNew?'':'<hr class="sep"><button class="btn btn-danger" id="mDel">Delete this thread</button>'}`);
+  bindForm(m,t);
+
+  // the thread picture uses the same editorial treatment
+  const holder={pictures:{__t:{label:'Thread picture',ratio:'4/5',src:t.image}}};
+  const saved=DATA.pictures; 
+  (async()=>{
+    DATA.pictures=Object.assign({},saved,{__t:holder.pictures.__t});
+    await picSlot($('#thPic'),'__t');
+    const watch=setInterval(()=>{
+      if(!document.body.contains($('#thPic'))){ clearInterval(watch); DATA.pictures=saved; return; }
+      if(DATA.pictures.__t.src!==t.image){ t.image=DATA.pictures.__t.src; setDirty(); }
+    },400);
+  })();
+
+  const paintMems=()=>{
+    $('#memList').innerHTML=t.memories.map(x=>`
+      <div class="line"><span style="width:.8rem;height:.8rem;border-radius:50%;background:${esc(x.colour)};flex:none"></span>
+        <div class="txt"><b>${esc(x.en.label)}</b>
+          <small>${esc([...(x.en.top||[]),...(x.en.heart||[]),...(x.en.base||[])].join(' · '))}</small></div>
+        <button class="btn btn-ghost" data-mm="${x.id}">Edit</button></div>`).join('')||'<p class="hint">None yet.</p>';
+    $$('[data-mm]').forEach(b=>b.onclick=()=>editMemory(t,b.dataset.mm,()=>{paintMems()}));
+  };
+  paintMems();
+  $('#addMem').onclick=()=>editMemory(t,null,()=>paintMems());
+  $('#mClose').onclick=()=>{DATA.pictures=saved;closeModal();};
+  $('#mDone').onclick=()=>{
+    DATA.pictures=saved;
+    if(!t.en.label.trim()){toast('Give the thread a name.');return}
+    if(!t.el.label.trim()) t.el.label=t.en.label;
+    const i=DATA.organ.threads.findIndex(x=>x.id===t.id);
+    if(i>-1) DATA.organ.threads[i]=t; else DATA.organ.threads.push(t);
+    setDirty(); closeModal(); vThreads();
+  };
+  $('#mDel')&&($('#mDel').onclick=()=>{
+    if(!confirm('Delete this thread and its memories?'))return;
+    DATA.pictures=saved;
+    DATA.organ.threads=DATA.organ.threads.filter(x=>x.id!==t.id);
+    setDirty(); closeModal(); vThreads();
+  });
+}
+function editMemory(thread,id,after){
+  const isNew=!id;
+  const mem=isNew?{id:uid('m'),colour:'#C2A06B',en:{label:'',top:[],heart:[],base:[]},el:{label:'',top:[],heart:[],base:[]}}
+                 :clone(thread.memories.find(x=>x.id===id));
+  const prev=$('#modal').innerHTML;
+  const mo=openModal(`
+    <div class="modal-head"><h2>${isNew?'New memory':'Memory'}</h2>
+      <button class="btn btn-ghost" id="bBack">Back</button>
+      <button class="btn btn-solid" id="bDone">Done</button></div>
+    <div class="row two">${F('Memory (English)','en.label',mem.en.label,{ph:'A church in August'})}
+      ${F('Memory (Greek)','el.label',mem.el.label)}</div>
+    <div class="row"><div><label>Colour in the bottle</label>
+      <input type="color" data-k="colour" value="${mem.colour}" style="height:2.6rem;padding:.2rem;max-width:8rem"></div></div>
+    <h3 style="font-size:1rem;margin:.6rem 0 .8rem">Notes, English</h3>
+    <div class="row three">${F('Top','en.top',mem.en.top,{list:true})}${F('Heart','en.heart',mem.en.heart,{list:true})}${F('Base','en.base',mem.en.base,{list:true})}</div>
+    <h3 style="font-size:1rem;margin:.6rem 0 .8rem">Notes, Greek</h3>
+    <div class="row three">${F('Κορυφή','el.top',mem.el.top,{list:true})}${F('Καρδιά','el.heart',mem.el.heart,{list:true})}${F('Βάση','el.base',mem.el.base,{list:true})}</div>
+    ${isNew?'':'<hr class="sep"><button class="btn btn-danger" id="bDel">Delete this memory</button>'}`);
+  bindForm(mo,mem);
+  const back=()=>{ $('#modal').innerHTML=prev; };
+  $('#bBack').onclick=back;
+  $('#bDone').onclick=()=>{
+    if(!mem.en.label.trim()){toast('Give the memory a name.');return}
+    if(!mem.el.label.trim()) mem.el.label=mem.en.label;
+    const i=thread.memories.findIndex(x=>x.id===mem.id);
+    if(i>-1) thread.memories[i]=mem; else thread.memories.push(mem);
+    setDirty(); back(); after&&after();
+  };
+  $('#bDel')&&($('#bDel').onclick=()=>{
+    thread.memories=thread.memories.filter(x=>x.id!==mem.id);
+    setDirty(); back(); after&&after();
+  });
 }
 
 /* ============================================================
