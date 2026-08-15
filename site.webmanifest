@@ -1,0 +1,13 @@
+{
+  "name": "La Maison de Stefanie",
+  "short_name": "Stefanie",
+  "description": "Bespoke perfume, made by hand in Plaka, Athens.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0E0A06",
+  "theme_color": "#0E0A06",
+  "icons": [
+    { "src": "/assets/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

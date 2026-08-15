@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "updated": "2026-08-15",
+  "settings": {
+    "phone": "+30 694 747 8033",
+    "whatsapp": "306947478033",
+    "email": "hello@lamaisondestefanie.com",
+    "instagram": "https://www.instagram.com/lamaisondestefanie/",
+    "mapsUrl": "https://www.google.com/maps/place/La+Maison+de+Stefanie/@37.9748836,23.728559,17z/data=!3m1!4b1!4m6!3m5!1s0x14a1bde77115780b:0xccf580926935dbd3!8m2!3d37.9748836!4d23.728559!16s%2Fg%2F11x66c5jp8",
+    "reviewsUrl": "https://www.google.com/maps/place/La+Maison+de+Stefanie/@37.9748836,23.728559,17z/data=!4m8!3m7!1s0x14a1bde77115780b:0xccf580926935dbd3!8m2!3d37.9748836!4d23.728559!9m1!1b1!16s%2Fg%2F11x66c5jp8",
+    "rating": "5.0",
+    "reviewCount": 63,
+    "lat": 37.9748836,
+    "lng": 23.728559,
+    "currency": "€",
+    "shipsWorldwide": true,
+    "en": {
+      "street": "Mnisikleous 10, Plaka",
+      "city": "Athens 105 56, Greece",
+      "hours": "Open daily, 11:00 – 20:00"
+    },
+    "el": {
+      "street": "Μνησικλέους 10, Πλάκα",
+      "city": "Αθήνα 105 56",
+      "hours": "Ανοιχτά καθημερινά, 11:00 – 20:00"
+    }
+  },
+
+  "hero": {
+    "video": "assets/stefanie_hero_loop.webm",
+    "videoMobile": "assets/stefanie_hero_loop_mobile.webm",
+    "poster": "assets/og-image.jpg",
+    "en": {
+      "eyebrow": "Mnisikleous Street, Plaka · A family house of perfume",
+      "titleA": "The perfume",
+      "titleB": "they'll remember you by.",
+      "lede": "Sit down at the bench, tell Stefanie a memory, and watch her blend it into extrait de parfum by hand. One story. One scent. Yours alone.",
+      "ctaPrimary": "Book your bench",
+      "ctaSecondary": "Begin with a memory"
+    },
+    "el": {
+      "eyebrow": "Μνησικλέους, Πλάκα · Ένα οικογενειακό σπίτι αρωμάτων",
+      "titleA": "Το άρωμα",
+      "titleB": "που θα σε θυμούνται.",
+      "lede": "Κάθισε στον πάγκο, πες στη Στεφανί μια ανάμνηση και δες την να τη μετατρέπει σε extrait de parfum στο χέρι. Μία ιστορία. Ένα άρωμα. Μόνο δικό σου.",
+      "ctaPrimary": "Κλείσε τη θέση σου",
+      "ctaSecondary": "Ξεκίνα με μια ανάμνηση"
+    }
+  },
+
+  "organ": {
+    "en": {
+      "eyebrow": "The perfumer's bench",
+      "title": "Choose what you remember.",
+      "lede": "Stefanie does not sell you a bottle from a shelf — she reads what you tell her. Pick up to three memories and see the shape your perfume would take. Then send it to her and she will finish it in front of you.",
+      "cta": "Send this to Stefanie",
+      "reset": "Start again",
+      "empty": "Pick a memory to begin.",
+      "picked": "Your accord so far"
+    },
+    "el": {
+      "eyebrow": "Ο πάγκος της αρωματοποιού",
+      "title": "Διάλεξε αυτό που θυμάσαι.",
+      "lede": "Η Στεφανί δεν σου πουλάει ένα μπουκάλι από το ράφι — διαβάζει αυτό που της λες. Διάλεξε ως τρεις αναμνήσεις και δες τι σχήμα θα έπαιρνε το άρωμά σου. Στείλ' το της και θα το ολοκληρώσει μπροστά σου.",
+      "cta": "Στείλ' το στη Στεφανί",
+      "reset": "Ξεκίνα ξανά",
+      "empty": "Διάλεξε μια ανάμνηση για να ξεκινήσεις.",
+      "picked": "Η συγχορδία σου μέχρι τώρα"
+    },
+    "memories": [
+      { "id": "m1", "colour": "#d8b26a", "en": { "label": "My grandmother's courtyard", "top": ["bergamot", "orange blossom"], "heart": ["jasmine", "geranium"], "base": ["benzoin", "rice powder"] }, "el": { "label": "Η αυλή της γιαγιάς μου", "top": ["περγαμόντο", "άνθος πορτοκαλιάς"], "heart": ["γιασεμί", "γεράνι"], "base": ["βενζόη", "πούδρα ρυζιού"] } },
+      { "id": "m2", "colour": "#7f9aa6", "en": { "label": "The sea before a storm", "top": ["sea salt", "grapefruit"], "heart": ["iris", "algae"], "base": ["ambergris", "driftwood"] }, "el": { "label": "Η θάλασσα πριν τη μπόρα", "top": ["θαλασσινό αλάτι", "γκρέιπφρουτ"], "heart": ["ίρις", "φύκια"], "base": ["άμπρα", "ξύλο θαλασσόδαρτο"] } },
+      { "id": "m3", "colour": "#c98d94", "en": { "label": "A first date", "top": ["pink pepper"], "heart": ["Turkish rose", "violet"], "base": ["white musk", "suede"] }, "el": { "label": "Ένα πρώτο ραντεβού", "top": ["ροζ πιπέρι"], "heart": ["τριαντάφυλλο Τουρκίας", "βιολέτα"], "base": ["λευκός μόσχος", "καστόρι"] } },
+      { "id": "m4", "colour": "#8ba173", "en": { "label": "Fig leaves after rain", "top": ["green fig", "mandarin"], "heart": ["fig milk", "tomato leaf"], "base": ["cedar", "coconut wood"] }, "el": { "label": "Φύλλα συκιάς μετά τη βροχή", "top": ["πράσινο σύκο", "μανταρίνι"], "heart": ["γάλα σύκου", "φύλλο ντομάτας"], "base": ["κέδρος", "ξύλο καρύδας"] } },
+      { "id": "m5", "colour": "#b09a7c", "en": { "label": "A church in August", "top": ["incense smoke"], "heart": ["Chios mastic", "myrrh"], "base": ["labdanum", "beeswax"] }, "el": { "label": "Μια εκκλησία τον Αύγουστο", "top": ["καπνός λιβανιού"], "heart": ["μαστίχα Χίου", "σμύρνα"], "base": ["λάδανο", "κερί μελισσών"] } },
+      { "id": "m6", "colour": "#9a7a5e", "en": { "label": "Her leather jacket", "top": ["cardamom"], "heart": ["leather", "tobacco leaf"], "base": ["vetiver", "oud"] }, "el": { "label": "Το δερμάτινο μπουφάν της", "top": ["κάρδαμο"], "heart": ["δέρμα", "φύλλο καπνού"], "base": ["βετιβέρ", "ούντ"] } },
+      { "id": "m7", "colour": "#7d9070", "en": { "label": "The pine road down to the sea", "top": ["pine needle", "lemon"], "heart": ["rosemary", "mastic"], "base": ["vetiver", "cistus"] }, "el": { "label": "Ο πευκόδρομος προς τη θάλασσα", "top": ["βελόνα πεύκου", "λεμόνι"], "heart": ["δεντρολίβανο", "μαστίχα"], "base": ["βετιβέρ", "λάδανο"] } },
+      { "id": "m8", "colour": "#a58fb0", "en": { "label": "A night that ran too late", "top": ["bitter orange"], "heart": ["orange blossom", "rum"], "base": ["vanilla absolute", "amber"] }, "el": { "label": "Μια νύχτα που κράτησε πολύ", "top": ["νεράντζι"], "heart": ["άνθος πορτοκαλιάς", "ρούμι"], "base": ["απόλυτο βανίλιας", "άμπερ"] } },
+      { "id": "m9", "colour": "#c7bda9", "en": { "label": "A perfume that no longer exists", "top": ["—"], "heart": ["bring me the bottle, or the name"], "base": ["I will rebuild it"] }, "el": { "label": "Ένα άρωμα που δεν υπάρχει πια", "top": ["—"], "heart": ["φέρε μου το μπουκάλι ή το όνομα"], "base": ["θα το ξαναφτιάξω"] } }
+    ]
+  },
+
+  "story": {
+    "portrait": "assets/stefanie-portrait.jpg",
+    "video": "assets/house.mp4",
+    "en": {
+      "eyebrow": "The house",
+      "title": "A legacy of scent.",
+      "quote": "Every perfume has a soul. Give me your memory and I will give you back something that only belongs to you.",
+      "quoteBy": "Stefanie, perfumer",
+      "body": [
+        "In the heart of Plaka, where the old city still keeps its own hours, La Maison de Stefanie grew out of a family legacy and a lifetime spent close to essences.",
+        "My earliest memories are of my grandmother's hands, a perfumer who turned raw materials into feeling. From her I inherited a craft, and a conviction: a perfume should not simply be worn. It should belong to you.",
+        "Everything here is made by hand, in the shop, in front of you. Every bottle is filled and sealed at the counter with the house plate. Nothing leaves this room that I have not composed myself."
+      ]
+    },
+    "el": {
+      "eyebrow": "Το σπίτι",
+      "title": "Μια κληρονομιά αρώματος.",
+      "quote": "Κάθε άρωμα έχει ψυχή. Δώσε μου την ανάμνησή σου και θα σου δώσω πίσω κάτι που ανήκει μόνο σ' εσένα.",
+      "quoteBy": "Στεφανί, αρωματοποιός",
+      "body": [
+        "Στην καρδιά της Πλάκας, εκεί όπου η παλιά πόλη κρατά ακόμη τους δικούς της ρυθμούς, το La Maison de Stefanie γεννήθηκε από μια οικογενειακή κληρονομιά και μια ζωή δίπλα στις πρώτες ύλες.",
+        "Οι πρώτες μου αναμνήσεις είναι τα χέρια της γιαγιάς μου, μιας αρωματοποιού που μετέτρεπε τις ύλες σε συναίσθημα. Από εκείνη κληρονόμησα μια τέχνη και μια πεποίθηση: το άρωμα δεν αρκεί να το φοράς. Πρέπει να σου ανήκει.",
+        "Όλα εδώ γίνονται στο χέρι, μέσα στο μαγαζί, μπροστά σου. Κάθε μπουκάλι γεμίζει και σφραγίζεται στον πάγκο με τη σφραγίδα του σπιτιού."
+      ]
+    }
+  },
+
+  "bespoke": {
+    "en": {
+      "eyebrow": "The session",
+      "title": "How a bespoke perfume is made.",
+      "lede": "Allow about an hour. Come alone, or come with the person you are buying it for. There is no charge to sit down and try.",
+      "priceNote": "Bespoke extrait de parfum from €80 · 30ml · your formula kept on file for life",
+      "cta": "Book a bench",
+      "steps": [
+        { "t": "You talk", "d": "A place, a person, a season, a perfume you lost. Stefanie listens more than she speaks. There is no wrong answer here — vague is fine, she will find it." },
+        { "t": "She reads your nose", "d": "You are given raw materials on paper, not finished perfumes. Your reactions to twenty or thirty essences tell her more than any questionnaire could." },
+        { "t": "She composes", "d": "The accord is built in front of you and adjusted while you wear it, until the moment you go quiet. That moment is the perfume." },
+        { "t": "It is yours, and it is kept", "d": "Filled, sealed and named at the counter. Your formula stays on file — write from anywhere in the world and she will make it again." }
+      ]
+    },
+    "el": {
+      "eyebrow": "Η συνεδρία",
+      "title": "Πώς γεννιέται ένα προσωπικό άρωμα.",
+      "lede": "Υπολόγισε περίπου μία ώρα. Έλα μόνος ή με το άτομο για το οποίο το φτιάχνεις. Δεν χρεώνεται να καθίσεις και να δοκιμάσεις.",
+      "priceNote": "Προσωπικό extrait de parfum από 80€ · 30ml · η συνταγή σου φυλάσσεται για πάντα",
+      "cta": "Κλείσε ραντεβού",
+      "steps": [
+        { "t": "Μιλάς", "d": "Ένας τόπος, ένα πρόσωπο, μια εποχή, ένα άρωμα που χάθηκε. Η Στεφανί ακούει περισσότερο απ' όσο μιλά. Δεν υπάρχει λάθος απάντηση." },
+        { "t": "Διαβάζει τη μύτη σου", "d": "Δοκιμάζεις πρώτες ύλες σε μυρωδοταινίες, όχι έτοιμα αρώματα. Οι αντιδράσεις σου σε είκοσι ή τριάντα ύλες λένε περισσότερα από κάθε ερωτηματολόγιο." },
+        { "t": "Συνθέτει", "d": "Η συγχορδία χτίζεται μπροστά σου και διορθώνεται πάνω στο δέρμα σου, μέχρι τη στιγμή που θα σωπάσεις. Αυτή η στιγμή είναι το άρωμα." },
+        { "t": "Είναι δικό σου και μένει", "d": "Γεμίζει, σφραγίζεται και ονομάζεται στον πάγκο. Η συνταγή μένει στο αρχείο — γράψε από οπουδήποτε στον κόσμο και θα το ξαναφτιάξει." }
+      ]
+    }
+  },
+
+  "shop": {
+    "en": { "eyebrow": "The shelf", "title": "More than perfume.", "lede": "Everything below is made in the Plaka shop, in small quantities, and can be made in your own bespoke scent. Ask for anything you do not see.", "all": "Everything" },
+    "el": { "eyebrow": "Το ράφι", "title": "Περισσότερα από άρωμα.", "lede": "Όλα παρακάτω φτιάχνονται στο μαγαζί στην Πλάκα, σε μικρές ποσότητες, και μπορούν να γίνουν στο δικό σου προσωπικό άρωμα. Ζήτησε ό,τι δεν βλέπεις.", "all": "Όλα" }
+  },
+
+  "categories": [
+    { "id": "c1", "slug": "bespoke", "order": 1, "visible": true, "en": { "name": "Bespoke", "blurb": "Composed with you, at the bench." }, "el": { "name": "Προσωπικά", "blurb": "Συντίθενται μαζί σου, στον πάγκο." } },
+    { "id": "c2", "slug": "collection", "order": 2, "visible": true, "en": { "name": "The Collection", "blurb": "Stefanie's own compositions, in extrait strength." }, "el": { "name": "Η Συλλογή", "blurb": "Οι δικές της συνθέσεις, σε extrait." } },
+    { "id": "c3", "slug": "reconstruction", "order": 3, "visible": true, "en": { "name": "Reconstructions", "blurb": "Discontinued and vintage scents, rebuilt from memory or from the bottle." }, "el": { "name": "Αναδημιουργίες", "blurb": "Αρώματα που καταργήθηκαν, ξαναφτιαγμένα." } },
+    { "id": "c4", "slug": "body", "order": 4, "visible": true, "en": { "name": "Body & Ritual", "blurb": "Oils, balms and soaps — in any scent in the house, including your own." }, "el": { "name": "Σώμα & Τελετουργία", "blurb": "Λάδια, βάλσαμα και σαπούνια — σε όποιο άρωμα θέλεις." } },
+    { "id": "c5", "slug": "home", "order": 5, "visible": true, "en": { "name": "The House", "blurb": "Candles, diffusers and room mists for the places you live in." }, "el": { "name": "Το Σπίτι", "blurb": "Κεριά, αρωματικά χώρου και σπρέι." } },
+    { "id": "c6", "slug": "gifts", "order": 6, "visible": true, "en": { "name": "Gifts & Vouchers", "blurb": "For weddings, for hotels, for people who are difficult to buy for." }, "el": { "name": "Δώρα & Δωροεπιταγές", "blurb": "Για γάμους, για ξενοδοχεία, για δύσκολα δώρα." } }
+  ],
+
+  "products": [
+    { "id": "p1", "cat": "c1", "order": 1, "visible": true, "featured": true, "sample": true, "image": "", "price": "80", "size": "30ml extrait", "payLink": "", "en": { "name": "The Bespoke Session", "tagline": "One hour at the bench. One perfume that exists once.", "story": "You sit down, you talk, and Stefanie builds an accord on your skin until it stops being a fragrance and starts being yours. The bottle is filled, sealed and named at the counter, and the formula is kept on file for life.", "top": ["chosen with you"], "heart": ["chosen with you"], "base": ["chosen with you"] }, "el": { "name": "Η Προσωπική Συνεδρία", "tagline": "Μία ώρα στον πάγκο. Ένα άρωμα που υπάρχει μία φορά.", "story": "Κάθεσαι, μιλάς, και η Στεφανί χτίζει μια συγχορδία πάνω στο δέρμα σου μέχρι να πάψει να είναι άρωμα και να γίνει δικό σου. Η συνταγή φυλάσσεται για πάντα.", "top": ["επιλέγονται μαζί"], "heart": ["επιλέγονται μαζί"], "base": ["επιλέγονται μαζί"] } },
+    { "id": "p2", "cat": "c1", "order": 2, "visible": true, "featured": false, "sample": true, "image": "", "price": "", "size": "30ml extrait", "payLink": "", "en": { "name": "Made Again", "tagline": "Your formula, remade and shipped anywhere.", "story": "Every bespoke formula stays on file. Write from any city and the same perfume is mixed by the same hands and sent to you. No second session needed.", "top": ["your formula"], "heart": ["unchanged"], "base": ["unchanged"] }, "el": { "name": "Ξανά", "tagline": "Η συνταγή σου, ξαναφτιαγμένη και σταλμένη παντού.", "story": "Κάθε προσωπική συνταγή μένει στο αρχείο. Γράψε από οποιαδήποτε πόλη και το ίδιο άρωμα φτιάχνεται από τα ίδια χέρια.", "top": ["η συνταγή σου"], "heart": ["αμετάβλητη"], "base": ["αμετάβλητη"] } },
+    { "id": "p3", "cat": "c2", "order": 1, "visible": true, "featured": true, "sample": true, "image": "", "price": "95", "size": "50ml extrait", "payLink": "", "en": { "name": "Mnisikleous", "tagline": "The street outside the door, at eight in the evening.", "story": "Warm stone still giving back the day, jasmine spilling over a wall, a bar opening somewhere below. The house signature.", "top": ["bergamot", "pink pepper"], "heart": ["jasmine sambac", "orange blossom"], "base": ["warm stone accord", "benzoin", "musk"] }, "el": { "name": "Μνησικλέους", "tagline": "Ο δρόμος έξω από την πόρτα, στις οκτώ το βράδυ.", "story": "Ζεστή πέτρα που επιστρέφει τη μέρα, γιασεμί που ξεχειλίζει από έναν τοίχο, ένα μπαρ που ανοίγει πιο κάτω.", "top": ["περγαμόντο", "ροζ πιπέρι"], "heart": ["γιασεμί σαμπάκ", "άνθος πορτοκαλιάς"], "base": ["ζεστή πέτρα", "βενζόη", "μόσχος"] } },
+    { "id": "p4", "cat": "c2", "order": 2, "visible": true, "featured": true, "sample": true, "image": "", "price": "95", "size": "50ml extrait", "payLink": "", "en": { "name": "Chios", "tagline": "Mastic, salt and resin.", "story": "Built around Chios mastic — green, medicinal, faintly sweet — over sea salt and cistus. Dry, bright and very Greek.", "top": ["lemon leaf", "sea salt"], "heart": ["Chios mastic", "rosemary"], "base": ["cistus", "vetiver"] }, "el": { "name": "Χίος", "tagline": "Μαστίχα, αλάτι και ρετσίνι.", "story": "Χτισμένο γύρω από τη μαστίχα Χίου — πράσινη, φαρμακευτική, ελαφρώς γλυκιά — πάνω σε θαλασσινό αλάτι και λάδανο.", "top": ["φύλλο λεμονιάς", "θαλασσινό αλάτι"], "heart": ["μαστίχα Χίου", "δεντρολίβανο"], "base": ["λάδανο", "βετιβέρ"] } },
+    { "id": "p5", "cat": "c2", "order": 3, "visible": true, "featured": false, "sample": true, "image": "", "price": "95", "size": "50ml extrait", "payLink": "", "en": { "name": "Kyria", "tagline": "Powder, iris and a closed drawer.", "story": "The scent of a woman who dressed properly to go out. Iris butter, rice powder and a breath of leather from the handbag.", "top": ["aldehydes", "violet leaf"], "heart": ["iris butter", "rose"], "base": ["rice powder", "soft leather", "sandalwood"] }, "el": { "name": "Κυρία", "tagline": "Πούδρα, ίρις και ένα κλειστό συρτάρι.", "story": "Το άρωμα μιας γυναίκας που ντυνόταν σωστά για να βγει. Βούτυρο ίριδας, πούδρα ρυζιού και μια ανάσα δέρματος.", "top": ["αλδεΰδες", "φύλλο βιολέτας"], "heart": ["βούτυρο ίριδας", "τριαντάφυλλο"], "base": ["πούδρα ρυζιού", "απαλό δέρμα", "σανδαλόξυλο"] } },
+    { "id": "p6", "cat": "c3", "order": 1, "visible": true, "featured": false, "sample": true, "image": "", "price": "", "size": "30ml extrait", "payLink": "", "en": { "name": "The Perfume You Lost", "tagline": "Discontinued, reformulated, or simply gone.", "story": "Bring the empty bottle, the name, or only the memory of it. Reconstruction takes time and is quoted after Stefanie has smelled or researched the original.", "top": ["by arrangement"], "heart": ["by arrangement"], "base": ["by arrangement"] }, "el": { "name": "Το Άρωμα που Έχασες", "tagline": "Καταργημένο, αλλαγμένο ή απλώς χαμένο.", "story": "Φέρε το άδειο μπουκάλι, το όνομα ή μόνο την ανάμνηση. Η αναδημιουργία θέλει χρόνο και κοστολογείται αφού η Στεφανί μυρίσει ή ερευνήσει το πρωτότυπο.", "top": ["κατόπιν συνεννόησης"], "heart": ["κατόπιν συνεννόησης"], "base": ["κατόπιν συνεννόησης"] } },
+    { "id": "p7", "cat": "c4", "order": 1, "visible": true, "featured": true, "sample": true, "image": "", "price": "38", "size": "100ml", "payLink": "", "en": { "name": "Body Oil", "tagline": "Any scent in the house, including your own.", "story": "Sweet almond and Greek olive squalane, lightly scented and quick to sink in. Ask for it in your bespoke formula and it becomes a layer under your perfume.", "top": [], "heart": [], "base": [] }, "el": { "name": "Λάδι Σώματος", "tagline": "Σε όποιο άρωμα θέλεις, ακόμη και στο δικό σου.", "story": "Αμυγδαλέλαιο και ελληνικό σκουαλάνιο ελιάς, ελαφρώς αρωματισμένο. Ζήτησέ το στη δική σου συνταγή και γίνεται στρώση κάτω από το άρωμά σου.", "top": [], "heart": [], "base": [] } },
+    { "id": "p8", "cat": "c4", "order": 2, "visible": true, "featured": false, "sample": true, "image": "", "price": "14", "size": "120g", "payLink": "", "en": { "name": "Cold-Pressed Soap", "tagline": "Olive oil, cured six weeks.", "story": "Made in small batches with Greek olive oil and scented with the house compositions. Cures for six weeks before it is wrapped by hand.", "top": [], "heart": [], "base": [] }, "el": { "name": "Σαπούνι Ψυχρής Έκθλιψης", "tagline": "Ελαιόλαδο, ωρίμανση έξι εβδομάδων.", "story": "Φτιάχνεται σε μικρές παρτίδες με ελληνικό ελαιόλαδο και αρωματίζεται με τις συνθέσεις του σπιτιού.", "top": [], "heart": [], "base": [] } },
+    { "id": "p9", "cat": "c5", "order": 1, "visible": true, "featured": true, "sample": true, "image": "", "price": "45", "size": "220g · approx. 45 hours", "payLink": "", "en": { "name": "House Candle", "tagline": "The shop, on a shelf at home.", "story": "Poured in the shop in soy and beeswax, in a reusable glass. Available in any composition in the house.", "top": [], "heart": [], "base": [] }, "el": { "name": "Κερί του Σπιτιού", "tagline": "Το μαγαζί, σε ένα ράφι στο σπίτι.", "story": "Χυτεύεται στο μαγαζί σε σόγια και κερί μελισσών, σε επαναχρησιμοποιήσιμο γυαλί.", "top": [], "heart": [], "base": [] } },
+    { "id": "p10", "cat": "c5", "order": 2, "visible": true, "featured": false, "sample": true, "image": "", "price": "55", "size": "200ml · 8 reeds", "payLink": "", "en": { "name": "Reed Diffuser", "tagline": "For a hallway, or a hotel room that needs a memory.", "story": "A slow, even diffusion built to last about four months. Refills are available at the counter.", "top": [], "heart": [], "base": [] }, "el": { "name": "Αρωματικό Χώρου", "tagline": "Για έναν διάδρομο ή ένα δωμάτιο που χρειάζεται ανάμνηση.", "story": "Αργή, σταθερή διάχυση για περίπου τέσσερις μήνες. Ανταλλακτικά διαθέσιμα στο μαγαζί.", "top": [], "heart": [], "base": [] } },
+    { "id": "p11", "cat": "c6", "order": 1, "visible": true, "featured": true, "sample": true, "image": "", "price": "80", "size": "Any value", "payLink": "", "en": { "name": "Bespoke Voucher", "tagline": "Give somebody an hour at the bench.", "story": "Issued as a sealed card, or sent as a PDF within the hour if you have left it late. Valid for two years and never expires quietly.", "top": [], "heart": [], "base": [] }, "el": { "name": "Δωροεπιταγή", "tagline": "Χάρισε σε κάποιον μία ώρα στον πάγκο.", "story": "Σε σφραγισμένη κάρτα ή σε PDF μέσα σε μία ώρα αν το θυμήθηκες αργά. Ισχύει δύο χρόνια.", "top": [], "heart": [], "base": [] } },
+    { "id": "p12", "cat": "c6", "order": 2, "visible": true, "featured": false, "sample": true, "image": "", "price": "", "size": "From 20 pieces", "payLink": "", "en": { "name": "Weddings & Events", "tagline": "One scent for the day, in small bottles for everyone in it.", "story": "A composition made for the couple, then filled into favour bottles with printed names. Hotels and event planners: ask about the house account.", "top": [], "heart": [], "base": [] }, "el": { "name": "Γάμοι & Εκδηλώσεις", "tagline": "Ένα άρωμα για τη μέρα, σε μικρά μπουκάλια για όλους.", "story": "Μια σύνθεση για το ζευγάρι και μικρά μπουκαλάκια με τυπωμένα ονόματα. Για ξενοδοχεία και διοργανωτές υπάρχει ειδικός λογαριασμός.", "top": [], "heart": [], "base": [] } }
+  ],
+
+  "reviews": [
+    { "id": "r1", "stars": 5, "name": "David Young", "meta": "Google review", "en": "Stefanie is truly the master of her craft. She perfectly crafted a scent for someone she had never met.", "el": "Η Στεφανί είναι πραγματικά δασκάλα της τέχνης της. Έφτιαξε τέλεια ένα άρωμα για κάποια που δεν είχε γνωρίσει ποτέ." },
+    { "id": "r2", "stars": 5, "name": "shahruz ebrahimzadeh", "meta": "Local Guide, Google", "en": "The most pleasurable experience. Patient and warm, she found the perfect scent for my custom perfume.", "el": "Η πιο ευχάριστη εμπειρία. Υπομονετική και ζεστή, βρήκε το τέλειο άρωμα για μένα." },
+    { "id": "r3", "stars": 5, "name": "Corinne Mok", "meta": "Google review", "en": "Stefanie let us try so many perfumes and tailor-mixed one just for me. A lovely afternoon, and excellent prices too.", "el": "Μας άφησε να δοκιμάσουμε τόσα αρώματα και έφτιαξε ένα μόνο για μένα. Υπέροχο απόγευμα και εξαιρετικές τιμές." }
+  ],
+
+  "visit": {
+    "en": {
+      "eyebrow": "Visit",
+      "title": "Find us on Mnisikleous Street.",
+      "lede": "A short walk up from Monastiraki, below the Acropolis. There is always a bottle open on the counter and someone who knows how to read a nose. Walk in — no appointment needed to try.",
+      "book": "Message the shop",
+      "directions": "Get directions",
+      "mapNote": "The map is loaded from Google, which sets its own cookies. It appears only if you ask for it.",
+      "mapLoad": "Show the map"
+    },
+    "el": {
+      "eyebrow": "Επίσκεψη",
+      "title": "Θα μας βρεις στη Μνησικλέους.",
+      "lede": "Λίγα βήματα πάνω από το Μοναστηράκι, κάτω από την Ακρόπολη. Πάντα υπάρχει ένα ανοιχτό μπουκάλι στον πάγκο. Πέρνα — δεν χρειάζεται ραντεβού για να δοκιμάσεις.",
+      "book": "Στείλε μήνυμα",
+      "directions": "Οδηγίες",
+      "mapNote": "Ο χάρτης φορτώνει από την Google, που βάζει δικά της cookies. Εμφανίζεται μόνο αν το ζητήσεις.",
+      "mapLoad": "Δείξε τον χάρτη"
+    }
+  },
+
+  "faq": {
+    "en": { "eyebrow": "Good to know", "title": "Before you come." },
+    "el": { "eyebrow": "Καλό να ξέρεις", "title": "Πριν έρθεις." },
+    "items": [
+      { "id": "f1", "en": { "q": "Do I need to book?", "a": "No. Walk in and try — that costs nothing. Book only if you want a full bespoke session, so Stefanie can keep the bench free for you." }, "el": { "q": "Χρειάζεται ραντεβού;", "a": "Όχι. Πέρνα και δοκίμασε — δεν κοστίζει τίποτα. Κλείσε ραντεβού μόνο για πλήρη προσωπική συνεδρία." } },
+      { "id": "f2", "en": { "q": "How long does a bespoke perfume take?", "a": "About an hour at the bench, and you leave with the bottle the same day. Larger or more complex work, and reconstructions of a discontinued perfume, take longer and are quoted first." }, "el": { "q": "Πόσο διαρκεί;", "a": "Περίπου μία ώρα και φεύγεις με το μπουκάλι την ίδια μέρα. Οι αναδημιουργίες θέλουν περισσότερο χρόνο." } },
+      { "id": "f3", "en": { "q": "Can you send it to me later?", "a": "Yes. Every formula is kept on file, so you can order the same perfume from anywhere in the world and it is mixed by the same hands and shipped to you." }, "el": { "q": "Μπορείτε να μου το στείλετε αργότερα;", "a": "Ναι. Κάθε συνταγή φυλάσσεται, οπότε μπορείς να παραγγείλεις το ίδιο άρωμα από οπουδήποτε στον κόσμο." } },
+      { "id": "f4", "en": { "q": "Is it only perfume?", "a": "No. The same compositions are made up as body oils, soaps, candles, diffusers and room mists, and as vouchers and wedding favours. If you want something in your own scent, ask." }, "el": { "q": "Μόνο αρώματα;", "a": "Όχι. Οι ίδιες συνθέσεις γίνονται λάδια σώματος, σαπούνια, κεριά, αρωματικά χώρου, δωροεπιταγές και μπομπονιέρες." } },
+      { "id": "f5", "en": { "q": "How should I keep it?", "a": "Away from sunlight and heat, with the cap on. Extrait de parfum is a high concentration and will hold its character for years if you keep it in the dark." }, "el": { "q": "Πώς να το φυλάξω;", "a": "Μακριά από ήλιο και ζέστη, με το καπάκι κλειστό. Το extrait κρατά τον χαρακτήρα του για χρόνια στο σκοτάδι." } }
+    ]
+  },
+
+  "footer": {
+    "en": { "made": "Made by hand in Plaka, Athens.", "privacy": "Privacy & cookies" },
+    "el": { "made": "Φτιαγμένο στο χέρι στην Πλάκα.", "privacy": "Απόρρητο & cookies" }
+  },
+
+  "seo": {
+    "en": {
+      "title": "La Maison de Stefanie · Bespoke Perfume in Plaka, Athens",
+      "description": "A family perfume house in Plaka, Athens. Tell Stefanie a memory and she blends it into extrait de parfum by hand — plus candles, body oils and gifts. Rated 5.0 on Google."
+    },
+    "el": {
+      "title": "La Maison de Stefanie · Προσωπικά Αρώματα στην Πλάκα",
+      "description": "Ένα οικογενειακό σπίτι αρωμάτων στην Πλάκα. Πες στη Στεφανί μια ανάμνηση και τη μετατρέπει σε extrait de parfum στο χέρι."
+    }
+  }
+}

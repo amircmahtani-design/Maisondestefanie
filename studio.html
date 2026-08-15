@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Studio · La Maison de Stefanie</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;1,400&family=Commissioner:wght@300;400;500;600&family=GFS+Didot&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noir:#0E0A06;--panel:#151009;--raise:#1e1710;--edge:rgba(240,232,219,.13);
+  --chalk:#F0E8DB;--muted:#A5957E;--dim:#6E6152;
+  --amber:#C68A3C;--amber-lit:#E6B76D;--vetiver:#7F8E6C;--red:#C4685E;
+  --ff:"Commissioner",system-ui,sans-serif;--ff-d:"Alegreya",Georgia,serif;--ff-l:"GFS Didot",serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--noir);color:var(--chalk);font-family:var(--ff);font-size:15px;font-weight:300;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--amber-lit)}
+h1,h2,h3{font-family:var(--ff-d);font-weight:400;margin:0;line-height:1.15}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,textarea,select{
+  font:inherit;width:100%;background:#0b0805;color:var(--chalk);
+  border:1px solid var(--edge);border-radius:3px;padding:.6rem .75rem;
+}
+input:focus,textarea:focus,select:focus{outline:0;border-color:var(--amber)}
+textarea{resize:vertical;min-height:5.5rem;line-height:1.5}
+label{display:block;font-family:var(--ff-l);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:0 0 .35rem}
+:focus-visible{outline:2px solid var(--amber-lit);outline-offset:2px}
+.hint{font-size:.78rem;color:var(--dim);margin:.35rem 0 0}
+.row{display:grid;gap:1rem;margin-bottom:1.1rem}
+.row.two{grid-template-columns:1fr 1fr}
+.row.three{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:700px){.row.two,.row.three{grid-template-columns:1fr}}
+
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.55rem 1rem;border-radius:999px;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;font-weight:500;transition:.25s;white-space:nowrap}
+.btn-solid{background:var(--amber);color:#150d04}
+.btn-solid:hover{background:var(--amber-lit)}
+.btn-ghost{border:1px solid var(--edge)}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber-lit)}
+.btn-danger{border:1px solid rgba(196,104,94,.5);color:var(--red)}
+.btn-danger:hover{background:rgba(196,104,94,.14)}
+.btn[disabled]{opacity:.4;pointer-events:none}
+.btn-ai{border:1px solid rgba(127,142,108,.55);color:var(--vetiver);font-size:.7rem;padding:.35rem .7rem;text-transform:none;letter-spacing:.04em}
+.btn-ai:hover{background:rgba(127,142,108,.14)}
+
+/* layout */
+.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+@media(max-width:860px){.app{grid-template-columns:1fr}}
+aside.rail{border-right:1px solid var(--edge);background:var(--panel);padding:1.2rem 0;position:sticky;top:0;height:100vh;overflow:auto}
+@media(max-width:860px){aside.rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--edge)}}
+.brand{font-family:var(--ff-l);letter-spacing:.16em;text-transform:uppercase;font-size:.8rem;padding:0 1.2rem 1.2rem;color:var(--muted)}
+.brand b{display:block;font-family:var(--ff-d);font-style:italic;text-transform:none;letter-spacing:0;font-size:1.15rem;color:var(--chalk);margin-top:.2rem}
+.rail nav{display:flex;flex-direction:column}
+@media(max-width:860px){.rail nav{flex-direction:row;overflow-x:auto}}
+.rail nav button{text-align:left;padding:.6rem 1.2rem;color:var(--muted);border-left:2px solid transparent;font-size:.9rem;white-space:nowrap}
+.rail nav button:hover{color:var(--chalk)}
+.rail nav button.on{color:var(--chalk);border-left-color:var(--amber);background:rgba(198,138,60,.08)}
+@media(max-width:860px){.rail nav button{border-left:0;border-bottom:2px solid transparent}.rail nav button.on{border-bottom-color:var(--amber)}}
+main.stage{padding:1.6rem clamp(1rem,3vw,2.4rem) 6rem;max-width:1100px}
+.head{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-end;justify-content:space-between;margin-bottom:1.6rem}
+.head h1{font-size:1.9rem}
+.head p{margin:.3rem 0 0;color:var(--muted);font-size:.88rem;max-width:60ch}
+.card{background:var(--panel);border:1px solid var(--edge);border-radius:4px;padding:1.2rem;margin-bottom:1rem}
+.card h3{font-size:1.1rem;margin-bottom:.9rem}
+hr.sep{border:0;border-top:1px solid var(--edge);margin:1.4rem 0}
+
+/* sticky save bar */
+.savebar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:.8rem;
+  padding:.7rem clamp(1rem,3vw,2.4rem);background:rgba(9,6,3,.94);backdrop-filter:blur(12px);border-top:1px solid var(--edge)}
+.savebar .status{font-size:.8rem;color:var(--muted);margin-right:auto}
+.dot{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;background:var(--vetiver);margin-right:.45rem}
+.dot.dirty{background:var(--amber)}
+.dot.off{background:var(--dim)}
+
+/* products */
+.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:.9rem}
+.ptile{background:var(--panel);border:1px solid var(--edge);border-radius:4px;overflow:hidden;text-align:left;transition:.25s;display:flex;flex-direction:column}
+.ptile:hover{border-color:var(--amber)}
+.ptile .th{aspect-ratio:1;background:linear-gradient(170deg,#efe8e0,#d8ccc3);display:grid;place-items:center;position:relative}
+.ptile .th img{width:100%;height:100%;object-fit:cover}
+.ptile .th span{color:#9c8f84;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase}
+.ptile .meta{padding:.7rem .8rem .9rem}
+.ptile .meta b{display:block;font-family:var(--ff-d);font-size:1rem;font-weight:400}
+.ptile .meta small{color:var(--dim);font-size:.75rem}
+.badge{position:absolute;top:.4rem;left:.4rem;background:rgba(20,15,10,.85);color:var(--chalk);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .45rem;border-radius:2px}
+.badge.hidden{background:rgba(110,97,82,.9)}
+.badge.sample{background:rgba(127,142,108,.9);color:#0b0805}
+
+/* modal */
+.scrim{position:fixed;inset:0;background:rgba(6,4,2,.78);backdrop-filter:blur(3px);z-index:60;display:none}
+.scrim.on{display:block}
+.modal{position:fixed;z-index:61;inset:auto 0 0 0;max-height:92vh;overflow:auto;background:var(--noir);
+  border-top:1px solid var(--edge);border-radius:8px 8px 0 0;padding:1.4rem clamp(1rem,3vw,2rem) 2rem;display:none}
+.modal.on{display:block}
+@media(min-width:900px){.modal{inset:3vh 50% auto auto;transform:translateX(50%);width:min(880px,94vw);border:1px solid var(--edge);border-radius:6px;max-height:94vh}}
+.modal-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;position:sticky;top:-1.4rem;background:var(--noir);padding:1.4rem 0 .8rem;margin-top:-1.4rem;z-index:2}
+.modal-head h2{font-size:1.4rem;margin-right:auto}
+.tabs{display:flex;gap:.3rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.tabs button{padding:.4rem .85rem;border:1px solid var(--edge);border-radius:999px;font-size:.78rem;color:var(--muted)}
+.tabs button.on{background:var(--chalk);color:#120c07;border-color:var(--chalk)}
+
+/* image lab */
+.lab{display:grid;grid-template-columns:1fr 260px;gap:1.2rem}
+@media(max-width:760px){.lab{grid-template-columns:1fr}}
+.preview{aspect-ratio:1;border:1px solid var(--edge);border-radius:3px;overflow:hidden;background:
+  repeating-conic-gradient(#1a140d 0 25%,#221a12 0 50%) 50%/22px 22px;display:grid;place-items:center;position:relative}
+.preview img,.preview canvas{width:100%;height:100%;object-fit:contain}
+.preview .ph{color:var(--dim);font-size:.8rem;text-align:center;padding:1.5rem}
+.drop{border:1px dashed var(--edge);border-radius:3px;padding:1.1rem;text-align:center;color:var(--muted);font-size:.85rem;cursor:pointer;transition:.25s}
+.drop:hover,.drop.over{border-color:var(--amber);color:var(--chalk);background:rgba(198,138,60,.06)}
+.sl{margin-bottom:.75rem}
+.sl label{display:flex;justify-content:space-between;letter-spacing:.12em}
+.sl label i{font-style:normal;color:var(--muted)}
+input[type=range]{width:100%;accent-color:var(--amber);padding:0;border:0;background:none}
+.sw{display:flex;align-items:center;gap:.55rem;font-size:.85rem;color:var(--muted);margin-bottom:.7rem;cursor:pointer}
+.sw input{width:auto;accent-color:var(--amber)}
+.busy{position:absolute;inset:0;display:grid;place-items:center;background:rgba(9,6,3,.72);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-lit)}
+
+/* misc lists */
+.line{display:flex;gap:.7rem;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--edge)}
+.line:last-child{border-bottom:0}
+.line .grab{color:var(--dim);cursor:grab;font-size:.9rem}
+.line .txt{flex:1;min-width:0}
+.line .txt b{display:block;font-weight:400;font-family:var(--ff-d);font-size:1.02rem}
+.line .txt small{color:var(--dim);font-size:.78rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toast{position:fixed;left:50%;bottom:5rem;transform:translate(-50%,140%);z-index:80;background:var(--raise);
+  border:1px solid var(--edge);border-radius:999px;padding:.6rem 1.2rem;font-size:.85rem;transition:.4s cubic-bezier(.22,.61,.36,1)}
+.toast.on{transform:translate(-50%,0)}
+.gate{min-height:100vh;display:grid;place-items:center;padding:1.5rem}
+.gate .card{width:min(420px,100%)}
+body.no-ai .btn-ai{display:none}
+.warn{border-left:2px solid var(--amber);padding:.7rem .9rem;background:rgba(198,138,60,.07);font-size:.85rem;color:#d7c9b4;margin-bottom:1rem;border-radius:0 3px 3px 0}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <div class="card">
+    <div class="brand" style="padding:0 0 1rem">Studio<b>La Maison de Stefanie</b></div>
+    <div id="gateBody"></div>
+  </div>
+</div>
+
+<div class="app" id="app" hidden>
+  <aside class="rail">
+    <div class="brand">Studio<b>La Maison de Stefanie</b></div>
+    <nav id="rail"></nav>
+  </aside>
+  <main class="stage" id="stage"></main>
+</div>
+
+<div class="savebar" id="savebar" hidden>
+  <span class="status" id="status"><span class="dot"></span><span id="statusTxt">Ready</span></span>
+  <a class="btn btn-ghost" href="index.html" target="_blank">View site</a>
+  <button class="btn btn-ghost" id="btnExport">Download backup</button>
+  <button class="btn btn-solid" id="btnSave">Publish changes</button>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="modal" id="modal"></div>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script type="module">
+/* ============================================================
+   Studio — everything Stefanie can change, in one place.
+   ============================================================ */
+const CFG = window.LMS_CONFIG||{};
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=p=>p+Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-3);
+const clone=o=>JSON.parse(JSON.stringify(o));
+
+let DATA=null, DIRTY=false, MODE='offline', FB=null, USER=null, VIEW='shelf';
+const newMedia = new Map();          // id -> {out, src}  waiting to be written
+const mediaCache = new Map();        // id -> out dataURL
+
+const toast=(m,ms=2600)=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),ms)};
+function setDirty(v=true){
+  DIRTY=v;
+  $('#status').innerHTML = `<span class="dot ${v?'dirty':(MODE==='live'?'':'off')}"></span>` +
+    (v ? 'Unpublished changes' : MODE==='live' ? 'Everything is published' : 'Working offline — download a backup to keep changes');
+}
+addEventListener('beforeunload',e=>{ if(DIRTY){e.preventDefault();e.returnValue='';} });
+
+/* ---------- connect ---------- */
+async function connect(){
+  const ok = CFG.firebase && !String(CFG.firebase.apiKey).startsWith('PASTE');
+  if(!ok) return false;
+  const [{initializeApp},fs,auth] = await Promise.all([
+    import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js'),
+    import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js'),
+    import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js')
+  ]);
+  const app = initializeApp(CFG.firebase);
+  FB = { db: fs.getFirestore(app), auth: auth.getAuth(app), fs, authmod: auth };
+  return true;
+}
+
+/* ---------- the front door ---------- */
+async function gate(){
+  const body=$('#gateBody');
+  let connected=false;
+  try{ connected = await connect(); }catch(e){ console.warn(e); }
+
+  if(!connected){
+    MODE='offline';
+    body.innerHTML=`
+      <div class="warn">Running in <b>offline mode</b>. Changes are kept in this browser only. Use <b>Download backup</b> to save a zip you can upload to the site.</div>
+      <p class="hint" style="margin-bottom:1rem">To edit the live site instead, fill in the Firebase details in <code>config.js</code>.</p>
+      <button class="btn btn-solid" id="goOff">Open the Studio</button>`;
+    $('#goOff').onclick=()=>start();
+    return;
+  }
+
+  MODE='live';
+  FB.authmod.onAuthStateChanged(FB.auth, async u=>{
+    const allowed = (CFG.adminEmails||[]).map(x=>x.toLowerCase());
+    if(u && (!allowed.length || allowed.includes((u.email||'').toLowerCase()))){
+      USER=u; start(); return;
+    }
+    if(u){ await FB.authmod.signOut(FB.auth); toast('That address cannot edit this site.'); }
+    body.innerHTML=`
+      <div class="row"><div><label>Email</label><input id="em" type="email" autocomplete="username"></div></div>
+      <div class="row"><div><label>Password</label><input id="pw" type="password" autocomplete="current-password"></div></div>
+      <button class="btn btn-solid" id="signin">Sign in</button>
+      <p class="hint" id="gerr"></p>`;
+    $('#signin').onclick=async()=>{
+      $('#gerr').textContent='';
+      try{ await FB.authmod.signInWithEmailAndPassword(FB.auth,$('#em').value.trim(),$('#pw').value); }
+      catch(e){ $('#gerr').textContent = 'That did not work. Check the address and password, or reset it in Firebase.'; }
+    };
+    $('#pw').addEventListener('keydown',e=>{if(e.key==='Enter')$('#signin').click()});
+  });
+}
+
+/* ---------- load + save ---------- */
+async function loadContent(){
+  if(MODE==='live'){
+    try{
+      const snap = await FB.fs.getDoc(FB.fs.doc(FB.db,'site','content'));
+      if(snap.exists()) return snap.data();
+    }catch(e){ console.warn(e); }
+  }
+  const local = localStorage.getItem('lms-draft');
+  if(local){ try{ return JSON.parse(local); }catch(e){} }
+  return await (await fetch('content.json',{cache:'no-cache'})).json();
+}
+
+async function save(){
+  DATA.updated = new Date().toISOString().slice(0,10);
+  if(MODE==='live'){
+    $('#btnSave').disabled=true;
+    try{
+      for(const [id,m] of newMedia){
+        await FB.fs.setDoc(FB.fs.doc(FB.db,'media',id), m);
+      }
+      newMedia.clear();
+      await FB.fs.setDoc(FB.fs.doc(FB.db,'site','content'), DATA);
+      setDirty(false); toast('Published. The site is updated.');
+    }catch(e){
+      console.error(e);
+      toast('Could not publish. Check your connection and the Firestore rules.',5000);
+    }finally{ $('#btnSave').disabled=false; }
+  }else{
+    localStorage.setItem('lms-draft', JSON.stringify(DATA));
+    const kept = saveOfflineMedia();
+    setDirty(false);
+    if(kept===false) toast('Saved, but this browser has run out of room for the photos. Download a backup now — they are only held until you close the tab.',7000);
+    else if(kept==='slim') toast('Saved. There was not room to keep the original photos, so “Re-apply to every photo” will not work until you publish.',6500);
+    else toast('Saved in this browser. Download a backup to put it on the site.',4200);
+  }
+}
+
+/* ---------- media ---------- */
+async function getMedia(ref){
+  if(!ref) return '';
+  if(!ref.startsWith('media:')) return ref;
+  const id=ref.slice(6);
+  if(newMedia.has(id)) return newMedia.get(id).out;
+  if(mediaCache.has(id)) return mediaCache.get(id);
+  if(MODE!=='live') return '';
+  try{
+    const s = await FB.fs.getDoc(FB.fs.doc(FB.db,'media',id));
+    const u = s.exists()?(s.data().out||''):'';
+    mediaCache.set(id,u); return u;
+  }catch(e){ return ''; }
+}
+async function getMediaSource(ref){
+  if(!ref||!ref.startsWith('media:')) return '';
+  const id=ref.slice(6);
+  if(newMedia.has(id)) return newMedia.get(id).src||'';
+  if(MODE!=='live') return '';
+  try{ const s=await FB.fs.getDoc(FB.fs.doc(FB.db,'media',id)); return s.exists()?(s.data().src||''):''; }
+  catch(e){ return ''; }
+}
+function loadOfflineMedia(){
+  try{ const m=JSON.parse(localStorage.getItem('lms-media')||'{}');
+       Object.entries(m).forEach(([k,v])=>newMedia.set(k,v)); }catch(e){}
+}
+function saveOfflineMedia(){
+  const full={}; newMedia.forEach((v,k)=>full[k]=v);
+  try{ localStorage.setItem('lms-media',JSON.stringify(full)); return true; }catch(e){}
+  const slim={}; newMedia.forEach((v,k)=>slim[k]={out:v.out});   // drop the originals first
+  try{ localStorage.setItem('lms-media',JSON.stringify(slim)); return 'slim'; }catch(e){}
+  return false;
+}
+function putMedia(out,src){
+  const id = uid('img');
+  newMedia.set(id,{out,src,created:Date.now()});
+  return 'media:'+id;
+}
+
+/* ---------- AI helper ---------- */
+let AI_OK = null;
+async function ai(task, payload){
+  const url = CFG.aiEndpoint || '/.netlify/functions/ai';
+  const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({task,...payload})});
+  if(!r.ok) throw new Error('AI request failed ('+r.status+')');
+  const j = await r.json();
+  return j.text||'';
+}
+async function aiAvailable(){
+  if(AI_OK!==null) return AI_OK;
+  try{
+    const r = await fetch(CFG.aiEndpoint||'/.netlify/functions/ai',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify({task:'ping'})});
+    AI_OK = r.ok;
+  }catch(e){ AI_OK=false; }
+  return AI_OK;
+}
+
+/* ============================================================
+   THE HOUSE LOOK
+   Every photo she uploads is put through the same treatment, so
+   a phone snap of a candle and a studio shot of a flacon end up
+   looking like two pieces of one collection.
+   ============================================================ */
+const DEFAULT_LOOK = Object.assign({
+  canvas:1400, cutout:true, tolerance:34, feather:1.6, subjectScale:.74, baseline:.90,
+  backdropTop:'#efe8e0', backdropBottom:'#d8ccc3', shadow:.34,
+  warmth:.16, contrast:.14, saturation:-.06, grain:.05, vignette:.22, maxKB:360
+}, CFG.houseLook||{});
+const look = () => Object.assign({}, DEFAULT_LOOK, DATA?.houseLook||{});
+
+function loadBitmap(srcOrFile){
+  if(srcOrFile instanceof Blob) return createImageBitmap(srcOrFile);
+  return new Promise((res,rej)=>{
+    const i=new Image(); i.crossOrigin='anonymous';
+    i.onload=()=>res(i); i.onerror=rej; i.src=srcOrFile;
+  });
+}
+function drawToCanvas(bmp,max){
+  const w=bmp.width,h=bmp.height, s=Math.min(1,max/Math.max(w,h));
+  const c=document.createElement('canvas'); c.width=Math.round(w*s); c.height=Math.round(h*s);
+  c.getContext('2d',{willReadFrequently:true}).drawImage(bmp,0,0,c.width,c.height);
+  return c;
+}
+const hex2rgb = h => { const v=h.replace('#',''); const f=v.length===3?v.split('').map(x=>x+x).join(''):v;
+  return [parseInt(f.slice(0,2),16),parseInt(f.slice(2,4),16),parseInt(f.slice(4,6),16)]; };
+
+/* Is the background plain enough to lift the product off it? */
+function borderReading(d,w,h){
+  const px=[]; const step=Math.max(1,Math.floor(Math.min(w,h)/120));
+  for(let x=0;x<w;x+=step){ px.push([x,0],[x,h-1]); }
+  for(let y=0;y<h;y+=step){ px.push([0,y],[w-1,y]); }
+  // the most common border colour, not the average — so a product that
+  // runs off the edge of the frame does not poison the reading
+  const bins=new Map();
+  px.forEach(([x,y])=>{
+    const i=(y*w+x)*4;
+    const k=((d[i]>>4)<<8)|((d[i+1]>>4)<<4)|(d[i+2]>>4);
+    const e=bins.get(k)||[0,0,0,0];
+    e[0]+=d[i]; e[1]+=d[i+1]; e[2]+=d[i+2]; e[3]++;
+    bins.set(k,e);
+  });
+  let best=null;
+  bins.forEach(e=>{ if(!best||e[3]>best[3]) best=e; });
+  const seed=[best[0]/best[3],best[1]/best[3],best[2]/best[3]];
+  let v=0; px.forEach(([x,y])=>{const i=(y*w+x)*4;
+    v+=Math.abs(d[i]-seed[0])+Math.abs(d[i+1]-seed[1])+Math.abs(d[i+2]-seed[2])});
+  return { seed:seed.map(Math.round), variance:v/px.length };
+}
+
+/* Flood fill from the edges: anything connected to the border and close
+   in colour to it is treated as background. */
+function backgroundMask(img,tol){
+  const {width:w,height:h}=img, d=img.data;
+  const {seed,variance}=borderReading(d,w,h);
+  const mask=new Uint8Array(w*h);        // 255 = subject
+  mask.fill(255);
+  const seen=new Uint8Array(w*h);
+  const q=new Int32Array(w*h); let qs=0,qe=0;
+  const t2=tol*tol*3;
+  const close=i=>{const dr=d[i*4]-seed[0],dg=d[i*4+1]-seed[1],db=d[i*4+2]-seed[2];
+    return dr*dr+dg*dg+db*db < t2;};
+  const push=i=>{ if(!seen[i]){ seen[i]=1; q[qe++]=i; } };
+  for(let x=0;x<w;x++){ push(x); push((h-1)*w+x); }
+  for(let y=0;y<h;y++){ push(y*w); push(y*w+w-1); }
+  while(qs<qe){
+    const i=q[qs++];
+    if(!close(i)) continue;
+    mask[i]=0;
+    const x=i%w, y=(i/w)|0;
+    if(x>0)push(i-1);
+    if(x<w-1)push(i+1);
+    if(y>0)push(i-w);
+    if(y<h-1)push(i+w);
+  }
+  let subject=0; for(let i=0;i<mask.length;i++) if(mask[i]) subject++;
+  return {mask,variance,coverage:subject/mask.length};
+}
+function featherMask(mask,w,h,r){
+  r=Math.max(0,Math.round(r)); if(!r) return mask;
+  const tmp=new Float32Array(mask.length), out=new Uint8Array(mask.length);
+  for(let y=0;y<h;y++){ let sum=0;
+    for(let x=0;x<=r&&x<w;x++) sum+=mask[y*w+x];
+    for(let x=0;x<w;x++){
+      const a=x-r-1,b=x+r;
+      if(b<w) sum+=mask[y*w+b];
+      if(a>=0) sum-=mask[y*w+a];
+      tmp[y*w+x]=sum/(Math.min(w-1,x+r)-Math.max(0,x-r)+1);
+    }}
+  for(let x=0;x<w;x++){ let sum=0;
+    for(let y=0;y<=r&&y<h;y++) sum+=tmp[y*w+x];
+    for(let y=0;y<h;y++){
+      const a=y-r-1,b=y+r;
+      if(b<h) sum+=tmp[b*w+x];
+      if(a>=0) sum-=tmp[a*w+x];
+      out[y*w+x]=Math.round(sum/(Math.min(h-1,y+r)-Math.max(0,y-r)+1));
+    }}
+  return out;
+}
+function bbox(mask,w,h){
+  let x0=w,y0=h,x1=0,y1=0,found=false;
+  for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+    if(mask[y*w+x]>140){ found=true; if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; }}
+  return found?{x0,y0,x1,y1,w:x1-x0+1,h:y1-y0+1}:null;
+}
+
+/* the grade — one tone curve for the whole catalogue */
+function grade(ctx,W,H,L){
+  const img=ctx.getImageData(0,0,W,H), d=img.data;
+  const c=1+L.contrast, s=1+L.saturation, wm=L.warmth;
+  for(let i=0;i<d.length;i+=4){
+    let r=d[i]/255,g=d[i+1]/255,b=d[i+2]/255;
+    // gentle S-curve with a lifted shadow, like film
+    const cv=v=>{v=(v-.5)*c+.5; v=v<0?0:v>1?1:v; return .012+v*(1-.012)};
+    r=cv(r);g=cv(g);b=cv(b);
+    // warmth: amber into the highlights, a cool green into the shadows
+    const lum=.2126*r+.7152*g+.0722*b;
+    r += wm*(.16*lum + .02);
+    g += wm*(.07*lum);
+    b -= wm*(.10*lum + .03) - wm*.02*(1-lum);
+    // saturation
+    r=lum+(r-lum)*s; g=lum+(g-lum)*s; b=lum+(b-lum)*s;
+    d[i]=r<0?0:r>1?255:r*255; d[i+1]=g<0?0:g>1?255:g*255; d[i+2]=b<0?0:b>1?255:b*255;
+  }
+  ctx.putImageData(img,0,0);
+}
+function grainAndVignette(ctx,W,H,L){
+  if(L.grain>0){
+    const g=document.createElement('canvas'); g.width=g.height=180;
+    const gc=g.getContext('2d'), gi=gc.createImageData(180,180);
+    for(let i=0;i<gi.data.length;i+=4){
+      const n=128+(Math.random()-.5)*255;
+      gi.data[i]=gi.data[i+1]=gi.data[i+2]=n; gi.data[i+3]=255;
+    }
+    gc.putImageData(gi,0,0);
+    ctx.save(); ctx.globalAlpha=L.grain; ctx.globalCompositeOperation='overlay';
+    const p=ctx.createPattern(g,'repeat'); ctx.fillStyle=p; ctx.fillRect(0,0,W,H); ctx.restore();
+  }
+  if(L.vignette>0){
+    const v=ctx.createRadialGradient(W/2,H*.46,W*.24,W/2,H*.5,W*.78);
+    v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,`rgba(28,18,10,${L.vignette})`);
+    ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
+  }
+}
+
+/* the whole treatment, start to finish */
+async function houseLook(input,L,report){
+  L = Object.assign({},look(),L||{});
+  const bmp = await loadBitmap(input);
+  const work = drawToCanvas(bmp, 1600);
+  const wctx = work.getContext('2d',{willReadFrequently:true});
+  const N = L.canvas;
+  const out = document.createElement('canvas'); out.width=out.height=N;
+  const ctx = out.getContext('2d');
+
+  // backdrop
+  const bg = ctx.createLinearGradient(0,0,N*.25,N);
+  bg.addColorStop(0,L.backdropTop); bg.addColorStop(1,L.backdropBottom);
+  ctx.fillStyle=bg; ctx.fillRect(0,0,N,N);
+  const glow = ctx.createRadialGradient(N*.42,N*.3,0,N*.5,N*.5,N*.8);
+  glow.addColorStop(0,'rgba(255,255,255,.30)'); glow.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.fillStyle=glow; ctx.fillRect(0,0,N,N);
+
+  let mode='crop', coverage=0, variance=0;
+  if(L.cutout){
+    const idata = wctx.getImageData(0,0,work.width,work.height);
+    const res = backgroundMask(idata,L.tolerance);
+    variance = res.variance; coverage = res.coverage;
+    const soft = featherMask(res.mask,work.width,work.height,L.feather);
+    const box = bbox(soft,work.width,work.height);
+    // a sane cutout keeps between 4% and 92% of the frame
+    if(box && coverage>0.04 && coverage<0.92){
+      mode='cutout';
+      const cut=document.createElement('canvas'); cut.width=work.width; cut.height=work.height;
+      const cctx=cut.getContext('2d'); cctx.drawImage(work,0,0);
+      const ci=cctx.getImageData(0,0,cut.width,cut.height);
+      for(let i=0,p=0;i<ci.data.length;i+=4,p++) ci.data[i+3]=soft[p];
+      cctx.putImageData(ci,0,0);
+
+      const target = N*L.subjectScale;
+      const scale = target/Math.max(box.w,box.h);
+      const dw=box.w*scale, dh=box.h*scale;
+      const dx=(N-dw)/2, dy=N*L.baseline-dh;
+
+      if(L.shadow>0){
+        ctx.save();
+        ctx.filter=`blur(${Math.round(N*0.022)}px)`;
+        ctx.fillStyle=`rgba(78,58,40,${L.shadow})`;
+        ctx.beginPath();
+        ctx.ellipse(N/2, N*L.baseline-dh*0.012, dw*0.44, Math.max(6,dh*0.055), 0, 0, Math.PI*2);
+        ctx.fill(); ctx.restore();
+      }
+      ctx.drawImage(cut, box.x0,box.y0,box.w,box.h, dx,dy,dw,dh);
+    }
+  }
+  if(mode==='crop'){
+    // square centre crop, generous but not tight
+    const side=Math.min(work.width,work.height);
+    const sx=(work.width-side)/2, sy=(work.height-side)/2;
+    const inset=N*(1-Math.min(.99,L.subjectScale+.22))/2;
+    ctx.drawImage(work, sx,sy,side,side, inset,inset, N-inset*2, N-inset*2);
+  }
+
+  grade(ctx,N,N,L);
+  grainAndVignette(ctx,N,N,L);
+
+  // compress until it fits
+  let q=0.9, url=out.toDataURL('image/jpeg',q);
+  while(url.length/1.37/1024 > L.maxKB && q>0.42){ q-=0.07; url=out.toDataURL('image/jpeg',q); }
+
+  // a small copy of the original, so the look can be re-applied later
+  const keep = drawToCanvas(bmp, 1000);
+  const src = keep.toDataURL('image/jpeg',0.78);
+
+  report && report({mode,coverage,variance,kb:Math.round(url.length/1.37/1024)});
+  return {out:url, src, mode, coverage, variance};
+}
+
+/* ============================================================
+   FORM PLUMBING
+   ============================================================ */
+function setPath(obj,path,val){
+  const parts=path.split('.'); let o=obj;
+  for(let i=0;i<parts.length-1;i++){ if(o[parts[i]]==null) o[parts[i]]={}; o=o[parts[i]]; }
+  o[parts.at(-1)]=val;
+}
+function getPath(obj,path){
+  return path.split('.').reduce((o,k)=>(o==null?undefined:o[k]),obj);
+}
+function bindForm(root,obj){
+  root.addEventListener('input',e=>{
+    const el=e.target.closest('[data-k]'); if(!el) return;
+    let v = el.type==='checkbox' ? el.checked : el.value;
+    if(el.dataset.list) v = v.split(',').map(s=>s.trim()).filter(Boolean);
+    if(el.dataset.num) v = Number(v);
+    setPath(obj, el.dataset.k, v);
+    setDirty();
+  });
+}
+const F = (label,k,val,o={})=>{
+  const v = Array.isArray(val)?val.join(', '):(val??'');
+  const attrs = `data-k="${k}"${o.list?' data-list="1"':''}${o.num?' data-num="1"':''}`;
+  const body = o.rows
+    ? `<textarea ${attrs} rows="${o.rows}">${esc(v)}</textarea>`
+    : `<input ${attrs} type="${o.type||'text'}" value="${esc(v)}"${o.ph?` placeholder="${esc(o.ph)}"`:''}>`;
+  return `<div><label>${esc(label)}${o.ai?` <button class="btn btn-ai" data-ai="${o.ai}" data-target="${k}" type="button">${o.aiLabel||'Write it for me'}</button>`:''}</label>${body}${o.hint?`<p class="hint">${esc(o.hint)}</p>`:''}</div>`;
+};
+const SW=(label,k,val)=>`<label class="sw"><input type="checkbox" data-k="${k}" ${val?'checked':''}> ${esc(label)}</label>`;
+
+function openModal(html){
+  $('#modal').innerHTML=html; $('#modal').classList.add('on'); $('#scrim').classList.add('on');
+  document.body.style.overflow='hidden';
+  return $('#modal');
+}
+function closeModal(){
+  $('#modal').classList.remove('on'); $('#scrim').classList.remove('on');
+  document.body.style.overflow=''; $('#modal').innerHTML='';
+}
+$('#scrim').onclick=closeModal;
+addEventListener('keydown',e=>{ if(e.key==='Escape' && $('#modal').classList.contains('on')) closeModal(); });
+
+/* ============================================================
+   VIEWS
+   ============================================================ */
+const VIEWS=[
+  ['shelf','The shelf'],['cats','Categories'],['look','House look'],
+  ['bench','The bench'],['words','Words'],['reviews','Reviews'],
+  ['faq','Questions'],['settings','Shop details']
+];
+function renderRail(){
+  $('#rail').innerHTML = VIEWS.map(([k,l])=>`<button data-v="${k}" class="${VIEW===k?'on':''}">${l}</button>`).join('');
+  $$('#rail button').forEach(b=>b.onclick=()=>{VIEW=b.dataset.v;renderRail();renderView();});
+}
+function head(title,sub,actions=''){
+  return `<div class="head"><div><h1>${esc(title)}</h1><p>${esc(sub)}</p></div><div style="display:flex;gap:.5rem;flex-wrap:wrap">${actions}</div></div>`;
+}
+function renderView(){ ({shelf:vShelf,cats:vCats,look:vLook,bench:vBench,words:vWords,reviews:vReviews,faq:vFaq,settings:vSettings})[VIEW](); }
+
+/* ---------- shelf ---------- */
+function catName(id){ const c=(DATA.categories||[]).find(x=>x.id===id); return c?c.en.name:'—'; }
+async function vShelf(){
+  const stage=$('#stage');
+  const list=(DATA.products||[]).slice().sort((a,b)=>(a.order||0)-(b.order||0));
+  const anySample = list.some(p=>p.sample);
+  stage.innerHTML = head('The shelf','Everything you sell. Add a photo and it is put through the house look automatically, so the whole shelf matches.',
+    `<button class="btn btn-solid" id="addP">Add something</button>` +
+    (anySample?`<button class="btn btn-danger" id="delSamples">Remove the samples</button>`:'')) +
+    (anySample?`<div class="warn">Some items are marked <b>Sample</b>. They are here to show how the shelf looks — edit them or remove them before Stefanie sees the site.</div>`:'') +
+    `<div class="plist" id="plist">${list.map(p=>`
+      <button class="ptile" data-p="${p.id}">
+        <span class="th" data-ref="${esc(p.image||'')}">
+          ${p.image?'':`<span>No photo</span>`}
+          ${p.visible===false?'<span class="badge hidden">Hidden</span>':(p.sample?'<span class="badge sample">Sample</span>':'')}
+        </span>
+        <span class="meta"><b>${esc(p.en.name||'Untitled')}</b>
+        <small>${esc(catName(p.cat))}${p.price?` · €${esc(p.price)}`:' · on request'}</small></span>
+      </button>`).join('')}</div>`;
+  $('#addP').onclick=()=>editProduct(null);
+  $('#delSamples')&&($('#delSamples').onclick=()=>{
+    if(!confirm('Remove every item still marked as a sample?')) return;
+    DATA.products=DATA.products.filter(p=>!p.sample); setDirty(); vShelf();
+  });
+  $$('.ptile').forEach(t=>t.onclick=()=>editProduct(t.dataset.p));
+  for(const th of $$('#plist .th')){
+    if(!th.dataset.ref) continue;
+    const u=await getMedia(th.dataset.ref);
+    if(u){ const i=new Image(); i.src=u; th.prepend(i); th.querySelector('span:not(.badge)')?.remove(); }
+  }
+}
+
+async function editProduct(id){
+  const isNew=!id;
+  const p = isNew
+    ? {id:uid('p'),cat:(DATA.categories[0]||{}).id,order:(DATA.products.length+1),visible:true,featured:false,
+       image:'',price:'',size:'',payLink:'',
+       en:{name:'',tagline:'',story:'',top:[],heart:[],base:[]},
+       el:{name:'',tagline:'',story:'',top:[],heart:[],base:[]}}
+    : clone(DATA.products.find(x=>x.id===id));
+
+  const m = openModal(`
+    <div class="modal-head"><h2>${isNew?'Add something':'Edit'}</h2>
+      <button class="btn btn-ghost" id="mClose">Close</button>
+      <button class="btn btn-solid" id="mDone">Done</button></div>
+    <div class="tabs" id="ptabs">
+      <button data-t="photo" class="on">Photo</button><button data-t="en">English</button>
+      <button data-t="el">Ελληνικά</button><button data-t="det">Details</button>
+    </div>
+    <div id="ptab"></div>
+    <hr class="sep">
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+      ${isNew?'':'<button class="btn btn-danger" id="mDel">Delete this</button>'}
+    </div>`);
+
+  let tab='photo';
+  const paint=()=>{
+    const box=$('#ptab');
+    if(tab==='photo') return paintPhoto(box,p);
+    if(tab==='det') return void(box.innerHTML=`
+      <div class="row two">
+        <div><label>Category</label><select data-k="cat">${(DATA.categories||[]).map(c=>
+          `<option value="${c.id}" ${p.cat===c.id?'selected':''}>${esc(c.en.name)}</option>`).join('')}</select></div>
+        ${F('Price (numbers only — leave empty for “on request”)','price',p.price,{ph:'95'})}
+      </div>
+      <div class="row two">
+        ${F('Size or format','size',p.size,{ph:'50ml extrait'})}
+        ${F('Order number (smaller shows first)','order',p.order,{num:true,type:'number'})}
+      </div>
+      <div class="row">
+        ${F('Payment link (optional)','payLink',p.payLink,{ph:'https://buy.stripe.com/…',hint:'Paste a Stripe, Revolut or PayPal link and an Order button appears. Leave empty and people message you on WhatsApp instead.'})}
+      </div>
+      ${SW('Show on the site','visible',p.visible!==false)}
+      ${SW('Feature this one','featured',!!p.featured)}
+      ${p.sample?SW('Still marked as a sample','sample',!!p.sample):''}`);
+    const l=tab;
+    box.innerHTML=`
+      <div class="row">${F('Name',l+'.name',p[l].name,{ai:'name'})}</div>
+      <div class="row">${F('One line under the name',l+'.tagline',p[l].tagline,{ai:'tagline',aiLabel:'Suggest a line'})}</div>
+      <div class="row">${F('Description',l+'.story',p[l].story,{rows:5,ai:'story',aiLabel:'Write it in the house voice'})}</div>
+      <div class="row three">
+        ${F('Top notes',l+'.top',p[l].top,{list:true,ph:'bergamot, pink pepper'})}
+        ${F('Heart notes',l+'.heart',p[l].heart,{list:true})}
+        ${F('Base notes',l+'.base',p[l].base,{list:true})}
+      </div>
+      <p class="hint">Separate notes with commas. Leave all three empty for things that are not perfume.</p>
+      ${l==='el'?`<button class="btn btn-ai" data-ai="translate" type="button" style="margin-top:.8rem">Translate the English into Greek</button>`:''}
+      ${l==='en'?`<button class="btn btn-ai" data-ai="notes" type="button" style="margin-top:.8rem">Suggest notes from the name</button>`:''}`;
+  };
+  bindForm(m,p);
+  m.addEventListener('click',async e=>{
+    const b=e.target.closest('[data-ai]'); if(!b) return;
+    await runAI(b.dataset.ai,p,b,paint);
+  });
+  $$('#ptabs button').forEach(b=>b.onclick=()=>{
+    tab=b.dataset.t; $$('#ptabs button').forEach(x=>x.classList.toggle('on',x===b)); paint();
+  });
+  paint();
+  $('#mClose').onclick=closeModal;
+  $('#mDone').onclick=()=>{
+    if(!p.en.name.trim()){ toast('Give it a name first.'); return; }
+    if(!p.el.name.trim()) p.el.name=p.en.name;
+    const i=(DATA.products||[]).findIndex(x=>x.id===p.id);
+    if(i>-1) DATA.products[i]=p; else DATA.products.push(p);
+    setDirty(); closeModal(); vShelf();
+  };
+  $('#mDel')&&($('#mDel').onclick=()=>{
+    if(!confirm('Delete “'+(p.en.name||'this')+'” for good?')) return;
+    DATA.products=DATA.products.filter(x=>x.id!==p.id);
+    setDirty(); closeModal(); vShelf();
+  });
+}
+
+/* ---------- photo tab: upload + house look ---------- */
+async function paintPhoto(box,p){
+  const L=look();
+  box.innerHTML=`
+    <div class="lab">
+      <div>
+        <div class="preview" id="pv"><span class="ph">No photo yet.<br>Any snap will do — the house look does the rest.</span></div>
+        <div class="drop" id="drop" style="margin-top:.8rem">Tap to choose a photo, or drop one here
+          <input type="file" id="file" accept="image/*" hidden></div>
+        <p class="hint" id="report"></p>
+      </div>
+      <div>
+        <h3 style="font-size:1rem;margin-bottom:.7rem">Adjust this photo</h3>
+        <label class="sw"><input type="checkbox" id="oCut" ${L.cutout?'checked':''}> Lift it off its background</label>
+        <div class="sl"><label>Background removal <i id="vTol">${L.tolerance}</i></label><input type="range" id="oTol" min="8" max="90" value="${L.tolerance}"></div>
+        <div class="sl"><label>Size in the frame <i id="vScale">${Math.round(L.subjectScale*100)}%</i></label><input type="range" id="oScale" min="40" max="92" value="${Math.round(L.subjectScale*100)}"></div>
+        <div class="sl"><label>Shadow <i id="vSh">${Math.round(L.shadow*100)}</i></label><input type="range" id="oSh" min="0" max="80" value="${Math.round(L.shadow*100)}"></div>
+        <p class="hint">Colour, grain and backdrop come from <b>House look</b> so everything matches. Change them there.</p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+          <button class="btn btn-ghost" id="reRun">Re-apply</button>
+          ${p.image?'<button class="btn btn-danger" id="rmImg">Remove photo</button>':''}
+        </div>
+      </div>
+    </div>`;
+
+  const pv=$('#pv');
+  let original=null;                       // File or dataURL of the source
+  const show=u=>{ pv.innerHTML=''; const i=new Image(); i.src=u; pv.append(i); };
+  const existing = await getMedia(p.image);
+  if(existing) show(existing);
+  original = await getMediaSource(p.image) || null;
+
+  const opts=()=>({cutout:$('#oCut').checked,tolerance:+$('#oTol').value,
+    subjectScale:+$('#oScale').value/100, shadow:+$('#oSh').value/100});
+
+  async function run(input){
+    if(!input){ toast('Choose a photo first.'); return; }
+    const busy=document.createElement('div'); busy.className='busy'; busy.textContent='Working…';
+    pv.append(busy);
+    try{
+      const r=await houseLook(input,opts());
+      p.image = putMedia(r.out,r.src);
+      original = r.src;
+      show(r.out);
+      $('#report').innerHTML = r.mode==='cutout'
+        ? `Lifted off the background cleanly. ${Math.round(r.coverage*100)}% of the frame is the product.`
+        : `The background was too busy to remove, so it has been squared and graded instead. Try a plainer surface, or nudge <b>Background removal</b> up.`;
+      setDirty();
+    }catch(e){ console.error(e); toast('That image could not be read.'); busy.remove(); }
+  }
+
+  $('#drop').onclick=()=>$('#file').click();
+  $('#drop').ondragover=e=>{e.preventDefault();$('#drop').classList.add('over')};
+  $('#drop').ondragleave=()=>$('#drop').classList.remove('over');
+  $('#drop').ondrop=e=>{e.preventDefault();$('#drop').classList.remove('over');
+    const f=e.dataTransfer.files[0]; if(f){original=f;run(f);}};
+  $('#file').onchange=e=>{const f=e.target.files[0]; if(f){original=f;run(f);}};
+  $('#reRun').onclick=()=>run(original);
+  $('#rmImg')&&($('#rmImg').onclick=()=>{p.image='';setDirty();paintPhoto(box,p)});
+  ['oTol','oScale','oSh'].forEach(id=>{
+    const el=$('#'+id);
+    el.oninput=()=>{ $('#v'+{oTol:'Tol',oScale:'Scale',oSh:'Sh'}[id]).textContent =
+      id==='oScale'?el.value+'%':el.value; };
+    el.onchange=()=>original&&run(original);
+  });
+  $('#oCut').onchange=()=>original&&run(original);
+}
+
+/* ---------- categories ---------- */
+function vCats(){
+  const list=(DATA.categories||[]).slice().sort((a,b)=>(a.order||0)-(b.order||0));
+  $('#stage').innerHTML = head('Categories','The tabs above the shelf. Anything you sell can have its own.',
+    `<button class="btn btn-solid" id="addC">Add a category</button>`)+
+    `<div class="card">${list.map(c=>`
+      <div class="line"><div class="txt"><b>${esc(c.en.name)}</b><small>${esc(c.en.blurb||'')} · ${
+        (DATA.products||[]).filter(p=>p.cat===c.id).length} item(s)</small></div>
+        <button class="btn btn-ghost" data-e="${c.id}">Edit</button></div>`).join('')||'<p class="hint">No categories yet.</p>'}</div>`;
+  $('#addC').onclick=()=>editCat(null);
+  $$('[data-e]').forEach(b=>b.onclick=()=>editCat(b.dataset.e));
+}
+function editCat(id){
+  const isNew=!id;
+  const c = isNew ? {id:uid('c'),slug:'',order:(DATA.categories.length+1),visible:true,
+      en:{name:'',blurb:''},el:{name:'',blurb:''}} : clone(DATA.categories.find(x=>x.id===id));
+  const m=openModal(`
+    <div class="modal-head"><h2>${isNew?'New category':'Category'}</h2>
+      <button class="btn btn-ghost" id="mClose">Close</button>
+      <button class="btn btn-solid" id="mDone">Done</button></div>
+    <div class="row two">${F('Name (English)','en.name',c.en.name)}${F('Name (Greek)','el.name',c.el.name)}</div>
+    <div class="row two">${F('One line (English)','en.blurb',c.en.blurb)}${F('One line (Greek)','el.blurb',c.el.blurb)}</div>
+    <div class="row two">${F('Order','order',c.order,{num:true,type:'number'})}<div>${SW('Show this category','visible',c.visible!==false)}</div></div>
+    ${isNew?'':'<hr class="sep"><button class="btn btn-danger" id="mDel">Delete this category</button>'}`);
+  bindForm(m,c);
+  $('#mClose').onclick=closeModal;
+  $('#mDone').onclick=()=>{
+    if(!c.en.name.trim()){toast('Give it a name.');return}
+    if(!c.el.name.trim()) c.el.name=c.en.name;
+    c.slug = c.slug || c.en.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+    const i=DATA.categories.findIndex(x=>x.id===c.id);
+    if(i>-1) DATA.categories[i]=c; else DATA.categories.push(c);
+    setDirty(); closeModal(); vCats();
+  };
+  $('#mDel')&&($('#mDel').onclick=()=>{
+    const n=(DATA.products||[]).filter(p=>p.cat===c.id).length;
+    if(n && !confirm(n+' item(s) are in this category. They will stay on the shelf but lose their tab. Delete anyway?')) return;
+    if(!n && !confirm('Delete this category?')) return;
+    DATA.categories=DATA.categories.filter(x=>x.id!==c.id);
+    setDirty(); closeModal(); vCats();
+  });
+}
+
+/* ---------- house look ---------- */
+function vLook(){
+  const L=look();
+  $('#stage').innerHTML = head('House look','One treatment for every photo on the site. Change it here and every product photo can be re-made to match.',
+    `<button class="btn btn-ghost" id="reAll">Re-apply to every photo</button>`)+
+    `<div class="card" id="lookCard">
+      <div class="row two">
+        <div><label>Backdrop, top</label><input type="color" data-k="houseLook.backdropTop" value="${L.backdropTop}" style="height:2.6rem;padding:.2rem"></div>
+        <div><label>Backdrop, bottom</label><input type="color" data-k="houseLook.backdropBottom" value="${L.backdropBottom}" style="height:2.6rem;padding:.2rem"></div>
+      </div>
+      <div class="row two">
+        <div class="sl"><label>Warmth <i id="wV">${L.warmth}</i></label><input type="range" min="-30" max="60" value="${Math.round(L.warmth*100)}" id="wR"></div>
+        <div class="sl"><label>Contrast <i id="cV">${L.contrast}</i></label><input type="range" min="-20" max="50" value="${Math.round(L.contrast*100)}" id="cR"></div>
+      </div>
+      <div class="row two">
+        <div class="sl"><label>Colour depth <i id="sV">${L.saturation}</i></label><input type="range" min="-60" max="40" value="${Math.round(L.saturation*100)}" id="sR"></div>
+        <div class="sl"><label>Grain <i id="gV">${L.grain}</i></label><input type="range" min="0" max="20" value="${Math.round(L.grain*100)}" id="gR"></div>
+      </div>
+      <div class="row two">
+        <div class="sl"><label>Vignette <i id="vV">${L.vignette}</i></label><input type="range" min="0" max="60" value="${Math.round(L.vignette*100)}" id="vR"></div>
+        <div class="sl"><label>Standing height <i id="bV">${L.baseline}</i></label><input type="range" min="70" max="99" value="${Math.round(L.baseline*100)}" id="bR"></div>
+      </div>
+      <p class="hint">Changes here apply to photos added from now on. Use <b>Re-apply to every photo</b> to bring the older ones into line — it takes a few seconds per photo and needs the originals, which are kept automatically.</p>
+    </div>
+    <div class="card"><h3>Preview</h3>
+      <div class="preview" style="max-width:340px" id="lp"><span class="ph">Add a photo to a product to see it here.</span></div>
+    </div>`;
+
+  const map={wR:['warmth','wV'],cR:['contrast','cV'],sR:['saturation','sV'],gR:['grain','gV'],vR:['vignette','vV'],bR:['baseline','bV']};
+  Object.entries(map).forEach(([id,[key,out]])=>{
+    $('#'+id).oninput=()=>{
+      const v=+$('#'+id).value/100;
+      DATA.houseLook = Object.assign({},look(),{[key]:v});
+      $('#'+out).textContent=v.toFixed(2); setDirty();
+    };
+  });
+  $('#lookCard').addEventListener('input',e=>{
+    const el=e.target.closest('[data-k]'); if(!el) return;
+    const k=el.dataset.k.split('.')[1];
+    DATA.houseLook=Object.assign({},look(),{[k]:el.value}); setDirty();
+  });
+  $('#reAll').onclick=reapplyAll;
+  (async()=>{
+    const first=(DATA.products||[]).find(p=>p.image);
+    if(!first) return;
+    const u=await getMedia(first.image);
+    if(u){ $('#lp').innerHTML=''; const i=new Image(); i.src=u; $('#lp').append(i); }
+  })();
+}
+async function reapplyAll(){
+  const list=(DATA.products||[]).filter(p=>p.image);
+  if(!list.length){ toast('There are no photos yet.'); return; }
+  if(!confirm('Re-make '+list.length+' photo(s) with the current house look?')) return;
+  let done=0;
+  for(const p of list){
+    const src = await getMediaSource(p.image);
+    if(!src){ continue; }
+    try{
+      const r = await houseLook(src);
+      p.image = putMedia(r.out, src);
+      done++;
+      toast('Re-made '+done+' of '+list.length+'…',1400);
+    }catch(e){ console.warn('skipped',p.id,e); }
+  }
+  setDirty(); toast(done+' photo(s) brought into line. Publish to put them live.',4000);
+  renderView();
+}
+
+/* ---------- the bench ---------- */
+function vBench(){
+  const list=DATA.organ?.memories||[];
+  $('#stage').innerHTML = head('The bench','The memories people can pick on the front page. Each one carries its own notes, which build the pyramid they send you.',
+    `<button class="btn btn-solid" id="addM">Add a memory</button>`)+
+    `<div class="card">${list.map(m=>`
+      <div class="line">
+        <span style="width:.8rem;height:.8rem;border-radius:50%;background:${esc(m.colour)};flex:none"></span>
+        <div class="txt"><b>${esc(m.en.label)}</b><small>${esc([...(m.en.top||[]),...(m.en.heart||[]),...(m.en.base||[])].join(' · '))}</small></div>
+        <button class="btn btn-ghost" data-m="${m.id}">Edit</button></div>`).join('')}</div>`;
+  $('#addM').onclick=()=>editMem(null);
+  $$('[data-m]').forEach(b=>b.onclick=()=>editMem(b.dataset.m));
+}
+function editMem(id){
+  const isNew=!id;
+  const m = isNew ? {id:uid('m'),colour:'#C68A3C',en:{label:'',top:[],heart:[],base:[]},el:{label:'',top:[],heart:[],base:[]}}
+                  : clone(DATA.organ.memories.find(x=>x.id===id));
+  const mo=openModal(`
+    <div class="modal-head"><h2>${isNew?'New memory':'Memory'}</h2>
+      <button class="btn btn-ghost" id="mClose">Close</button>
+      <button class="btn btn-solid" id="mDone">Done</button></div>
+    <div class="row two">${F('Memory (English)','en.label',m.en.label,{ph:'A church in August'})}
+      ${F('Memory (Greek)','el.label',m.el.label)}</div>
+    <div class="row"><div><label>Colour in the bottle</label><input type="color" data-k="colour" value="${m.colour}" style="height:2.6rem;padding:.2rem;max-width:8rem"></div></div>
+    <h3 style="font-size:1rem;margin:.6rem 0 .8rem">Notes, English</h3>
+    <div class="row three">${F('Top','en.top',m.en.top,{list:true})}${F('Heart','en.heart',m.en.heart,{list:true})}${F('Base','en.base',m.en.base,{list:true})}</div>
+    <h3 style="font-size:1rem;margin:.6rem 0 .8rem">Notes, Greek</h3>
+    <div class="row three">${F('Κορυφή','el.top',m.el.top,{list:true})}${F('Καρδιά','el.heart',m.el.heart,{list:true})}${F('Βάση','el.base',m.el.base,{list:true})}</div>
+    ${isNew?'':'<hr class="sep"><button class="btn btn-danger" id="mDel">Delete this memory</button>'}`);
+  bindForm(mo,m);
+  $('#mClose').onclick=closeModal;
+  $('#mDone').onclick=()=>{
+    if(!m.en.label.trim()){toast('Give the memory a name.');return}
+    if(!m.el.label.trim()) m.el.label=m.en.label;
+    DATA.organ=DATA.organ||{memories:[]};
+    const i=DATA.organ.memories.findIndex(x=>x.id===m.id);
+    if(i>-1) DATA.organ.memories[i]=m; else DATA.organ.memories.push(m);
+    setDirty(); closeModal(); vBench();
+  };
+  $('#mDel')&&($('#mDel').onclick=()=>{
+    if(!confirm('Delete this memory?'))return;
+    DATA.organ.memories=DATA.organ.memories.filter(x=>x.id!==m.id);
+    setDirty(); closeModal(); vBench();
+  });
+}
+
+/* ---------- words ---------- */
+const WORDS=[
+  ['hero','The first screen',[['eyebrow','Small line above'],['titleA','Headline, first part'],['titleB','Headline, italic part'],['lede','Paragraph',4],['ctaPrimary','Main button'],['ctaSecondary','Second button']]],
+  ['organ','The bench',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',4],['cta','Button'],['picked','Label above the notes'],['empty','Before anything is picked']]],
+  ['story','The house',[['eyebrow','Small line above'],['title','Headline'],['quote','Pull quote',3],['quoteBy','Signature']]],
+  ['shop','The shelf',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',3],['all','Name of the “everything” tab']]],
+  ['bespoke','The session',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',3],['priceNote','Price line'],['cta','Button']]],
+  ['visit','Visit',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',3],['book','Message button'],['directions','Directions button'],['mapNote','Note under the map',2],['mapLoad','Show-the-map button']]],
+  ['seo','What Google shows',[['title','Page title'],['description','Description under it',3]]]
+];
+function vWords(){
+  const lang = localStorage.getItem('lms-wl')||'en';
+  $('#stage').innerHTML = head('Words','Everything written on the page. Both languages are here — switch with the buttons.','')+
+    `<div class="tabs"><button data-w="en" class="${lang==='en'?'on':''}">English</button><button data-w="el" class="${lang==='el'?'on':''}">Ελληνικά</button></div>
+     <div id="wordbox"></div>
+     <div class="card"><h3>The story paragraphs</h3>
+       <textarea id="storyPara" rows="9">${esc((DATA.story[lang]?.body||[]).join('\n\n'))}</textarea>
+       <p class="hint">One paragraph per block, separated by an empty line.</p></div>
+     <div class="card"><h3>The four steps of a session</h3><div id="steps"></div></div>`;
+  $$('[data-w]').forEach(b=>b.onclick=()=>{localStorage.setItem('lms-wl',b.dataset.w);vWords()});
+
+  $('#wordbox').innerHTML = WORDS.map(([key,title,fields])=>`
+    <div class="card"><h3>${esc(title)}</h3>${fields.map(([f,label,rows])=>
+      `<div class="row">${F(label,`${key}.${lang}.${f}`,getPath(DATA,`${key}.${lang}.${f}`),{rows})}</div>`).join('')}</div>`).join('');
+  bindForm($('#wordbox'),DATA);
+
+  $('#storyPara').oninput=e=>{
+    DATA.story[lang]=DATA.story[lang]||{};
+    DATA.story[lang].body=e.target.value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+    setDirty();
+  };
+  const steps=DATA.bespoke[lang]?.steps||[];
+  $('#steps').innerHTML = steps.map((s,i)=>`
+    <div class="row two" style="margin-bottom:.6rem">
+      ${F('Step '+(i+1)+' title',`bespoke.${lang}.steps.${i}.t`,s.t)}
+      ${F('Step '+(i+1)+' text',`bespoke.${lang}.steps.${i}.d`,s.d,{rows:3})}</div>`).join('');
+  bindForm($('#steps'),DATA);
+}
+
+/* ---------- reviews ---------- */
+function vReviews(){
+  const list=DATA.reviews||[];
+  $('#stage').innerHTML = head('Reviews','The three quotes in the guest book. Copy them from Google — real words from real guests do more than anything else on the page.',
+    `<button class="btn btn-solid" id="addR">Add a review</button>`)+
+    `<div class="card">${list.map(r=>`
+      <div class="line"><div class="txt"><b>${esc(r.name)}</b><small>${esc(r.en)}</small></div>
+      <button class="btn btn-ghost" data-r="${r.id}">Edit</button></div>`).join('')||'<p class="hint">None yet.</p>'}</div>`;
+  $('#addR').onclick=()=>editReview(null);
+  $$('[data-r]').forEach(b=>b.onclick=()=>editReview(b.dataset.r));
+}
+function editReview(id){
+  const isNew=!id;
+  const r=isNew?{id:uid('r'),stars:5,name:'',meta:'Google review',en:'',el:''}:clone(DATA.reviews.find(x=>x.id===id));
+  const m=openModal(`
+    <div class="modal-head"><h2>${isNew?'New review':'Review'}</h2>
+      <button class="btn btn-ghost" id="mClose">Close</button>
+      <button class="btn btn-solid" id="mDone">Done</button></div>
+    <div class="row two">${F('Name','name',r.name)}${F('Where it came from','meta',r.meta)}</div>
+    <div class="row">${F('The quote, English','en',r.en,{rows:3})}</div>
+    <div class="row">${F('The quote, Greek','el',r.el,{rows:3})}</div>
+    <div class="row">${F('Stars','stars',r.stars,{num:true,type:'number'})}</div>
+    ${isNew?'':'<hr class="sep"><button class="btn btn-danger" id="mDel">Delete</button>'}`);
+  bindForm(m,r);
+  $('#mClose').onclick=closeModal;
+  $('#mDone').onclick=()=>{
+    if(!r.en.trim()){toast('Add the quote.');return}
+    if(!r.el.trim()) r.el=r.en;
+    const i=(DATA.reviews||[]).findIndex(x=>x.id===r.id);
+    if(i>-1)DATA.reviews[i]=r; else (DATA.reviews=DATA.reviews||[]).push(r);
+    setDirty();closeModal();vReviews();
+  };
+  $('#mDel')&&($('#mDel').onclick=()=>{DATA.reviews=DATA.reviews.filter(x=>x.id!==r.id);setDirty();closeModal();vReviews()});
+}
+
+/* ---------- faq ---------- */
+function vFaq(){
+  const list=DATA.faq?.items||[];
+  $('#stage').innerHTML = head('Questions','The things people ask before they walk in. Answering them here saves you saying it again.',
+    `<button class="btn btn-solid" id="addQ">Add a question</button>`)+
+    `<div class="card">${list.map(f=>`
+      <div class="line"><div class="txt"><b>${esc(f.en.q)}</b><small>${esc(f.en.a)}</small></div>
+      <button class="btn btn-ghost" data-q="${f.id}">Edit</button></div>`).join('')||'<p class="hint">None yet.</p>'}</div>`;
+  $('#addQ').onclick=()=>editFaq(null);
+  $$('[data-q]').forEach(b=>b.onclick=()=>editFaq(b.dataset.q));
+}
+function editFaq(id){
+  const isNew=!id;
+  const f=isNew?{id:uid('f'),en:{q:'',a:''},el:{q:'',a:''}}:clone(DATA.faq.items.find(x=>x.id===id));
+  const m=openModal(`
+    <div class="modal-head"><h2>${isNew?'New question':'Question'}</h2>
+      <button class="btn btn-ghost" id="mClose">Close</button>
+      <button class="btn btn-solid" id="mDone">Done</button></div>
+    <div class="row">${F('Question, English','en.q',f.en.q)}</div>
+    <div class="row">${F('Answer, English','en.a',f.en.a,{rows:3})}</div>
+    <div class="row">${F('Question, Greek','el.q',f.el.q)}</div>
+    <div class="row">${F('Answer, Greek','el.a',f.el.a,{rows:3})}</div>
+    <button class="btn btn-ai" data-ai="translateFaq" type="button">Translate the English into Greek</button>
+    ${isNew?'':'<hr class="sep"><button class="btn btn-danger" id="mDel">Delete</button>'}`);
+  bindForm(m,f);
+  m.addEventListener('click',async e=>{ if(e.target.closest('[data-ai]')) await runAI('translateFaq',f,e.target,()=>editFaq(f.id)); });
+  $('#mClose').onclick=closeModal;
+  $('#mDone').onclick=()=>{
+    if(!f.en.q.trim()){toast('Add the question.');return}
+    if(!f.el.q.trim()){f.el.q=f.en.q;f.el.a=f.el.a||f.en.a}
+    DATA.faq=DATA.faq||{items:[]};
+    const i=DATA.faq.items.findIndex(x=>x.id===f.id);
+    if(i>-1)DATA.faq.items[i]=f; else DATA.faq.items.push(f);
+    setDirty();closeModal();vFaq();
+  };
+  $('#mDel')&&($('#mDel').onclick=()=>{DATA.faq.items=DATA.faq.items.filter(x=>x.id!==f.id);setDirty();closeModal();vFaq()});
+}
+
+/* ---------- settings ---------- */
+function vSettings(){
+  const s=DATA.settings;
+  $('#stage').innerHTML = head('Shop details','Address, hours and how people reach you. These feed the footer, the map, the WhatsApp buttons and what Google shows.','')+
+    `<div class="card" id="setbox">
+      <div class="row two">${F('Telephone','settings.phone',s.phone)}${F('WhatsApp number (digits only)','settings.whatsapp',s.whatsapp,{hint:'Country code first, no + or spaces. 306947478033'})}</div>
+      <div class="row two">${F('Email','settings.email',s.email)}${F('Instagram link','settings.instagram',s.instagram)}</div>
+      <div class="row two">${F('Street, English','settings.en.street',s.en.street)}${F('Street, Greek','settings.el.street',s.el.street)}</div>
+      <div class="row two">${F('City line, English','settings.en.city',s.en.city)}${F('City line, Greek','settings.el.city',s.el.city)}</div>
+      <div class="row two">${F('Hours, English','settings.en.hours',s.en.hours)}${F('Hours, Greek','settings.el.hours',s.el.hours)}</div>
+      <div class="row two">${F('Google Maps link','settings.mapsUrl',s.mapsUrl)}${F('Google reviews link','settings.reviewsUrl',s.reviewsUrl)}</div>
+      <div class="row three">${F('Rating','settings.rating',s.rating)}${F('Number of reviews','settings.reviewCount',s.reviewCount,{num:true,type:'number'})}${F('Currency symbol','settings.currency',s.currency)}</div>
+      <div class="row two">${F('Latitude','settings.lat',s.lat,{num:true})}${F('Longitude','settings.lng',s.lng,{num:true})}</div>
+    </div>`;
+  bindForm($('#setbox'),DATA);
+}
+
+/* ============================================================
+   AI WRITING HELP
+   ============================================================ */
+async function runAI(task,obj,btn,after){
+  if(!(await aiAvailable())){
+    toast('Writing help is not switched on. Add the API key in Netlify to use it.',4500);
+    return;
+  }
+  const label=btn.textContent; btn.textContent='Thinking…'; btn.disabled=true;
+  try{
+    if(task==='translate'){
+      const t = await ai('translate',{source:obj.en});
+      const j = JSON.parse(t);
+      obj.el = Object.assign({},obj.el,j);
+    }else if(task==='translateFaq'){
+      const t = await ai('translate',{source:obj.en});
+      obj.el = Object.assign({},obj.el,JSON.parse(t));
+    }else if(task==='notes'){
+      const t = await ai('notes',{name:obj.en.name,tagline:obj.en.tagline,story:obj.en.story});
+      const j = JSON.parse(t);
+      obj.en.top=j.top||[]; obj.en.heart=j.heart||[]; obj.en.base=j.base||[];
+    }else{
+      const t = await ai('write',{field:task,name:obj.en.name,tagline:obj.en.tagline,
+        story:obj.en.story,notes:{top:obj.en.top,heart:obj.en.heart,base:obj.en.base}});
+      if(task==='name') obj.en.name=t.trim().replace(/^["']|["']$/g,'');
+      else if(task==='tagline') obj.en.tagline=t.trim().replace(/^["']|["']$/g,'');
+      else obj.en.story=t.trim();
+    }
+    setDirty(); after && after();
+    toast('Done — read it over and change anything that is not how you would say it.',4200);
+  }catch(e){
+    console.error(e); toast('The writing help did not answer. Try again in a moment.');
+  }finally{ btn.textContent=label; btn.disabled=false; }
+}
+
+/* ============================================================
+   BACKUP — content.json plus every photo, as a zip
+   ============================================================ */
+async function exportZip(){
+  toast('Building the backup…',6000);
+  const zip = new JSZip();
+  const out = clone(DATA);
+  const imgs = zip.folder('assets/products');
+  const seen = new Map();
+  for(const p of out.products||[]){
+    if(!p.image || !p.image.startsWith('media:')) continue;
+    const url = await getMedia(p.image);
+    if(!url) continue;
+    const key = p.image;
+    if(!seen.has(key)){
+      const slug = (p.en.name||'item').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40);
+      const file = slug+'-'+key.slice(6,12)+'.jpg';
+      imgs.file(file, url.split(',')[1], {base64:true});
+      seen.set(key,'assets/products/'+file);
+    }
+    p.image = seen.get(key);
+  }
+  zip.file('content.json', JSON.stringify(out,null,2));
+  zip.file('READ-ME-FIRST.txt',
+`La Maison de Stefanie — site backup
+Made ${new Date().toLocaleDateString('en-GB')}
+
+What is in here:
+  content.json          every word and price on the site
+  assets/products/      every product photo, already treated
+
+To put this on the live site without any technical help:
+  1. Open the site's repository on github.com
+  2. Drag content.json into the top level (it will replace the old one)
+  3. Drag the assets/products folder into assets/
+  4. Press "Commit changes"
+Netlify rebuilds the site by itself, usually within a minute.`);
+  const blob = await zip.generateAsync({type:'blob'});
+  const a=document.createElement('a');
+  const d=new Date(), p=n=>String(n).padStart(2,'0');
+  a.href=URL.createObjectURL(blob);
+  a.download=`stefanie-site-${p(d.getDate())}-${p(d.getMonth()+1)}-${d.getFullYear()}.zip`;
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Backup downloaded.');
+}
+
+/* ============================================================
+   START
+   ============================================================ */
+async function start(){
+  $('#gate').hidden=true; $('#app').hidden=false; $('#savebar').hidden=false;
+  if(MODE!=='live') loadOfflineMedia();
+  DATA = await loadContent();
+  DATA.categories=DATA.categories||[]; DATA.products=DATA.products||[];
+  DATA.reviews=DATA.reviews||[]; DATA.faq=DATA.faq||{items:[]};
+  DATA.organ=DATA.organ||{memories:[]};
+  setDirty(false);
+  renderRail(); renderView();
+  aiAvailable().then(ok=>{ document.body.classList.toggle('no-ai',!ok); });
+}
+$('#btnSave').onclick=save;
+$('#btnExport').onclick=exportZip;
+addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==='s'){ e.preventDefault(); save(); }
+});
+gate();
+</script>
+</body>
+</html>

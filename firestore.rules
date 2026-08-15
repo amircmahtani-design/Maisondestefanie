@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Anyone may read the site. Only Stefanie may change it.
+    function isStefanie() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+             'stefanie@lamaisondestefanie.com'
+           ];
+    }
+
+    match /site/{doc}  { allow read: if true; allow write: if isStefanie(); }
+    match /media/{doc} { allow read: if true; allow write: if isStefanie(); }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}
