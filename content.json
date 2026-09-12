@@ -39,86 +39,158 @@
     "heroPoster": {
       "label": "Hero still",
       "ratio": "16/9",
-      "note": "The whole first screen. Shot dark and wide across the counter.",
-      "src": "assets/placeholder-hero-still.svg",
-      "alt": "The counter at La Maison de Stefanie, lit by a single warm lamp."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. The whole first screen. Shot dark and wide across the counter.",
+      "src": "assets/img/hero-still-1600.webp",
+      "alt": "The counter at La Maison de Stefanie, lit by a single warm lamp.",
+      "srcset": "assets/img/hero-still-1100.webp 1100w, assets/img/hero-still-1600.webp 1600w, assets/img/hero-still-2200.webp 2200w",
+      "sizes": "100vw",
+      "srcsetFor": "assets/img/hero-still-1600.webp",
+      "w": 2400,
+      "h": 1350,
+      "placeholder": true
     },
     "heroBottle": {
       "label": "Hero — the bottle",
       "ratio": "3/4",
-      "note": "One of her filled bottles, lit from the side, cut generously. Sits right of centre.",
-      "src": "assets/placeholder-hero-bottle.svg",
-      "alt": "A filled bottle of bespoke extrait de parfum, sealed with the house plate."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. One of her filled bottles, lit from the side, cut generously. Sits right of centre.",
+      "src": "assets/img/bottle-631.webp",
+      "alt": "A filled bottle of bespoke extrait de parfum, sealed with the house plate.",
+      "srcset": "assets/img/bottle-420.webp 420w, assets/img/bottle-631.webp 631w",
+      "sizes": "(min-width:1080px) 19vw, 40vw",
+      "srcsetFor": "assets/img/bottle-631.webp",
+      "w": 631,
+      "h": 1031,
+      "placeholder": true
     },
     "heroBotanical": {
       "label": "Hero — rose or botanical",
       "ratio": "4/3",
-      "note": "A rose or the raw botanical, close and low. Sits in the foreground, bottom left.",
-      "src": "assets/placeholder-hero-botanical.svg",
-      "alt": "A dark red rose on the counter beside the blending vessels."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. A rose or the raw botanical, close and low. Sits in the foreground, bottom left.",
+      "src": "assets/img/rose-860.webp",
+      "alt": "A dark red rose on the counter beside the blending vessels.",
+      "srcset": "assets/img/rose-520.webp 520w, assets/img/rose-860.webp 860w, assets/img/rose-1079.webp 1079w",
+      "sizes": "(min-width:1080px) 30vw, 60vw",
+      "srcsetFor": "assets/img/rose-860.webp",
+      "w": 1079,
+      "h": 867,
+      "placeholder": true
     },
     "heroVessel": {
       "label": "Hero — blending vessel",
       "ratio": "4/3",
-      "note": "The glass bowl or beaker on the counter, with oil in it.",
-      "src": "assets/placeholder-hero-vessel.svg",
-      "alt": "A glass blending bowl holding perfume oil."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. The glass bowl or beaker on the counter, with oil in it.",
+      "src": "assets/img/vessel-800.webp",
+      "alt": "A glass blending bowl holding perfume oil.",
+      "srcset": "assets/img/vessel-480.webp 480w, assets/img/vessel-800.webp 800w, assets/img/vessel-924.webp 924w",
+      "sizes": "(min-width:1080px) 30vw, 50vw",
+      "srcsetFor": "assets/img/vessel-800.webp",
+      "w": 924,
+      "h": 671,
+      "placeholder": true
     },
     "portrait": {
       "label": "Stefanie",
       "ratio": "4/5",
-      "note": "Her at the bench, working. Not looking at the camera.",
-      "src": "assets/placeholder-portrait.svg",
-      "alt": "Stefanie at the bench, composing a perfume by hand."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. Her at the bench, working. Not looking at the camera.",
+      "src": "assets/img/bench-900.webp",
+      "alt": "Stefanie at the bench, composing a perfume by hand.",
+      "srcset": "assets/img/bench-560.webp 560w, assets/img/bench-900.webp 900w",
+      "sizes": "(min-width:900px) 45vw, 92vw",
+      "srcsetFor": "assets/img/bench-900.webp",
+      "w": 900,
+      "h": 1125,
+      "placeholder": true
     },
     "quoteLeft": {
       "label": "Beside her words",
       "ratio": "4/5",
-      "note": "The counter, a hand, a pipette. Close and dark.",
-      "src": "assets/placeholder-counter.svg",
-      "alt": "A pipette drawing an essence over a strip of blotting paper."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. The counter, a hand, a pipette. Close and dark.",
+      "src": "assets/img/counter-900.webp",
+      "alt": "A pipette drawing an essence over a strip of blotting paper.",
+      "srcset": "assets/img/counter-560.webp 560w, assets/img/counter-900.webp 900w",
+      "sizes": "(min-width:900px) 50vw, 92vw",
+      "srcsetFor": "assets/img/counter-900.webp",
+      "w": 900,
+      "h": 1125,
+      "placeholder": true
     },
     "botanical": {
       "label": "Raw materials",
       "ratio": "4/5",
-      "note": "Petals, resin, mastic — the materials themselves.",
-      "src": "assets/placeholder-botanical.svg",
-      "alt": "Petals, resin and Chios mastic laid out as raw materials."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. Petals, resin, mastic — the materials themselves.",
+      "src": "assets/img/botanical-900.webp",
+      "alt": "Petals, resin and Chios mastic laid out as raw materials.",
+      "srcset": "assets/img/botanical-560.webp 560w, assets/img/botanical-900.webp 900w",
+      "sizes": "(min-width:900px) 45vw, 92vw",
+      "srcsetFor": "assets/img/botanical-900.webp",
+      "w": 900,
+      "h": 1125,
+      "placeholder": true
     },
     "workshop": {
       "label": "The blending bench",
       "ratio": "21/9",
-      "note": "The organ of bottles behind the counter. Shoot wide — this runs the width of the page.",
-      "src": "assets/placeholder-workshop.svg",
-      "alt": "The shelf of essences behind the counter in the Plaka shop."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. The organ of bottles behind the counter. Shoot wide — this runs the width of the page.",
+      "src": "assets/img/workshop-1500.webp",
+      "alt": "The shelf of essences behind the counter in the Plaka shop.",
+      "srcset": "assets/img/workshop-900.webp 900w, assets/img/workshop-1500.webp 1500w, assets/img/workshop-2000.webp 2000w",
+      "sizes": "100vw",
+      "srcsetFor": "assets/img/workshop-1500.webp",
+      "w": 2400,
+      "h": 1030,
+      "placeholder": true
     },
     "sealing": {
       "label": "Bottled and sealed",
       "ratio": "4/5",
-      "note": "Her hands sealing a bottle with the house plate.",
-      "src": "assets/placeholder-sealing.svg",
-      "alt": "A finished bottle being sealed by hand at the counter."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. Her hands sealing a bottle with the house plate.",
+      "src": "assets/img/sealing-900.webp",
+      "alt": "A finished bottle being sealed by hand at the counter.",
+      "srcset": "assets/img/sealing-560.webp 560w, assets/img/sealing-900.webp 900w",
+      "sizes": "(min-width:900px) 45vw, 92vw",
+      "srcsetFor": "assets/img/sealing-900.webp",
+      "w": 900,
+      "h": 1125,
+      "placeholder": true
     },
     "atwork": {
       "label": "Wide shot of the shop",
       "ratio": "21/9",
-      "note": "The full room, warm, from the doorway.",
-      "src": "assets/placeholder-atwork.svg",
-      "alt": "The shop in Plaka, seen from the doorway."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. The full room, warm, from the doorway.",
+      "src": "assets/img/atwork-1500.webp",
+      "alt": "The shop in Plaka, seen from the doorway.",
+      "srcset": "assets/img/atwork-900.webp 900w, assets/img/atwork-1500.webp 1500w, assets/img/atwork-2000.webp 2000w",
+      "sizes": "100vw",
+      "srcsetFor": "assets/img/atwork-1500.webp",
+      "w": 2400,
+      "h": 1030,
+      "placeholder": true
     },
     "shopfront": {
       "label": "The shopfront",
       "ratio": "4/5",
-      "note": "Mnisikleous 10 from the street, at dusk.",
-      "src": "assets/placeholder-shopfront.svg",
-      "alt": "The shopfront of La Maison de Stefanie on Mnisikleous Street at dusk."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. Mnisikleous 10 from the street, at dusk.",
+      "src": "assets/img/shopfront-900.webp",
+      "alt": "The shopfront of La Maison de Stefanie on Mnisikleous Street at dusk.",
+      "srcset": "assets/img/shopfront-560.webp 560w, assets/img/shopfront-900.webp 900w",
+      "sizes": "(min-width:900px) 25vw, 92vw",
+      "srcsetFor": "assets/img/shopfront-900.webp",
+      "w": 900,
+      "h": 1125,
+      "placeholder": true
     },
     "neighbourhood": {
       "label": "Plaka",
       "ratio": "4/5",
-      "note": "The steps and the houses just outside the door.",
-      "src": "assets/placeholder-plaka.svg",
-      "alt": "The stepped street of Plaka just outside the shop."
+      "note": "TEMPORARY ARTWORK — replace with a photograph. The steps and the houses just outside the door.",
+      "src": "assets/img/plaka-900.webp",
+      "alt": "The stepped street of Plaka just outside the shop.",
+      "srcset": "assets/img/plaka-560.webp 560w, assets/img/plaka-900.webp 900w",
+      "sizes": "(min-width:900px) 25vw, 92vw",
+      "srcsetFor": "assets/img/plaka-900.webp",
+      "w": 900,
+      "h": 1125,
+      "placeholder": true
     }
   },
   "hero": {
@@ -835,7 +907,7 @@
       "visible": true,
       "featured": true,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p1-700.webp",
       "price": "80",
       "size": "30ml extrait",
       "payLink": "",
@@ -866,7 +938,12 @@
         "base": [
           "επιλέγονται μαζί"
         ]
-      }
+      },
+      "srcset": "assets/img/prod-p1-420.webp 420w, assets/img/prod-p1-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p1-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p2",
@@ -875,7 +952,7 @@
       "visible": true,
       "featured": false,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p2-700.webp",
       "price": "",
       "size": "30ml extrait",
       "payLink": "",
@@ -906,7 +983,12 @@
         "base": [
           "αμετάβλητη"
         ]
-      }
+      },
+      "srcset": "assets/img/prod-p2-420.webp 420w, assets/img/prod-p2-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p2-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p3",
@@ -915,7 +997,7 @@
       "visible": true,
       "featured": true,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p3-700.webp",
       "price": "95",
       "size": "50ml extrait",
       "payLink": "",
@@ -954,7 +1036,12 @@
           "βενζόη",
           "μόσχος"
         ]
-      }
+      },
+      "srcset": "assets/img/prod-p3-420.webp 420w, assets/img/prod-p3-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p3-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p4",
@@ -963,7 +1050,7 @@
       "visible": true,
       "featured": true,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p4-700.webp",
       "price": "95",
       "size": "50ml extrait",
       "payLink": "",
@@ -1000,7 +1087,12 @@
           "λάδανο",
           "βετιβέρ"
         ]
-      }
+      },
+      "srcset": "assets/img/prod-p4-420.webp 420w, assets/img/prod-p4-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p4-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p5",
@@ -1009,7 +1101,7 @@
       "visible": true,
       "featured": false,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p5-700.webp",
       "price": "95",
       "size": "50ml extrait",
       "payLink": "",
@@ -1048,7 +1140,12 @@
           "απαλό δέρμα",
           "σανδαλόξυλο"
         ]
-      }
+      },
+      "srcset": "assets/img/prod-p5-420.webp 420w, assets/img/prod-p5-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p5-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p6",
@@ -1057,7 +1154,7 @@
       "visible": true,
       "featured": false,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p6-700.webp",
       "price": "",
       "size": "30ml extrait",
       "payLink": "",
@@ -1088,7 +1185,12 @@
         "base": [
           "κατόπιν συνεννόησης"
         ]
-      }
+      },
+      "srcset": "assets/img/prod-p6-420.webp 420w, assets/img/prod-p6-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p6-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p7",
@@ -1097,7 +1199,7 @@
       "visible": true,
       "featured": true,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p7-700.webp",
       "price": "38",
       "size": "100ml",
       "payLink": "",
@@ -1116,7 +1218,12 @@
         "top": [],
         "heart": [],
         "base": []
-      }
+      },
+      "srcset": "assets/img/prod-p7-420.webp 420w, assets/img/prod-p7-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p7-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p8",
@@ -1125,7 +1232,7 @@
       "visible": true,
       "featured": false,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p8-700.webp",
       "price": "14",
       "size": "120g",
       "payLink": "",
@@ -1144,7 +1251,12 @@
         "top": [],
         "heart": [],
         "base": []
-      }
+      },
+      "srcset": "assets/img/prod-p8-420.webp 420w, assets/img/prod-p8-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p8-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p9",
@@ -1153,7 +1265,7 @@
       "visible": true,
       "featured": true,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p9-700.webp",
       "price": "45",
       "size": "220g · approx. 45 hours",
       "payLink": "",
@@ -1172,7 +1284,12 @@
         "top": [],
         "heart": [],
         "base": []
-      }
+      },
+      "srcset": "assets/img/prod-p9-420.webp 420w, assets/img/prod-p9-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p9-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p10",
@@ -1181,7 +1298,7 @@
       "visible": true,
       "featured": false,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p10-700.webp",
       "price": "55",
       "size": "200ml · 8 reeds",
       "payLink": "",
@@ -1200,7 +1317,12 @@
         "top": [],
         "heart": [],
         "base": []
-      }
+      },
+      "srcset": "assets/img/prod-p10-420.webp 420w, assets/img/prod-p10-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p10-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p11",
@@ -1209,7 +1331,7 @@
       "visible": true,
       "featured": true,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p11-700.webp",
       "price": "80",
       "size": "Any value",
       "payLink": "",
@@ -1228,7 +1350,12 @@
         "top": [],
         "heart": [],
         "base": []
-      }
+      },
+      "srcset": "assets/img/prod-p11-420.webp 420w, assets/img/prod-p11-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p11-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p12",
@@ -1237,7 +1364,7 @@
       "visible": true,
       "featured": false,
       "sample": true,
-      "image": "",
+      "image": "assets/img/prod-p12-700.webp",
       "price": "",
       "size": "From 20 pieces",
       "payLink": "",
@@ -1256,7 +1383,12 @@
         "top": [],
         "heart": [],
         "base": []
-      }
+      },
+      "srcset": "assets/img/prod-p12-420.webp 420w, assets/img/prod-p12-700.webp 700w",
+      "sizes": "(min-width:900px) 22vw, 90vw",
+      "srcsetFor": "assets/img/prod-p12-700.webp",
+      "placeholder": true,
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     }
   ],
   "reviews": [
