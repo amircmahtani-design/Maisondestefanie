@@ -1,0 +1,63 @@
+La Maison de Stefanie — the assets folder
+=========================================
+
+Nothing in this folder is hers yet. Everything here is a placeholder,
+generated so the layout can be reviewed. Each placeholder names, on the
+image itself, the photograph that belongs in its place.
+
+
+1. HER ICON — do this first, and do not rename anything
+-------------------------------------------------------
+The favicon is her logo. Copy these exact filenames out of the current
+live site (open lamaisondestefanie.com, View Source, and look at the
+<link rel="icon"> tags — or just download them straight from
+lamaisondestefanie.com/favicon.ico and so on):
+
+  /favicon.ico                     <- goes in the TOP level, not in here
+  assets/favicon.svg
+  assets/favicon-32x32.png
+  assets/favicon-16x16.png
+  assets/apple-touch-icon.png      180x180
+  assets/android-chrome-192x192.png
+  assets/android-chrome-512x512.png
+  assets/og-image.jpg              1200x630, used by Google and WhatsApp
+
+Until these are copied across the browser tab has no icon and links
+shared on WhatsApp or Instagram show no picture.
+
+
+2. THE PHOTOGRAPHS
+------------------
+Replace each placeholder with a real photograph, keeping the same name
+but the real extension (.jpg, or .webp if you have it), then point the
+Studio at it:  Studio -> Pictures -> the matching slot.
+
+  placeholder-hero-still.svg       the whole first screen, wide and dark
+  placeholder-hero-bottle.svg      one filled bottle, side-lit, on black
+  placeholder-hero-botanical.svg   a rose or raw botanical, close and low
+  placeholder-hero-vessel.svg      the glass blending bowl with oil in it
+  placeholder-portrait.svg         Stefanie at the bench, working
+  placeholder-counter.svg          a hand, a pipette, a strip of paper
+  placeholder-botanical.svg        petals, resin, mastic
+  placeholder-workshop.svg         the organ of bottles behind the counter
+  placeholder-sealing.svg          her hands sealing a bottle
+  placeholder-atwork.svg           the full room from the doorway
+  placeholder-shopfront.svg        Mnisikleous 10 from the street, at dusk
+  placeholder-plaka.svg            the steps just outside the door
+
+Shoot dark. One warm light source, off to one side, everything else
+falling away into shadow. Do not light the whole room evenly — the site
+is built around that contrast and flat photographs sit badly in it.
+
+
+3. THE HERO FILM (optional)
+---------------------------
+If there is a loop of her working, drop it in as:
+
+  assets/stefanie_hero_loop.webm         desktop, under about 4 MB
+  assets/stefanie_hero_loop_mobile.webm  phone, under about 1.5 MB
+
+then type the filenames into Studio -> Pictures -> The hero film. With no
+film the hero still is used instead and the page is faster. The film never
+loads on a phone data-saver connection or for anyone who has asked their
+device to reduce motion.
