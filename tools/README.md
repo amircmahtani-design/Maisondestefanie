@@ -25,6 +25,15 @@ whole folder once they do.
                     lighting, blurs and texture)
     export.py       resizes to the widths the page asks for, writes WebP,
                     and prints the srcset strings for content.json
+    matte.py        the four supplied photographs, matted onto true black.
+                    Each was shot on a lit studio backdrop, so the frame
+                    carries a warm wash out to its own corners; screened
+                    onto the stage that wash reads as a lighter rectangle.
+                    A tonal curve deepens it, then a soft ellipse centred
+                    on the subject takes the crop to a genuine zero.
+                    Reads tools/supplied/{rose,vessel,compose,bottle}.png,
+                    which are not committed — drop the originals there
+                    before running it.
     heroloop.py     the hero film: takes the rendered still and moves it
                     — a slow push, candlelight that gutters, a flame that
                     leans, haze drifting — and encodes VP9 WebM plus
