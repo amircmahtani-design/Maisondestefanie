@@ -25,13 +25,18 @@ whole folder once they do.
                     lighting, blurs and texture)
     export.py       resizes to the widths the page asks for, writes WebP,
                     and prints the srcset strings for content.json
-    scenes.py       the four chapter photographs. These are whole frames,
-                    not objects cut out on black, so nothing is removed:
-                    the script only sets a true black point and grades
-                    them so the four read as one shoot, then writes the
-                    widths the page asks for. Reads
-                    tools/supplied/{rose,vessel,compose,bottle}.png, which
-                    are not committed — drop the originals there first.
+    scenes.py       the cinematic set: three chapter photographs and the
+                    nine bottle frames. These are whole frames, not objects
+                    cut out on black, so nothing is removed — the script
+                    sets a true black point, grades them so they read as
+                    one shoot, and writes the widths the page asks for.
+                    The nine frames are graded identically to each other,
+                    or the petals would flicker as the exposure moved
+                    under them, and written at two widths only because
+                    every frame in whichever set the browser picks has to
+                    be decoded before the loop can start. Reads
+                    tools/supplied/, which is not committed — drop the
+                    originals there first.
     heroloop.py     the hero film: takes the rendered still and moves it
                     — a slow push, candlelight that gutters, a flame that
                     leans, haze drifting — and encodes VP9 WebM plus

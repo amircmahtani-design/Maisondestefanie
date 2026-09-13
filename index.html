@@ -296,20 +296,46 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .chap.live{visibility:visible}
 .chap.live .chap-copy,.chap.live .chap-cards,.chap.live .chap-mat{pointer-events:auto}
 
-/* The scene: one whole photograph filling the frame, pushed slowly in
-   across the chapter. It is clipped by the panel rather than transformed
-   itself, so the push never drags an edge into view. Its left side is not
-   cut off — the scrim below fades it into the ground, so the words sit on
-   darkness and the picture appears to run off the screen. */
+/* The scene: one whole photograph filling the frame. It is clipped by the
+   panel rather than transformed itself, so the drift never drags an edge
+   into view. Its left side is not cut off — the scrim below fades it into
+   the ground, so the words sit on darkness and the picture appears to run
+   off the screen.
+
+   Two layers, always. Chapters one to three use only the first; the fourth
+   alternates between them to play its frames, and the outgoing layer is
+   never taken away until the incoming one has decoded. */
+/* the small labels in this section sit on photographs rather than on the
+   flat ground, and --dim was drawn for the flat ground: over a lit bowl or
+   a lit bottle it lands just under AA, so the sequence carries its own */
+.seq{--dim-lit:#C8B8A2}
 .chap{--on:0;--k:0;--cin:0;--min:0;--kin:0}
 .no-js .chap,.seq.plain .chap{--on:1;--k:.55;--cin:1;--min:1;--kin:1}
-.chap-subject{position:absolute;inset:0 0 0 34%;z-index:1;overflow:hidden;
-  opacity:var(--on);will-change:opacity}
-.chap-subject img{display:block;width:100%;height:100%;object-fit:cover;
+/* The plate is portrait, because the photographs are: a 9:16 frame cropped
+   into a landscape panel shows less than half its own height, and the bowl,
+   the still and the bottle all need more room than that. Tall and bleeding
+   off the right edge, it also leaves the words a column of their own. */
+.chap-subject{position:absolute;inset:0 0 0 48%;z-index:1;overflow:hidden;
+  opacity:var(--on);
+  /* the dissolve between scenes: the scroll sets where it is going, this
+     decides how softly it gets there, however fast the wheel is turning */
+  transition:opacity 820ms cubic-bezier(.4,0,.2,1);
+  will-change:opacity}
+.chap-subject .lay{position:absolute;inset:0;display:block;
+  width:100%;height:100%;object-fit:cover;
   object-position:var(--pos,50% 42%);
-  transform:scale(calc(1.03 + var(--k) * .10))
-            translate3d(0,calc((.5 - var(--k)) * -2.2%),0);
-  will-change:transform}
+  transform:translateZ(0);backface-visibility:hidden}
+/* the second layer only exists for the frames, and starts out of the way */
+.chap-subject .lay.b{opacity:0}
+.chap-subject.xf .lay{transition:opacity 110ms linear}
+
+/* Ken Burns, on the three still scenes: three and a half percent over four
+   seconds, out and back. Transform only, so it stays on the compositor. */
+@keyframes kenburns{from{transform:scale(1) translate3d(0,0,0)}
+  to{transform:scale(1.035) translate3d(0,-.9%,0)}}
+.chap[data-motion="burns"].live .lay.a{
+  animation:kenburns 4s cubic-bezier(.37,0,.63,1) infinite alternate}
+.seq.hold .chap .lay{animation-play-state:paused!important}
 
 /* the warmth in the air of the room */
 .seq-stage::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
@@ -320,11 +346,10 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
    no seam, and holds the foot dark enough for the chapter word and the cue */
 .seq-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    /* the corner the material and the count sit in */
-    radial-gradient(48% 40% at 103% 9%,rgba(10,7,5,.92) 0%,rgba(10,7,5,.58) 44%,transparent 78%),
-    /* the left, where the words are */
-    linear-gradient(90deg,rgba(10,7,5,.97) 0%,rgba(10,7,5,.95) 24%,
-      rgba(10,7,5,.80) 36%,rgba(10,7,5,.40) 50%,rgba(10,7,5,.10) 66%,rgba(10,7,5,0) 80%),
+    /* the left, where the words are — the fade is centred on the plate's
+       edge so there is no seam to see */
+    linear-gradient(90deg,rgba(10,7,5,.97) 0%,rgba(10,7,5,.97) 38%,
+      rgba(10,7,5,.90) 50%,rgba(10,7,5,.58) 60%,rgba(10,7,5,.18) 74%,rgba(10,7,5,0) 88%),
     /* the foot, under the notes */
     linear-gradient(0deg,rgba(10,7,5,.93) 0%,rgba(10,7,5,.72) 16%,
       rgba(10,7,5,.30) 30%,transparent 50%)}
@@ -335,7 +360,7 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
   transform:translateY(-50%) translate3d(0,calc((1 - var(--cin)) * 26px),0);
   will-change:transform,opacity}
 .chap-eyebrow{display:flex;align-items:center;gap:.9rem;margin:0 0 1.4rem;
-  font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
+  font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim-lit)}
 .chap-eyebrow::before{content:"";width:2.2rem;height:1px;background:var(--gold);flex:none}
 .chap-title{font-family:var(--fancy);font-weight:400;color:#F7F2E9;
   font-size:clamp(2.5rem,1.1rem + 3.7vw,4.8rem);line-height:1.0;letter-spacing:-.005em;
@@ -349,22 +374,15 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .chap-more i{flex:1;height:1px;background:currentColor;opacity:.4}
 .chap-more:hover{color:var(--gold-lit);border-color:var(--gold)}
 
-/* the material, named on the right */
-.chap-mat{position:absolute;z-index:3;right:var(--pad);top:16%;text-align:right;
-  border-top:1px solid var(--edge-2);padding-top:1rem;width:min(15rem,26vw);
+/* The material, named under the words. It used to be a rail pinned to the
+   right, but all four photographs put their subject centre-right, so it
+   was always sitting on the thing you were meant to be looking at. In the
+   column it needs no scrim of its own and the plate stays untouched. */
+.chap-mat{display:flex;align-items:baseline;gap:1rem;margin-top:1.6rem;
   opacity:calc(var(--min) * var(--on));will-change:opacity}
-/* chapter four puts the lit bottle directly behind this, so the block
-   carries its own shadow rather than the whole corner being darkened */
-.chap-mat::before,.seq-count::before{content:"";position:absolute;z-index:-1;
-  inset:-4.5rem -4rem -5.5rem -5rem;pointer-events:none;
-  /* closest-side, so the fade finishes exactly on the box and there is no
-     clipped edge left to read as a rectangle over the photograph */
-  background:radial-gradient(ellipse closest-side at 55% 48%,
-    rgba(10,7,5,.95) 0%,rgba(10,7,5,.93) 48%,rgba(10,7,5,.82) 68%,
-    rgba(10,7,5,.55) 82%,rgba(10,7,5,.22) 92%,transparent 100%)}
-.chap-mat .lab{margin:0 0 .7rem;font-size:.6rem;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--dim);display:block}
-.chap-mat .name{font-family:var(--fancy);font-size:clamp(1.2rem,.9rem + 1.1vw,2rem);
+.chap-mat .lab{margin:0;font-size:.6rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--dim-lit)}
+.chap-mat .name{font-family:var(--fancy);font-size:clamp(1.1rem,.9rem + .8vw,1.6rem);
   line-height:1.05;color:var(--ivory);margin:0}
 
 /* the three notes along the foot */
@@ -383,17 +401,18 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .chap-card p{margin:0;font-size:.78rem;line-height:1.6;color:var(--ivory-2)}
 
 /* where you are in the four */
-.seq-count{position:absolute;z-index:4;right:calc(var(--pad) + min(15rem,26vw) + 2rem);top:16%;
-  isolation:isolate;
-  display:grid;justify-items:center;gap:.35rem;font-family:var(--fancy);
-  font-size:.92rem;letter-spacing:.06em;color:var(--ivory)}
-.seq-count i{display:block;width:1px;height:2.6rem;background:var(--edge);position:relative}
-.seq-count i::after{content:"";position:absolute;inset:0 0 auto;height:var(--fill,0%);
-  background:var(--gold);transition:height .25s linear}
-.seq-count .tot{color:var(--dimmer)}
+.seq-count{position:absolute;z-index:4;left:var(--pad);
+  bottom:clamp(1.3rem,3.4vh,2.2rem);
+  display:flex;align-items:center;gap:.7rem;font-family:var(--fancy);
+  font-size:.86rem;letter-spacing:.06em;color:var(--ivory)}
+.seq-count i{display:block;width:4.5rem;height:1px;background:var(--edge);position:relative}
+.seq-count i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--fill,0%);
+  background:var(--gold);transition:width .25s linear}
+.seq-count .tot{color:var(--dim-lit);opacity:.72}
 
 /* the scroll cue, only on the first chapter */
-.seq-cue{position:absolute;z-index:4;left:var(--pad);bottom:clamp(1.4rem,3.5vh,2.4rem);
+.seq-cue{position:absolute;z-index:4;left:calc(var(--pad) + 11rem);
+  bottom:clamp(1.3rem,3.4vh,2.2rem);
   display:inline-flex;align-items:center;gap:.7rem;font-size:.58rem;letter-spacing:.26em;
   text-transform:uppercase;color:var(--dimmer);transition:opacity .4s}
 .seq-cue i{width:2.6rem;height:1px;background:linear-gradient(90deg,var(--gold),transparent);
@@ -408,7 +427,7 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
      subject. Composed for the phone rather than shrunk down. */
   /* the picture band is the flexible row, so the words, the material and
      the notes always get the height they need and never sit on each other */
-  .chap{display:grid;grid-template-rows:minmax(3.5rem,1fr) auto auto auto;
+  .chap{display:grid;grid-template-rows:minmax(3.5rem,1fr) auto auto;
     padding:5.6rem var(--pad) calc(5.2rem + env(safe-area-inset-bottom));
     row-gap:clamp(.7rem,2.2vh,1.4rem)}
   .chap-subject{inset:0}
@@ -417,21 +436,19 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
               translate3d(0,calc((.5 - var(--k)) * -1.4%),0)}
   /* the scene is out of flow, so the words start on the second row */
   .chap-copy{grid-row:2}
-  .chap-mat{grid-row:3}
-  .chap-cards{grid-row:4}
+  .chap-cards{grid-row:3}
+  /* the scrim holds full strength right up to the foot of the picture
+     band, so nothing in the column is ever read off a lit photograph */
   .seq-stage::after{background:
-    linear-gradient(0deg,rgba(10,7,5,.97) 0%,rgba(10,7,5,.95) 48%,
-      rgba(10,7,5,.72) 60%,rgba(10,7,5,.22) 78%,rgba(10,7,5,0) 94%)}
+    linear-gradient(0deg,rgba(10,7,5,.97) 0%,rgba(10,7,5,.96) 56%,
+      rgba(10,7,5,.76) 66%,rgba(10,7,5,.24) 80%,rgba(10,7,5,0) 94%)}
   .chap-copy{position:relative;left:auto;top:auto;width:auto;
     transform:translate3d(0,calc((1 - var(--cin)) * 16px),0)}
   .chap-eyebrow{margin-bottom:.8rem;font-size:.58rem;letter-spacing:.26em}
   .chap-title{font-size:clamp(2rem,8.2vw,2.9rem);margin-bottom:.7rem}
   .chap-body{font-size:.84rem;line-height:1.62;margin-bottom:.9rem;max-width:none}
   .chap-more{padding-top:.8rem;width:100%;font-size:.6rem}
-  .chap-mat{position:relative;right:auto;top:auto;width:auto;text-align:left;
-    border-top:1px solid var(--edge);padding-top:.7rem;
-    display:flex;align-items:baseline;gap:.8rem}
-  .chap-mat .lab{margin:0}
+  .chap-mat{margin-top:1rem;padding-top:.7rem;border-top:1px solid var(--edge);gap:.8rem}
   .chap-mat .name{font-size:1.05rem}
   .chap-cards{position:relative;left:auto;right:auto;bottom:auto;align-self:end;
     display:flex;align-items:flex-start;gap:.6rem;max-width:none;
@@ -442,10 +459,9 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
   .chap-card{scroll-snap-align:start;flex:0 0 min(74vw,17rem);padding:.85rem .95rem .95rem}
   .chap-card-t{font-size:1rem}
   .chap-card p{font-size:.74rem}
-  .seq-count{position:absolute;right:var(--pad);top:4.5rem;
-    grid-auto-flow:column;align-items:center;gap:.55rem;font-size:.78rem}
-  .seq-count i{width:1.6rem;height:1px}
-  .seq-count i::after{inset:0 auto 0 0;width:var(--fill,0%);height:1px}
+  .seq-count{right:auto;left:var(--pad);top:4.5rem;bottom:auto;
+    gap:.55rem;font-size:.78rem}
+  .seq-count i{width:1.6rem}
   .seq-cue{display:none}
   .seq-ghost{font-size:clamp(4rem,26vw,9rem);bottom:-.2em;opacity:.05}
 }
@@ -453,12 +469,11 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 /* the shortest phones still in circulation cannot take the full column,
    so everything gives a little rather than the notes colliding */
 @media (max-width:1079px) and (max-height:730px){
-  .chap{padding-top:4.9rem;row-gap:.45rem;grid-template-rows:minmax(2.5rem,1fr) auto auto auto}
+  .chap{padding-top:4.9rem;row-gap:.45rem;grid-template-rows:minmax(2.5rem,1fr) auto auto}
   .chap-eyebrow{margin-bottom:.55rem}
   .chap-title{font-size:clamp(1.7rem,7vw,2.25rem);margin-bottom:.5rem}
   .chap-body{font-size:.78rem;line-height:1.54;margin-bottom:.65rem}
   .chap-more{padding-top:.6rem;min-height:2.5rem}
-  .chap-mat{padding-top:.55rem}
   .chap-card{flex-basis:min(72vw,15rem);padding:.7rem .8rem .8rem}
   .chap-card-t{font-size:.94rem;margin-bottom:.3rem}
   .chap-card p{font-size:.7rem;line-height:1.5}
@@ -487,11 +502,6 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .no-js .chap-mat,.seq.plain .chap-mat{position:relative;inset:auto;
   transform:none!important;opacity:1!important}
 .no-js .chap-copy,.seq.plain .chap-copy{width:min(46rem,100%);margin-bottom:2rem}
-.no-js .chap-mat,.seq.plain .chap-mat{width:auto;text-align:left;margin-bottom:2rem;
-  display:flex;align-items:baseline;gap:.9rem}
-.no-js .chap-mat .lab,.seq.plain .chap-mat .lab{margin:0}
-.no-js .chap-mat::before,.seq.plain .chap-mat::before,
-.no-js .seq-count::before,.seq.plain .seq-count::before{display:none}
 /* the count and the cue both describe a scroll that is not happening */
 .no-js .seq-count,.seq.plain .seq-count,
 .no-js .seq-cue,.seq.plain .seq-cue,
@@ -1295,19 +1305,26 @@ function renderSequence(){
        picture says where its own centre of interest is */
     const pos = [pic.focus ? `--pos:${esc(pic.focus)}` : '',
                  pic.focusM ? `--pos-m:${esc(pic.focusM)}` : ''].filter(Boolean).join(';');
-    return `<article class="chap" data-i="${i}"${pos ? ` style="${pos}"` : ''}>
-      <div class="chap-subject"><img alt="" decoding="async"
-           data-subject="${esc(c.subject)}"${i ? ' loading="lazy"' : ''}></div>
+    /* the last chapter plays a run of frames; the rest breathe. A chapter
+       with frames keeps its layers out of the ordinary picture filler —
+       both belong to the player, which sets their src directly */
+    const motion = c.frames ? 'frames' : 'burns';
+    return `<article class="chap" data-i="${i}" data-motion="${motion}"${pos ? ` style="${pos}"` : ''}>
+      <div class="chap-subject">
+        <img class="lay a" alt="" decoding="async"${c.frames ? ''
+          : ` data-subject="${esc(c.subject)}"${i ? ' loading="lazy"' : ''}`}>
+        <img class="lay b" alt="" aria-hidden="true" decoding="async">
+      </div>
       <div class="chap-copy">
         <p class="chap-eyebrow">/${esc(c.num)} — ${esc(c.word)}</p>
         <${i ? 'h2' : 'h1'} class="chap-title">${esc(c.titleA)} <em>${esc(c.titleB)}</em></${i ? 'h2' : 'h1'}>
         <p class="chap-body">${esc(c.body)}</p>
         <a class="chap-more" href="${i===SEQ.n-1?'#bespoke':'#threads'}" data-nav>
           <span>${esc(c.link)}</span><i></i><span aria-hidden="true">&#8594;</span></a>
-      </div>
-      <div class="chap-mat">
-        <span class="lab">${esc(tGet('ui.theMaterial'))}</span>
-        <p class="name">/${esc(c.material)}</p>
+        <div class="chap-mat">
+          <span class="lab">${esc(tGet('ui.theMaterial'))}</span>
+          <p class="name">/${esc(c.material)}</p>
+        </div>
       </div>
       <div class="chap-cards">${(c.cards||[]).map(k=>`
         <div class="chap-card">
@@ -1318,7 +1335,7 @@ function renderSequence(){
   }).join('');
 
   /* the four subjects are the whole show, so the first is eager */
-  $$('#seqChapters img[data-subject]').forEach(async (img,i)=>{
+  $$('#seqChapters img.lay.a[data-subject]').forEach(async (img,i)=>{
     const sl = slot(img.dataset.subject) || {};
     const url = await resolve(sl.src);
     if (!url){ img.closest('.chap-subject').style.visibility='hidden'; return; }
@@ -1326,6 +1343,11 @@ function renderSequence(){
     if (i === 0) img.fetchPriority = 'high';
     img.src = url;
   });
+
+  /* whichever chapter carries a run of frames gets the two-layer player */
+  stopLoop(); LOOP.ready = false; LOOP.live = false; LOOP.urls = [];
+  const fi = data.findIndex(c => c.frames && c.frames.length);
+  if (fi > -1) setupLoop(fi);
 
   SEQ.plain = REDUCED;
   SEQ.el.classList.toggle('plain', SEQ.plain);
@@ -1363,6 +1385,15 @@ function drawSequence(){
     el.style.setProperty('--kin', kIn.toFixed(3));
   });
 
+  /* the frames only run while their chapter is on screen, and the set
+     starts downloading a chapter early so it is decoded by the time it
+     is wanted */
+  if (LOOP.urls.length){
+    const d = f - (SEQ.n - 1);
+    if (d > -1.05 && !LOOP.ready) loadLoop();
+    setLoopLive(d > -0.30);
+  }
+
   const i = Math.min(SEQ.n - 1, Math.floor(f));
   const t = f - i;
   const c = SEQ.chapters[i] || {};
@@ -1375,6 +1406,134 @@ function drawSequence(){
   $('#seqGhost').style.transform = `translate3d(${(t*5 - 2).toFixed(2)}%,0,0)`;
   $('#seqCue').style.opacity = (1 - smooth(0, 0.35, f)).toFixed(2);
 }
+
+/* ══ THE BOTTLE LOOP ═══════════════════════════════════════════
+   Nine photographs of the same bottle with the petals a little
+   further along in each. Played out and back — 00 to 08 and home
+   again — so the run closes on itself and the petals drift rather
+   than jumping back to the start.
+
+   Two layers, and the one you can see is never taken away: the next
+   frame is decoded into the hidden layer first, and only then do the
+   two opacities swap. That is what stops the flicker a plain src
+   change gives you, and it is why the whole run is decoded before
+   the first swap rather than during it.                          */
+const LOOP = {
+  el:null, lays:null, urls:[], order:[], at:0, timer:0,
+  ready:false, loading:false, showing:0, live:false
+};
+const FRAME_HOLD  = 140;   /* how long a frame stands still */
+const FRAME_BLEND = 110;   /* and how long it takes to become the next */
+
+function loopOrder(n){                 /* 0,1,…,n-1,…,1  — out and back */
+  const a = [];
+  for (let i = 0; i < n; i++) a.push(i);
+  for (let i = n - 2; i > 0; i--) a.push(i);
+  return a;
+}
+
+async function loadLoop(){
+  if (LOOP.loading || LOOP.ready || !LOOP.urls.length) return;
+  LOOP.loading = true;
+  try{
+    /* every frame decoded before the first swap, or the run stutters
+       through its first pass while the browser catches up */
+    await Promise.all(LOOP.urls.map(u => new Promise(res=>{
+      const i = new Image();
+      i.decoding = 'async';
+      i.addEventListener('load', ()=> (i.decode ? i.decode().catch(()=>{}) : Promise.resolve()).then(res), {once:true});
+      i.addEventListener('error', res, {once:true});
+      i.src = u;
+    })));
+    LOOP.ready = true;
+    if (LOOP.live) runLoop();
+  } finally { LOOP.loading = false; }
+}
+
+function stopLoop(){ clearTimeout(LOOP.timer); LOOP.timer = 0; }
+
+function runLoop(){
+  stopLoop();
+  if (!LOOP.ready || !LOOP.live || document.hidden || REDUCED) return;
+  const step = async ()=>{
+    LOOP.at = (LOOP.at + 1) % LOOP.order.length;
+    const url = LOOP.urls[LOOP.order[LOOP.at]];
+    const next = LOOP.lays[LOOP.showing ^ 1];
+    if (next.src !== url){
+      next.src = url;
+      try{ await next.decode(); }catch(e){ /* a swap missed is not a failure */ }
+    }
+    if (!LOOP.live || document.hidden) return;
+    /* only now is the outgoing layer allowed to go */
+    LOOP.showing ^= 1;
+    LOOP.lays[LOOP.showing].style.opacity = '1';
+    LOOP.lays[LOOP.showing ^ 1].style.opacity = '0';
+    LOOP.timer = setTimeout(step, FRAME_HOLD + FRAME_BLEND);
+  };
+  LOOP.timer = setTimeout(step, FRAME_HOLD);
+}
+
+function setLoopLive(on){
+  if (on === LOOP.live) return;
+  LOOP.live = on;
+  if (on){ loadLoop(); if (LOOP.ready) runLoop(); } else stopLoop();
+}
+
+/* Every frame is downloaded, so the run picks one width and keeps it
+   rather than letting srcset choose per frame — a phone has no business
+   pulling the desktop set nine times over, and a run that mixed widths
+   would resample on every swap. */
+function frameWidth(panel){
+  /* a phone is still a retina phone: the bottle itself never moves, so a
+     set too small for the screen reads as a soft photograph rather than
+     as motion. Two device pixels is the point past which nobody can see
+     the difference, and anyone who has asked to save data gets the small
+     set whatever their screen. */
+  const conn = navigator.connection || {};
+  if (conn.saveData) return 560;
+  return panel * Math.min(devicePixelRatio || 1, 2) <= 620 ? 560 : 880;
+}
+function atWidth(sl, want){
+  const cands = String(sl.srcset || '').split(',').map(x=>x.trim().split(/\s+/))
+    .filter(x=>x.length===2).map(([u,w])=>[u, parseInt(w,10)]);
+  if (!cands.length) return sl.src;
+  const hit = cands.find(([,w])=>w === want);
+  return hit ? hit[0] : cands[cands.length-1][0];
+}
+
+async function setupLoop(chapter){
+  const c = SEQ.chapters[chapter];
+  if (!c || !c.frames || !c.frames.length) return;
+  LOOP.el = $$('.chap')[chapter]?.querySelector('.chap-subject');
+  if (!LOOP.el) return;
+  LOOP.lays = [$('.lay.a', LOOP.el), $('.lay.b', LOOP.el)];
+  const want = frameWidth(LOOP.el.getBoundingClientRect().width || innerWidth);
+  LOOP.urls = (await Promise.all(c.frames.map(k => {
+    const sl = slot(k) || {};
+    return resolve(atWidth(sl, want));
+  }))).filter(Boolean);
+  if (LOOP.urls.length < 2){ LOOP.urls = []; return; }
+  LOOP.order = loopOrder(LOOP.urls.length);
+  LOOP.el.classList.add('xf');
+  const sl0 = slot(c.frames[0]) || {};
+  LOOP.lays.forEach(l=>{
+    /* a srcset would quietly win over the src the player sets */
+    l.removeAttribute('srcset'); l.removeAttribute('sizes');
+    l.removeAttribute('data-subject'); l.removeAttribute('loading');
+    if (sl0.w && sl0.h){ l.width = sl0.w; l.height = sl0.h; }
+  });
+  /* the frame it rests on, and the only one a stilled page ever sees */
+  const rest = Math.min(4, LOOP.urls.length - 1);
+  LOOP.at = LOOP.order.indexOf(rest);
+  LOOP.showing = 0;
+  LOOP.lays[0].src = LOOP.urls[rest];
+  LOOP.lays[0].style.opacity = '1'; LOOP.lays[1].style.opacity = '0';
+}
+
+document.addEventListener('visibilitychange', ()=>{
+  SEQ.el && SEQ.el.classList.toggle('hold', document.hidden);
+  if (document.hidden) stopLoop(); else if (LOOP.live) runLoop();
+});
 
 /* ══════════════════════════════════════════════════════════════
    RENDER

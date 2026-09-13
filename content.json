@@ -56,46 +56,46 @@
    "placeholder": true
   },
   "heroBottle": {
-   "label": "Chapter four — the bottle",
+   "label": "Chapter four — the bottle (resting frame)",
    "ratio": "941/1672",
-   "note": "The finished bottle among the roses, petals still falling.",
-   "src": "assets/img/scene-bottle-941.webp",
-   "alt": "A finished bottle of extrait de parfum standing among roses, petals falling around it.",
-   "srcset": "assets/img/scene-bottle-470.webp 470w, assets/img/scene-bottle-700.webp 700w, assets/img/scene-bottle-941.webp 941w",
-   "sizes": "(min-width:1080px) 66vw, 100vw",
-   "srcsetFor": "assets/img/scene-bottle-941.webp",
+   "note": "The frame the bottle rests on when the page is still, and the only one shown to anyone who has asked for less movement. Normally this is frame 04 of the loop.",
+   "src": "assets/img/frame-04-880.webp",
+   "alt": "A finished bottle of extrait de parfum among the roses, petals drifting past it.",
+   "srcset": "assets/img/frame-04-560.webp 560w, assets/img/frame-04-880.webp 880w",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "srcsetFor": "assets/img/frame-04-880.webp",
    "w": 941,
    "h": 1672,
-   "focus": "56% 46%",
-   "focusM": "56% 40%"
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
   },
   "heroBotanical": {
-   "label": "Chapter one — the memory",
+   "label": "Chapter one — the rose",
    "ratio": "941/1672",
-   "note": "A single rose on the stem in the dark, lit from one side.",
+   "note": "One rose on the stem in the dark, lit from the side.",
    "src": "assets/img/scene-rose-941.webp",
-   "alt": "One rose, still on the stem, held in a shaft of low warm light.",
+   "alt": "A single rose still on the stem, held in a shaft of low warm light.",
    "srcset": "assets/img/scene-rose-470.webp 470w, assets/img/scene-rose-700.webp 700w, assets/img/scene-rose-941.webp 941w",
-   "sizes": "(min-width:1080px) 66vw, 100vw",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
    "srcsetFor": "assets/img/scene-rose-941.webp",
    "w": 941,
    "h": 1672,
-   "focus": "50% 30%",
-   "focusM": "50% 26%"
+   "focus": "50% 0%",
+   "focusM": "95% 50%"
   },
   "heroVessel": {
-   "label": "Chapter two — the raw materials",
-   "ratio": "940/1672",
-   "note": "The copper still working, steam off the head and the flame beneath.",
-   "src": "assets/img/scene-vessel-940.webp",
-   "alt": "A copper still at work, steam rising from its head and the flame lit beneath it.",
-   "srcset": "assets/img/scene-vessel-470.webp 470w, assets/img/scene-vessel-700.webp 700w, assets/img/scene-vessel-940.webp 940w",
-   "sizes": "(min-width:1080px) 66vw, 100vw",
-   "srcsetFor": "assets/img/scene-vessel-940.webp",
-   "w": 940,
+   "label": "Chapter two — the essences",
+   "ratio": "941/1672",
+   "note": "The glass bowl of essence on the bench, petals on the surface, one falling.",
+   "src": "assets/img/scene-essence-941.webp",
+   "alt": "A glass bowl of essence on the bench with rose petals on the surface and one falling towards it.",
+   "srcset": "assets/img/scene-essence-470.webp 470w, assets/img/scene-essence-700.webp 700w, assets/img/scene-essence-941.webp 941w",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "srcsetFor": "assets/img/scene-essence-941.webp",
+   "w": 941,
    "h": 1672,
-   "focus": "56% 38%",
-   "focusM": "58% 36%"
+   "focus": "50% 33%",
+   "focusM": "28% 50%"
   },
   "portrait": {
    "label": "Stefanie",
@@ -202,18 +202,144 @@
    "placeholder": true
   },
   "heroCompose": {
-   "label": "Chapter three — the composition",
+   "label": "Chapter three — the still",
+   "ratio": "940/1672",
+   "note": "The copper still at work, steam off the head and the flame beneath.",
+   "src": "assets/img/scene-still-940.webp",
+   "alt": "A copper still at work, steam rising from its head and a flame lit beneath it.",
+   "srcset": "assets/img/scene-still-470.webp 470w, assets/img/scene-still-700.webp 700w, assets/img/scene-still-940.webp 940w",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "srcsetFor": "assets/img/scene-still-940.webp",
+   "w": 940,
+   "h": 1672,
+   "focus": "50% 38%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame00": {
+   "label": "Bottle loop — frame 00",
    "ratio": "941/1672",
-   "note": "The glass bowl on the bench, petals on the water, the brass measure beside it.",
-   "src": "assets/img/scene-compose-941.webp",
-   "alt": "A glass bowl of oil on the bench with rose petals on the surface and a brass measure beside it.",
-   "srcset": "assets/img/scene-compose-470.webp 470w, assets/img/scene-compose-700.webp 700w, assets/img/scene-compose-941.webp 941w",
-   "sizes": "(min-width:1080px) 66vw, 100vw",
-   "srcsetFor": "assets/img/scene-compose-941.webp",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-00-880.webp",
+   "srcset": "assets/img/frame-00-560.webp 560w, assets/img/frame-00-880.webp 880w",
+   "srcsetFor": "assets/img/frame-00-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
    "w": 941,
    "h": 1672,
-   "focus": "48% 52%",
-   "focusM": "48% 46%"
+   "alt": "",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame01": {
+   "label": "Bottle loop — frame 01",
+   "ratio": "941/1672",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-01-880.webp",
+   "srcset": "assets/img/frame-01-560.webp 560w, assets/img/frame-01-880.webp 880w",
+   "srcsetFor": "assets/img/frame-01-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "w": 941,
+   "h": 1672,
+   "alt": "",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame02": {
+   "label": "Bottle loop — frame 02",
+   "ratio": "941/1672",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-02-880.webp",
+   "srcset": "assets/img/frame-02-560.webp 560w, assets/img/frame-02-880.webp 880w",
+   "srcsetFor": "assets/img/frame-02-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "w": 941,
+   "h": 1672,
+   "alt": "",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame03": {
+   "label": "Bottle loop — frame 03",
+   "ratio": "941/1672",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-03-880.webp",
+   "srcset": "assets/img/frame-03-560.webp 560w, assets/img/frame-03-880.webp 880w",
+   "srcsetFor": "assets/img/frame-03-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "w": 941,
+   "h": 1672,
+   "alt": "",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame04": {
+   "label": "Bottle loop — frame 04",
+   "ratio": "941/1672",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-04-880.webp",
+   "srcset": "assets/img/frame-04-560.webp 560w, assets/img/frame-04-880.webp 880w",
+   "srcsetFor": "assets/img/frame-04-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "w": 941,
+   "h": 1672,
+   "alt": "A finished bottle of extrait de parfum among the roses, petals drifting past it.",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame05": {
+   "label": "Bottle loop — frame 05",
+   "ratio": "941/1672",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-05-880.webp",
+   "srcset": "assets/img/frame-05-560.webp 560w, assets/img/frame-05-880.webp 880w",
+   "srcsetFor": "assets/img/frame-05-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "w": 941,
+   "h": 1672,
+   "alt": "",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame06": {
+   "label": "Bottle loop — frame 06",
+   "ratio": "941/1672",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-06-880.webp",
+   "srcset": "assets/img/frame-06-560.webp 560w, assets/img/frame-06-880.webp 880w",
+   "srcsetFor": "assets/img/frame-06-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "w": 941,
+   "h": 1672,
+   "alt": "",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame07": {
+   "label": "Bottle loop — frame 07",
+   "ratio": "941/1672",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-07-880.webp",
+   "srcset": "assets/img/frame-07-560.webp 560w, assets/img/frame-07-880.webp 880w",
+   "srcsetFor": "assets/img/frame-07-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "w": 941,
+   "h": 1672,
+   "alt": "",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
+  },
+  "bottleFrame08": {
+   "label": "Bottle loop — frame 08",
+   "ratio": "941/1672",
+   "note": "One of nine frames of the same bottle, the petals a little further along in each. They are played out and back, so they must all be the same shot from the same position — replace the whole set together or not at all.",
+   "src": "assets/img/frame-08-880.webp",
+   "srcset": "assets/img/frame-08-560.webp 560w, assets/img/frame-08-880.webp 880w",
+   "srcsetFor": "assets/img/frame-08-880.webp",
+   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "w": 941,
+   "h": 1672,
+   "alt": "",
+   "focus": "50% 58%",
+   "focusM": "100% 50%"
   }
  },
  "hero": {
@@ -1706,6 +1832,17 @@
        "t": "Made again, anywhere",
        "d": "Write from any city and she mixes the same formula."
       }
+     ],
+     "frames": [
+      "bottleFrame00",
+      "bottleFrame01",
+      "bottleFrame02",
+      "bottleFrame03",
+      "bottleFrame04",
+      "bottleFrame05",
+      "bottleFrame06",
+      "bottleFrame07",
+      "bottleFrame08"
      ]
     }
    ]
@@ -1846,6 +1983,17 @@
        "t": "Ξαναφτιάχνεται",
        "d": "Γράψε από οποιαδήποτε πόλη και το φτιάχνει ξανά."
       }
+     ],
+     "frames": [
+      "bottleFrame00",
+      "bottleFrame01",
+      "bottleFrame02",
+      "bottleFrame03",
+      "bottleFrame04",
+      "bottleFrame05",
+      "bottleFrame06",
+      "bottleFrame07",
+      "bottleFrame08"
      ]
     }
    ]

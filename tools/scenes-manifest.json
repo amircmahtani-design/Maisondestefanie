@@ -5,22 +5,72 @@
   "w": 941,
   "h": 1672
  },
- "vessel": {
-  "src": "assets/img/scene-vessel-940.webp",
-  "srcset": "assets/img/scene-vessel-470.webp 470w, assets/img/scene-vessel-700.webp 700w, assets/img/scene-vessel-940.webp 940w",
+ "essence": {
+  "src": "assets/img/scene-essence-941.webp",
+  "srcset": "assets/img/scene-essence-470.webp 470w, assets/img/scene-essence-700.webp 700w, assets/img/scene-essence-941.webp 941w",
+  "w": 941,
+  "h": 1672
+ },
+ "still": {
+  "src": "assets/img/scene-still-940.webp",
+  "srcset": "assets/img/scene-still-470.webp 470w, assets/img/scene-still-700.webp 700w, assets/img/scene-still-940.webp 940w",
   "w": 940,
   "h": 1672
  },
- "compose": {
-  "src": "assets/img/scene-compose-941.webp",
-  "srcset": "assets/img/scene-compose-470.webp 470w, assets/img/scene-compose-700.webp 700w, assets/img/scene-compose-941.webp 941w",
-  "w": 941,
-  "h": 1672
- },
- "bottle": {
-  "src": "assets/img/scene-bottle-941.webp",
-  "srcset": "assets/img/scene-bottle-470.webp 470w, assets/img/scene-bottle-700.webp 700w, assets/img/scene-bottle-941.webp 941w",
-  "w": 941,
-  "h": 1672
- }
+ "frames": [
+  {
+   "src": "assets/img/frame-00-880.webp",
+   "srcset": "assets/img/frame-00-560.webp 560w, assets/img/frame-00-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  },
+  {
+   "src": "assets/img/frame-01-880.webp",
+   "srcset": "assets/img/frame-01-560.webp 560w, assets/img/frame-01-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  },
+  {
+   "src": "assets/img/frame-02-880.webp",
+   "srcset": "assets/img/frame-02-560.webp 560w, assets/img/frame-02-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  },
+  {
+   "src": "assets/img/frame-03-880.webp",
+   "srcset": "assets/img/frame-03-560.webp 560w, assets/img/frame-03-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  },
+  {
+   "src": "assets/img/frame-04-880.webp",
+   "srcset": "assets/img/frame-04-560.webp 560w, assets/img/frame-04-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  },
+  {
+   "src": "assets/img/frame-05-880.webp",
+   "srcset": "assets/img/frame-05-560.webp 560w, assets/img/frame-05-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  },
+  {
+   "src": "assets/img/frame-06-880.webp",
+   "srcset": "assets/img/frame-06-560.webp 560w, assets/img/frame-06-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  },
+  {
+   "src": "assets/img/frame-07-880.webp",
+   "srcset": "assets/img/frame-07-560.webp 560w, assets/img/frame-07-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  },
+  {
+   "src": "assets/img/frame-08-880.webp",
+   "srcset": "assets/img/frame-08-560.webp 560w, assets/img/frame-08-880.webp 880w",
+   "w": 941,
+   "h": 1672
+  }
+ ]
 }
