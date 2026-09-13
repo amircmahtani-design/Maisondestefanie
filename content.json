@@ -62,12 +62,12 @@
    "src": "assets/img/frame-04-880.webp",
    "alt": "A finished bottle of extrait de parfum among the roses, petals drifting past it.",
    "srcset": "assets/img/frame-04-560.webp 560w, assets/img/frame-04-880.webp 880w",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "srcsetFor": "assets/img/frame-04-880.webp",
    "w": 941,
    "h": 1672,
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "heroBotanical": {
    "label": "Chapter one — the rose",
@@ -76,12 +76,12 @@
    "src": "assets/img/scene-rose-941.webp",
    "alt": "A single rose still on the stem, held in a shaft of low warm light.",
    "srcset": "assets/img/scene-rose-470.webp 470w, assets/img/scene-rose-700.webp 700w, assets/img/scene-rose-941.webp 941w",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "srcsetFor": "assets/img/scene-rose-941.webp",
    "w": 941,
    "h": 1672,
    "focus": "50% 0%",
-   "focusM": "95% 50%"
+   "focusM": "95% 76%"
   },
   "heroVessel": {
    "label": "Chapter two — the essences",
@@ -90,12 +90,12 @@
    "src": "assets/img/scene-essence-941.webp",
    "alt": "A glass bowl of essence on the bench with rose petals on the surface and one falling towards it.",
    "srcset": "assets/img/scene-essence-470.webp 470w, assets/img/scene-essence-700.webp 700w, assets/img/scene-essence-941.webp 941w",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "srcsetFor": "assets/img/scene-essence-941.webp",
    "w": 941,
    "h": 1672,
-   "focus": "50% 33%",
-   "focusM": "28% 50%"
+   "focus": "50% 63%",
+   "focusM": "28% 0%"
   },
   "portrait": {
    "label": "Stefanie",
@@ -208,12 +208,12 @@
    "src": "assets/img/scene-still-940.webp",
    "alt": "A copper still at work, steam rising from its head and a flame lit beneath it.",
    "srcset": "assets/img/scene-still-470.webp 470w, assets/img/scene-still-700.webp 700w, assets/img/scene-still-940.webp 940w",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "srcsetFor": "assets/img/scene-still-940.webp",
    "w": 940,
    "h": 1672,
-   "focus": "50% 38%",
-   "focusM": "100% 50%"
+   "focus": "50% 35%",
+   "focusM": "100% 0%"
   },
   "bottleFrame00": {
    "label": "Bottle loop — frame 00",
@@ -222,12 +222,12 @@
    "src": "assets/img/frame-00-880.webp",
    "srcset": "assets/img/frame-00-560.webp 560w, assets/img/frame-00-880.webp 880w",
    "srcsetFor": "assets/img/frame-00-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "bottleFrame01": {
    "label": "Bottle loop — frame 01",
@@ -236,12 +236,12 @@
    "src": "assets/img/frame-01-880.webp",
    "srcset": "assets/img/frame-01-560.webp 560w, assets/img/frame-01-880.webp 880w",
    "srcsetFor": "assets/img/frame-01-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "bottleFrame02": {
    "label": "Bottle loop — frame 02",
@@ -250,12 +250,12 @@
    "src": "assets/img/frame-02-880.webp",
    "srcset": "assets/img/frame-02-560.webp 560w, assets/img/frame-02-880.webp 880w",
    "srcsetFor": "assets/img/frame-02-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "bottleFrame03": {
    "label": "Bottle loop — frame 03",
@@ -264,12 +264,12 @@
    "src": "assets/img/frame-03-880.webp",
    "srcset": "assets/img/frame-03-560.webp 560w, assets/img/frame-03-880.webp 880w",
    "srcsetFor": "assets/img/frame-03-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "bottleFrame04": {
    "label": "Bottle loop — frame 04",
@@ -278,12 +278,12 @@
    "src": "assets/img/frame-04-880.webp",
    "srcset": "assets/img/frame-04-560.webp 560w, assets/img/frame-04-880.webp 880w",
    "srcsetFor": "assets/img/frame-04-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "A finished bottle of extrait de parfum among the roses, petals drifting past it.",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "bottleFrame05": {
    "label": "Bottle loop — frame 05",
@@ -292,12 +292,12 @@
    "src": "assets/img/frame-05-880.webp",
    "srcset": "assets/img/frame-05-560.webp 560w, assets/img/frame-05-880.webp 880w",
    "srcsetFor": "assets/img/frame-05-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "bottleFrame06": {
    "label": "Bottle loop — frame 06",
@@ -306,12 +306,12 @@
    "src": "assets/img/frame-06-880.webp",
    "srcset": "assets/img/frame-06-560.webp 560w, assets/img/frame-06-880.webp 880w",
    "srcsetFor": "assets/img/frame-06-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "bottleFrame07": {
    "label": "Bottle loop — frame 07",
@@ -320,12 +320,12 @@
    "src": "assets/img/frame-07-880.webp",
    "srcset": "assets/img/frame-07-560.webp 560w, assets/img/frame-07-880.webp 880w",
    "srcsetFor": "assets/img/frame-07-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   },
   "bottleFrame08": {
    "label": "Bottle loop — frame 08",
@@ -334,17 +334,17 @@
    "src": "assets/img/frame-08-880.webp",
    "srcset": "assets/img/frame-08-560.webp 560w, assets/img/frame-08-880.webp 880w",
    "srcsetFor": "assets/img/frame-08-880.webp",
-   "sizes": "(min-width:1080px) 52vw, 100vw",
+   "sizes": "(min-width:900px) 54vw, 100vw",
    "w": 941,
    "h": 1672,
    "alt": "",
-   "focus": "50% 58%",
-   "focusM": "100% 50%"
+   "focus": "50% 46%",
+   "focusM": "100% 0%"
   }
  },
  "hero": {
   "en": {
-   "eyebrow": "Mnisikleous Street, Plaka · A family house of perfume",
+   "eyebrow": "Memories wear longer",
    "titleA": "Your Story.",
    "titleB": "Your Scent.",
    "titleC": "",
@@ -352,10 +352,19 @@
    "ctaPrimary": "Begin your journey",
    "ctaSecondary": "Visit the Maison",
    "aside": "Made by hand, in the shop, in front of you.",
-   "discover": "Enter the Maison"
+   "discover": "Enter the Maison",
+   "rail": "Plaka lives in details",
+   "foot": "Some places stay with you",
+   "words": [
+    "People",
+    "Places",
+    "Emotions",
+    "Fragrance",
+    "Forever"
+   ]
   },
   "el": {
-   "eyebrow": "Μνησικλέους, Πλάκα · Ένα οικογενειακό σπίτι αρωμάτων",
+   "eyebrow": "Οι μνήμες κρατούν περισσότερο",
    "titleA": "Η ιστορία σου.",
    "titleB": "Το άρωμά σου.",
    "titleC": "",
@@ -363,7 +372,16 @@
    "ctaPrimary": "Ξεκίνα το ταξίδι σου",
    "ctaSecondary": "Επισκέψου το σπίτι",
    "aside": "Φτιάχνεται στο χέρι, στο μαγαζί, μπροστά σου.",
-   "discover": "Μπες στο σπίτι"
+   "discover": "Μπες στο σπίτι",
+   "rail": "Η Πλάκα ζει στις λεπτομέρειες",
+   "foot": "Κάποια μέρη μένουν μαζί σου",
+   "words": [
+    "Άνθρωποι",
+    "Τόποι",
+    "Συναισθήματα",
+    "Άρωμα",
+    "Πάντα"
+   ]
   }
  },
  "distilled": {
@@ -385,7 +403,8 @@
      "t": "Your scent",
      "d": "A unique creation, yours alone, made to carry forward."
     }
-   ]
+   ],
+   "aside": "Some places stay with you"
   },
   "el": {
    "title": "Μια ανάμνηση, αποσταγμένη",
@@ -405,7 +424,8 @@
      "t": "Το άρωμά σου",
      "d": "Μια μοναδική δημιουργία, μόνο δική σου, φτιαγμένη για να τη συνεχίσεις."
     }
-   ]
+   ],
+   "aside": "Κάποια μέρη μένουν μαζί σου"
   }
  },
  "quote": {
