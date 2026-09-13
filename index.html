@@ -279,7 +279,11 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
    truth about where you are.
    ══════════════════════════════════════════════════════════════ */
 .seq{position:relative;background:var(--noir)}
-.seq-stage{position:sticky;top:0;height:100svh;overflow:hidden;isolation:isolate}
+/* the ground has to live inside the isolated group, or the subjects,
+   which screen onto it, have nothing to screen against and their own
+   black frames simply cover the section behind */
+.seq-stage{position:sticky;top:0;height:100svh;overflow:hidden;
+  isolation:isolate;background:var(--noir)}
 
 /* the chapter word, enormous and almost gone, along the foot */
 .seq-ghost{position:absolute;left:-.06em;bottom:-.30em;z-index:0;margin:0;
@@ -294,14 +298,14 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 
 /* the subject: one photograph, centred, growing through the chapter */
 .chap{--on:0;--k:0;--cin:0;--min:0;--kin:0}
-.chap-subject{position:absolute;left:50%;top:48%;z-index:1;
-  opacity:var(--on);
+.no-js .chap,.seq.plain .chap{--on:1;--k:.55;--cin:1;--min:1;--kin:1}
+.chap-subject{position:absolute;left:50%;top:46%;z-index:1;
+  mix-blend-mode:screen;filter:brightness(var(--on));
   transform:translate(-50%,-50%) scale(calc(.80 + var(--k) * .46))
             translate3d(0,calc((.5 - var(--k)) * 46px),0);
-  will-change:transform,opacity}
-.chap-subject img{display:block;width:auto;height:min(62svh,620px);
-  max-width:min(74vw,900px);object-fit:contain;
-  filter:drop-shadow(0 40px 80px rgba(0,0,0,.7))}
+  will-change:transform,filter}
+.chap-subject img{display:block;width:auto;height:min(66svh,660px);
+  max-width:min(76vw,940px);object-fit:contain}
 .chap[data-wide="1"] .chap-subject img{height:min(46svh,460px);max-width:min(80vw,1000px)}
 
 /* the light the subject sits in */
@@ -438,7 +442,7 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .no-js .seq-stage,.seq.plain .seq-stage{position:static;height:auto}
 .no-js .chap,.seq.plain .chap{position:relative;visibility:visible;opacity:1!important;
   min-height:100svh;padding-block:clamp(4rem,10vh,7rem);pointer-events:auto}
-.no-js .chap-subject,.seq.plain .chap-subject{transform:translate(-50%,-50%)!important;opacity:1!important}
+.no-js .chap-subject,.seq.plain .chap-subject{transform:translate(-50%,-50%)!important;filter:none!important}
 .no-js .chap-copy,.seq.plain .chap-copy,
 .no-js .chap-cards,.seq.plain .chap-cards,
 .no-js .chap-mat,.seq.plain .chap-mat{transform:none!important;opacity:1!important}
