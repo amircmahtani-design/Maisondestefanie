@@ -293,8 +293,66 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
   filter:blur(1.4px) saturate(.9);opacity:.95}
 @media (max-width:1079px){ .obj-vessel,.obj-bottle,.obj-rose{display:none} }
 
+/* ── AMBIENT LIFE ─────────────────────────────────────────────
+   Everything below runs on its own. The pointer and scroll drift
+   further down are additive on top of it, so the scene is never
+   dead just because nobody has moved the mouse. They are applied
+   to the inner <img>, leaving the wrapper's transform free for
+   the parallax. ── */
+
+/* the room breathes: a very slow push across the whole plate */
+@keyframes heroBreathe{
+  0%  {transform:scale(1.02) translate3d(0,0,0)}
+  100%{transform:scale(1.075) translate3d(-1.1%,-.9%,0)}
+}
+.hero-media .plate img,.hero-media .plate video{
+  animation:heroBreathe 52s var(--slow) infinite alternate;
+  transform-origin:68% 40%}
+
+/* candlelight, which is never steady */
+.hero-glow{position:absolute;inset:-10%;z-index:1;pointer-events:none;
+  mix-blend-mode:screen;
+  background:
+    radial-gradient(30% 34% at 74% 27%,rgba(232,169,79,.30),transparent 68%),
+    radial-gradient(16% 18% at 75% 25%,rgba(255,231,180,.24),transparent 70%);
+  animation:candle 6.8s ease-in-out infinite, candleBreath 5.1s ease-in-out infinite alternate}
+/* a narrow swing: a candle guttering, not the page dimming */
+@keyframes candle{
+  0%{opacity:.93}   6%{opacity:1}    12%{opacity:.91}  19%{opacity:.99}
+  27%{opacity:.94}  34%{opacity:.98} 41%{opacity:.90}  49%{opacity:1}
+  57%{opacity:.93}  64%{opacity:.99} 71%{opacity:.91}  79%{opacity:.97}
+  87%{opacity:.94}  94%{opacity:1}   100%{opacity:.93}
+}
+@keyframes candleBreath{
+  from{transform:scale(1) translate3d(0,0,0)}
+  to  {transform:scale(1.05) translate3d(.4%,-.5%,0)}
+}
+
+/* the air in the room, moving */
+.hero-haze{position:absolute;inset:-25%;z-index:1;pointer-events:none;
+  mix-blend-mode:screen;opacity:.55;
+  background:
+    radial-gradient(28% 36% at 32% 62%,rgba(201,138,58,.11),transparent 70%),
+    radial-gradient(22% 28% at 60% 38%,rgba(110,35,51,.09),transparent 72%),
+    radial-gradient(18% 24% at 84% 66%,rgba(201,138,58,.08),transparent 72%);
+  animation:haze 44s ease-in-out infinite alternate}
+@keyframes haze{
+  from{transform:translate3d(-2.5%,1.5%,0) scale(1)}
+  to  {transform:translate3d(3%,-2%,0) scale(1.14)}
+}
+
+/* the objects sit at different depths, so they settle at different rates */
+@keyframes floatA{from{transform:translate3d(0,.5%,0)}   to{transform:translate3d(0,-1.5%,0)}}
+@keyframes floatB{from{transform:translate3d(0,.7%,0) rotate(.18deg)}
+                  to  {transform:translate3d(0,-1.1%,0) rotate(-.16deg)}}
+.obj-rose img  {animation:floatB 21s var(--slow) infinite alternate}
+.obj-vessel img{animation:floatA 26s var(--slow) infinite alternate}
+.obj-bottle img{animation:floatA 31s var(--slow) infinite alternate-reverse}
+.hero-plate .m-rose  {animation:floatB 21s var(--slow) infinite alternate}
+.hero-plate .m-bottle{animation:floatA 27s var(--slow) infinite alternate-reverse}
+
 /* the highlight that travels across the glass */
-.obj-bottle::after{content:"";position:absolute;inset:6% 18% 12% 18%;border-radius:6px;
+.obj-bottle::after{content:"";position:absolute;inset:26% 30% 8% 30%;border-radius:8px;
   background:linear-gradient(104deg,transparent 32%,rgba(255,236,203,.34) 47%,transparent 60%);
   mix-blend-mode:screen;background-size:280% 100%;animation:sheen 9s var(--slow) infinite}
 @keyframes sheen{0%,62%{background-position:120% 0}100%{background-position:-40% 0}}
@@ -692,6 +750,11 @@ body.noscroll{overflow:hidden}
   .js .hero.ready h1 .ln > i,.hero h1 .ln > i{transform:none}
   .grain{animation:none}
   .obj-bottle::after{display:none}
+  .hero-glow{animation:none;opacity:.9}
+  .hero-haze{animation:none}
+  .hero-media .plate img,.hero-media .plate video{animation:none;transform:scale(1.03)}
+  .obj-rose img,.obj-vessel img,.obj-bottle img,
+  .hero-plate .m-rose,.hero-plate .m-bottle{animation:none;transform:none}
   .cue i{animation:none;opacity:.5}
   .fig img,.thread .im img,.card .shot img{opacity:1}
   .thread .im img{opacity:.62}
@@ -755,6 +818,8 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
     <div class="plate" id="heroPlate"></div>
   </div>
   <div class="hero-wash" aria-hidden="true"></div>
+  <div class="hero-haze" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
 
   <div class="hero-obj obj-rose"   data-depth="26" aria-hidden="true"><img id="objRose" alt="" decoding="async"></div>
   <div class="hero-obj obj-vessel" data-depth="14" aria-hidden="true"><img id="objVessel" alt="" decoding="async"></div>
