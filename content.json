@@ -197,6 +197,19 @@
       "w": 900,
       "h": 1125,
       "placeholder": true
+    },
+    "heroCompose": {
+      "label": "Chapter three — the accord",
+      "ratio": "697/1315",
+      "note": "TEMPORARY ARTWORK — replace with a photograph. A pipette over a measure, mid-drop.",
+      "src": "assets/img/compose-697.webp",
+      "alt": "A pipette adding an essence to a measure of the accord.",
+      "srcset": "assets/img/compose-420.webp 420w, assets/img/compose-697.webp 697w",
+      "sizes": "(min-width:900px) 26vw, 52vw",
+      "srcsetFor": "assets/img/compose-697.webp",
+      "w": 697,
+      "h": 1315,
+      "placeholder": true
     }
   },
   "hero": {
@@ -1550,6 +1563,288 @@
     "el": {
       "title": "La Maison de Stefanie · Προσωπικά Αρώματα στην Πλάκα",
       "description": "Ένα οικογενειακό σπίτι αρωμάτων στην Πλάκα. Πες στη Στεφανί μια ανάμνηση και τη μετατρέπει σε extrait de parfum στο χέρι."
+    }
+  },
+  "sequence": {
+    "en": {
+      "label": "How a perfume is made",
+      "chapters": [
+        {
+          "num": "01",
+          "word": "The Memory",
+          "titleA": "Your Story,",
+          "titleB": "Your Scent.",
+          "body": "A place, a person, a season, a perfume you lost. Stefanie listens more than she speaks. There is no wrong answer here — vague is fine, she will find it.",
+          "link": "Begin your journey",
+          "material": "A Memory",
+          "subject": "heroBotanical",
+          "cards": [
+            {
+              "pills": [
+                "A place"
+              ],
+              "t": "Somewhere you remember",
+              "d": "A courtyard, a road, a green thing after rain."
+            },
+            {
+              "pills": [
+                "A person"
+              ],
+              "t": "Someone in particular",
+              "d": "A person you can still smell when you think of them."
+            },
+            {
+              "pills": [
+                "Lost"
+              ],
+              "t": "Something no longer made",
+              "d": "Bring the bottle, or just the name. She will rebuild it."
+            }
+          ]
+        },
+        {
+          "num": "02",
+          "word": "The Materials",
+          "titleA": "She Reads",
+          "titleB": "Your Nose.",
+          "body": "You are given raw materials on paper, not finished perfumes. Your reactions to twenty or thirty essences tell her more than any questionnaire could.",
+          "link": "See the raw materials",
+          "material": "Raw Essences",
+          "subject": "heroVessel",
+          "cards": [
+            {
+              "pills": [
+                "On paper"
+              ],
+              "t": "Raw, not finished",
+              "d": "Materials on blotters, never a finished perfume off a shelf."
+            },
+            {
+              "pills": [
+                "20–30"
+              ],
+              "t": "Enough to find the edge",
+              "d": "Your reactions across twenty or thirty essences."
+            },
+            {
+              "pills": [
+                "No form"
+              ],
+              "t": "Nothing to fill in",
+              "d": "It tells her more than any questionnaire could."
+            }
+          ]
+        },
+        {
+          "num": "03",
+          "word": "The Composition",
+          "titleA": "Top, Heart",
+          "titleB": "and Base.",
+          "body": "The accord is built in front of you and adjusted while you wear it, until the moment you go quiet. That moment is the perfume.",
+          "link": "Read the pyramid",
+          "material": "The Accord",
+          "subject": "heroCompose",
+          "cards": [
+            {
+              "pills": [
+                "5–15 min",
+                "Citrus"
+              ],
+              "t": "Top",
+              "d": "Bergamot and orange blossom. The opening, and the first to go."
+            },
+            {
+              "pills": [
+                "20 min – 3 hr",
+                "Floral"
+              ],
+              "t": "Heart",
+              "d": "Jasmine and geranium. What the perfume actually is."
+            },
+            {
+              "pills": [
+                "6 hr +",
+                "Resin"
+              ],
+              "t": "Base",
+              "d": "Benzoin and rice powder. What is still there at dinner."
+            }
+          ]
+        },
+        {
+          "num": "04",
+          "word": "The Bottle",
+          "titleA": "Yours,",
+          "titleB": "and Kept.",
+          "body": "Filled, sealed and named at the counter. Your formula stays on file — write from anywhere in the world and she will make it again.",
+          "link": "Book the bench",
+          "material": "Extrait de Parfum",
+          "subject": "heroBottle",
+          "cards": [
+            {
+              "pills": [
+                "Sealed"
+              ],
+              "t": "Filled at the counter",
+              "d": "Every bottle sealed by hand with the house plate."
+            },
+            {
+              "pills": [
+                "Named"
+              ],
+              "t": "Named by you",
+              "d": "It is written on the card before you leave."
+            },
+            {
+              "pills": [
+                "On file"
+              ],
+              "t": "Made again, anywhere",
+              "d": "Write from any city and she mixes the same formula."
+            }
+          ]
+        }
+      ]
+    },
+    "el": {
+      "label": "Πώς γεννιέται ένα άρωμα",
+      "chapters": [
+        {
+          "num": "01",
+          "word": "Η Ανάμνηση",
+          "titleA": "Η ιστορία σου,",
+          "titleB": "το άρωμά σου.",
+          "body": "Ένας τόπος, ένα πρόσωπο, μια εποχή, ένα άρωμα που χάθηκε. Η Στεφανί ακούει περισσότερο απ' όσο μιλά. Δεν υπάρχει λάθος απάντηση.",
+          "link": "Ξεκίνα το ταξίδι σου",
+          "material": "Μια ανάμνηση",
+          "subject": "heroBotanical",
+          "cards": [
+            {
+              "pills": [
+                "Ένας τόπος"
+              ],
+              "t": "Κάπου που θυμάσαι",
+              "d": "Μια αυλή, ένας δρόμος, κάτι πράσινο μετά τη βροχή."
+            },
+            {
+              "pills": [
+                "Ένα πρόσωπο"
+              ],
+              "t": "Κάποιος συγκεκριμένος",
+              "d": "Ένα πρόσωπο που ακόμη το μυρίζεις όταν το σκέφτεσαι."
+            },
+            {
+              "pills": [
+                "Χαμένο"
+              ],
+              "t": "Κάτι που δεν φτιάχνεται πια",
+              "d": "Φέρε το μπουκάλι ή το όνομα. Θα το ξαναφτιάξει."
+            }
+          ]
+        },
+        {
+          "num": "02",
+          "word": "Οι Ύλες",
+          "titleA": "Διαβάζει",
+          "titleB": "τη μύτη σου.",
+          "body": "Δοκιμάζεις πρώτες ύλες σε μυρωδοταινίες, όχι έτοιμα αρώματα. Οι αντιδράσεις σου σε είκοσι ή τριάντα ύλες λένε περισσότερα από κάθε ερωτηματολόγιο.",
+          "link": "Δες τις πρώτες ύλες",
+          "material": "Πρώτες ύλες",
+          "subject": "heroVessel",
+          "cards": [
+            {
+              "pills": [
+                "Σε χαρτί"
+              ],
+              "t": "Ύλες, όχι αρώματα",
+              "d": "Πρώτες ύλες σε μυρωδοταινίες, ποτέ έτοιμο άρωμα."
+            },
+            {
+              "pills": [
+                "20–30"
+              ],
+              "t": "Όσες χρειάζονται",
+              "d": "Οι αντιδράσεις σου σε είκοσι ή τριάντα ύλες."
+            },
+            {
+              "pills": [
+                "Χωρίς φόρμα"
+              ],
+              "t": "Τίποτα να συμπληρώσεις",
+              "d": "Λένε περισσότερα από κάθε ερωτηματολόγιο."
+            }
+          ]
+        },
+        {
+          "num": "03",
+          "word": "Η Σύνθεση",
+          "titleA": "Κορυφή, καρδιά",
+          "titleB": "και βάση.",
+          "body": "Η συγχορδία χτίζεται μπροστά σου και διορθώνεται πάνω στο δέρμα σου, μέχρι τη στιγμή που θα σωπάσεις. Αυτή η στιγμή είναι το άρωμα.",
+          "link": "Δες την πυραμίδα",
+          "material": "Η συγχορδία",
+          "subject": "heroCompose",
+          "cards": [
+            {
+              "pills": [
+                "5–15 λεπτά",
+                "Εσπεριδοειδή"
+              ],
+              "t": "Κορυφή",
+              "d": "Περγαμόντο και άνθος πορτοκαλιάς. Το άνοιγμα."
+            },
+            {
+              "pills": [
+                "20 λεπτά – 3 ώρες",
+                "Λουλουδάτο"
+              ],
+              "t": "Καρδιά",
+              "d": "Γιασεμί και γεράνι. Αυτό που είναι πραγματικά."
+            },
+            {
+              "pills": [
+                "6 ώρες +",
+                "Ρητίνη"
+              ],
+              "t": "Βάση",
+              "d": "Βενζόη και πούδρα ρυζιού. Ό,τι μένει ως το βράδυ."
+            }
+          ]
+        },
+        {
+          "num": "04",
+          "word": "Το Μπουκάλι",
+          "titleA": "Δικό σου,",
+          "titleB": "και μένει.",
+          "body": "Γεμίζει, σφραγίζεται και ονομάζεται στον πάγκο. Η συνταγή μένει στο αρχείο — γράψε από οπουδήποτε στον κόσμο και θα το ξαναφτιάξει.",
+          "link": "Κλείσε ραντεβού",
+          "material": "Extrait de Parfum",
+          "subject": "heroBottle",
+          "cards": [
+            {
+              "pills": [
+                "Σφραγισμένο"
+              ],
+              "t": "Γεμίζει στον πάγκο",
+              "d": "Κάθε μπουκάλι σφραγίζεται με τη σφραγίδα του σπιτιού."
+            },
+            {
+              "pills": [
+                "Με όνομα"
+              ],
+              "t": "Το ονομάζεις εσύ",
+              "d": "Γράφεται στην κάρτα πριν φύγεις."
+            },
+            {
+              "pills": [
+                "Στο αρχείο"
+              ],
+              "t": "Ξαναφτιάχνεται",
+              "d": "Γράψε από οποιαδήποτε πόλη και το φτιάχνει ξανά."
+            }
+          ]
+        }
+      ]
     }
   }
 }
