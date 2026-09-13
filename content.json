@@ -29,12 +29,18 @@
     "heroVideo": {
       "label": "Hero film — desktop",
       "kind": "video",
-      "src": ""
+      "src": "assets/img/hero-loop.webm",
+      "srcAlt": "assets/img/hero-loop.mp4",
+      "note": "TEMPORARY ARTWORK — replace with a real loop of her working. Type the filename here; .webm in this box and .mp4 in the next.",
+      "placeholder": true
     },
     "heroVideoMob": {
       "label": "Hero film — phone",
       "kind": "video",
-      "src": ""
+      "src": "assets/img/hero-loop-mobile.webm",
+      "srcAlt": "assets/img/hero-loop-mobile.mp4",
+      "note": "TEMPORARY ARTWORK — the phone cut of the same loop.",
+      "placeholder": true
     },
     "heroPoster": {
       "label": "Hero still",

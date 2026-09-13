@@ -25,6 +25,12 @@ whole folder once they do.
                     lighting, blurs and texture)
     export.py       resizes to the widths the page asks for, writes WebP,
                     and prints the srcset strings for content.json
+    heroloop.py     the hero film: takes the rendered still and moves it
+                    — a slow push, candlelight that gutters, a flame that
+                    leans, haze drifting — and encodes VP9 WebM plus
+                    H.264 MP4 at desktop and phone sizes. Every motion
+                    runs a whole number of cycles over the loop, so the
+                    last frame meets the first without a seam.
 
 ## Regenerating
 
@@ -32,6 +38,10 @@ whole folder once they do.
     python3 build.py && node render.mjs jobs.json
     python3 cutouts.py
     python3 export.py        # writes into ../assets/img
+    pip install imageio-ffmpeg && python3 heroloop.py   # the hero film
+
+The ffmpeg that ships with Playwright carries VP8 and WebM only, which
+is why heroloop.py pulls a full build from PyPI instead.
 
 `export.py` also writes `manifest.json`, whose `srcset` strings are what
 `content.json` carries for each picture slot.

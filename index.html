@@ -328,6 +328,10 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
   to  {transform:scale(1.05) translate3d(.4%,-.5%,0)}
 }
 
+/* the film brings its own light and its own camera move */
+.hero.filmed .hero-glow,.hero.filmed .hero-haze{display:none}
+.hero.filmed .plate video{animation:none;transform:scale(1.01)}
+
 /* the air in the room, moving */
 .hero-haze{position:absolute;inset:-25%;z-index:1;pointer-events:none;
   mix-blend-mode:screen;opacity:.55;
@@ -1259,7 +1263,8 @@ function fillPane(el,key){
 async function paintHero(){
   const P = DATA.pictures||{}, plate = $('#heroPlate');
   const stillSrc = await resolve(P.heroPoster?.src);
-  const filmSrc  = (innerWidth<=780 && P.heroVideoMob?.src) ? P.heroVideoMob.src : (P.heroVideo?.src||'');
+  const film     = (innerWidth<=780 && P.heroVideoMob?.src) ? P.heroVideoMob : (P.heroVideo||{});
+  const filmSrc  = film.src || '';
 
   plate.replaceChildren();
   if (stillSrc){
@@ -1275,12 +1280,26 @@ async function paintHero(){
   if (filmSrc && !REDUCED && !saver){
     const v = document.createElement('video');
     v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
-    v.preload = 'metadata'; v.setAttribute('aria-hidden','true');
+    v.preload = 'auto'; v.setAttribute('aria-hidden','true');
+    v.disableRemotePlayback = true;
     if (stillSrc) v.poster = stillSrc;
-    v.src = filmSrc;
+    /* two encodings: WebM first, then H.264 for Safari, which will not
+       take WebM on older iOS. The browser picks the first it can play. */
+    const kinds = [[filmSrc,'video/webm'],[film.srcAlt,'video/mp4']];
+    for (const [src,type] of kinds){
+      if (!src) continue;
+      const so = document.createElement('source');
+      so.src = src; so.type = /\.mp4$/i.test(src) ? 'video/mp4' : type;
+      v.append(so);
+    }
     v.style.cssText = 'position:absolute;inset:0';
     plate.append(v);
-    v.play?.().catch(()=>{});
+    $('.hero')?.classList.add('filmed');
+    /* iOS can refuse the first play(); try again once it is allowed to */
+    const go = ()=>v.play?.().catch(()=>{});
+    go();
+    v.addEventListener('canplay', go, {once:true});
+    document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) go(); });
   }
 
   const objs = [['#objRose','heroBotanical'],['#objVessel','heroVessel'],['#objBottle','heroBottle'],
