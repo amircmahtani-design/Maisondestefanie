@@ -1,0 +1,26 @@
+{
+ "rose": {
+  "src": "assets/img/scene-rose-941.webp",
+  "srcset": "assets/img/scene-rose-470.webp 470w, assets/img/scene-rose-700.webp 700w, assets/img/scene-rose-941.webp 941w",
+  "w": 941,
+  "h": 1672
+ },
+ "vessel": {
+  "src": "assets/img/scene-vessel-940.webp",
+  "srcset": "assets/img/scene-vessel-470.webp 470w, assets/img/scene-vessel-700.webp 700w, assets/img/scene-vessel-940.webp 940w",
+  "w": 940,
+  "h": 1672
+ },
+ "compose": {
+  "src": "assets/img/scene-compose-941.webp",
+  "srcset": "assets/img/scene-compose-470.webp 470w, assets/img/scene-compose-700.webp 700w, assets/img/scene-compose-941.webp 941w",
+  "w": 941,
+  "h": 1672
+ },
+ "bottle": {
+  "src": "assets/img/scene-bottle-941.webp",
+  "srcset": "assets/img/scene-bottle-470.webp 470w, assets/img/scene-bottle-700.webp 700w, assets/img/scene-bottle-941.webp 941w",
+  "w": 941,
+  "h": 1672
+ }
+}

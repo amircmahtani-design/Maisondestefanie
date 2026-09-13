@@ -296,27 +296,38 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .chap.live{visibility:visible}
 .chap.live .chap-copy,.chap.live .chap-cards,.chap.live .chap-mat{pointer-events:auto}
 
-/* the subject: one photograph, centred, growing through the chapter */
+/* The scene: one whole photograph filling the frame, pushed slowly in
+   across the chapter. It is clipped by the panel rather than transformed
+   itself, so the push never drags an edge into view. Its left side is not
+   cut off — the scrim below fades it into the ground, so the words sit on
+   darkness and the picture appears to run off the screen. */
 .chap{--on:0;--k:0;--cin:0;--min:0;--kin:0}
 .no-js .chap,.seq.plain .chap{--on:1;--k:.55;--cin:1;--min:1;--kin:1}
-.chap-subject{position:absolute;left:50%;top:46%;z-index:1;
-  mix-blend-mode:screen;filter:brightness(var(--on));
-  transform:translate(-50%,-50%) scale(calc(.80 + var(--k) * .46))
-            translate3d(0,calc((.5 - var(--k)) * 46px),0);
-  will-change:transform,filter}
-.chap-subject img{display:block;width:auto;height:min(66svh,660px);
-  max-width:min(76vw,940px);object-fit:contain}
-.chap[data-wide="1"] .chap-subject img{height:min(46svh,460px);max-width:min(80vw,1000px)}
+.chap-subject{position:absolute;inset:0 0 0 34%;z-index:1;overflow:hidden;
+  opacity:var(--on);will-change:opacity}
+.chap-subject img{display:block;width:100%;height:100%;object-fit:cover;
+  object-position:var(--pos,50% 42%);
+  transform:scale(calc(1.03 + var(--k) * .10))
+            translate3d(0,calc((.5 - var(--k)) * -2.2%),0);
+  will-change:transform}
 
-/* the light the subject sits in */
+/* the warmth in the air of the room */
 .seq-stage::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(44% 46% at 56% 42%,rgba(201,138,58,.30),transparent 68%),
+    radial-gradient(44% 46% at 56% 42%,rgba(201,138,58,.22),transparent 68%),
     radial-gradient(70% 60% at 20% 72%,rgba(110,35,51,.12),transparent 72%)}
+/* the scrim: it feathers the scene's left edge into the ground so there is
+   no seam, and holds the foot dark enough for the chapter word and the cue */
 .seq-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(96deg,rgba(10,7,5,.80) 0%,rgba(10,7,5,.52) 24%,rgba(10,7,5,0) 50%,rgba(10,7,5,.34) 100%),
-    linear-gradient(0deg,rgba(10,7,5,.78) 0%,rgba(10,7,5,.04) 32%,transparent 52%)}
+    /* the corner the material and the count sit in */
+    radial-gradient(48% 40% at 103% 9%,rgba(10,7,5,.92) 0%,rgba(10,7,5,.58) 44%,transparent 78%),
+    /* the left, where the words are */
+    linear-gradient(90deg,rgba(10,7,5,.97) 0%,rgba(10,7,5,.95) 24%,
+      rgba(10,7,5,.80) 36%,rgba(10,7,5,.40) 50%,rgba(10,7,5,.10) 66%,rgba(10,7,5,0) 80%),
+    /* the foot, under the notes */
+    linear-gradient(0deg,rgba(10,7,5,.93) 0%,rgba(10,7,5,.72) 16%,
+      rgba(10,7,5,.30) 30%,transparent 50%)}
 
 /* the reading column */
 .chap-copy{position:absolute;z-index:3;left:var(--pad);top:42%;
@@ -342,6 +353,15 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .chap-mat{position:absolute;z-index:3;right:var(--pad);top:16%;text-align:right;
   border-top:1px solid var(--edge-2);padding-top:1rem;width:min(15rem,26vw);
   opacity:calc(var(--min) * var(--on));will-change:opacity}
+/* chapter four puts the lit bottle directly behind this, so the block
+   carries its own shadow rather than the whole corner being darkened */
+.chap-mat::before,.seq-count::before{content:"";position:absolute;z-index:-1;
+  inset:-4.5rem -4rem -5.5rem -5rem;pointer-events:none;
+  /* closest-side, so the fade finishes exactly on the box and there is no
+     clipped edge left to read as a rectangle over the photograph */
+  background:radial-gradient(ellipse closest-side at 55% 48%,
+    rgba(10,7,5,.95) 0%,rgba(10,7,5,.93) 48%,rgba(10,7,5,.82) 68%,
+    rgba(10,7,5,.55) 82%,rgba(10,7,5,.22) 92%,transparent 100%)}
 .chap-mat .lab{margin:0 0 .7rem;font-size:.6rem;letter-spacing:.3em;
   text-transform:uppercase;color:var(--dim);display:block}
 .chap-mat .name{font-family:var(--fancy);font-size:clamp(1.2rem,.9rem + 1.1vw,2rem);
@@ -352,8 +372,9 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
   display:grid;gap:clamp(.6rem,1.4vw,1.1rem);grid-template-columns:repeat(3,1fr);
   max-width:64rem;opacity:calc(var(--kin) * var(--on));
   transform:translate3d(0,calc((1 - var(--kin)) * 34px),0);will-change:transform,opacity}
+/* the notes now sit on a photograph, so the glass has to carry them */
 .chap-card{padding:1rem 1.1rem 1.1rem;border:1px solid var(--edge);
-  background:rgba(14,10,7,.62);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+  background:rgba(11,8,6,.84);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
 .chap-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.8rem}
 .chap-pills span{font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;
   padding:.3rem .55rem;border:1px solid var(--edge-2);color:var(--gold-lit);border-radius:999px}
@@ -363,6 +384,7 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 
 /* where you are in the four */
 .seq-count{position:absolute;z-index:4;right:calc(var(--pad) + min(15rem,26vw) + 2rem);top:16%;
+  isolation:isolate;
   display:grid;justify-items:center;gap:.35rem;font-family:var(--fancy);
   font-size:.92rem;letter-spacing:.06em;color:var(--ivory)}
 .seq-count i{display:block;width:1px;height:2.6rem;background:var(--edge);position:relative}
@@ -380,17 +402,26 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
   30%{opacity:1}100%{transform:scaleX(1);transform-origin:left;opacity:0}}
 
 @media (max-width:1079px){
-  /* One column, in reading order: the glass on top with nothing over it,
-     then the words, then the notes. Composed for the phone rather than
-     shrunk down from the desktop. */
-  .chap{display:grid;grid-template-rows:auto auto auto 1fr;align-content:start;
+  /* One column, in reading order. The scene fills the whole screen, but
+     the top band is left empty so the picture is seen on its own, and the
+     words below sit on a scrim heavy enough that nothing is read over the
+     subject. Composed for the phone rather than shrunk down. */
+  /* the picture band is the flexible row, so the words, the material and
+     the notes always get the height they need and never sit on each other */
+  .chap{display:grid;grid-template-rows:minmax(3.5rem,1fr) auto auto auto;
     padding:5.6rem var(--pad) calc(5.2rem + env(safe-area-inset-bottom));
     row-gap:clamp(.7rem,2.2vh,1.4rem)}
-  .chap-subject{position:relative;left:auto;top:auto;justify-self:center;
-    transform:scale(calc(.94 + var(--k) * .14))
-              translate3d(0,calc((.5 - var(--k)) * 12px),0)}
-  .chap-subject img{height:min(23svh,210px);max-width:58vw}
-  .chap[data-wide="1"] .chap-subject img{height:min(17svh,155px);max-width:66vw}
+  .chap-subject{inset:0}
+  .chap-subject img{object-position:var(--pos-m,50% 30%);
+    transform:scale(calc(1.02 + var(--k) * .07))
+              translate3d(0,calc((.5 - var(--k)) * -1.4%),0)}
+  /* the scene is out of flow, so the words start on the second row */
+  .chap-copy{grid-row:2}
+  .chap-mat{grid-row:3}
+  .chap-cards{grid-row:4}
+  .seq-stage::after{background:
+    linear-gradient(0deg,rgba(10,7,5,.97) 0%,rgba(10,7,5,.95) 48%,
+      rgba(10,7,5,.72) 60%,rgba(10,7,5,.22) 78%,rgba(10,7,5,0) 94%)}
   .chap-copy{position:relative;left:auto;top:auto;width:auto;
     transform:translate3d(0,calc((1 - var(--cin)) * 16px),0)}
   .chap-eyebrow{margin-bottom:.8rem;font-size:.58rem;letter-spacing:.26em}
@@ -422,9 +453,7 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 /* the shortest phones still in circulation cannot take the full column,
    so everything gives a little rather than the notes colliding */
 @media (max-width:1079px) and (max-height:730px){
-  .chap{padding-top:4.9rem;row-gap:.45rem}
-  .chap-subject img{height:min(17svh,148px)}
-  .chap[data-wide="1"] .chap-subject img{height:min(13svh,118px)}
+  .chap{padding-top:4.9rem;row-gap:.45rem;grid-template-rows:minmax(2.5rem,1fr) auto auto auto}
   .chap-eyebrow{margin-bottom:.55rem}
   .chap-title{font-size:clamp(1.7rem,7vw,2.25rem);margin-bottom:.5rem}
   .chap-body{font-size:.78rem;line-height:1.54;margin-bottom:.65rem}
@@ -442,12 +471,31 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .no-js .seq-stage,.seq.plain .seq-stage{position:static;height:auto}
 .no-js .chap,.seq.plain .chap{position:relative;visibility:visible;opacity:1!important;
   min-height:100svh;padding-block:clamp(4rem,10vh,7rem);pointer-events:auto}
-.no-js .chap-subject,.seq.plain .chap-subject{transform:translate(-50%,-50%)!important;filter:none!important}
+/* nothing is pinned here, so the scrims that feathered the scene into a
+   full-height stage have nothing to feather and are simply in the way */
+.no-js .seq-stage::before,.seq.plain .seq-stage::before,
+.no-js .seq-stage::after,.seq.plain .seq-stage::after{display:none}
+.no-js .chap-subject,.seq.plain .chap-subject{position:relative;inset:auto;
+  width:auto;height:min(46svh,420px);opacity:1!important;
+  /* the picture still runs the full width; only the words are indented */
+  margin:0 calc(var(--pad) * -1) 2.4rem}
+.no-js .chap-subject img,.seq.plain .chap-subject img{transform:none!important}
+/* the words, the material and the notes simply follow the picture */
+.no-js .chap,.seq.plain .chap{display:block;padding-inline:var(--pad)}
 .no-js .chap-copy,.seq.plain .chap-copy,
 .no-js .chap-cards,.seq.plain .chap-cards,
-.no-js .chap-mat,.seq.plain .chap-mat{transform:none!important;opacity:1!important}
-.seq.plain .chap-copy{top:50%;transform:translateY(-50%)!important}
-.seq.plain .seq-cue{display:none}
+.no-js .chap-mat,.seq.plain .chap-mat{position:relative;inset:auto;
+  transform:none!important;opacity:1!important}
+.no-js .chap-copy,.seq.plain .chap-copy{width:min(46rem,100%);margin-bottom:2rem}
+.no-js .chap-mat,.seq.plain .chap-mat{width:auto;text-align:left;margin-bottom:2rem;
+  display:flex;align-items:baseline;gap:.9rem}
+.no-js .chap-mat .lab,.seq.plain .chap-mat .lab{margin:0}
+.no-js .chap-mat::before,.seq.plain .chap-mat::before,
+.no-js .seq-count::before,.seq.plain .seq-count::before{display:none}
+/* the count and the cue both describe a scroll that is not happening */
+.no-js .seq-count,.seq.plain .seq-count,
+.no-js .seq-cue,.seq.plain .seq-cue,
+.no-js .seq-ghost,.seq.plain .seq-ghost{display:none}
 @media (prefers-reduced-motion:reduce){
   .seq-cue i{animation:none;opacity:.5}
 }
@@ -1242,8 +1290,12 @@ function renderSequence(){
   $('#seqTot').textContent = '/' + String(SEQ.n).padStart(2,'0');
   $('#seqChapters').innerHTML = data.map((c,i)=>{
     const pic = slot(c.subject) || {};
-    const wide = (pic.w && pic.h && pic.w > pic.h) ? '1' : '0';
-    return `<article class="chap" data-i="${i}" data-wide="${wide}">
+    /* each scene is framed on its own subject: a portrait photograph
+       cropped to a landscape panel loses most of its height, so the
+       picture says where its own centre of interest is */
+    const pos = [pic.focus ? `--pos:${esc(pic.focus)}` : '',
+                 pic.focusM ? `--pos-m:${esc(pic.focusM)}` : ''].filter(Boolean).join(';');
+    return `<article class="chap" data-i="${i}"${pos ? ` style="${pos}"` : ''}>
       <div class="chap-subject"><img alt="" decoding="async"
            data-subject="${esc(c.subject)}"${i ? ' loading="lazy"' : ''}></div>
       <div class="chap-copy">
