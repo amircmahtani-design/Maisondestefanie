@@ -282,7 +282,7 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 /* the ground has to live inside the isolated group, or the subjects,
    which screen onto it, have nothing to screen against and their own
    black frames simply cover the section behind */
-.seq-stage{position:sticky;top:0;height:100svh;overflow:hidden;
+.seq-stage{position:sticky;top:0;height:var(--stage,100svh);overflow:hidden;
   isolation:isolate;background:var(--noir)}
 
 /* the chapter word, enormous and almost gone, along the foot */
@@ -485,7 +485,7 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .no-js .seq,.seq.plain{height:auto!important}
 .no-js .seq-stage,.seq.plain .seq-stage{position:static;height:auto}
 .no-js .chap,.seq.plain .chap{position:relative;visibility:visible;opacity:1!important;
-  min-height:100svh;padding-block:clamp(4rem,10vh,7rem);pointer-events:auto}
+  min-height:var(--stage,100svh);padding-block:clamp(4rem,10vh,7rem);pointer-events:auto}
 /* nothing is pinned here, so the scrims that feathered the scene into a
    full-height stage have nothing to feather and are simply in the way */
 .no-js .seq-stage::before,.seq.plain .seq-stage::before,
@@ -1289,7 +1289,33 @@ function fillPane(el,key){
    chapter and how far through it you are; that number drives the
    subject's scale and every fade. Nothing is hijacked — the page
    scrolls normally and the scrollbar means what it says.        */
-const SEQ = { chapters: [], n: 0, el: null, stage: null, plain: false };
+const SEQ = { chapters: [], n: 0, el: null, stage: null, plain: false, flat: false };
+
+/* How tall one screen is — and whether this page is being shown inside
+   something that has sized itself to fit the whole page.
+
+   That case is not hypothetical: an embed that grows its frame to the
+   content height makes innerHeight the CONTENT height, so a section sized
+   at four screens grows the content, which grows the frame, which grows
+   the section, until the layout hits the engine's ceiling and the page is
+   tens of millions of pixels tall. The display is the one bound that
+   cannot be fed by our own layout, so it is what we measure against. */
+function screenBound(){
+  const ih = window.innerHeight || 0;
+  const sh = (window.screen && window.screen.height) || 0;
+  if (!ih) return { h: sh || 720, grown: false };
+  if (sh && ih > sh * 1.5) return { h: sh, grown: true };
+  return { h: ih, grown: false };
+}
+
+/* px, never viewport units: the sequence is measured once and told, so its
+   own height can never feed back into the number it was measured from */
+function sizeStage(){
+  const { h, grown } = screenBound();
+  document.documentElement.style.setProperty('--stage', h + 'px');
+  SEQ.flat = grown;
+  return h;
+}
 
 function renderSequence(){
   const data = L(DATA.sequence, 'chapters') || [];
@@ -1349,12 +1375,27 @@ function renderSequence(){
   const fi = data.findIndex(c => c.frames && c.frames.length);
   if (fi > -1) setupLoop(fi);
 
-  SEQ.plain = REDUCED;
-  SEQ.el.classList.toggle('plain', SEQ.plain);
-  SEQ.el.style.height = SEQ.plain ? '' : `${SEQ.n * 100}svh`;
   $('#seqGhost').textContent = data[0].word || '';
   $('#seqNum').textContent = '/' + data[0].num;
-  if (SEQ.plain){ $$('.chap').forEach(c=>c.classList.add('live')); return; }
+  applySequenceMode();
+}
+
+/* Held, or plain. Nothing can be pinned to a scroll that never happens, so
+   when the page is displayed at its full height — an embed that grew its
+   frame to fit us — the chapters become four plain screens instead. The
+   frame is often grown a moment after we load, so this is re-decided on
+   every resize rather than settled once. */
+function applySequenceMode(){
+  if (!SEQ.el || !SEQ.n) return;
+  const stage = sizeStage();
+  const plain = REDUCED || SEQ.flat;
+  if (plain !== SEQ.plain){
+    SEQ.plain = plain;
+    SEQ.el.classList.toggle('plain', plain);
+    if (plain) stopLoop();
+  }
+  SEQ.el.style.height = plain ? '' : `${SEQ.n * stage}px`;
+  if (plain){ $$('.chap').forEach(c=>c.classList.add('live')); return; }
   drawSequence();
 }
 
@@ -2027,10 +2068,7 @@ function frame(){
   tick = false;
 }
 addEventListener('scroll', ()=>{ if(!tick){ tick = true; requestAnimationFrame(frame); } },{passive:true});
-addEventListener('resize', ()=>{
-  if (SEQ.el && !SEQ.plain) SEQ.el.style.height = `${SEQ.n * 100}svh`;
-  drawSequence();
-},{passive:true});
+addEventListener('resize', applySequenceMode, {passive:true});
 
 /* if someone turns reduced motion on mid-visit, honour it at once */
 motionQ.addEventListener?.('change', e=>{
