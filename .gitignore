@@ -1,0 +1,5 @@
+
+# the supplied photographs, kept locally so tools/matte.py can be re-run;
+# the matted WebP it produces is what ships
+tools/supplied/
+__pycache__/

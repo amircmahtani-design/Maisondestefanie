@@ -1,0 +1,77 @@
+La Maison de Stefanie — the assets folder
+=========================================
+
+Everything in assets/img is TEMPORARY. It is original artwork, rendered
+for this build so the layout could be judged with real pictures in it.
+None of it is a photograph and none of it is stock. It is there to be
+replaced by Stefanie's own photography.
+
+
+1. HER ICON — do this first, and do not rename anything
+-------------------------------------------------------
+The favicon is her logo. Copy these exact filenames out of the current
+live site (open lamaisondestefanie.com, View Source, and look at the
+<link rel="icon"> tags — or download them straight from
+lamaisondestefanie.com/favicon.ico and so on):
+
+  /favicon.ico                     <- the TOP level, not in here
+  assets/favicon.svg
+  assets/favicon-32x32.png
+  assets/favicon-16x16.png
+  assets/apple-touch-icon.png      180x180
+  assets/android-chrome-192x192.png
+  assets/android-chrome-512x512.png
+  assets/og-image.jpg              1200x630, used by Google and WhatsApp
+
+Until these are copied across the browser tab has no icon and links
+shared on WhatsApp or Instagram show no picture. These are the only
+files on the whole site that cannot be generated.
+
+
+2. REPLACING THE PICTURES
+-------------------------
+Go to Studio -> Pictures. Each slot names the photograph it wants and
+shows what is standing in for it now. Upload the real one and it takes
+over; the temporary file stops being used.
+
+  Hero still          the whole first screen, wide and dark
+  Hero — the bottle   one filled bottle, side-lit, on black or cut out
+  Hero — botanical    a rose or raw botanical, close and low
+  Hero — vessel       the glass blending bowl with oil in it
+  Stefanie            her at the bench, working
+  Beside her words    a hand, a pipette, a strip of blotting paper
+  Raw materials       petals, resin, mastic
+  The blending bench  the shelf of essences — shoot WIDE, it runs full width
+  Bottled and sealed  a finished bottle being sealed
+  Wide shot of shop   the room from the doorway — also full width
+  The shopfront       Mnisikleous 10 from the street, at dusk
+  Plaka               the steps just outside the door
+
+Shoot dark. One warm light source off to one side, everything else
+falling away into shadow. Do not light the room evenly — the whole site
+is built around that contrast and a flat, brightly lit photograph will
+look wrong in it.
+
+The products on the shelf are the same: Studio -> The shelf -> a product
+-> its photograph. Those get the house treatment automatically, so a
+phone photo on a plain surface is enough.
+
+
+3. THE HERO FILM (optional)
+---------------------------
+If there is a loop of her working, drop it in as:
+
+  assets/stefanie_hero_loop.webm         desktop, under about 4 MB
+  assets/stefanie_hero_loop_mobile.webm  phone, under about 1.5 MB
+
+then type the filenames into Studio -> Pictures -> The hero film. With no
+film the hero still is used and the page is faster. The film never loads
+for anyone on a data-saver connection or with reduced motion turned on.
+
+
+4. A NOTE ON THE PRELOAD
+------------------------
+index.html preloads the hero still by name so it starts downloading
+immediately. If you change the hero photograph, update that one <link
+rel="preload"> line near the top of index.html to match, or simply
+delete it — the page works either way, it is only a head start.

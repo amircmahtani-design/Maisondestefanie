@@ -1108,6 +1108,25 @@ async function vPics(){
     </div>`).join('');
   for(const k of keys) await picSlot($(`[data-slot="${k}"] [data-lab]`,box),k);
 }
+/* The four chapter pictures fill the whole screen, and a tall photograph
+   in a wide frame loses most of its height — so these two say which part
+   of the picture to keep. Only the chapter slots have them. */
+function framing(slot){
+  if(slot.focus==null) return '';
+  const n=(v,d)=>{ const m=String(v||'').match(/(-?[\d.]+)%\s+(-?[\d.]+)%/); return m?+m[d]:(d===1?50:42); };
+  return `<div class="sl" style="margin-top:1.1rem;border-top:1px solid var(--line);padding-top:.9rem">
+      <label style="font-weight:600">What stays in frame on a computer</label></div>
+    <div class="sl"><label>Across <i data-pxv>${n(slot.focus,1)}%</i></label>
+      <input type="range" min="0" max="100" value="${n(slot.focus,1)}" data-px></div>
+    <div class="sl"><label>Up and down <i data-pyv>${n(slot.focus,2)}%</i></label>
+      <input type="range" min="0" max="100" value="${n(slot.focus,2)}" data-py></div>
+    <div class="sl" style="margin-top:.7rem"><label style="font-weight:600">And on a phone</label></div>
+    <div class="sl"><label>Across <i data-mxv>${n(slot.focusM,1)}%</i></label>
+      <input type="range" min="0" max="100" value="${n(slot.focusM,1)}" data-mx></div>
+    <div class="sl"><label>Up and down <i data-myv>${n(slot.focusM,2)}%</i></label>
+      <input type="range" min="0" max="100" value="${n(slot.focusM,2)}" data-my></div>`;
+}
+
 async function picSlot(host,key){
   const P=DATA.pictures, slot=P[key];
   host.innerHTML=`
@@ -1121,6 +1140,7 @@ async function picSlot(host,key){
           <input type="range" min="0" max="100" value="42" data-fy></div>
         <div class="sl"><label>Move the crop left or right <i data-fxv>50%</i></label>
           <input type="range" min="0" max="100" value="50" data-fx></div>
+        ${framing(slot)}
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem">
           <button class="btn btn-ghost" data-re>Re-apply</button>
           ${slot.src?'<button class="btn btn-danger" data-rm>Remove</button>':''}
@@ -1156,6 +1176,19 @@ async function picSlot(host,key){
     el.oninput=()=>$(`[data-${a}v]`,host).textContent=el.value+'%';
     el.onchange=()=>original&&run(original);
   });
+  /* the framing pair, if this slot is one of the chapter pictures */
+  if(slot.focus!=null){
+    const write=(field,ax,ay)=>{
+      const x=$(`[data-${ax}]`,host).value, y=$(`[data-${ay}]`,host).value;
+      slot[field]=`${x}% ${y}%`; setDirty();
+    };
+    [['px','py','focus'],['mx','my','focusM']].forEach(([ax,ay,field])=>{
+      [ax,ay].forEach(a=>{
+        const el=$(`[data-${a}]`,host); if(!el) return;
+        el.oninput=()=>{ $(`[data-${a}v]`,host).textContent=el.value+'%'; write(field,ax,ay); };
+      });
+    });
+  }
 }
 
 /* ============================================================

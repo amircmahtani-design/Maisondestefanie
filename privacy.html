@@ -2,41 +2,67 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Privacy &amp; cookies · La Maison de Stefanie</title>
 <meta name="description" content="What La Maison de Stefanie stores about you. Almost nothing.">
 <link rel="canonical" href="https://lamaisondestefanie.com/privacy.html">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta name="theme-color" content="#0E0A06">
+<meta name="theme-color" content="#0A0705">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;1,400&family=Commissioner:wght@300;400&family=GFS+Didot&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Commissioner:wght@200;300;400&family=GFS+Didot&display=swap" rel="stylesheet">
 <style>
-:root{--noir:#0E0A06;--chalk:#F0E8DB;--muted:#A5957E;--amber:#C68A3C;--amber-lit:#E6B76D;--edge:rgba(240,232,219,.14)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--noir);color:var(--chalk);font-family:"Commissioner",system-ui,sans-serif;
-  font-weight:300;line-height:1.65;font-size:clamp(1rem,.96rem+.2vw,1.06rem);-webkit-font-smoothing:antialiased}
-.wrap{max-width:720px;margin-inline:auto;padding:clamp(2.5rem,7vw,6rem) clamp(1.25rem,5vw,2rem) 5rem}
-a{color:var(--amber-lit)}
-.mark{font-family:"GFS Didot",serif;letter-spacing:.15em;text-transform:uppercase;font-size:.95rem;color:var(--chalk);text-decoration:none}
-.mark b{font-family:"Alegreya",Georgia,serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
-h1{font-family:"Alegreya",Georgia,serif;font-weight:400;font-size:clamp(2rem,1.6rem+2vw,3rem);line-height:1.08;margin:2.5rem 0 1.4rem}
-h2{font-family:"Alegreya",Georgia,serif;font-weight:400;font-size:1.35rem;margin:2.4rem 0 .7rem}
-p,li{color:#c4b6a2}
-ul{padding-left:1.1rem}
-li{margin-bottom:.5rem}
-.eyebrow{font-family:"GFS Didot",serif;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
-  display:flex;align-items:center;gap:.8rem}
-.eyebrow::before{content:"";width:1.9rem;height:1px;background:var(--amber)}
-footer{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--edge);font-size:.85rem;color:var(--muted)}
+/* the same house as the front page: near-black ground, warm ivory type */
+:root{
+  --noir:#0A0705;--ivory:#F3EDE2;--ivory-2:#DED3C2;--dim:#A2917C;--dimmer:#8A7A67;
+  --gold:#B99358;--gold-lit:#DCBF8B;--edge:rgba(243,237,226,.11);
+  --display:"GFS Didot",'Times New Roman',Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Commissioner",system-ui,-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--noir);color:var(--ivory);font-family:var(--sans);
+  font-weight:300;line-height:1.72;font-size:clamp(.95rem,.92rem + .18vw,1.02rem);
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:44rem;margin-inline:auto;
+  padding:clamp(2.5rem,7vw,6rem) clamp(1.25rem,5vw,2rem) 5rem}
+a{color:var(--gold-lit)}
+a:hover{color:var(--ivory)}
+:focus-visible{outline:2px solid var(--gold-lit);outline-offset:3px}
+.mark{display:inline-flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--ivory)}
+.monogram{width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:50%;
+  border:1px solid rgba(243,237,226,.2);font-family:var(--display);font-size:.82rem;
+  color:var(--gold-lit)}
+.wordmark{font-family:var(--display);font-size:.9rem;letter-spacing:.22em;text-transform:uppercase;
+  line-height:1.35}
+.wordmark small{display:block;font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;
+  color:var(--dim);margin-top:.25rem}
+.eyebrow{display:flex;align-items:center;gap:.85rem;margin:3rem 0 0;
+  font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+.eyebrow::before{content:"";width:1.9rem;height:1px;background:var(--gold);flex:none}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.035em;
+  font-size:clamp(1.7rem,1.2rem + 2.2vw,2.7rem);line-height:1.12;margin:1.4rem 0 1.6rem;
+  text-wrap:balance}
+h2{font-family:var(--serif);font-weight:300;font-size:clamp(1.35rem,1.2rem + .7vw,1.7rem);
+  line-height:1.2;margin:2.8rem 0 .7rem;color:var(--ivory)}
+p,li{color:var(--ivory-2)}
+ul{padding-left:1.15rem;margin:0 0 1em}
+li{margin-bottom:.45rem}
+footer{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--edge);
+  font-size:.85rem;color:var(--dim)}
+footer a{border-bottom:1px solid var(--edge);padding-bottom:2px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <a class="mark" href="/">La Maison <b>de</b> Stefanie</a>
-  <p class="eyebrow" style="margin-top:2.5rem">Privacy &amp; cookies</p>
+  <a class="mark" href="/">
+    <span class="monogram" aria-hidden="true">LS</span>
+    <span class="wordmark">La Maison de Stefanie<small>Athens</small></span>
+  </a>
+  <p class="eyebrow">Privacy &amp; cookies</p>
   <h1>We keep this simple, and we collect nothing about you.</h1>
 
   <p>This site has no analytics, no advertising and no tracking of any kind. Nobody is watching what you read here, and nothing about your visit is sent to us.</p>

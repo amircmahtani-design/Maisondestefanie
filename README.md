@@ -21,6 +21,11 @@ Full instructions, including how to find the exact filenames she is using now:
 
 Nothing else in this project needs her old code. Only the asset files.
 
+> Right now `assets/` holds nothing of hers — only labelled placeholders, one
+> per photograph the layout is waiting for. Each placeholder says on its face
+> what belongs there. The page works with them in; it only looks like her shop
+> once they are replaced.
+
 ---
 
 ## 2. Put it online (15 minutes)
@@ -173,3 +178,30 @@ netlify/functions/ai.js   writing help (needs ANTHROPIC_API_KEY)
 robots.txt · sitemap.xml · site.webmanifest
 assets/               her logo, photos and video go here
 ```
+
+## The front page, and how it is put together
+
+The homepage is one story told in six chapters, and the chapter rail down the
+right-hand side is the reader's place in it:
+
+| # | Section | What it does |
+|---|---|---|
+| 01 | Hero | *Your Story. Your Scent.* — the offer, and the two ways in |
+| 02 | A memory, distilled | the three steps, stated plainly |
+| 03 | The bench | she picks memories, sees the accord, sends it on WhatsApp |
+| 04 | Composed by hand | the essences chosen, the formula written out |
+| 05 | Bottled and sealed | filled and sealed at the counter, kept on file |
+| 06 | Visit | address, hours, telephone, and the map behind a button |
+
+Everything after that — her story, the session, the shelf, the guest book and
+the questions — supports those six. The one thing the page is for is getting
+someone to message or walk in.
+
+All of it is driven from `content.json` (or Firestore once it is connected),
+so every word, price and photograph is hers to change from the Studio. There
+is still no build step: the page is one file, the styles and the script are
+inside it, and nothing is compiled.
+
+Motion is small on purpose — the layers drift, headings arrive, the formula is
+written out — and all of it is switched off for anyone whose device asks for
+reduced motion. The page reads correctly before any of it runs.
