@@ -1,0 +1,32 @@
+{
+ "cut-essence": {
+  "src": "assets/img/cut-essence-802.webp",
+  "srcset": "assets/img/cut-essence-560.webp 560w, assets/img/cut-essence-802.webp 802w",
+  "w": 802,
+  "h": 1003
+ },
+ "cut-still": {
+  "src": "assets/img/cut-still-940.webp",
+  "srcset": "assets/img/cut-still-900.webp 900w, assets/img/cut-still-940.webp 940w",
+  "w": 940,
+  "h": 403
+ },
+ "cut-bottle": {
+  "src": "assets/img/cut-bottle-900.webp",
+  "srcset": "assets/img/cut-bottle-560.webp 560w, assets/img/cut-bottle-900.webp 900w",
+  "w": 902,
+  "h": 1203
+ },
+ "cut-rose": {
+  "src": "assets/img/cut-rose-941.webp",
+  "srcset": "assets/img/cut-rose-900.webp 900w, assets/img/cut-rose-941.webp 941w",
+  "w": 941,
+  "h": 403
+ },
+ "cut-petals": {
+  "src": "assets/img/cut-petals-941.webp",
+  "srcset": "assets/img/cut-petals-900.webp 900w, assets/img/cut-petals-941.webp 941w",
+  "w": 941,
+  "h": 403
+ }
+}

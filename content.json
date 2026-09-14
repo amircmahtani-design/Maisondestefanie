@@ -111,56 +111,52 @@
    "placeholder": true
   },
   "quoteLeft": {
-   "label": "Beside her words",
+   "label": "Beside her words — the essence on the bench",
    "ratio": "4/5",
-   "note": "TEMPORARY ARTWORK — replace with a photograph. The counter, a hand, a pipette. Close and dark.",
-   "src": "assets/img/counter-900.webp",
-   "alt": "A pipette drawing an essence over a strip of blotting paper.",
-   "srcset": "assets/img/counter-560.webp 560w, assets/img/counter-900.webp 900w",
+   "note": "The glass bowl of essence on the bench, rose petals on the surface.",
+   "src": "assets/img/cut-essence-802.webp",
+   "alt": "A glass bowl of essence on the bench, rose petals resting on the surface.",
+   "srcset": "assets/img/cut-essence-560.webp 560w, assets/img/cut-essence-802.webp 802w",
    "sizes": "(min-width:900px) 50vw, 92vw",
-   "srcsetFor": "assets/img/counter-900.webp",
-   "w": 900,
-   "h": 1125,
-   "placeholder": true
+   "srcsetFor": "assets/img/cut-essence-802.webp",
+   "w": 802,
+   "h": 1003
   },
   "botanical": {
-   "label": "Raw materials",
-   "ratio": "4/5",
-   "note": "TEMPORARY ARTWORK — replace with a photograph. Petals, resin, mastic — the materials themselves.",
-   "src": "assets/img/botanical-900.webp",
-   "alt": "Petals, resin and Chios mastic laid out as raw materials.",
-   "srcset": "assets/img/botanical-560.webp 560w, assets/img/botanical-900.webp 900w",
+   "label": "The rose",
+   "ratio": "21/9",
+   "note": "One rose on the stem, lit from the side.",
+   "src": "assets/img/cut-rose-941.webp",
+   "alt": "A single rose on the stem, held in a shaft of low warm light.",
+   "srcset": "assets/img/cut-rose-900.webp 900w, assets/img/cut-rose-941.webp 941w",
    "sizes": "(min-width:900px) 45vw, 92vw",
-   "srcsetFor": "assets/img/botanical-900.webp",
-   "w": 900,
-   "h": 1125,
-   "placeholder": true
+   "srcsetFor": "assets/img/cut-rose-941.webp",
+   "w": 941,
+   "h": 403
   },
   "workshop": {
-   "label": "The blending bench",
+   "label": "The still at work",
    "ratio": "21/9",
-   "note": "TEMPORARY ARTWORK — replace with a photograph. The organ of bottles behind the counter. Shoot wide — this runs the width of the page.",
-   "src": "assets/img/workshop-1500.webp",
-   "alt": "The shelf of essences behind the counter in the Plaka shop.",
-   "srcset": "assets/img/workshop-900.webp 900w, assets/img/workshop-1500.webp 1500w, assets/img/workshop-2000.webp 2000w",
+   "note": "The copper still working, steam off the head.",
+   "src": "assets/img/cut-still-940.webp",
+   "alt": "A copper still at work, steam rising from its head.",
+   "srcset": "assets/img/cut-still-900.webp 900w, assets/img/cut-still-940.webp 940w",
    "sizes": "100vw",
-   "srcsetFor": "assets/img/workshop-1500.webp",
-   "w": 2400,
-   "h": 1030,
-   "placeholder": true
+   "srcsetFor": "assets/img/cut-still-940.webp",
+   "w": 940,
+   "h": 403
   },
   "sealing": {
    "label": "Bottled and sealed",
-   "ratio": "4/5",
-   "note": "TEMPORARY ARTWORK — replace with a photograph. Her hands sealing a bottle with the house plate.",
-   "src": "assets/img/sealing-900.webp",
-   "alt": "A finished bottle being sealed by hand at the counter.",
-   "srcset": "assets/img/sealing-560.webp 560w, assets/img/sealing-900.webp 900w",
+   "ratio": "3/4",
+   "note": "A finished bottle standing among the roses.",
+   "src": "assets/img/cut-bottle-900.webp",
+   "alt": "A finished bottle of extrait de parfum standing among roses.",
+   "srcset": "assets/img/cut-bottle-560.webp 560w, assets/img/cut-bottle-900.webp 900w",
    "sizes": "(min-width:900px) 45vw, 92vw",
-   "srcsetFor": "assets/img/sealing-900.webp",
-   "w": 900,
-   "h": 1125,
-   "placeholder": true
+   "srcsetFor": "assets/img/cut-bottle-900.webp",
+   "w": 902,
+   "h": 1203
   },
   "atwork": {
    "label": "Wide shot of the shop",
@@ -434,14 +430,16 @@
    "quote": "Every perfume has a soul. Give me your memory and I will give you back something that only belongs to you.",
    "sig": "Stefanie, perfumer",
    "body": "In the heart of Plaka, where the old city still keeps its own hours, La Maison de Stefanie grew out of a family legacy and a lifetime spent close to essences.",
-   "link": "Read her story"
+   "link": "Read her story",
+   "band": "A perfume should not simply be worn. It should belong to you."
   },
   "el": {
    "eyebrow": "Το σπίτι",
    "quote": "Κάθε άρωμα έχει ψυχή. Δώσε μου την ανάμνησή σου και θα σου δώσω πίσω κάτι που ανήκει μόνο σ' εσένα.",
    "sig": "Στεφανί, αρωματοποιός",
    "body": "Στην καρδιά της Πλάκας, εκεί όπου η παλιά πόλη κρατά ακόμη τους δικούς της ρυθμούς, το La Maison de Stefanie γεννήθηκε από μια οικογενειακή κληρονομιά και μια ζωή δίπλα στις πρώτες ύλες.",
-   "link": "Διάβασε την ιστορία της"
+   "link": "Διάβασε την ιστορία της",
+   "band": "Το άρωμα δεν αρκεί να το φοράς. Πρέπει να σου ανήκει."
   }
  },
  "organ": {
