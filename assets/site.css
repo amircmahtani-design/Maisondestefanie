@@ -124,22 +124,17 @@ ul,ol{margin:0;padding:0;list-style:none}
 .lab::before{content:"";width:1.9rem;height:1px;background:var(--gold);flex:none}
 .lab.bare::before{display:none}
 .lab.mid{justify-content:center}
-.pale .lab{color:#6C5C4B}
-.pale .lab::before{background:#a8813f}
 
 .h-display{font-family:var(--display);text-transform:uppercase;
   font-size:var(--t-h2);letter-spacing:.03em;line-height:var(--lh-tight);
   text-wrap:balance}
 .h-display em{font-style:normal;color:var(--gold);display:block}
-.pale .h-display em{color:#996A22}
 .h-soft{font-family:var(--serif);font-weight:300;line-height:var(--lh-head);
   font-size:var(--t-h2);letter-spacing:var(--tr-head);text-wrap:balance}
 .h-soft em{font-style:italic;color:var(--gold-lit)}
-.pale .h-soft em{color:#8A5F1E}
 
 .body{color:var(--ivory-2);max-width:62ch;font-size:var(--t-body);
   line-height:var(--lh-body);text-wrap:pretty}
-.pale .body{color:#54483E}
 .muted{color:var(--dim)}
 
 .rule{height:1px;background:linear-gradient(90deg,transparent,var(--edge-2),transparent);border:0;margin:0}
@@ -152,7 +147,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   font-size:var(--t-micro);letter-spacing:var(--tr-caps);text-transform:uppercase;
   transition:color .3s;color:var(--ivory)}
 .more:hover{color:var(--gold-lit)} .more:hover .arrow{transform:translateX(5px);border-color:var(--gold)}
-.pale .more{color:var(--ink)} 
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s3);
   min-height:3rem;padding:var(--s3) var(--s6);border-radius:var(--r-pill);
@@ -168,7 +162,6 @@ ul,ol{margin:0;padding:0;list-style:none}
 .btn-solid:active{box-shadow:var(--metal-edge),0 3px 10px rgba(0,0,0,.5)}
 .btn-line{border:1px solid var(--edge-2);color:var(--ivory)}
 
-.pale .btn-line{border-color:rgba(36,28,22,.28);color:var(--ink)}
 
 
 .linky{display:inline-block;font-size:var(--t-micro);letter-spacing:var(--tr-caps);
@@ -575,15 +568,6 @@ body.curtained{overflow:hidden}
 .sec.tight{padding-block:clamp(3.2rem,7vw,6rem)}
 /* Paper, not a flat fill: the dark sections have a light source in them and
    the cream ones looked switched-off beside them. Same room, other hour. */
-.pale{background:var(--cream);color:var(--ink);position:relative;isolation:isolate}
-.pale::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(58% 48% at 78% 8%,rgba(255,250,240,.85),transparent 62%),
-    radial-gradient(70% 60% at 8% 96%,rgba(150,116,70,.13),transparent 66%),
-    linear-gradient(180deg,rgba(120,92,56,.05),transparent 26%)}
-.pale > *{position:relative;z-index:1}
-.pale .body,.pale p{color:#54483E}
-.pale h2,.pale h3{color:var(--ink)}
 .wrap{max-width:78rem;margin-inline:auto}
 .wrap.narrow{max-width:52rem}
 
@@ -610,7 +594,6 @@ blockquote{margin:0}
   background:var(--char);border:1px solid var(--edge);position:relative}
 .byline .face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .byline .sig{font-family:var(--hand);font-size:1.28rem;color:var(--gold-lit);line-height:1.2}
-.pale .byline .sig{color:var(--gold-ink)}
 
 /* ── 11. THE BENCH (threads) ───────────────────────────────── */
 .bench-head{display:grid;gap:clamp(1.6rem,4vw,3rem);align-items:end;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
@@ -770,9 +753,8 @@ blockquote{margin:0}
 /* a 21:9 picture in a 3:2 box loses a third of its width; 16:9 keeps most
    of the room in the room */
 @media (max-width:760px){ .wide-fig{aspect-ratio:16/9} }
-/* the room sits on the cream, so it keeps a hairline the way the shelf
-   cards do rather than floating as a dark hole */
-.room-fig{border:1px solid rgba(36,28,22,.1)}
+/* a hairline the way the shelf cards have one */
+.room-fig{border:1px solid var(--edge)}
 .room-fig figcaption{color:rgba(243,237,226,.72)}
 /* A phone takes a third off the width of a 21:9 picture. Cropped from the
    middle that loses the open door and the Acropolis behind it, which is
@@ -817,8 +799,8 @@ blockquote{margin:0}
   .filters button{flex:none;scroll-snap-align:start}
 }
 .filters button{min-height:2.75rem;padding:var(--s3) var(--s5);font-size:var(--t-micro);
-  letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(36,28,22,.16);
-  color:#5B4E42;background:rgba(255,252,246,.55);border-radius:var(--r-pill);
+  letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--edge-2);
+  color:var(--ivory-2);background:rgba(243,237,226,.045);border-radius:var(--r-pill);
   transition:border-color .3s,background .3s,color .3s,transform .12s var(--e)}
 .filters button:active{transform:scale(.97)}
 
@@ -836,8 +818,8 @@ blockquote{margin:0}
   .card .tag{font-size:.5rem;letter-spacing:.14em}
 }
 .card .shot{display:block;position:relative;aspect-ratio:4/5;overflow:hidden;
-  background:linear-gradient(165deg,#EAE0CF 0%,#DFD2BC 52%,#CFC0A6 100%);
-  margin-bottom:var(--s4);border:1px solid rgba(36,28,22,.09);
+  background:linear-gradient(165deg,#1A130C 0%,#120D08 52%,#0D0906 100%);
+  margin-bottom:var(--s4);border:1px solid var(--edge);
   border-radius:var(--r-lg)}
 /* An empty slot is a flat swatch and needs a light put into it. A
    photograph arrives with its own, and the same wash over it reads as a
@@ -852,10 +834,11 @@ blockquote{margin:0}
 .card .shot img.on{opacity:1}
 
 .card .shot .ph{position:absolute;inset:0;display:grid;place-items:center;padding:1rem;text-align:center;
-  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#574A3C}
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dimmer)}
 .card .tag{position:absolute;z-index:2;left:var(--s3);top:var(--s3);
-  padding:var(--s1) var(--s3);background:rgba(36,28,22,.84);border-radius:var(--r-pill);
-  color:var(--cream);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase}
+  padding:var(--s1) var(--s3);background:rgba(10,7,5,.78);border-radius:var(--r-pill);
+  border:1px solid var(--edge);
+  color:var(--ivory-2);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase}
 /* The cards sit in rows, so a name or a line of copy one line short left
    the price floating mid-air against its neighbour's. The card is a
    column and the price is pushed to the floor of it. */
@@ -865,10 +848,10 @@ blockquote{margin:0}
   margin-bottom:.3rem;line-height:1.18;letter-spacing:.004em}
 .card h3 button{text-align:left;padding-block:.15rem;transition:color .3s}
 
-.card .sub{display:block;font-size:var(--t-small);color:#6A5C4E;
+.card .sub{display:block;font-size:var(--t-small);color:var(--ivory-2);
   margin-bottom:var(--s2);line-height:var(--lh-body);text-wrap:pretty}
 .card .price{display:block;font-size:var(--t-micro);letter-spacing:.18em;
-  text-transform:uppercase;color:var(--gold-ink);font-variant-numeric:tabular-nums}
+  text-transform:uppercase;color:var(--gold-lit);font-variant-numeric:tabular-nums}
 .card .price s{opacity:.75;text-decoration:none}
 
 /* ── 17. GUEST BOOK ────────────────────────────────────────── */
@@ -894,15 +877,15 @@ blockquote{margin:0}
 
 /* ── 18. VISIT ─────────────────────────────────────────────── */
 .addr{font-family:var(--serif);font-size:var(--t-lede);line-height:1.45;
-  margin:var(--s5) 0;color:var(--ink);font-variant-numeric:tabular-nums}
+  margin:var(--s5) 0;color:var(--ivory);font-variant-numeric:tabular-nums}
 .hours{display:grid;grid-template-columns:auto 1fr;gap:var(--s3) var(--s6);
-  margin:var(--s7) 0 0;padding-top:var(--s5);border-top:1px solid var(--edge-ink);
+  margin:var(--s7) 0 0;padding-top:var(--s5);border-top:1px solid var(--edge);
   font-size:var(--t-small);font-variant-numeric:tabular-nums}
-.hours dt{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#6C5C4B;
+.hours dt{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
   align-self:center}
-.hours dd{margin:0;color:#3E332A}
+.hours dd{margin:0;color:var(--ivory-2)}
 .hours a{display:inline-block;padding-block:.3rem;
-  border-bottom:1px solid rgba(36,28,22,.22);transition:color .3s,border-color .3s}
+  border-bottom:1px solid var(--edge-2);transition:color .3s,border-color .3s}
 .hours a:hover{color:#8A5F1E;border-color:#8A5F1E}
 /* Two pictures of the same stepped street, cropped the same and hung at
    the same height, read as one picture cut in half. They are staggered,
@@ -924,8 +907,8 @@ blockquote{margin:0}
   text-shadow:0 1px 12px rgba(6,4,3,.9)}
 .mapwrap{position:relative;min-height:20rem;display:grid;place-items:center;
   padding:clamp(2rem,5vw,3.5rem) var(--pad);text-align:center;
-  background:var(--cream-2);color:var(--ink)}
-.mapwrap .btn-line{border-color:rgba(36,28,22,.3);color:var(--ink)}
+  background:var(--soot);color:var(--ivory)}
+.mapwrap .btn-line{border-color:var(--edge-2);color:var(--ivory)}
 
 .mapwrap iframe{width:100%;height:clamp(20rem,45vh,28rem);border:0;display:block;
   border-radius:var(--r-lg)}
@@ -1121,8 +1104,7 @@ body.noscroll{overflow:hidden}
   .filters button:hover{border-color:#8A5F1E;color:#8A5F1E}
   .btn-solid:hover{background:var(--metal-lit)}
   .btn-line:hover{border-color:var(--gold);color:var(--gold-lit);background:rgba(185,147,88,.07)}
-  .pale .btn-line:hover{border-color:#8A5F1E;color:#8A5F1E;background:rgba(138,95,30,.06)}
-  .mapwrap .btn-line:hover{border-color:#8A5F1E;color:#8A5F1E;background:rgba(138,95,30,.06)}
+  .mapwrap .btn-line:hover{border-color:var(--gold);color:var(--gold-lit);background:rgba(185,147,88,.07)}
   .chip:hover:not([disabled]){border-color:var(--gold);color:var(--ivory)}
   .thread:hover,.thread:focus-visible{border-color:rgba(185,147,88,.5)}
   .thread:hover .im img{transform:scale(1.06)}
@@ -1132,7 +1114,6 @@ body.noscroll{overflow:hidden}
   .door:hover{border-color:rgba(185,147,88,.5)}
   .door:hover .im img{transform:scale(1.06)}
   .door:hover .open::after{width:2.6rem}
-  .pale .more:hover{color:#8A5F1E}
 }
 
 /* On a phone the same travel that reads as a camera breathing across a
