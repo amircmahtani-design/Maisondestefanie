@@ -983,12 +983,17 @@ function toggleMenu(open){
 }
 $('#burger').onclick = ()=>toggleMenu();
 
-/* which of the five you are on, so its tab is the struck one */
+/* Which of the five you are on, so its tab is the struck one. The host
+   serves these pages with and without the .html, and rewrites the links
+   in the markup to drop it, so both sides are reduced to the same thing
+   before they are compared. */
 (function(){
-  const here = location.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
+  const tidy = u => u.replace(/\/index(\.html)?$/,'/')
+                     .replace(/\.html$/,'')
+                     .replace(/\/$/,'') || '/';
+  const here = tidy(location.pathname);
   $$('.nav a[href]').forEach(a=>{
-    const to = new URL(a.getAttribute('href'), location.href).pathname
-                 .replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
+    const to = tidy(new URL(a.getAttribute('href'), location.href).pathname);
     if (to === here) a.setAttribute('aria-current','page');
   });
 })();
