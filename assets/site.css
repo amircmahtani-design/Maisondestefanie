@@ -387,7 +387,7 @@ body.curtained{overflow:hidden}
    every subject is whole. It bleeds off the right and the foot, and the
    scrim below feathers its left edge into the ground, so the words sit on
    darkness and the room appears to run off the screen. */
-.hero-scenes{position:absolute;inset:0 0 0 46%;z-index:0}
+.hero-scenes{position:absolute;inset:0 0 0 37%;z-index:0}
 @media (max-width:899px){ .hero-scenes{inset:0} }
 .scene{position:absolute;inset:0;opacity:0;overflow:hidden;
   transition:opacity 1250ms cubic-bezier(.16,.84,.28,1);will-change:opacity}
@@ -415,11 +415,11 @@ body.curtained{overflow:hidden}
 
 /* the light in the room, and the dark the words are read on */
 .hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(52% 58% at 62% 44%,rgba(201,138,58,.16),transparent 70%)}
+  background:radial-gradient(54% 60% at 56% 44%,rgba(201,138,58,.16),transparent 70%)}
 .hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(10,7,5,.96) 0%,rgba(10,7,5,.95) 32%,
-      rgba(10,7,5,.84) 44%,rgba(10,7,5,.46) 56%,rgba(10,7,5,.12) 72%,rgba(10,7,5,0) 88%),
+    linear-gradient(90deg,rgba(10,7,5,.96) 0%,rgba(10,7,5,.94) 25%,
+      rgba(10,7,5,.8) 35%,rgba(10,7,5,.42) 45%,rgba(10,7,5,.1) 57%,rgba(10,7,5,0) 67%),
     linear-gradient(270deg,rgba(10,7,5,.93) 0%,rgba(10,7,5,.86) 6%,
       rgba(10,7,5,.54) 13%,rgba(10,7,5,.18) 20%,rgba(10,7,5,0) 28%),
     linear-gradient(0deg,rgba(10,7,5,.80) 0%,rgba(10,7,5,.10) 26%,transparent 46%),
