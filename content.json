@@ -345,18 +345,7 @@
    "titleC": "",
    "lede": "A bespoke fragrance, composed by hand in the heart of Plaka.",
    "ctaPrimary": "Begin your journey",
-   "ctaSecondary": "Visit the Maison",
-   "aside": "Made by hand, in the shop, in front of you.",
-   "discover": "Enter the Maison",
-   "rail": "Plaka lives in details",
-   "foot": "Some places stay with you",
-   "words": [
-    "People",
-    "Places",
-    "Emotions",
-    "Fragrance",
-    "Forever"
-   ]
+   "ctaSecondary": "Visit the Maison"
   },
   "el": {
    "eyebrow": "Οι μνήμες κρατούν περισσότερο",
@@ -365,18 +354,7 @@
    "titleC": "",
    "lede": "Ένα προσωπικό άρωμα, φτιαγμένο στο χέρι, στην καρδιά της Πλάκας.",
    "ctaPrimary": "Ξεκίνα το ταξίδι σου",
-   "ctaSecondary": "Επισκέψου το σπίτι",
-   "aside": "Φτιάχνεται στο χέρι, στο μαγαζί, μπροστά σου.",
-   "discover": "Μπες στο σπίτι",
-   "rail": "Η Πλάκα ζει στις λεπτομέρειες",
-   "foot": "Κάποια μέρη μένουν μαζί σου",
-   "words": [
-    "Άνθρωποι",
-    "Τόποι",
-    "Συναισθήματα",
-    "Άρωμα",
-    "Πάντα"
-   ]
+   "ctaSecondary": "Επισκέψου το σπίτι"
   }
  },
  "distilled": {
@@ -474,7 +452,7 @@
    {
     "id": "t1",
     "num": "01",
-    "image": "",
+    "image": "assets/img/thread-places-900.webp",
     "en": {
      "label": "Places you remember",
      "blurb": "A courtyard, a road, a green thing after rain."
@@ -552,12 +530,17 @@
        ]
       }
      }
-    ]
+    ],
+    "srcset": "assets/img/thread-places-560.webp 560w, assets/img/thread-places-900.webp 900w",
+    "srcsetFor": "assets/img/thread-places-900.webp",
+    "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
+    "w": 900,
+    "h": 1200
    },
    {
     "id": "t2",
     "num": "02",
-    "image": "",
+    "image": "assets/img/thread-sea-900.webp",
     "en": {
      "label": "The sea",
      "blurb": "Salt, pine and the walk down to the water."
@@ -635,12 +618,17 @@
        ]
       }
      }
-    ]
+    ],
+    "srcset": "assets/img/thread-sea-560.webp 560w, assets/img/thread-sea-900.webp 900w",
+    "srcsetFor": "assets/img/thread-sea-900.webp",
+    "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
+    "w": 900,
+    "h": 1200
    },
    {
     "id": "t3",
     "num": "03",
-    "image": "",
+    "image": "assets/img/thread-someone-900.webp",
     "en": {
      "label": "Someone in particular",
      "blurb": "A person you can still smell when you think of them."
@@ -714,12 +702,17 @@
        ]
       }
      }
-    ]
+    ],
+    "srcset": "assets/img/thread-someone-560.webp 560w, assets/img/thread-someone-900.webp 900w",
+    "srcsetFor": "assets/img/thread-someone-900.webp",
+    "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
+    "w": 900,
+    "h": 1200
    },
    {
     "id": "t4",
     "num": "04",
-    "image": "",
+    "image": "assets/img/thread-moment-900.webp",
     "en": {
      "label": "A moment that stayed",
      "blurb": "An August church, a night that ran too late."
@@ -793,12 +786,17 @@
        ]
       }
      }
-    ]
+    ],
+    "srcset": "assets/img/thread-moment-560.webp 560w, assets/img/thread-moment-900.webp 900w",
+    "srcsetFor": "assets/img/thread-moment-900.webp",
+    "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
+    "w": 900,
+    "h": 1200
    },
    {
     "id": "t5",
     "num": "05",
-    "image": "",
+    "image": "assets/img/thread-lost-900.webp",
     "en": {
      "label": "Something you lost",
      "blurb": "A perfume that is no longer made. Bring the bottle, or the name."
@@ -836,7 +834,12 @@
        ]
       }
      }
-    ]
+    ],
+    "srcset": "assets/img/thread-lost-560.webp 560w, assets/img/thread-lost-900.webp 900w",
+    "srcsetFor": "assets/img/thread-lost-900.webp",
+    "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
+    "w": 900,
+    "h": 1200
    }
   ]
  },
