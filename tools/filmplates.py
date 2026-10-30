@@ -46,7 +46,11 @@ QUALITY = 90
 PLATES = [
     (1, 'keyframe-02.jpg', 'keyframe-02.jpg', 0.68, 0.46),
     (2, 'keyframe-06.jpg', 'keyframe-08.jpg', 0.50, 0.50),
-    (3, 'keyframe-09.jpg', 'keyframe-10.jpg', 0.42, 0.50),
+    # keyframe-10's copper is all on the right and its left two thirds
+    # are vapour, so a 9:16 window placed anywhere near its middle is a
+    # brown smear. The phone takes the same frame as the wide plate,
+    # placed on the gooseneck, the collar and the swell of the body.
+    (3, 'keyframe-09.jpg', 'keyframe-09.jpg', 0.56, 0.50),
     (4, 'keyframe-16.jpg', 'keyframe-16.jpg', 0.54, 0.52),
 ]
 
