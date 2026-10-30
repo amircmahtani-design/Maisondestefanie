@@ -230,8 +230,10 @@ export function mountFilmHero(root) {
   show(0);
   start();
 
-  root.addEventListener('pointerenter', () => hold(true));
-  root.addEventListener('pointerleave', () => hold(false));
+  /* a finger is not a pointer resting on something: on a phone the first
+     touch anywhere on the first screen would otherwise stop the film */
+  root.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') hold(true); });
+  root.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') hold(false); });
   root.addEventListener('focusin', () => hold(true));
   root.addEventListener('focusout', e => {
     if (!root.contains(e.relatedTarget)) hold(false);

@@ -25,8 +25,31 @@ SRC = '/home/user/Maisondestefanie/assets/img'
 SCENES = ['scene-rose-941', 'scene-essence-941', 'scene-still-940'] + \
          [f'frame-0{i}-880' for i in range(9)]
 
-WIDE = (2400, 1350)   # 16:9
-TALL = (1080, 2160)   # taller than a phone, so the drift has room
+# The canvas is sized from the photograph rather than fixed, so that the
+# subject is never resampled: in a 16:9 frame it fills the height, so the
+# canvas is as tall as the master is; in a 9:16 one it fills 84% of the
+# width, so the canvas is that much wider than the master. Everything the
+# subject does not cover is blurred ground, which costs almost nothing to
+# store.
+#
+# At a fixed 2400 x 1350 the subject was being thrown away twice over —
+# squeezed from 1672px of height down to 1350, and then written at
+# quality 72 spread over 3.2 megapixels, about two hundredths of a bit
+# per pixel. The rose came out at 38 KB. Measured on the subject panel
+# alone, sizing from the master and writing at 82 carries 1.3 to 1.4
+# times the detail.
+ASPECT = 16 / 9
+SUBJECT_W = 0.84      # how much of a 9:16 canvas's width the subject takes
+QUALITY = 82
+
+
+def canvases(im):
+    """The two canvases this photograph wants, in its own pixels."""
+    h = im.height - im.height % 2
+    wide = (round(h * ASPECT) // 2 * 2, h)
+    w = round(im.width / SUBJECT_W) // 2 * 2
+    tall = (w, round(w * ASPECT) // 2 * 2)
+    return wide, tall
 
 
 def extend(im, size, fit, fraction, centre_x=0.5):
@@ -83,11 +106,12 @@ def extend(im, size, fit, fraction, centre_x=0.5):
 def main():
     for name in SCENES:
         im = Image.open(os.path.join(SRC, name + '.webp')).convert('RGB')
-        for suffix, size, fit, frac, cx in (('wide', WIDE, 'h', 1.0, 0.655),
-                                            ('tall', TALL, 'w', 0.84, 0.50)):
+        wide, tall = canvases(im)
+        for suffix, size, fit, frac, cx in (('wide', wide, 'h', 1.0, 0.655),
+                                            ('tall', tall, 'w', SUBJECT_W, 0.50)):
             out = extend(im, size, fit, frac, cx)
             p = os.path.join(SRC, f'{name}-{suffix}.webp')
-            out.save(p, 'WEBP', quality=72, method=6)
+            out.save(p, 'WEBP', quality=QUALITY, method=6)
             print(f'  {os.path.basename(p):30} {out.size[0]}x{out.size[1]}  '
                   f'{os.path.getsize(p)//1024} KB')
 

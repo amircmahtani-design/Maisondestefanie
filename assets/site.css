@@ -784,6 +784,27 @@ blockquote{margin:0}
   font-size:3.4em;line-height:.82;padding:.06em .12em 0 0;color:var(--gold)}
 .portrait-fig{aspect-ratio:4/5;width:100%}
 
+/* ══ HER WORD — the home page, under the first screen ════════════
+   Her photograph and what she says about the work, before anything
+   explains itself. The quote is set larger here than it is on the
+   Maison page: on the home page it is the first thing after the
+   headline and it carries the whole idea of the place. */
+.herword{background:linear-gradient(180deg,var(--noir),var(--soot) 50%,var(--noir))}
+.herword .split{align-items:center}
+.herword .portrait-fig{border-radius:var(--r-xl)}
+.herword .pull-q{font-size:clamp(1.58rem,1.18rem + 1.6vw,2.6rem);
+  line-height:1.24;color:var(--ivory);max-width:21ch;margin-bottom:var(--s5);
+  text-wrap:pretty}
+.herword .byline{margin-bottom:var(--s6)}
+.herword .byline .sig{font-size:1.46rem}
+.herword .body{max-width:44ch;margin-bottom:var(--s6)}
+@media (max-width:899px){
+  /* on a phone she comes first and the words sit under her, which is
+     the order the page is read in anyway */
+  .herword .portrait-fig{aspect-ratio:3/4;margin-bottom:var(--s5)}
+  .herword .pull-q{max-width:22ch}
+}
+
 /* ── 15. THE SESSION ───────────────────────────────────────── */
 .session{display:grid;gap:clamp(1.6rem,3.4vw,2.6rem);margin-top:clamp(2.4rem,5vw,3.4rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,13.5rem),1fr))}

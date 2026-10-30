@@ -18,6 +18,29 @@ changing either you run:
 The stylesheet is assets/site.css and the script is assets/site.js, both
 shared by all six.
 
+HOW SHARP ANY OF THIS CAN BE
+----------------------------
+Every derived image is written by a script, and each script is now sized
+from its own master rather than to a round number, because a photograph
+enlarged past its own pixels only costs bytes.
+
+  tools/heroes.py      the six page openings, from the 1672 x 941 PNGs.
+                       WebP quality 86, up from 74. The PNG is the
+                       ceiling; nothing is enlarged.
+  tools/widescenes.py  the four home-page chapters and the nine bottle
+                       frames. The canvas is now as tall as the master,
+                       so the subject is never resampled, at quality 82
+                       rather than 72. Measured on the subject panel
+                       alone that is 1.3 to 1.4 times the detail.
+  tools/filmplates.py  the first-screen film's plates, from the 1280 x 720
+                       motion pack. Resize once, unsharp mask, quality 90.
+  tools/portrait.py    her photograph, from the 1400 x 939 original.
+                       Quality 90.
+
+What none of them can do is invent detail. The motion pack is 720p and
+the page artwork is 1672px wide; those are the ceilings. Replace a master
+and run its script again — no other file has to change.
+
 PAGE OPENINGS
 -------------
 Each page opens on one scene composed three times:

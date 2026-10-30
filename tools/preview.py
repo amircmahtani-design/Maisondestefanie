@@ -71,7 +71,7 @@ def main():
         '<link rel="stylesheet" href="/assets/hero-film.css">', 1)
     page = page.replace('</body>', MOUNT, 1)
 
-    content = FILM + '\n' + chunk['A MEMORY, DISTILLED'] + '\n' + chunk['THE FIVE DOORS']
+    content = FILM + '\n' + chunk['HER WORD'] + '\n' + chunk['A MEMORY, DISTILLED'] + '\n' + chunk['THE FIVE DOORS']
     out = page.replace('<!--PAGE-->', content.rstrip() + '\n')
     open(OUT, 'w', encoding='utf-8').write(out)
     print(f'hero-preview.html  {len(out)//1024} KB')

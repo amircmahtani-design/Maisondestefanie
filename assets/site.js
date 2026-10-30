@@ -231,8 +231,11 @@ function renderHero(){
   /* anything that says someone is reading it stops it moving under them */
   if (!HERO.el.dataset.wired){
     HERO.el.dataset.wired = '1';
-    HERO.el.addEventListener('pointerenter', ()=>holdHero(true));
-    HERO.el.addEventListener('pointerleave', ()=>holdHero(false));
+    /* Pausing under the pointer is a courtesy to somebody reading with a
+       mouse. A finger is not a pointer resting on something — on a phone
+       the first touch anywhere would stop the hero, so touch is ignored. */
+    HERO.el.addEventListener('pointerenter', e=>{ if(e.pointerType!=='touch') holdHero(true); });
+    HERO.el.addEventListener('pointerleave', e=>{ if(e.pointerType!=='touch') holdHero(false); });
     HERO.el.addEventListener('focusin',      ()=>holdHero(true));
     HERO.el.addEventListener('focusout', e=>{
       if (!HERO.el.contains(e.relatedTarget)) holdHero(false);
@@ -961,7 +964,7 @@ function trapKeys(e){
 }
 addEventListener('keydown', e=>{
   if (e.key !== 'Escape') return;
-  if ($('#stage').classList.contains('on')) closeStage();
+  if ($('#stage')?.classList.contains('on')) closeStage();
   else if (document.body.classList.contains('drawer')) closeDrawer();
   else if (document.body.classList.contains('menu')) toggleMenu(false);
 });
@@ -1054,7 +1057,11 @@ $$('[data-lang]').forEach(b=>b.onclick=()=>{
 /* the map is only ever fetched when it is asked for */
 function showMap(){
   const S = DATA.settings, box = $('#mapwrap');
-  if (box.classList.contains('loaded')) return;
+  /* render() ends by restoring the map for anyone who has opened it
+     before, and render() runs on every page and on every change of
+     language — but the map is only on the Visit page. Without this, one
+     tap of "Show the map" left every other page throwing on load. */
+  if (!box || box.classList.contains('loaded')) return;
   box.classList.add('loaded');
   box.innerHTML = `<iframe title="${LANG==='el'?'Χάρτης — Μνησικλέους 10, Πλάκα':'Map — Mnisikleous 10, Plaka'}"
     loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
