@@ -7,57 +7,77 @@ None of it is a photograph and none of it is stock. It is there to be
 replaced by Stefanie's own photography.
 
 
-1. HER ICON — do this first, and do not rename anything
--------------------------------------------------------
-The favicon is her logo. Copy these exact filenames out of the current
-live site (open lamaisondestefanie.com, View Source, and look at the
-<link rel="icon"> tags — or download them straight from
-lamaisondestefanie.com/favicon.ico and so on):
+1. HER ICON — DONE
+------------------
+Her logo was copied across from the live site and is in place:
 
-  /favicon.ico                     <- the TOP level, not in here
-  assets/favicon.svg
+  /favicon.ico                     the top level, not in here
   assets/favicon-32x32.png
   assets/favicon-16x16.png
-  assets/apple-touch-icon.png      180x180
+  assets/apple-touch-icon.png      180x180, her gold "S"
+  assets/curtain-mark.png          the same mark cut out on transparency,
+                                   used by the opening screen
   assets/android-chrome-192x192.png
   assets/android-chrome-512x512.png
   assets/og-image.jpg              1200x630, used by Google and WhatsApp
 
-Until these are copied across the browser tab has no icon and links
-shared on WhatsApp or Instagram show no picture. These are the only
-files on the whole site that cannot be generated.
+Nothing to do here. Do not rename any of them.
 
 
-2. REPLACING THE PICTURES
--------------------------
-Go to Studio -> Pictures. Each slot names the photograph it wants and
-shows what is standing in for it now. Upload the real one and it takes
-over; the temporary file stops being used.
+2. THE PICTURES STILL STANDING IN
+---------------------------------
+Nine of the twelve picture slots are now hers. Three are not, and these
+are the ones worth shooting first. Go to Studio -> Pictures, upload the
+real one, and it takes over; the temporary file stops being used.
 
-  Hero still          the whole first screen, wide and dark
-  Hero — the bottle   one filled bottle, side-lit, on black or cut out
-  Hero — botanical    a rose or raw botanical, close and low
-  Hero — vessel       the glass blending bowl with oil in it
-  Stefanie            her at the bench, working
-  Beside her words    a hand, a pipette, a strip of blotting paper
-  Raw materials       petals, resin, mastic
-  The blending bench  the shelf of essences — shoot WIDE, it runs full width
-  Bottled and sealed  a finished bottle being sealed
-  Wide shot of shop   the room from the doorway — also full width
-  The shopfront       Mnisikleous 10 from the street, at dusk
-  Plaka               the steps just outside the door
+  Wide shot of the shop   the room from the doorway, the whole bench in
+                          frame. Runs the full width of the page, so
+                          shoot it WIDE — landscape, roughly 21:9 of
+                          usable picture. 2400px on the long edge.
+
+  The shopfront           Mnisikleous 10 from the street, at dusk, light
+                          coming out of the door. Upright, 4:5.
+                          1600px on the long edge.
+
+  Plaka                   the steps just outside, the neighbourhood.
+                          Upright, 4:5. 1600px on the long edge.
+
+Already hers and not to be re-shot unless she wants to: the portrait,
+the rose, the essence bowl, the copper still, the sealed bottle, and the
+nine bottle frames.
 
 Shoot dark. One warm light source off to one side, everything else
 falling away into shadow. Do not light the room evenly — the whole site
 is built around that contrast and a flat, brightly lit photograph will
 look wrong in it.
 
-The products on the shelf are the same: Studio -> The shelf -> a product
--> its photograph. Those get the house treatment automatically, so a
-phone photo on a plain surface is enough.
+
+3. THE TWELVE ON THE SHELF
+--------------------------
+Every product is still showing artwork. Studio -> The shelf -> a product
+-> its photograph. They get the house grade automatically, so a phone
+photograph on a plain dark surface is enough — but it must be the real
+object.
+
+  p1   The Bespoke Session      30ml extrait
+  p2   Made Again               30ml extrait
+  p3   Mnisikleous              50ml extrait
+  p4   Chios                    50ml extrait
+  p5   Kyria                    50ml extrait
+  p6   The Perfume You Lost     30ml extrait
+  p7   Body Oil                 100ml
+  p8   Cold-Pressed Soap        120g
+  p9   House Candle             220g
+  p10  Reed Diffuser            200ml, 8 reeds
+  p11  Bespoke Voucher          any value
+  p12  Weddings & Events        from 20 pieces
+
+Upright, 4:5, one object per frame, 1400px on the long edge. Same
+surface and same light for all twelve or the shelf will not read as one
+shelf.
 
 
-3. THE HERO FILM (optional)
+4. THE HERO FILM (optional)
 ---------------------------
 If there is a loop of her working, drop it in as:
 
@@ -69,7 +89,16 @@ film the hero still is used and the page is faster. The film never loads
 for anyone on a data-saver connection or with reduced motion turned on.
 
 
-4. A NOTE ON THE PRELOAD
+5. THE SOURCE PHOTOGRAPHS
+-------------------------
+tools/supplied is where her full-resolution originals go, and it is in
+.gitignore, which means a rebuilt machine loses them. Commit the
+originals of anything that matters. The derived WebP files in assets/img
+are committed and safe, but without the originals nothing can be
+re-cropped or re-graded.
+
+
+6. A NOTE ON THE PRELOAD
 ------------------------
 index.html preloads the hero still by name so it starts downloading
 immediately. If you change the hero photograph, update that one <link
