@@ -239,36 +239,46 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* The five pages sit in a track, one pill each, and the one you are on
    is struck copper — the same metal as the pills and the chosen
    category on the shelf. */
-.nav{display:flex;align-items:center;gap:var(--s1);margin-inline:auto;
-  padding:var(--s1);border-radius:var(--r-pill);
-  border:1px solid rgba(243,237,226,.1);
-  background:rgba(243,237,226,.035);
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+/* Five separate tabs, each one copper in its own right: a copper edge,
+   a breath of copper behind it and copper lettering. The page you are
+   reading is the one struck solid. */
+.nav{display:flex;align-items:center;gap:var(--s2);margin-inline:auto}
 .nav a{position:relative;display:inline-flex;align-items:center;
-  min-height:2.3rem;padding:0 clamp(var(--s4),1.4vw,var(--s6));
+  min-height:2.4rem;padding:0 clamp(var(--s4),1.3vw,var(--s5));
   border-radius:var(--r-pill);
-  font-size:var(--lab);letter-spacing:.16em;text-transform:uppercase;
-  color:#CBBDAC;white-space:nowrap;
-  transition:color .3s var(--e),background .3s var(--e)}
+  border:1px solid rgba(186,118,62,.5);
+  background:linear-gradient(177deg,rgba(214,150,92,.14),rgba(120,64,26,.1));
+  box-shadow:inset 0 1px 0 rgba(255,228,190,.14);
+  font-size:var(--lab);letter-spacing:.13em;text-transform:uppercase;
+  color:#E8C7A0;white-space:nowrap;
+  transition:border-color .3s var(--e),background .3s var(--e),
+    color .3s var(--e),box-shadow .3s var(--e)}
 @media (hover:hover) and (pointer:fine){
-  .nav a:hover{color:var(--ivory);background:rgba(243,237,226,.07)}
+  .nav a:hover{border-color:rgba(214,150,92,.85);color:#FAE6C8;
+    background:linear-gradient(177deg,rgba(226,168,112,.26),rgba(140,78,32,.18));
+    box-shadow:inset 0 1px 0 rgba(255,236,206,.3),0 4px 14px rgba(62,32,10,.4)}
+}
+.nav a[aria-current]{background:var(--metal);color:var(--metal-ink);font-weight:500;
+  border-color:rgba(110,64,26,.6);
+  box-shadow:var(--metal-edge),0 5px 14px rgba(62,32,10,.5);
+  text-shadow:0 1px 0 rgba(255,242,218,.5)}
+@media (hover:hover) and (pointer:fine){
+  .nav a[aria-current]:hover{background:var(--metal-lit);color:var(--metal-ink);
+    border-color:rgba(110,64,26,.6)}
 }
 /* between the breakpoint and a wide screen everything pulls its elbows
    in so the five tabs, the house's name and the tools all fit on one
    line without any of them being cut */
-@media (max-width:1400px){
-  .nav{gap:0;padding:3px}
-  .nav a{padding-inline:var(--s3);letter-spacing:.08em;min-height:2.15rem}
-  .bar{gap:.75rem}
-  .tools{gap:.5rem}
-  .bar .btn{padding:.6rem .95rem;letter-spacing:.14em}
-  .lang button{min-width:2rem;padding-inline:.15rem}
+@media (max-width:1460px){
+  .nav{gap:var(--s1)}
+  .nav a{padding-inline:var(--s3);letter-spacing:.07em;min-height:2.2rem}
+  .bar{gap:.7rem}
+  .tools{gap:.45rem}
+  .bar .btn{padding:.6rem .9rem;letter-spacing:.12em}
+  .lang button{min-width:1.9rem;padding-inline:.1rem}
 }
-.nav a[aria-current]{background:var(--metal);color:var(--metal-ink);font-weight:500;
-  box-shadow:var(--metal-edge),0 4px 12px rgba(62,32,10,.42);
-  text-shadow:0 1px 0 rgba(255,242,218,.5)}
-@media (hover:hover) and (pointer:fine){
-  .nav a[aria-current]:hover{background:var(--metal-lit);color:var(--metal-ink)}
+@media (max-width:1300px){
+  .nav a{padding-inline:var(--s2);letter-spacing:.05em}
 }
 
 .tools{display:flex;align-items:center;gap:.9rem;flex:none;margin-left:auto}
@@ -382,19 +392,25 @@ body.curtained{overflow:hidden}
 .scene{position:absolute;inset:0;opacity:0;overflow:hidden;
   transition:opacity 1250ms cubic-bezier(.16,.84,.28,1);will-change:opacity}
 .scene.on{opacity:1}
-.scene .lay{position:absolute;inset:0;display:block;width:100%;height:100%;
+/* The layer is taller than the scene and hangs over it top and bottom,
+   which is the room the slow drift moves through. Its width is still
+   exactly the scene's, so nothing is ever taken off the sides — the
+   bowl in chapter two runs to both edges of its own photograph and had
+   its rims shaved by a zoom. */
+.scene .lay{position:absolute;inset:-10% 0;display:block;width:100%;height:120%;
   object-fit:cover;object-position:var(--pos,50% 42%);
   transform:translateZ(0);backface-visibility:hidden}
 .scene .lay.b{opacity:0}
 .scene.xf .lay{transition:opacity 520ms cubic-bezier(.22,.61,.36,1)}
-/* A slow push: eight percent and a drift across, out and back over nine
-   seconds, which reads as a camera breathing. It was three and a half
-   percent over four — about nine hundredths of a percent a second, which
-   is below what an eye registers as movement at all. */
-@keyframes kenburns{from{transform:scale(1.005) translate3d(0,0,0)}
-  to{transform:scale(1.085) translate3d(-1.1%,-2.2%,0)}}
+/* A slow drift down the picture and back, out and back over nine
+   seconds: about seven pixels a second, which reads as a camera
+   breathing. It is a pan and not a push, so the frame never closes in
+   on the subject — a zoom crops every side at once, and these
+   photographs have no margin to give on the sides. */
+@keyframes kenburns{from{transform:translate3d(0,-6%,0)}
+  to{transform:translate3d(0,6%,0)}}
 .scene[data-motion="burns"].on .lay.a{
-  animation:kenburns 9s cubic-bezier(.42,0,.58,1) infinite alternate}
+  animation:kenburns 11s cubic-bezier(.5,0,.5,1) infinite alternate}
 .hero.hold .scene .lay{animation-play-state:paused!important}
 
 /* the light in the room, and the dark the words are read on */
