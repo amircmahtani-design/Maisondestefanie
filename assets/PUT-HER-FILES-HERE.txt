@@ -6,6 +6,34 @@ warm ivory, antique gold, and one warm source of light falling across
 the subject. The hero story stays rose → essence → copper still →
 finished bottle with petals moving through the frame.
 
+THE SITE IS SIX PAGES
+---------------------
+index.html, maison.html, bespoke.html, story.html, creations.html and
+visit.html. They are GENERATED. Do not edit them by hand — the shell is
+tools/shell.html, the sections are tools/sections.html, and after
+changing either you run:
+
+  python3 tools/pages.py
+
+The stylesheet is assets/site.css and the script is assets/site.js, both
+shared by all six.
+
+PAGE OPENINGS
+-------------
+Each page opens on one scene composed three times:
+
+  assets/heroes/<page>/desktop.webp   16:9, subject right, left half dark
+  assets/heroes/<page>/ipad.webp      4:3, same composition
+  assets/heroes/<page>/iphone.webp    9:16, subject top, words beneath
+
+Drop replacement PNGs into a folder of the same shape and run:
+
+  python3 tools/heroes.py <folder>
+
+It writes the WebP the page actually serves — the PNGs are around 2 MB
+each and the WebP about 80 KB, which is the difference between a page
+that opens and one that waits.
+
 CURRENT ARTWORK
 ---------------
 The twelve shelf images and three location images in assets/img are

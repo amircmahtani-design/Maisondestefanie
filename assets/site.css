@@ -1,0 +1,1044 @@
+/* ══════════════════════════════════════════════════════════════
+   LA MAISON DE STEFANIE
+   A cinematic perfume story. Near-black ground, warm ivory type,
+   antique gold used only where something is alive. Chiaroscuro:
+   one warm source, everything else falling into shadow.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── 1. TOKENS ─────────────────────────────────────────────── */
+:root{
+  /* ground */
+  --noir:#0A0705; --soot:#0F0B08; --char:#161009; --char-2:#1D150E;
+  /* cream panels — daylight through the shop door */
+  --cream:#EDE5D6; --cream-2:#E1D6C2; --ink:#241C16;
+  /* type */
+  --ivory:#F3EDE2; --ivory-2:#E6DCCC; --dim:#B8A892; --dimmer:#A6947E;
+  /* metal and glass */
+  --gold:#B99358; --gold-lit:#DCBF8B; --amber:#C98A3A;
+  /* the same gold, darkened just enough for small text on the paper ground */
+  --gold-ink:#82591C;
+  --rose:#C2818A; --burgundy:#6E2333;
+  /* Polished metal: the sheen runs across the middle, the edge above it
+     catches the light and the one below it is in shadow. Pulled towards
+     copper rather than pure gold, so the pills belong to the same house
+     as the still she distils on — the highlight stays warm cream, which
+     is where her mark lives. */
+  --metal:linear-gradient(177deg,#F8E2BC 0%,#E2B47A 15%,#C4824A 36%,
+                          #93522A 52%,#BE8250 70%,#E4BC90 88%,#F7E0B9 100%);
+  --metal-lit:linear-gradient(177deg,#FEF0D6 0%,#EEC793 15%,#D4985C 36%,
+                              #A66338 52%,#CF9663 70%,#F0D2A6 88%,#FDEDCD 100%);
+  --metal-edge:inset 0 1px 0 rgba(255,246,226,.82),
+               inset 0 -1px 0 rgba(62,32,10,.6),
+               inset 0 0 0 1px rgba(110,64,26,.4);
+  --metal-ink:#1C1007;
+  /* edges */
+  --edge:rgba(243,237,226,.11); --edge-2:rgba(243,237,226,.2);
+  --edge-ink:rgba(36,28,22,.16);
+  /* type stacks */
+  --display:"Bodoni Moda","GFS Didot",Didot,'Times New Roman',Georgia,serif;
+  --serif:"Cormorant Garamond","GFS Didot",Georgia,serif;
+  --sans:"Commissioner",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Cormorant Garamond",cursive;
+  --fancy:var(--display);
+  /* ── SPACING ──
+     One scale. Nothing off it. Space inside a group is always smaller than
+     the space between groups, which is what makes a page read as composed
+     rather than as a list of things that happen to be near each other. */
+  --s1:4px;  --s2:8px;   --s3:12px;  --s4:16px;  --s5:24px;
+  --s6:32px; --s7:48px;  --s8:64px;  --s9:96px;  --s10:128px;
+
+  /* ── TYPE SCALE ──
+     A 1.333 fourth, editorial. Each step is fluid between a phone and a
+     wide desktop, so there is one ladder rather than a clamp invented at
+     each call site. */
+  --t-micro:clamp(.74rem,.70rem + .16vw,.84rem);   /* labels, eyebrows   */
+  --t-small:clamp(.88rem,.84rem + .20vw,1.00rem);  /* captions, notes    */
+  --t-body:clamp(1.02rem,.96rem + .26vw,1.16rem);  /* running text       */
+  --t-lede:clamp(1.14rem,1.04rem + .46vw,1.40rem); /* standfirsts        */
+  --t-h4:clamp(1.12rem,1.02rem + .50vw,1.42rem);
+  --t-h3:clamp(1.40rem,1.20rem + 1.00vw,1.90rem);
+  --t-h2:clamp(1.90rem,1.45rem + 2.25vw,3.30rem);
+  --t-h1:clamp(2.40rem,1.60rem + 3.70vw,4.80rem);
+
+  /* line-height and tracking move opposite to size: large type wants less
+     of both, small caps want a great deal of tracking to stay legible */
+  --lh-tight:1.06; --lh-head:1.16; --lh-body:1.62;
+  --tr-head:-.012em; --tr-caps:.2em; --tr-micro:.26em;
+
+  /* ── RADIUS ──
+     Soft throughout. The pill is for anything that reads as a control. */
+  --r-xs:6px; --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:30px;
+  --r-pill:999px;
+
+  /* rhythm */
+  --pad:clamp(1.25rem,4.5vw,5rem);
+  --gap:clamp(2.5rem,6vw,6rem);
+  --sec:clamp(4.5rem,11vw,10rem);
+  --lab:var(--t-micro);
+  --e:cubic-bezier(.22,.61,.36,1);
+  --slow:cubic-bezier(.16,.84,.28,1);
+  --rail:0px;
+}
+@media (min-width:1180px){ :root{ --rail:4.5rem } }
+
+*,*::before,*::after{box-sizing:border-box}
+/* Bodoni Moda carries an optical-size axis: let the browser use it, so a
+   headline keeps its hairlines and a 10px label does not */
+h1,h2,h3,h4,.wordmark,.h-display,.monogram{font-optical-sizing:auto}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:5.5rem}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+
+body{
+  margin:0; background:var(--noir); color:var(--ivory);
+  font-family:var(--sans); font-weight:300;
+  font-size:clamp(.92rem,.88rem + .18vw,1rem); line-height:1.75;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.05;font-family:var(--display)}
+h1.chap-title{font-size:clamp(2.5rem,1.1rem + 3.7vw,4.8rem)}
+p{margin:0 0 1em}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--gold-lit);outline-offset:3px;border-radius:1px}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;left:-9999px;top:0;z-index:600;background:var(--gold);color:#120E09;
+  padding:.85rem 1.2rem;font-size:var(--lab);letter-spacing:.2em;text-transform:uppercase}
+.skip:focus{left:.6rem;top:.6rem}
+
+/* ── 2. SHARED DEVICES ─────────────────────────────────────── */
+.lab{font-size:var(--t-micro);font-weight:400;letter-spacing:var(--tr-micro);
+  text-transform:uppercase;color:var(--dim);margin:0 0 var(--s5);
+  display:flex;align-items:center;gap:var(--s3)}
+.lab::before{content:"";width:1.9rem;height:1px;background:var(--gold);flex:none}
+.lab.bare::before{display:none}
+.lab.mid{justify-content:center}
+.pale .lab{color:#6C5C4B}
+.pale .lab::before{background:#a8813f}
+
+.h-display{font-family:var(--display);text-transform:uppercase;
+  font-size:var(--t-h2);letter-spacing:.03em;line-height:var(--lh-tight);
+  text-wrap:balance}
+.h-display em{font-style:normal;color:var(--gold);display:block}
+.pale .h-display em{color:#996A22}
+.h-soft{font-family:var(--serif);font-weight:300;line-height:var(--lh-head);
+  font-size:var(--t-h2);letter-spacing:var(--tr-head);text-wrap:balance}
+.h-soft em{font-style:italic;color:var(--gold-lit)}
+.pale .h-soft em{color:#8A5F1E}
+
+.body{color:var(--ivory-2);max-width:62ch;font-size:var(--t-body);
+  line-height:var(--lh-body);text-wrap:pretty}
+.pale .body{color:#54483E}
+.muted{color:var(--dim)}
+
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--edge-2),transparent);border:0;margin:0}
+.rule.short{width:3.5rem;background:var(--gold);opacity:.7;margin:1.6rem auto}
+
+.arrow{display:inline-grid;place-items:center;width:2.15rem;height:2.15rem;flex:none;
+  border:1px solid currentColor;border-radius:50%;font-size:.66rem;
+  transition:transform .4s var(--e),border-color .3s,background .3s}
+.more{display:inline-flex;align-items:center;gap:var(--s3);min-height:2.75rem;
+  font-size:var(--t-micro);letter-spacing:var(--tr-caps);text-transform:uppercase;
+  transition:color .3s;color:var(--ivory)}
+.more:hover{color:var(--gold-lit)} .more:hover .arrow{transform:translateX(5px);border-color:var(--gold)}
+.pale .more{color:var(--ink)} .pale .more:hover{color:#8A5F1E}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s3);
+  min-height:3rem;padding:var(--s3) var(--s6);border-radius:var(--r-pill);
+  font-size:var(--t-micro);letter-spacing:var(--tr-caps);
+  text-transform:uppercase;position:relative;overflow:hidden;
+  transition:background .35s var(--e),color .35s,border-color .35s,
+    transform .12s var(--e)}
+.btn:active{transform:scale(.97)}
+.btn-solid{background:var(--metal);color:var(--metal-ink);font-weight:500;
+  box-shadow:var(--metal-edge),0 8px 20px rgba(0,0,0,.42);
+  text-shadow:0 1px 0 rgba(255,242,218,.5)}
+.btn-solid:hover{background:var(--metal-lit)}
+.btn-solid:active{box-shadow:var(--metal-edge),0 3px 10px rgba(0,0,0,.5)}
+.btn-line{border:1px solid var(--edge-2);color:var(--ivory)}
+.btn-line:hover{border-color:var(--gold);color:var(--gold-lit);background:rgba(185,147,88,.07)}
+.pale .btn-line{border-color:rgba(36,28,22,.28);color:var(--ink)}
+.pale .btn-line:hover{border-color:#8A5F1E;color:#8A5F1E;background:rgba(138,95,30,.06)}
+
+.linky{display:inline-block;font-size:var(--t-micro);letter-spacing:var(--tr-caps);
+  text-transform:uppercase;color:var(--dim);border-bottom:1px solid var(--edge);
+  padding:var(--s1) 0 var(--s1);transition:color .3s,border-color .3s}
+.linky:hover{color:var(--gold-lit);border-color:var(--gold)}
+.stars{color:var(--gold-lit);letter-spacing:.24em;font-size:.72rem}
+
+/* the grain that sits over the whole page */
+.grain{position:fixed;inset:-40%;z-index:250;pointer-events:none;opacity:.04;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grainshift 8s steps(6) infinite}
+@keyframes grainshift{
+  0%,100%{transform:translate(0,0)}17%{transform:translate(-3%,-2%)}34%{transform:translate(2%,-4%)}
+  50%{transform:translate(-2%,3%)}67%{transform:translate(3%,1%)}84%{transform:translate(-1%,-3%)}}
+
+/* ── 3. REVEAL — only ever applied once JS is running ──────── */
+.js .rv{opacity:0;transform:translateY(18px);
+  transition:opacity 1s var(--slow),transform 1s var(--slow)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv[data-d="1"]{transition-delay:.09s}
+.js .rv[data-d="2"]{transition-delay:.18s}
+.js .rv[data-d="3"]{transition-delay:.27s}
+
+/* ── 4. FIGURES — every picture sits in a fixed box, no shift ─ */
+.fig{position:relative;overflow:hidden;background:var(--char);isolation:isolate;
+  border-radius:var(--r-lg)}
+.fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.1s var(--e)}
+.fig img.on{opacity:1}
+/* Every photograph on this page is lit from one side and falls away into
+   the dark. Stefanie's own portrait is the exception — it was taken under
+   a flash in a bright room — so the frame closes the corners for it and
+   it sits in the page instead of jumping out of it. */
+.fig::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 100% at 62% 22%,rgba(201,138,58,.1),transparent 58%),
+             radial-gradient(86% 76% at 50% 44%,transparent 46%,rgba(10,7,5,.52) 100%),
+             linear-gradient(0deg,rgba(10,7,5,.5),transparent 55%)}
+.fig .ph{position:absolute;inset:0;display:grid;place-items:center;padding:1.5rem;text-align:center;
+  font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dimmer)}
+.fig figcaption{position:absolute;left:0;bottom:0;padding:1rem 1.2rem;z-index:2;
+  font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+
+/* ── 5. HEADER ─────────────────────────────────────────────── */
+.bar{position:fixed;inset:0 0 auto;z-index:200;display:flex;align-items:center;gap:1.25rem;
+  padding:1rem var(--pad);transition:padding .5s var(--e)}
+.bar::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;
+  transition:opacity .5s var(--e);background:rgba(10,7,5,.88);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:1px solid var(--edge)}
+.bar.stuck::before{opacity:1}
+.bar.stuck{padding-block:.7rem}
+
+.mark{display:flex;align-items:center;gap:.85rem;flex:0 1 auto;min-width:0}
+.monogram{width:2.5rem;height:2.5rem;flex:none;display:grid;place-items:center;
+  border:1px solid var(--edge-2);border-radius:50%;font-family:var(--display);
+  font-size:.82rem;letter-spacing:.06em;color:var(--gold-lit);transition:border-color .4s}
+.mark:hover .monogram{border-color:var(--gold)}
+.wordmark{font-family:var(--display);font-size:clamp(.78rem,.7rem + .35vw,.95rem);
+  letter-spacing:.24em;text-transform:uppercase;line-height:1.35;white-space:nowrap}
+.wordmark small{display:block;font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;
+  color:var(--dim);margin-top:.25rem}
+/* below this the wordmark stops being one line, or it walks the
+   language switch and the menu button straight off the screen */
+@media (max-width:600px){
+  .mark{gap:.6rem}
+  .monogram{width:2.2rem;height:2.2rem;font-size:.72rem}
+  .wordmark{white-space:normal;font-size:.64rem;letter-spacing:.13em;
+    line-height:1.45;max-width:8.6rem}
+  .wordmark small{font-size:.44rem;letter-spacing:.34em;margin-top:.15rem}
+  .tools{gap:.6rem}
+  .lang{font-size:.62rem}
+}
+
+.nav{display:flex;gap:clamp(1rem,2.2vw,2.2rem);margin-inline:auto}
+.nav a{font-size:var(--lab);letter-spacing:.22em;text-transform:uppercase;color:#CBBDAC;
+  position:relative;padding-block:.35rem;transition:color .3s}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
+  background:var(--gold);transition:right .45s var(--e)}
+.nav a:hover,.nav a[aria-current="true"]{color:var(--ivory)}
+.nav a:hover::after,.nav a[aria-current="true"]::after{right:0}
+
+.tools{display:flex;align-items:center;gap:.9rem;flex:none;margin-left:auto}
+.lang{display:flex;align-items:center;gap:.35rem;font-size:var(--lab);letter-spacing:.18em;color:var(--dimmer)}
+.lang button{padding:.35rem;min-width:2.5rem;min-height:2.75rem;transition:color .3s}
+.lang button[aria-pressed="true"]{color:var(--ivory)}
+.bar .btn{display:none}
+@media (min-width:1080px){ .bar .btn{display:inline-flex;min-height:2.6rem;padding:.6rem 1.25rem} }
+
+.burger{width:2.75rem;height:2.75rem;flex:none;border:1px solid var(--edge-2);border-radius:50%;
+  display:none;place-items:center;align-content:center;gap:5px;transition:border-color .3s}
+.burger:hover{border-color:var(--gold)}
+.burger i{display:block;width:13px;height:1px;background:var(--ivory);transition:transform .3s var(--e)}
+body.menu .burger i:first-child{transform:translateY(3px) rotate(45deg)}
+body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
+
+@media (max-width:1079px){
+  .burger{display:grid}
+  .nav{position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:center;
+    gap:1.6rem;margin:0;padding:5rem var(--pad) 7rem;background:rgba(8,5,4,.985);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    opacity:0;visibility:hidden;transition:opacity .4s var(--e),visibility .4s}
+  .nav a{font-family:var(--display);font-size:clamp(1.25rem,5vw,1.8rem);letter-spacing:.1em;
+    text-transform:uppercase;padding-block:.5rem}
+  body.menu .nav{opacity:1;visibility:visible}
+}
+
+/* ── 6. THE CHAPTER RAIL ───────────────────────────────────── */
+.chapters{position:fixed;right:calc(var(--pad) * .55);top:50%;transform:translateY(-50%);
+  z-index:150;display:none;flex-direction:column;gap:.15rem;align-items:flex-end}
+@media (min-width:1180px){ .chapters{display:flex} }
+.chapters a{display:flex;align-items:center;gap:.7rem;padding:.42rem 0;
+  font-size:.6rem;letter-spacing:.2em;color:var(--dimmer);transition:color .35s}
+.chapters a span.n{font-family:var(--display);font-size:.68rem;letter-spacing:.14em}
+.chapters a span.t{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;
+  text-transform:uppercase;transition:max-width .45s var(--e),opacity .35s}
+.chapters a i{width:1.4rem;height:1px;background:currentColor;display:block;
+  transition:width .45s var(--e)}
+.chapters a:hover,.chapters a.on{color:var(--gold-lit)}
+.chapters a:hover i,.chapters a.on i{width:2.4rem}
+.chapters a:hover span.t,.chapters a:focus-visible span.t{max-width:12rem;opacity:1}
+
+/* ══════════════════════════════════════════════════════════════
+   THE CURTAIN
+   Her mark, then the flacon drawn in a single gold line, then the page.
+   Every stroke is normalised with pathLength="1", so one rule animates
+   paths of wildly different lengths and each carries its own delay and
+   duration as a custom property.
+   ══════════════════════════════════════════════════════════════ */
+.curtain{position:fixed;inset:0;z-index:600;background:var(--noir);
+  display:grid;place-items:center;
+  transition:opacity .8s var(--e),visibility .8s}
+.curtain[hidden]{display:none}
+.curtain.gone{opacity:0;visibility:hidden;pointer-events:none}
+.curtain-in{display:grid;justify-items:center;gap:clamp(var(--s5),3.4vh,var(--s7));
+  padding:var(--s7);text-align:center}
+
+/* her own mark, the one already on her tab */
+/* her own mark, cut out of the app icon so the icon's near-black tile
+   does not sit as a lighter square on the curtain's black */
+.curtain-mark{display:block;width:clamp(58px,8vh,74px);height:auto;
+  opacity:0;animation:curtainIn .7s var(--e) .15s forwards}
+
+.curtain-bottle{width:auto;height:clamp(176px,38vh,300px);overflow:visible}
+.curtain-bottle path{
+  stroke:var(--gold-lit);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:draw var(--t,.6s) cubic-bezier(.65,0,.35,1) var(--d,0s) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.curtain-word{margin:0;font-family:var(--display);text-transform:uppercase;
+  font-size:var(--t-h4);letter-spacing:.2em;color:var(--ivory);
+  opacity:0;animation:curtainIn .8s var(--e) 2.35s forwards}
+.curtain-word small{display:block;margin-top:var(--s3);
+  font-family:var(--sans);font-size:.56rem;letter-spacing:.44em;color:var(--dim)}
+@keyframes curtainIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* asked for less movement, or no script: there is no curtain at all */
+@media (prefers-reduced-motion:reduce){ .curtain{display:none} }
+.no-js .curtain{display:none}
+body.curtained{overflow:hidden}
+
+/* ══════════════════════════════════════════════════════════════
+   THE HERO
+   One screen. The words hold still on the left while the room
+   behind them changes: the rose, the essence, the still, then the
+   bottle with its petals drifting. Nothing is pinned and nothing
+   is four screens tall, so the page scrolls the way a page does.
+   ══════════════════════════════════════════════════════════════ */
+.hero{position:relative;min-height:var(--stage,100svh);overflow:hidden;
+  background:var(--noir);isolation:isolate;
+  display:grid;align-items:center;
+  padding:clamp(6rem,13vh,9rem) var(--pad) clamp(4rem,9vh,6rem)}
+
+/* The scenes, stacked; only the live one is lit.
+
+   The plate is portrait, because the photographs are. Full-bleed across a
+   16:9 screen a 9:16 frame shows barely a third of its own height and the
+   bottle simply will not fit; from 46% it shows nearly sixty per cent and
+   every subject is whole. It bleeds off the right and the foot, and the
+   scrim below feathers its left edge into the ground, so the words sit on
+   darkness and the room appears to run off the screen. */
+.hero-scenes{position:absolute;inset:0 0 0 46%;z-index:0}
+@media (max-width:899px){ .hero-scenes{inset:0} }
+.scene{position:absolute;inset:0;opacity:0;overflow:hidden;
+  transition:opacity 1250ms cubic-bezier(.16,.84,.28,1);will-change:opacity}
+.scene.on{opacity:1}
+.scene .lay{position:absolute;inset:0;display:block;width:100%;height:100%;
+  object-fit:cover;object-position:var(--pos,50% 42%);
+  transform:translateZ(0);backface-visibility:hidden}
+.scene .lay.b{opacity:0}
+.scene.xf .lay{transition:opacity 520ms cubic-bezier(.22,.61,.36,1)}
+/* A slow push: eight percent and a drift across, out and back over nine
+   seconds, which reads as a camera breathing. It was three and a half
+   percent over four — about nine hundredths of a percent a second, which
+   is below what an eye registers as movement at all. */
+@keyframes kenburns{from{transform:scale(1.005) translate3d(0,0,0)}
+  to{transform:scale(1.085) translate3d(-1.1%,-2.2%,0)}}
+.scene[data-motion="burns"].on .lay.a{
+  animation:kenburns 9s cubic-bezier(.42,0,.58,1) infinite alternate}
+.hero.hold .scene .lay{animation-play-state:paused!important}
+
+/* the light in the room, and the dark the words are read on */
+.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(52% 58% at 62% 44%,rgba(201,138,58,.16),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(10,7,5,.96) 0%,rgba(10,7,5,.95) 32%,
+      rgba(10,7,5,.84) 44%,rgba(10,7,5,.46) 56%,rgba(10,7,5,.12) 72%,rgba(10,7,5,0) 88%),
+    linear-gradient(270deg,rgba(10,7,5,.93) 0%,rgba(10,7,5,.86) 6%,
+      rgba(10,7,5,.54) 13%,rgba(10,7,5,.18) 20%,rgba(10,7,5,0) 28%),
+    linear-gradient(0deg,rgba(10,7,5,.80) 0%,rgba(10,7,5,.10) 26%,transparent 46%),
+    linear-gradient(180deg,rgba(10,7,5,.72) 0%,rgba(10,7,5,0) 22%)}
+
+/* the words */
+.hero-copy{position:relative;z-index:4;max-width:min(34rem,46vw);
+  margin-left:clamp(0rem,4vw,5rem)}
+.hero-eyebrow{margin:0 0 var(--s5);font-size:var(--t-small);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lit)}
+.hero h1{font-family:var(--display);text-transform:uppercase;
+  font-size:var(--t-h1);line-height:var(--lh-tight);
+  letter-spacing:.01em;color:#F7F2E9;margin:0 0 var(--s5);text-wrap:balance}
+.hero h1 em{display:block;font-style:normal}
+.hero-lede{font-size:clamp(1.22rem,1.06rem + .62vw,1.62rem);line-height:1.46;
+  font-family:var(--serif);color:var(--ivory);max-width:28ch;
+  margin:0 0 var(--s7);text-wrap:pretty}
+.hero-acts{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4) var(--s7)}
+.hero-cta{display:inline-flex;align-items:center;gap:var(--s4);min-height:3.4rem;
+  padding:var(--s3) var(--s7);border:1px solid rgba(120,86,30,.5);color:var(--metal-ink);
+  border-radius:var(--r-pill);background:var(--metal);font-weight:500;
+  box-shadow:var(--metal-edge),0 10px 26px rgba(0,0,0,.5);
+  text-shadow:0 1px 0 rgba(255,242,218,.5);
+  font-size:var(--t-micro);letter-spacing:var(--tr-caps);text-transform:uppercase;
+  transition:background .35s var(--e),box-shadow .35s var(--e),transform .12s var(--e)}
+.hero-cta svg{width:.72rem;height:.72rem;flex:none;transition:transform .35s var(--e)}
+.hero-alt{font-size:var(--t-small);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ivory-2);border-bottom:1px solid var(--edge);padding-bottom:var(--s1);
+  min-height:2.75rem;display:inline-flex;align-items:center;
+  transition:color .3s,border-color .3s}
+@media (hover:hover) and (pointer:fine){
+  .hero-cta:hover{background:var(--metal-lit);
+    box-shadow:var(--metal-edge),0 12px 30px rgba(0,0,0,.55)}
+  .hero-cta:hover svg{transform:translateX(4px)}
+  .hero-alt:hover{color:var(--gold-lit);border-color:var(--gold)}
+}
+.hero-cta:active{transform:scale(.985)}
+
+.hero-nums{display:flex;flex-direction:column;align-items:center;gap:.1rem;
+  position:relative;padding-block:.4rem}
+.hero-nums::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;
+  background:var(--edge);transform:translateX(-50%)}
+.hero-nums button{position:relative;padding:var(--s2);min-width:2.75rem;min-height:2.75rem;
+  border-radius:var(--r-pill);
+  display:grid;place-items:center;font-family:var(--fancy);font-size:.95rem;
+  letter-spacing:.06em;color:var(--dim-lit);opacity:.78;
+  transition:color .35s var(--e),opacity .35s var(--e)}
+.hero-nums button[aria-current="true"]{color:var(--ivory);opacity:1}
+.hero-nums button::after{content:"";position:absolute;left:50%;top:.35rem;bottom:.35rem;
+  width:1px;background:var(--gold);transform:translateX(-50%) scaleY(0);
+  transform-origin:top;transition:transform .4s var(--e)}
+.hero-nums button[aria-current="true"]::after{transform:translateX(-50%) scaleY(1)}
+@media (hover:hover) and (pointer:fine){ .hero-nums button:hover{color:var(--ivory)} }
+
+@media (max-width:899px){
+  /* the picture takes the top of the screen on its own, the words sit
+     under it on the scrim — nothing is read over the subject */
+  .hero{align-items:end;padding-top:clamp(4.5rem,42vh,22rem)}
+  .hero::after{background:
+    linear-gradient(0deg,rgba(10,7,5,.97) 0%,rgba(10,7,5,.95) 42%,
+      rgba(10,7,5,.74) 56%,rgba(10,7,5,.24) 76%,rgba(10,7,5,0) 92%),
+    linear-gradient(180deg,rgba(10,7,5,.74) 0%,rgba(10,7,5,0) 20%)}
+  .hero-copy{max-width:none;margin-left:0}
+  .hero-lede{max-width:34ch}
+  .scene .lay{object-position:var(--pos-m,50% 34%)}
+}
+
+/* ══ A MEMORY, DISTILLED ══════════════════════════════════════ */
+.distilled{background:linear-gradient(180deg,var(--noir),var(--soot) 45%,var(--noir));
+  text-align:center;position:relative;overflow:hidden;
+  padding:clamp(4rem,9vw,7.5rem) var(--pad)}
+/* one line on a wide screen, and it has to hold that even when the web
+   font has not arrived and a fallback with wider metrics stands in */
+.distilled h2{font-family:var(--display);text-transform:uppercase;
+  font-size:var(--t-h3);letter-spacing:.18em;
+  line-height:var(--lh-head);color:var(--ivory);margin:0 auto;text-wrap:balance}
+.distilled .rule.short{margin:1.4rem auto clamp(2.4rem,5vw,3.6rem)}
+.steps{display:grid;gap:0;grid-template-columns:1fr;max-width:66rem;margin-inline:auto}
+@media (min-width:820px){ .steps{grid-template-columns:repeat(3,1fr)} }
+.step{padding:var(--s7) clamp(var(--s4),2.6vw,var(--s6));position:relative}
+@media (min-width:820px){
+  .step + .step::before{content:"";position:absolute;left:0;top:6%;bottom:6%;width:1px;
+    background:linear-gradient(180deg,transparent,var(--edge-2),transparent)}
+}
+@media (max-width:819px){ .step + .step{border-top:1px solid var(--edge)} }
+.step .n{font-family:var(--fancy);font-size:var(--t-small);letter-spacing:.24em;
+  color:var(--dim-lit);display:block;margin-bottom:var(--s4);
+  font-variant-numeric:tabular-nums}
+.step h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.2em;
+  font-size:var(--t-h4);color:var(--ivory);margin:0;line-height:var(--lh-head)}
+.step .tick{display:block;width:var(--s5);height:1px;background:var(--gold);
+  margin:var(--s4) auto;opacity:.75;border-radius:var(--r-pill)}
+.step p{color:var(--ivory-2);font-size:var(--t-body);margin:0;max-width:30ch;
+  margin-inline:auto;line-height:var(--lh-body);text-wrap:pretty}
+.distilled .aside{position:absolute;right:var(--pad);bottom:clamp(1rem,3vh,2rem);
+  margin:0;font-size:.55rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--dimmer);display:none}
+@media (min-width:1100px){ .distilled .aside{display:block} }
+
+/* A full-bleed breath between sections: one picture across the page with a
+   single line laid over it. The page is otherwise column after column, and
+   an editorial page needs somewhere to stop reading. */
+.band{position:relative;margin:0;overflow:hidden;background:var(--char);
+  aspect-ratio:21/9;isolation:isolate}
+@media (min-width:900px){ .band{border-radius:var(--r-xl);
+  margin-inline:var(--pad)} }
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.1s var(--e)}
+.band img.on{opacity:1}
+.band::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(0deg,rgba(10,7,5,.86) 0%,rgba(10,7,5,.24) 34%,
+    rgba(10,7,5,0) 62%),linear-gradient(180deg,rgba(10,7,5,.5),transparent 30%)}
+.band figcaption{position:absolute;z-index:2;left:var(--pad);right:var(--pad);
+  bottom:clamp(1.6rem,5vw,3.4rem);margin:0;
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:clamp(1.1rem,.9rem + 1.5vw,2.1rem);line-height:1.34;
+  color:var(--ivory);max-width:26ch;text-wrap:balance}
+.band .ph{position:absolute;inset:0;display:grid;place-items:center;
+  font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dimmer)}
+@media (max-width:760px){
+  /* Taller than the 21:9 it is on a wide screen, so the rose comes up
+     behind the line — but 4:3 threw away two fifths of the picture's
+     width, and the rose went with it. 5:4 keeps the flower in frame. */
+  .band{aspect-ratio:5/4}
+  .band::after{background:linear-gradient(0deg,rgba(10,7,5,.95) 0%,
+    rgba(10,7,5,.68) 38%,rgba(10,7,5,.22) 64%,rgba(10,7,5,0) 84%)}
+}
+
+/* ── 8. SECTION SHELL ──────────────────────────────────────── */
+.sec{padding:var(--sec) var(--pad);position:relative}
+/* proximity: the heading belongs to its standfirst, the standfirst to the
+   block below it, and each is a smaller gap than the gap between sections */
+.sec .lab + *{margin-top:0}
+.sec h2 + .body,.sec h2 + p{margin-top:var(--s5)}
+.sec.tight{padding-block:clamp(3.2rem,7vw,6rem)}
+/* Paper, not a flat fill: the dark sections have a light source in them and
+   the cream ones looked switched-off beside them. Same room, other hour. */
+.pale{background:var(--cream);color:var(--ink);position:relative;isolation:isolate}
+.pale::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(58% 48% at 78% 8%,rgba(255,250,240,.85),transparent 62%),
+    radial-gradient(70% 60% at 8% 96%,rgba(150,116,70,.13),transparent 66%),
+    linear-gradient(180deg,rgba(120,92,56,.05),transparent 26%)}
+.pale > *{position:relative;z-index:1}
+.pale .body,.pale p{color:#54483E}
+.pale h2,.pale h3{color:var(--ink)}
+.wrap{max-width:78rem;margin-inline:auto}
+.wrap.narrow{max-width:52rem}
+
+/* two-column editorial split */
+.split{display:grid;gap:var(--gap);align-items:center;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
+.split.wide-left{grid-template-columns:1fr}
+@media (min-width:900px){
+  .split.wide-left{grid-template-columns:1.05fr .95fr}
+  .split.wide-right{grid-template-columns:.95fr 1.05fr}
+  .split.flip > :first-child{order:2}
+}
+
+
+/* ── 10. HER WORDS ─────────────────────────────────────────── */
+.words-fig{aspect-ratio:4/5;width:100%}
+blockquote{margin:0}
+.pull-q{font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:var(--t-h3);line-height:var(--lh-head);color:var(--ivory);
+  max-width:30ch;margin:0 0 var(--s6);text-wrap:balance}
+.pull-q::before{content:"\201C";color:var(--gold);margin-right:.06em}
+.byline{display:inline-flex;align-items:center;gap:.85rem}
+.byline .face{width:2.6rem;height:2.6rem;border-radius:50%;overflow:hidden;flex:none;
+  background:var(--char);border:1px solid var(--edge);position:relative}
+.byline .face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.byline .sig{font-family:var(--hand);font-size:1.28rem;color:var(--gold-lit);line-height:1.2}
+.pale .byline .sig{color:var(--gold-ink)}
+
+/* ── 11. THE BENCH (threads) ───────────────────────────────── */
+.bench-head{display:grid;gap:clamp(1.6rem,4vw,3rem);align-items:end;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+@media (min-width:900px){ .bench-head{grid-template-columns:1.1fr .9fr} }
+.threads{display:grid;gap:clamp(.9rem,2vw,1.4rem);grid-template-columns:1fr}
+@media (min-width:620px){ .threads{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1240px){ .threads{grid-template-columns:repeat(5,1fr)} }
+/* an odd one out takes the whole row rather than leaving a hole beside it */
+@media (min-width:620px) and (max-width:1239px){
+  .threads > :last-child:nth-child(odd){grid-column:1/-1;aspect-ratio:16/7}
+}
+.thread{position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+  aspect-ratio:3/4;width:100%;padding:var(--s5);text-align:left;overflow:hidden;
+  border:1px solid var(--edge);background:var(--char);border-radius:var(--r-lg);
+  transition:border-color .45s var(--e),transform .55s var(--slow)}
+.thread .im{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--char-2)}
+.thread .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transform:scale(1.02);transition:opacity 1s var(--e),transform .9s var(--slow)}
+.thread .im img.on{opacity:.92}
+.thread::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(0deg,rgba(10,7,5,.96) 12%,rgba(10,7,5,.78) 34%,
+    rgba(10,7,5,.34) 64%,rgba(10,7,5,.14) 100%)}
+/* the words now lie on a photograph, so they carry their own shadow */
+.thread > *:not(.im){position:relative;z-index:2;
+  text-shadow:0 1px 12px rgba(10,7,5,.92),0 0 2px rgba(10,7,5,.6)}
+.thread .n{font-family:var(--display);font-size:.72rem;letter-spacing:.28em;color:var(--gold);
+  margin-bottom:auto}
+.thread .ttl{display:block;font-family:var(--serif);font-weight:300;line-height:1.15;
+  font-size:clamp(1.2rem,1rem + .5vw,1.5rem);margin-bottom:.5rem;color:var(--ivory)}
+/* The card reads from the bottom up, so a name or a blurb that runs a line
+   short lifted everything above it and the five names landed on five
+   different lines. Both now keep their full height whether they need it. */
+@media (min-width:620px){
+  .thread .ttl{min-height:2.3em}
+  .thread p{min-height:4.8em}
+}
+.thread p{font-size:.8rem;color:var(--ivory-2);margin:0 0 .9rem;line-height:1.6}
+.thread .open{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lit);
+  display:inline-flex;align-items:center;gap:.5rem}
+.thread .open::after{content:"";width:1.2rem;height:1px;background:currentColor;transition:width .4s var(--e)}
+/* A thread is a question, not an object, so there is nothing to photograph
+   for it — until Stefanie has a picture she wants there, each card carries
+   a mark drawn in the same single gold line as the opening flacon. The
+   mark is only written when the slot has no photograph in it. */
+.thread .emb{position:absolute;top:var(--s5);right:var(--s5);
+  width:min(56%,116px);aspect-ratio:1;pointer-events:none;
+  color:var(--gold);opacity:.26;transition:opacity .6s var(--e)}
+.thread .emb{top:var(--s4);width:min(50%,102px)}
+.thread .emb svg{display:block;width:100%;height:100%;overflow:visible}
+.thread .emb path{fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.thread .emb .dotted path{stroke-dasharray:1.6 4.6}
+.thread:hover .emb,.thread:focus-visible .emb{opacity:.46}
+/* On a phone each card is the width of the screen, and a 3:4 box with no
+   photograph in it is mostly void. The card lies down, and the mark grows
+   to fill what is left beside the words. */
+@media (max-width:619px){
+  .thread:has(.emb){aspect-ratio:16/9;min-height:11rem}
+  .thread .emb{top:50%;transform:translateY(-58%);width:min(34%,116px)}
+  .thread:has(.emb) .ttl,.thread:has(.emb) p{max-width:62%}
+}
+.thread:hover,.thread:focus-visible{border-color:rgba(185,147,88,.5)}
+.thread:hover .im img{transform:scale(1.06)}
+.thread:hover .open::after{width:2.2rem}
+.coda{margin-top:clamp(1.8rem,4vw,2.8rem);padding-top:1.5rem;border-top:1px solid var(--edge);
+  font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--dim);max-width:52ch}
+
+/* ── 12. THE STAGE (a memory, taken full screen) ───────────── */
+.stage{position:fixed;inset:0;z-index:400;visibility:hidden;pointer-events:none}
+.stage.on{visibility:visible;pointer-events:auto}
+.stage .sbg{position:absolute;inset:0;background:var(--noir);opacity:0;
+  transition:opacity .45s var(--e);overflow:hidden}
+.stage .sbg img{width:100%;height:100%;object-fit:cover;opacity:.3;filter:saturate(.7)}
+.stage .sbg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(10,7,5,.96),rgba(10,7,5,.7))}
+.stage.on .sbg{opacity:1}
+.stage-in{position:relative;height:100%;overflow-y:auto;overscroll-behavior:contain;
+  display:grid;gap:clamp(1.8rem,4vw,3.5rem);align-content:center;
+  padding:clamp(4.5rem,9vh,6rem) var(--pad) clamp(2rem,5vh,3rem);
+  opacity:0;transform:translateY(14px);transition:opacity .5s .1s var(--e),transform .6s .1s var(--slow)}
+@media (min-width:900px){ .stage-in{grid-template-columns:1.05fr .95fr;align-items:center} }
+.stage.on .stage-in{opacity:1;transform:none}
+.sclose{position:absolute;top:1rem;right:1rem;z-index:5;width:2.9rem;height:2.9rem;
+  border:1px solid var(--edge-2);border-radius:50%;display:grid;place-items:center;
+  background:rgba(10,7,5,.6);transition:border-color .3s}
+.sclose:hover{border-color:var(--gold)}
+.stage .n{font-family:var(--display);font-size:.72rem;letter-spacing:.3em;color:var(--gold);display:block;margin-bottom:1rem}
+.stage h2{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,1.2rem + 2.5vw,3rem);margin-bottom:.9rem}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.chip{display:inline-flex;align-items:center;gap:var(--s2);min-height:2.75rem;
+  padding:var(--s3) var(--s4);border:1px solid var(--edge-2);border-radius:var(--r-pill);
+  font-size:var(--t-small);color:var(--ivory-2);
+  transition:border-color .3s,background .3s,color .3s,transform .12s var(--e)}
+.chip:active:not([disabled]){transform:scale(.97)}
+.chip .dot{width:.6rem;height:.6rem;border-radius:50%;flex:none}
+.chip:hover:not([disabled]){border-color:var(--gold);color:var(--ivory)}
+.chip[aria-pressed="true"]{border-color:rgba(110,64,26,.55);background:var(--metal);
+  color:var(--metal-ink);font-weight:500;
+  box-shadow:var(--metal-edge),0 6px 16px rgba(0,0,0,.34);
+  text-shadow:0 1px 0 rgba(255,242,218,.5)}
+.chip[aria-pressed="true"] .dot{box-shadow:0 0 0 1px rgba(26,18,6,.45)}
+.chip[disabled]{opacity:.35;cursor:not-allowed}
+.flask{display:grid;gap:1.2rem;justify-items:start;
+  border-left:1px solid var(--edge);padding-left:clamp(1.2rem,3vw,2.4rem)}
+@media (max-width:899px){ .flask{border-left:0;border-top:1px solid var(--edge);
+  padding-left:0;padding-top:1.8rem} }
+.glass{width:min(46vw,166px)}
+@media (max-width:899px){ .glass{width:min(34vw,132px)} }
+.glass canvas{width:100%;height:auto}
+.pyr{margin:0;display:grid;gap:.7rem;width:100%}
+.pyr .tier{display:grid;grid-template-columns:4.6rem 1fr;gap:.9rem;align-items:baseline;
+  padding-bottom:.7rem;border-bottom:1px solid var(--edge)}
+.pyr dt{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0}
+.pyr dd{margin:0;font-family:var(--serif);font-size:1.02rem;color:var(--ivory-2);line-height:1.4}
+.blank{color:var(--dimmer);font-size:.85rem;font-style:italic;margin:0}
+.acts{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;margin-top:.4rem}
+
+/* ── 13. COMPOSED BY HAND + the written formula ────────────── */
+/* The card is as tall as what is on it. It used to hold a fixed 22rem
+   whatever was written, so a three-line accord left a third of the paper
+   blank. */
+.paper{position:relative;background:linear-gradient(168deg,#EDE4D2,#DCCDB4);color:#3A2E20;
+  padding:clamp(1.8rem,4vw,2.8rem);border-radius:var(--r-lg);
+  box-shadow:0 26px 60px rgba(0,0,0,.5);overflow:hidden}
+.paper::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:radial-gradient(80% 60% at 22% 12%,rgba(255,255,255,.5),transparent 60%),
+             radial-gradient(70% 70% at 88% 92%,rgba(120,90,50,.16),transparent 60%)}
+.paper .lab{color:#6F5A3C;position:relative}
+.paper .lab::before{background:#A8813F}
+/* Ruled like the pad it is meant to be: a dotted line for every ingredient
+   the formula could hold, so the lines she has not written yet read as
+   room left for them rather than as a gap. The rule pitch is the line
+   height, so the writing lands on the rules. */
+.hand{--rule:1.62em;
+  position:relative;font-family:var(--hand);font-size:clamp(1.35rem,1.1rem + 1vw,1.85rem);
+  line-height:1.62;color:#3F3122;white-space:pre-wrap;
+  min-height:calc(var(--rule) * 7);
+  background-image:radial-gradient(circle at 1px 50%,rgba(58,46,32,.26) .75px,transparent 1.1px);
+  background-size:7px var(--rule);
+  background-position:0 calc(var(--rule) * .095);
+  background-repeat:repeat}
+.hand .ch{opacity:0}
+.hand .ch.on{opacity:1}
+.hand .nib{position:absolute;width:1px;height:1.15em;background:#5A4530;opacity:0;
+  transition:left .05s linear,top .08s linear}
+.hand .nib.on{opacity:.55;animation:nibblink .7s steps(2) infinite}
+@keyframes nibblink{0%,100%{opacity:.55}50%{opacity:.12}}
+.paper .foot{position:relative;display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;
+  justify-content:space-between;margin-top:1.6rem;padding-top:1rem;
+  border-top:1px solid rgba(58,46,32,.2);font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:#6B5740}
+.paper .blot{position:absolute;right:-2rem;bottom:-2rem;width:9rem;height:9rem;border-radius:50%;
+  background:radial-gradient(circle,rgba(110,35,51,.16),transparent 68%)}
+
+/* ── 14. LEGACY ────────────────────────────────────────────── */
+.wide-fig{aspect-ratio:21/9;width:100%;margin:0}
+/* a 21:9 picture in a 3:2 box loses a third of its width; 16:9 keeps most
+   of the room in the room */
+@media (max-width:760px){ .wide-fig{aspect-ratio:16/9} }
+/* the room sits on the cream, so it keeps a hairline the way the shelf
+   cards do rather than floating as a dark hole */
+.room-fig{border:1px solid rgba(36,28,22,.1)}
+.room-fig figcaption{color:rgba(243,237,226,.72)}
+/* A phone takes a third off the width of a 21:9 picture. Cropped from the
+   middle that loses the open door and the Acropolis behind it, which is
+   the whole reason to show the room, so it is cropped from the left. */
+@media (max-width:760px){ .room-fig img{object-position:30% 50%} }
+.legacy-body p{color:var(--ivory-2);max-width:52ch}
+.legacy-body p:first-child::first-letter{font-family:var(--display);float:left;
+  font-size:3.4em;line-height:.82;padding:.06em .12em 0 0;color:var(--gold)}
+.portrait-fig{aspect-ratio:4/5;width:100%}
+
+/* ── 15. THE SESSION ───────────────────────────────────────── */
+.session{display:grid;gap:clamp(1.6rem,3.4vw,2.6rem);margin-top:clamp(2.4rem,5vw,3.4rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,13.5rem),1fr))}
+.session .item{border-top:1px solid var(--edge);padding-top:var(--s5)}
+.session .item .n{font-size:var(--t-micro);letter-spacing:var(--tr-caps);
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:var(--s4)}
+.session .item h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;
+  font-size:var(--t-h4);line-height:var(--lh-head);margin-bottom:var(--s3)}
+@media (min-width:600px){ .session .item h3{min-height:calc(2em * var(--lh-head))} }
+.session .item p{font-size:var(--t-small);color:var(--ivory-2);margin:0;
+  line-height:var(--lh-body);text-wrap:pretty}
+.session-foot{display:flex;flex-wrap:wrap;gap:1.1rem 2rem;align-items:center;
+  margin-top:clamp(2.2rem,5vw,3rem);padding-top:1.5rem;border-top:1px solid var(--edge)}
+.session-foot p{margin:0;font-size:.85rem;color:var(--ivory-2)}
+.session-foot .btn{margin-left:auto}
+@media (max-width:600px){ .session-foot .btn{margin-left:0;width:100%} }
+
+/* ── 16. THE SHELF ─────────────────────────────────────────── */
+.shelf-head{display:grid;gap:clamp(1.4rem,3.5vw,3rem);align-items:end;margin-bottom:clamp(2rem,4vw,3rem)}
+@media (min-width:900px){ .shelf-head{grid-template-columns:1.05fr .95fr} }
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(1.8rem,4vw,2.6rem)}
+/* On a phone, seven categories wrapped into four rows and pushed the
+   shelf itself below the fold. They run along one line now and are
+   pushed sideways, with the edge of the next one showing so it is clear
+   there are more. */
+@media (max-width:699px){
+  .filters{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);
+    padding-bottom:var(--s2)}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:none;scroll-snap-align:start}
+}
+.filters button{min-height:2.75rem;padding:var(--s3) var(--s5);font-size:var(--t-micro);
+  letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(36,28,22,.16);
+  color:#5B4E42;background:rgba(255,252,246,.55);border-radius:var(--r-pill);
+  transition:border-color .3s,background .3s,color .3s,transform .12s var(--e)}
+.filters button:active{transform:scale(.97)}
+.filters button:hover{border-color:#8A5F1E;color:#8A5F1E}
+.filters button[aria-pressed="true"]{background:var(--metal);border-color:rgba(110,64,26,.55);
+  color:var(--metal-ink);font-weight:500;
+  box-shadow:var(--metal-edge),0 6px 16px rgba(62,32,10,.34);
+  text-shadow:0 1px 0 rgba(255,242,218,.5)}
+.filters button[aria-pressed="true"]:hover{background:var(--metal-lit);color:var(--metal-ink)}
+.grid{display:grid;gap:clamp(1.5rem,3vw,2.4rem);
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr))}
+/* a shelf, not a column: twelve one at a time was most of the page */
+@media (max-width:699px){
+  .grid{grid-template-columns:1fr 1fr;gap:var(--s4) var(--s3)}
+  .card h3{font-size:1.06rem}
+  .card .tag{font-size:.5rem;letter-spacing:.14em}
+}
+.card .shot{display:block;position:relative;aspect-ratio:4/5;overflow:hidden;
+  background:linear-gradient(165deg,#EAE0CF 0%,#DFD2BC 52%,#CFC0A6 100%);
+  margin-bottom:var(--s4);border:1px solid rgba(36,28,22,.09);
+  border-radius:var(--r-lg)}
+/* An empty slot is a flat swatch and needs a light put into it. A
+   photograph arrives with its own, and the same wash over it reads as a
+   cold veil across the top of the card — twelve times down the shelf. */
+.card .shot::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(62% 52% at 50% 16%,rgba(255,252,245,.7),transparent 64%),
+    linear-gradient(0deg,rgba(96,74,46,.16),transparent 42%)}
+.card .shot:has(img.on)::after{
+  background:linear-gradient(0deg,rgba(18,12,7,.34),transparent 38%)}
+.card .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .9s var(--e),transform .8s var(--slow)}
+.card .shot img.on{opacity:1}
+.card:hover .shot img{transform:scale(1.035)}
+.card .shot .ph{position:absolute;inset:0;display:grid;place-items:center;padding:1rem;text-align:center;
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#574A3C}
+.card .tag{position:absolute;z-index:2;left:var(--s3);top:var(--s3);
+  padding:var(--s1) var(--s3);background:rgba(36,28,22,.84);border-radius:var(--r-pill);
+  color:var(--cream);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase}
+/* The cards sit in rows, so a name or a line of copy one line short left
+   the price floating mid-air against its neighbour's. The card is a
+   column and the price is pushed to the floor of it. */
+.card{display:flex;flex-direction:column}
+.card .price{margin-top:auto}
+.card h3{font-family:var(--serif);font-weight:400;font-size:1.36rem;
+  margin-bottom:.3rem;line-height:1.18;letter-spacing:.004em}
+.card h3 button{text-align:left;padding-block:.15rem;transition:color .3s}
+.card h3 button:hover{color:#8A5F1E}
+.card .sub{display:block;font-size:var(--t-small);color:#6A5C4E;
+  margin-bottom:var(--s2);line-height:var(--lh-body);text-wrap:pretty}
+.card .price{display:block;font-size:var(--t-micro);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-ink);font-variant-numeric:tabular-nums}
+.card .price s{opacity:.75;text-decoration:none}
+
+/* ── 17. GUEST BOOK ────────────────────────────────────────── */
+.gb{display:grid;gap:clamp(2rem,5vw,4rem)}
+@media (min-width:900px){ .gb{grid-template-columns:.85fr 1.15fr} }
+.score{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem}
+.score b{font-family:var(--display);font-size:clamp(2.6rem,2rem + 2vw,3.8rem);line-height:1;color:var(--ivory)}
+.qs{display:grid;gap:clamp(1.4rem,3vw,2rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}
+/* beside the score the quotes read down the page like a guest book, rather
+   than filling two columns and leaving a hole under the last one */
+@media (min-width:900px){ .qs{grid-template-columns:1fr;align-content:start} 
+  .qs blockquote{max-width:46ch} }
+.qs figure{margin:0;border-top:1px solid var(--edge);padding-top:1.2rem}
+.qs blockquote{font-family:var(--serif);font-size:var(--t-lede);line-height:1.5;
+  color:var(--ivory-2);margin:var(--s3) 0 var(--s4);text-wrap:pretty}
+.qs cite{font-style:normal;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dimmer)}
+.pullband{padding:clamp(3rem,7vw,5.5rem) var(--pad);text-align:center;
+  background:linear-gradient(180deg,var(--noir),var(--char) 50%,var(--noir))}
+.pullband p{font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:var(--t-h2);line-height:var(--lh-head);color:var(--ivory);
+  max-width:24ch;margin:0 auto;text-wrap:balance;letter-spacing:var(--tr-head)}
+
+/* ── 18. VISIT ─────────────────────────────────────────────── */
+.addr{font-family:var(--serif);font-size:var(--t-lede);line-height:1.45;
+  margin:var(--s5) 0;color:var(--ink);font-variant-numeric:tabular-nums}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:var(--s3) var(--s6);
+  margin:var(--s7) 0 0;padding-top:var(--s5);border-top:1px solid var(--edge-ink);
+  font-size:var(--t-small);font-variant-numeric:tabular-nums}
+.hours dt{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#6C5C4B;
+  align-self:center}
+.hours dd{margin:0;color:#3E332A}
+.hours a{display:inline-block;padding-block:.3rem;
+  border-bottom:1px solid rgba(36,28,22,.22);transition:color .3s,border-color .3s}
+.hours a:hover{color:#8A5F1E;border-color:#8A5F1E}
+/* Two pictures of the same stepped street, cropped the same and hung at
+   the same height, read as one picture cut in half. They are staggered,
+   and the second is taller, so the pair reaches down beside the hours
+   instead of floating in the top corner. */
+.visit-figs{display:grid;gap:var(--s3);grid-template-columns:1fr 1fr;align-items:start}
+@media (max-width:719px){ .visit-figs{grid-template-columns:1fr} }
+.visit-figs .fig{aspect-ratio:4/5;width:100%;margin:0}
+@media (min-width:720px){
+  .visit-figs .fig:nth-child(1){aspect-ratio:3/4}
+  .visit-figs .fig:nth-child(2){aspect-ratio:4/5;margin-top:clamp(2.4rem,7vw,5rem)}
+}
+/* the note lies on a photograph, so it carries its own scrim rather than
+   trusting whatever happens to be underneath it */
+.overlay-note{position:absolute;inset:auto 0 0;z-index:2;
+  padding:var(--s8) var(--s5) var(--s5);
+  background:linear-gradient(0deg,rgba(8,5,4,.88) 16%,rgba(8,5,4,.52) 56%,transparent)}
+.overlay-note p{margin:0;font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ivory);
+  text-shadow:0 1px 12px rgba(6,4,3,.9)}
+.mapwrap{position:relative;min-height:20rem;display:grid;place-items:center;
+  padding:clamp(2rem,5vw,3.5rem) var(--pad);text-align:center;
+  background:var(--cream-2);color:var(--ink)}
+.mapwrap .btn-line{border-color:rgba(36,28,22,.3);color:var(--ink)}
+.mapwrap .btn-line:hover{border-color:#8A5F1E;color:#8A5F1E;background:rgba(138,95,30,.06)}
+.mapwrap iframe{width:100%;height:clamp(20rem,45vh,28rem);border:0;display:block;
+  border-radius:var(--r-lg)}
+.mapwrap.loaded{padding:0;min-height:0}
+
+/* ── 19. FAQ ───────────────────────────────────────────────── */
+.faq details{border-top:1px solid var(--edge)}
+.faq details:last-of-type{border-bottom:1px solid var(--edge)}
+.faq summary{list-style:none;cursor:pointer;padding:var(--s5) var(--s9) var(--s5) 0;
+  position:relative;font-family:var(--serif);font-size:var(--t-h4);color:var(--ivory);
+  transition:color .3s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--gold-lit)}
+.faq summary::after{content:"";position:absolute;right:.3rem;top:1.65rem;width:.72rem;height:.72rem;
+  border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);
+  transform:rotate(45deg);transition:transform .35s var(--e)}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq details p{margin:0 0 var(--s5);color:var(--ivory-2);max-width:62ch;
+  font-size:var(--t-body);line-height:var(--lh-body);text-wrap:pretty}
+
+/* ── 20. FOOTER + DOCK ─────────────────────────────────────── */
+.site-foot{padding:clamp(3rem,7vw,5rem) var(--pad) clamp(6rem,10vw,4rem);
+  border-top:1px solid var(--edge);background:var(--soot)}
+.foot-in{max-width:78rem;margin-inline:auto;display:grid;gap:2rem}
+/* the six links never fitted the middle of three columns and broke four
+   and two; they take the whole of the first row instead and the colophon
+   sits under them */
+@media (min-width:820px){
+  .foot-in{grid-template-columns:auto 1fr;align-items:center;gap:1.6rem 2.5rem}
+  .foot-in nav{justify-content:flex-end}
+  .foot-in .colophon{grid-column:1/-1}
+}
+.foot-in nav{display:flex;flex-wrap:wrap;gap:.9rem 1.8rem;justify-content:center}
+.foot-in nav a{font-size:var(--lab);letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+  transition:color .3s;padding-block:.5rem}
+.foot-in nav a:hover{color:var(--gold-lit)}
+.colophon{margin:0;font-size:.7rem;letter-spacing:.12em;color:var(--dimmer);text-align:center}
+@media (min-width:820px){ .colophon{text-align:right} }
+
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:190;display:grid;grid-template-columns:1fr 1fr;
+  transform:translateY(102%);transition:transform .45s var(--e);
+  padding-bottom:env(safe-area-inset-bottom);
+  background:rgba(10,7,5,.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border-top:1px solid var(--edge)}
+.dock.on{transform:none}
+@media (min-width:1080px){ .dock{display:none} }
+.dock a{display:grid;place-items:center;min-height:3.4rem;padding:.9rem .6rem;
+  font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;text-align:center}
+.dock a + a{border-left:1px solid var(--edge);background:var(--gold);color:#120E09;font-weight:400}
+
+/* ── 21. PRODUCT DRAWER ────────────────────────────────────── */
+.scrim{position:fixed;inset:0;z-index:300;background:rgba(6,4,3,.72);opacity:0;visibility:hidden;
+  transition:opacity .4s var(--e),visibility .4s;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+body.drawer .scrim{opacity:1;visibility:visible}
+/* The panel is addressed by its id, not by its class. The open state is
+   `drawer` on <body>, and `.drawer` matched the body too: opening a
+   product turned the whole page into a 32rem panel and slid it off the
+   right-hand edge. Nothing on the shelf could be opened. */
+#drawer{position:fixed;top:0;right:0;bottom:0;z-index:320;width:min(100%,32rem);
+  border-radius:var(--r-xl) 0 0 var(--r-xl);
+  background:var(--soot);border-left:1px solid var(--edge);overflow-y:auto;overscroll-behavior:contain;
+  transform:translateX(101%);visibility:hidden;transition:transform .5s var(--slow),visibility .5s}
+body.drawer #drawer{transform:none;visibility:visible}
+.dclose{position:absolute;top:1rem;right:1rem;z-index:3;width:2.75rem;height:2.75rem;border-radius:50%;
+  border:1px solid var(--edge-2);display:grid;place-items:center;background:rgba(10,7,5,.7)}
+.dclose:hover{border-color:var(--gold)}
+#drawer .shot{position:relative;aspect-ratio:1/1;background:var(--char);overflow:hidden;
+  border-radius:var(--r-xl) 0 0 0}
+#drawer .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dbody{padding:clamp(1.5rem,4vw,2.4rem)}
+.dbody h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,1.2rem + 1.4vw,2.2rem);margin-bottom:.4rem}
+.dbody .sub{color:var(--dim);font-size:.85rem;margin-bottom:1.4rem;display:block}
+.dbody p{color:var(--ivory-2);font-size:.92rem}
+.spec{display:flex;flex-wrap:wrap;gap:.9rem 2rem;margin:1.5rem 0;padding:1.1rem 0;
+  border-block:1px solid var(--edge);font-size:.82rem;color:var(--ivory-2)}
+.spec b{display:block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dimmer);font-weight:400;margin-bottom:.25rem}
+body.noscroll{overflow:hidden}
+
+/* ── 22. REDUCED MOTION — the static equivalent ────────────── */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none}
+  .js .hero.ready h1 .ln > i,.hero h1 .ln > i{transform:none}
+  .grain{animation:none}
+  .obj-bottle::after{display:none}
+  .hero-glow{animation:none;opacity:.9}
+  .hero-haze{animation:none}
+  .hero-media .plate img,.hero-media .plate video{animation:none;transform:scale(1.03)}
+  .obj-rose img,.obj-vessel img,.obj-bottle img,
+  .hero-plate .m-rose,.hero-plate .m-bottle{animation:none;transform:none}
+  .cue i{animation:none;opacity:.5}
+  .fig img,.thread .im img,.card .shot img{opacity:1}
+  .thread .im img{opacity:.92}
+}
+/* the same courtesy for anyone who never gets the script */
+.no-js .rv{opacity:1;transform:none}
+
+/* ── 22. THE FIRST SCREEN OF AN INNER PAGE ──────────────────────
+   One scene, composed three times: wide, with the subject on the right
+   and the left half dark for the words; 4:3 for a tablet, the same way;
+   and upright for a phone, with the subject in the top half and the
+   words in the quiet underneath it. The artwork is given per page from
+   the Studio, one file per shape. */
+.phero{position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(30rem,84vh,52rem);display:grid;align-items:center;
+  padding:clamp(7rem,15vh,10rem) var(--pad) clamp(3rem,8vh,5rem)}
+.phero-pic{position:absolute;inset:0;z-index:0;margin:0;overflow:hidden;background:var(--char)}
+.phero-pic picture{display:contents}
+.phero-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:72% 50%;opacity:0;transition:opacity 1.2s var(--e)}
+.phero-pic img.on{opacity:1}
+/* the words lie on the dark side of the picture, and the picture is lit
+   from the other one — but a scrim still carries them */
+.phero-pic::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(10,7,5,.92) 0%,rgba(10,7,5,.74) 34%,
+      rgba(10,7,5,.26) 62%,rgba(10,7,5,.08) 100%),
+    linear-gradient(0deg,rgba(10,7,5,.72) 0%,transparent 34%),
+    linear-gradient(180deg,rgba(10,7,5,.78) 0%,transparent 26%)}
+.phero-in{position:relative;z-index:2;width:100%;max-width:78rem;margin-inline:auto}
+/* the words keep to the dark half: the headline breaks where the
+   picture begins rather than running across it */
+.phero h1{max-width:14ch}
+.phero-eyebrow{margin:0 0 var(--s5);font-size:var(--t-small);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lit)}
+.phero h1{font-family:var(--display);text-transform:uppercase;
+  font-size:var(--t-h1);line-height:var(--lh-tight);letter-spacing:.01em;
+  color:#F7F2E9;margin:0;text-wrap:balance}
+.phero-lede{margin:var(--s5) 0 0;font-family:var(--serif);
+  font-size:clamp(1.14rem,1.02rem + .5vw,1.46rem);line-height:1.5;
+  color:var(--ivory);max-width:31ch;text-wrap:pretty}
+
+@media (max-width:1100px){
+  .phero-pic img{object-position:68% 50%}
+}
+/* a phone gets the upright composition: subject up, words under it */
+@media (max-width:600px){
+  .phero{min-height:clamp(32rem,88vh,46rem);align-items:end;
+    padding-bottom:clamp(2.6rem,7vh,4rem)}
+  .phero-pic img{object-position:50% 28%}
+  .phero-pic::after{background:
+    linear-gradient(0deg,rgba(10,7,5,.95) 6%,rgba(10,7,5,.82) 30%,
+      rgba(10,7,5,.22) 62%,rgba(10,7,5,.1) 100%),
+    linear-gradient(180deg,rgba(10,7,5,.74) 0%,transparent 22%)}
+  .phero h1{max-width:none}
+}
+
+/* ── 23. THE FIVE DOORS ON THE HOME PAGE ───────────────────────
+   With the sections on pages of their own, the home page is the film and
+   then the way in to each of them. */
+.doors{display:grid;gap:clamp(.9rem,2vw,1.4rem);grid-template-columns:1fr}
+@media (min-width:640px){ .doors{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1100px){ .doors{grid-template-columns:repeat(3,1fr)} }
+.door{position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+  aspect-ratio:4/3;overflow:hidden;padding:var(--s6);
+  border:1px solid var(--edge);border-radius:var(--r-lg);background:var(--char);
+  transition:border-color .45s var(--e)}
+@media (min-width:1100px){ .door:first-child{grid-column:span 2;aspect-ratio:8/3} }
+.door .im{position:absolute;inset:0;z-index:0;overflow:hidden}
+.door .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transform:scale(1.02);
+  transition:opacity 1s var(--e),transform .9s var(--slow)}
+.door .im img.on{opacity:.95}
+.door::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(0deg,rgba(10,7,5,.95) 10%,rgba(10,7,5,.62) 42%,
+    rgba(10,7,5,.18) 100%)}
+.door > *:not(.im){position:relative;z-index:2;
+  text-shadow:0 1px 12px rgba(10,7,5,.92)}
+.door .ttl{display:block;font-family:var(--display);text-transform:uppercase;
+  font-size:var(--t-h3);line-height:var(--lh-head);letter-spacing:.04em;
+  color:var(--ivory);margin-bottom:var(--s3)}
+.door p{margin:0 0 var(--s5);font-size:var(--t-body);color:var(--ivory-2);
+  line-height:var(--lh-body);max-width:34ch;text-wrap:pretty}
+.door .open{font-size:var(--t-micro);letter-spacing:var(--tr-caps);
+  text-transform:uppercase;color:var(--gold-lit);
+  display:inline-flex;align-items:center;gap:var(--s3)}
+.door .open::after{content:"";width:1.4rem;height:1px;background:currentColor;
+  transition:width .4s var(--e)}
+.door:hover{border-color:rgba(185,147,88,.5)}
+.door:hover .im img{transform:scale(1.06)}
+.door:hover .open::after{width:2.6rem}
