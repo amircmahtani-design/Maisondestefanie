@@ -615,10 +615,38 @@ blockquote{margin:0}
   margin-bottom:auto}
 .thread .ttl{display:block;font-family:var(--serif);font-weight:300;line-height:1.15;
   font-size:clamp(1.2rem,1rem + .5vw,1.5rem);margin-bottom:.5rem;color:var(--ivory)}
+/* The card reads from the bottom up, so a name or a blurb that runs a line
+   short lifted everything above it and the five names landed on five
+   different lines. Both now keep their full height whether they need it. */
+@media (min-width:620px){
+  .thread .ttl{min-height:2.3em}
+  .thread p{min-height:4.8em}
+}
 .thread p{font-size:.8rem;color:var(--ivory-2);margin:0 0 .9rem;line-height:1.6}
 .thread .open{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lit);
   display:inline-flex;align-items:center;gap:.5rem}
 .thread .open::after{content:"";width:1.2rem;height:1px;background:currentColor;transition:width .4s var(--e)}
+/* A thread is a question, not an object, so there is nothing to photograph
+   for it — until Stefanie has a picture she wants there, each card carries
+   a mark drawn in the same single gold line as the opening flacon. The
+   mark is only written when the slot has no photograph in it. */
+.thread .emb{position:absolute;top:var(--s5);right:var(--s5);
+  width:min(56%,116px);aspect-ratio:1;pointer-events:none;
+  color:var(--gold);opacity:.26;transition:opacity .6s var(--e)}
+.thread .emb{top:var(--s4);width:min(50%,102px)}
+.thread .emb svg{display:block;width:100%;height:100%;overflow:visible}
+.thread .emb path{fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.thread .emb .dotted path{stroke-dasharray:1.6 4.6}
+.thread:hover .emb,.thread:focus-visible .emb{opacity:.46}
+/* On a phone each card is the width of the screen, and a 3:4 box with no
+   photograph in it is mostly void. The card lies down, and the mark grows
+   to fill what is left beside the words. */
+@media (max-width:619px){
+  .thread{aspect-ratio:16/9;min-height:11rem}
+  .thread .emb{top:50%;transform:translateY(-58%);width:min(34%,116px)}
+  .thread .ttl,.thread p{max-width:62%}
+}
 .thread:hover,.thread:focus-visible{border-color:rgba(185,147,88,.5)}
 .thread:hover .im img{transform:scale(1.06)}
 .thread:hover .open::after{width:2.2rem}
@@ -660,7 +688,8 @@ blockquote{margin:0}
   border-left:1px solid var(--edge);padding-left:clamp(1.2rem,3vw,2.4rem)}
 @media (max-width:899px){ .flask{border-left:0;border-top:1px solid var(--edge);
   padding-left:0;padding-top:1.8rem} }
-.glass{width:min(52vw,150px)}
+.glass{width:min(46vw,166px)}
+@media (max-width:899px){ .glass{width:min(34vw,132px)} }
 .glass canvas{width:100%;height:auto}
 .pyr{margin:0;display:grid;gap:.7rem;width:100%}
 .pyr .tier{display:grid;grid-template-columns:4.6rem 1fr;gap:.9rem;align-items:baseline;
@@ -723,6 +752,7 @@ blockquote{margin:0}
   text-transform:uppercase;color:var(--gold);display:block;margin-bottom:var(--s4)}
 .session .item h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;
   font-size:var(--t-h4);line-height:var(--lh-head);margin-bottom:var(--s3)}
+@media (min-width:600px){ .session .item h3{min-height:calc(2em * var(--lh-head))} }
 .session .item p{font-size:var(--t-small);color:var(--ivory-2);margin:0;
   line-height:var(--lh-body);text-wrap:pretty}
 .session-foot{display:flex;flex-wrap:wrap;gap:1.1rem 2rem;align-items:center;
@@ -778,6 +808,10 @@ blockquote{margin:0}
 .score b{font-family:var(--display);font-size:clamp(2.6rem,2rem + 2vw,3.8rem);line-height:1;color:var(--ivory)}
 .qs{display:grid;gap:clamp(1.4rem,3vw,2rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}
+/* beside the score the quotes read down the page like a guest book, rather
+   than filling two columns and leaving a hole under the last one */
+@media (min-width:900px){ .qs{grid-template-columns:1fr;align-content:start} 
+  .qs blockquote{max-width:46ch} }
 .qs figure{margin:0;border-top:1px solid var(--edge);padding-top:1.2rem}
 .qs blockquote{font-family:var(--serif);font-size:var(--t-lede);line-height:1.5;
   color:var(--ivory-2);margin:var(--s3) 0 var(--s4);text-wrap:pretty}
@@ -800,10 +834,14 @@ blockquote{margin:0}
 .hours a{display:inline-block;padding-block:.3rem;
   border-bottom:1px solid rgba(36,28,22,.22);transition:color .3s,border-color .3s}
 .hours a:hover{color:#8A5F1E;border-color:#8A5F1E}
-.visit-figs{display:grid;grid-template-columns:1fr 1fr}
+.visit-figs{display:grid;gap:var(--s3);grid-template-columns:1fr 1fr}
 @media (max-width:719px){ .visit-figs{grid-template-columns:1fr} }
 .visit-figs .fig{aspect-ratio:4/5;width:100%}
-.overlay-note{position:absolute;inset:auto 0 0;z-index:2;padding:1.4rem}
+/* the note lies on a photograph, so it carries its own scrim rather than
+   trusting whatever happens to be underneath it */
+.overlay-note{position:absolute;inset:auto 0 0;z-index:2;
+  padding:var(--s8) var(--s5) var(--s5);
+  background:linear-gradient(0deg,rgba(8,5,4,.88) 16%,rgba(8,5,4,.52) 56%,transparent)}
 .overlay-note p{margin:0;font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ivory);
   text-shadow:0 1px 12px rgba(6,4,3,.9)}
 .mapwrap{position:relative;min-height:20rem;display:grid;place-items:center;
@@ -831,7 +869,14 @@ blockquote{margin:0}
 .site-foot{padding:clamp(3rem,7vw,5rem) var(--pad) clamp(6rem,10vw,4rem);
   border-top:1px solid var(--edge);background:var(--soot)}
 .foot-in{max-width:78rem;margin-inline:auto;display:grid;gap:2rem}
-@media (min-width:820px){ .foot-in{grid-template-columns:auto 1fr auto;align-items:center} }
+/* the six links never fitted the middle of three columns and broke four
+   and two; they take the whole of the first row instead and the colophon
+   sits under them */
+@media (min-width:820px){
+  .foot-in{grid-template-columns:auto 1fr;align-items:center;gap:1.6rem 2.5rem}
+  .foot-in nav{justify-content:flex-end}
+  .foot-in .colophon{grid-column:1/-1}
+}
 .foot-in nav{display:flex;flex-wrap:wrap;gap:.9rem 1.8rem;justify-content:center}
 .foot-in nav a{font-size:var(--lab);letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
   transition:color .3s;padding-block:.5rem}
@@ -1269,7 +1314,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
       <p style="font-size:.76rem;color:var(--dimmer);margin-top:1.1rem" id="chipNote"></p>
     </div>
     <div class="flask">
-      <div class="glass" aria-hidden="true"><canvas id="liquid" width="236" height="316"></canvas></div>
+      <div class="glass" aria-hidden="true"><canvas id="liquid" width="200" height="392"></canvas></div>
       <p class="lab bare" style="margin-bottom:.4rem;color:var(--gold)" data-t="organ.picked"></p>
       <div id="pyr" style="width:100%"><p class="blank" data-t="organ.empty"></p></div>
       <div class="acts">
@@ -1791,10 +1836,42 @@ function render(){
 }
 
 /* ── the threads ─────────────────────────────────────────────── */
+
+/* One mark per thread, drawn in the house line: a courtyard arch, the sea,
+   someone standing there, a church window, and — for the perfume that is
+   gone — a bottle whose outline never quite closes. They stand in only
+   while a thread has no photograph of its own. */
+const THREAD_MARK = [
+  '<svg viewBox="0 0 100 100" aria-hidden="true">'
+  + '<path d="M22 88V46a28 28 0 0 1 56 0v42"/>'
+  + '<path d="M40 88V64a10 10 0 0 1 20 0v24"/>'
+  + '<path d="M10 88h80"/></svg>',
+
+  '<svg viewBox="0 0 100 100" aria-hidden="true">'
+  + '<path d="M14 34h72"/>'
+  + '<path d="M8 58c8-6 14-6 22 0s14 6 22 0 14-6 22 0 14 6 22 0"/>'
+  + '<path d="M4 76c8-6 14-6 22 0s14 6 22 0 14-6 22 0 14 6 22 0"/></svg>',
+
+  '<svg viewBox="0 0 100 100" aria-hidden="true">'
+  + '<path d="M50 54a17 17 0 1 0 0-34 17 17 0 0 0 0 34"/>'
+  + '<path d="M20 90c0-17 13-28 30-28s30 11 30 28"/></svg>',
+
+  '<svg viewBox="0 0 100 100" aria-hidden="true">'
+  + '<path d="M28 88V46a22 22 0 0 1 44 0v42"/>'
+  + '<path d="M28 64h44"/><path d="M50 46v42"/>'
+  + '<path d="M14 88h72"/></svg>',
+
+  '<svg class="dotted" viewBox="0 0 100 100" aria-hidden="true">'
+  + '<path d="M42 16h16a5 5 0 0 1 5 5v11a5 5 0 0 1-5 5H42a5 5 0 0 1-5-5V21a5 5 0 0 1 5-5Z"/>'
+  + '<path d="M34 37h32a8 8 0 0 1 8 8v39a8 8 0 0 1-8 8H34a8 8 0 0 1-8-8V45a8 8 0 0 1 8-8Z"/>'
+  + '<path d="M43 56h14"/></svg>'
+];
+
 function renderThreads(){
   $('#threadGrid').innerHTML = (DATA.organ?.threads||[]).map((t,i)=>`
     <button class="thread rv" type="button" data-th="${esc(t.id)}" data-d="${i%3}">
       <span class="im" data-ref="${esc(t.image||'')}" data-alt=""></span>
+      ${t.image ? '' : `<span class="emb" aria-hidden="true">${THREAD_MARK[i % THREAD_MARK.length]}</span>`}
       <span class="n">${esc(t.num)}</span>
       <span class="ttl">${esc(L(t,'label'))}</span>
       <p>${esc(L(t,'blurb'))}</p>
@@ -1894,14 +1971,19 @@ const liquid = (()=>{
     const v = cols.map(rgb);
     return v.reduce((p,q)=>[p[0]+q[0],p[1]+q[1],p[2]+q[2]],[0,0,0]).map(n=>Math.round(n/v.length));
   };
-  function bottle(){
+  /* her flacon, in the same proportions the opening curtain draws:
+     round stopper, ribbed collar, sloped shoulders, the house plate */
+  const INK  = 'rgba(238,228,210,.34)';   /* glass  */
+  const GOLD = 'rgba(206,166,102,.62)';   /* collar, plate, the house's gold */
+
+  function body(){ x.beginPath(); x.roundRect(40,142,120,226,10); }
+
+  function shoulders(){
     x.beginPath();
-    const l=W*.13, r=W*.87, tp=H*.36, bt=H*.94, rad=W*.07;
-    x.moveTo(l+rad,tp); x.lineTo(r-rad,tp); x.quadraticCurveTo(r,tp,r,tp+rad);
-    x.lineTo(r,bt-rad); x.quadraticCurveTo(r,bt,r-rad,bt);
-    x.lineTo(l+rad,bt); x.quadraticCurveTo(l,bt,l,bt-rad);
-    x.lineTo(l,tp+rad); x.quadraticCurveTo(l,tp,l+rad,tp); x.closePath();
+    x.moveTo(74,120);  x.bezierCurveTo(67,129,54,134,44,142);
+    x.moveTo(126,120); x.bezierCurveTo(133,129,146,134,156,142);
   }
+
   const wave = (p,level,amp)=>level
     + Math.sin(p*5.2 + t*1.7)*amp
     + Math.sin(p*11  + t*2.9)*amp*.45
@@ -1913,14 +1995,21 @@ const liquid = (()=>{
     tilt += (tiltT-tilt)*.07;
     push *= .94;
     x.clearRect(0,0,W,H);
+    x.lineJoin='round'; x.lineCap='round';
 
-    x.fillStyle='#2a2018'; x.strokeStyle='rgba(243,237,226,.22)'; x.lineWidth=1.4;
-    x.beginPath(); x.roundRect(W*.36,H*.03,W*.28,H*.1,4); x.fill(); x.stroke();
-    x.fillStyle='rgba(243,237,226,.05)';
-    x.beginPath(); x.rect(W*.42,H*.13,W*.16,H*.23); x.fill(); x.stroke();
+    /* the stopper and its collar sit above the glass */
+    x.strokeStyle=INK; x.lineWidth=2.2;
+    x.beginPath(); x.ellipse(100,61,38,37,0,0,Math.PI*2); x.stroke();
+    x.strokeStyle=GOLD;
+    x.beginPath(); x.roundRect(66,100,68,20,5); x.stroke();
+    x.beginPath();
+    for (const px of [84,100,116]){ x.moveTo(px,100); x.lineTo(px,120); }
+    x.stroke();
+    x.strokeStyle=INK; shoulders(); x.stroke();
 
-    x.save(); bottle(); x.clip();
-    const top=H*.36, bot=H*.94, span=bot-top;
+    /* the perfume itself, which answers to the chips and to your hand */
+    x.save(); body(); x.clip();
+    const top=142, bot=368, span=bot-top;
     const level = bot - Math.max(0,Math.min(1,fill))*span*.9;
     const [r,g,b] = blend();
     const grd = x.createLinearGradient(0,level,0,bot);
@@ -1931,24 +2020,31 @@ const liquid = (()=>{
     x.beginPath(); x.moveTo(0,H);
     for (let px=0; px<=W; px+=4) x.lineTo(px, wave(px/W, level, amp));
     x.lineTo(W,H); x.closePath(); x.fill();
-    x.strokeStyle='rgba(255,240,214,.35)'; x.lineWidth=1.2;
+    x.strokeStyle='rgba(255,240,214,.35)'; x.lineWidth=1.6;
     x.beginPath();
     for (let px=0; px<=W; px+=4){ const y=wave(px/W,level,amp); px===0?x.moveTo(0,y):x.lineTo(px,y); }
     x.stroke(); x.restore();
 
-    x.save(); bottle();
-    const gl = x.createLinearGradient(W*.13,0,W*.87,0);
-    gl.addColorStop(0,'rgba(255,255,255,.15)');
+    /* the glass over it */
+    x.save(); body();
+    const gl = x.createLinearGradient(40,0,160,0);
+    gl.addColorStop(0,'rgba(255,255,255,.13)');
     gl.addColorStop(.5,'rgba(255,255,255,.02)');
-    gl.addColorStop(1,'rgba(255,255,255,.11)');
+    gl.addColorStop(1,'rgba(255,255,255,.09)');
     x.fillStyle = gl; x.fill();
-    x.strokeStyle='rgba(243,237,226,.28)'; x.lineWidth=1.6; x.stroke(); x.restore();
+    x.strokeStyle=INK; x.lineWidth=2.2; x.stroke(); x.restore();
 
-    x.strokeStyle='rgba(243,237,226,.16)'; x.lineWidth=1;
-    x.strokeRect(W*.27,H*.62,W*.46,H*.19);
-    x.fillStyle='rgba(243,237,226,.45)';
-    x.font='500 13px "GFS Didot",Georgia,serif'; x.textAlign='center';
-    x.fillText('LMS', W*.5, H*.735);
+    /* two long highlights down the sides, as on the drawn bottle */
+    x.strokeStyle='rgba(238,228,210,.16)'; x.lineWidth=1.6;
+    x.beginPath(); x.moveTo(55,168); x.lineTo(55,342);
+    x.moveTo(145,182); x.lineTo(145,328); x.stroke();
+
+    /* the house plate */
+    x.strokeStyle=GOLD; x.lineWidth=1.6;
+    x.beginPath(); x.roundRect(65,192,70,72,5); x.stroke();
+    x.fillStyle='rgba(222,200,160,.72)';
+    x.font='500 17px "GFS Didot",Georgia,serif'; x.textAlign='center';
+    x.fillText('LMS', 100, 234);
 
     if (running) raf = requestAnimationFrame(frame);
   }

@@ -35,6 +35,19 @@ wired into content.json:
 Each source is upright 4:5, 1120 × 1400 px. Responsive WebP files at
 420 and 700 px are served by the existing product slots.
 
+THE FIVE THREAD CARDS
+---------------------
+The five cards under "Choose what you remember" have no photograph and
+no concept image. A thread is a question, not an object, so each card
+carries a mark drawn in the same single gold line as the opening
+curtain: a courtyard arch, the sea, someone standing there, a church
+window, and — for the perfume that is gone — a bottle whose outline
+never closes. They are vector, not artwork to be replaced.
+
+If Stefanie wants a photograph behind a thread instead, fill that
+thread's "image" field in content.json (Studio -> The bench) and the
+drawn mark steps aside for it on its own.
+
 LOCATION CONCEPTS
 -----------------
 The room, shopfront and Plaka images are also generated concept artwork.
