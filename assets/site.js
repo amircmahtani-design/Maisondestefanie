@@ -203,14 +203,7 @@ function renderHero(){
     </div>`;
   }).join('');
 
-  $$('#heroScenes img.lay.a[data-subject]').forEach(async (img,i)=>{
-    const sl = slot(img.dataset.subject) || {};
-    const url = await resolve(sl.src);
-    if (!url) return;
-    img.alt = ''; sizeUp(img, sl, url);
-    if (i === 0) img.fetchPriority = 'high';
-    img.src = url;
-  });
+  paintScenes();
 
   /* The chapter count used to sit down the right edge as a tab list. It
      is gone: the chapters turn by themselves and the page is meant to be
@@ -300,7 +293,35 @@ function holdHero(on){
    fit it. The hero is one screen either way and keeps playing; all that
    changes is where the honest measure of a screen comes from, so the stage
    is simply re-measured whenever the size moves. */
-function applyHeroMode(){ sizeStage(); }
+/* Every chapter photograph is a 9:16 frame with its subject composed to
+   the very edges. Across a screen that is wider than it is tall there is
+   nowhere for that to go but off the sides, so each one also exists in a
+   wide frame with the light carried outwards and real room around the
+   subject — tools/widescenes.py. A phone gets the upright one. */
+const WIDE_SCREEN = matchMedia('(min-aspect-ratio: 1/1)');
+const sceneSrc = url => {
+  if (!url || !/\.webp$/i.test(url) || /-(wide|tall)\.webp$/i.test(url)) return url;
+  const kind = WIDE_SCREEN.matches ? '-wide.webp' : '-tall.webp';
+  /* The extended frames exist at one size per shape, so the width a
+     narrow screen would otherwise have asked for does not apply to them;
+     they all come from the 880 originals. */
+  const frame = url.match(/^(.*\/frame-\d\d)-\d+\.webp$/i);
+  if (frame) return frame[1] + '-880' + kind;
+  return url.replace(/\.webp$/i, kind);
+};
+function paintScenes(){
+  $$('#heroScenes img.lay.a[data-subject]').forEach(async (img,i)=>{
+    const sl = slot(img.dataset.subject) || {};
+    const url = sceneSrc(await resolve(sl.src));
+    if (!url || img.getAttribute('src') === url) return;
+    img.alt = '';
+    if (i === 0) img.fetchPriority = 'high';
+    img.src = url;
+  });
+}
+WIDE_SCREEN.addEventListener?.('change', paintScenes);
+
+function applyHeroMode(){ sizeStage(); paintScenes(); }
 
 /* ══ THE BOTTLE LOOP ═══════════════════════════════════════════
    Nine photographs of the same bottle with the petals a little
@@ -403,9 +424,11 @@ async function setupLoop(chapter){
   if (!LOOP.el) return;
   LOOP.lays = [$('.lay.a', LOOP.el), $('.lay.b', LOOP.el)];
   const want = frameWidth(LOOP.el.getBoundingClientRect().width || innerWidth);
-  LOOP.urls = (await Promise.all(c.frames.map(k => {
+  /* the nine frames get the same wide or upright treatment the chapters
+     do, so the bottle is not clipped by the edge it was composed against */
+  LOOP.urls = (await Promise.all(c.frames.map(async k => {
     const sl = slot(k) || {};
-    return resolve(atWidth(sl, want));
+    return sceneSrc(await resolve(atWidth(sl, want)));
   }))).filter(Boolean);
   if (LOOP.urls.length < 2){ LOOP.urls = []; return; }
   LOOP.order = loopOrder(LOOP.urls.length);
