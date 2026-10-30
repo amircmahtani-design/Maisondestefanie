@@ -773,7 +773,7 @@ const liquid = (()=>{
     x.strokeStyle=GOLD; x.lineWidth=1.6;
     x.beginPath(); x.roundRect(65,192,70,72,5); x.stroke();
     x.fillStyle='rgba(222,200,160,.72)';
-    x.font='500 17px "GFS Didot",Georgia,serif'; x.textAlign='center';
+    x.font='500 17px "Playfair Display",Georgia,serif'; x.textAlign='center';
     x.fillText('LMS', 100, 234);
 
     if (running) raf = requestAnimationFrame(frame);
