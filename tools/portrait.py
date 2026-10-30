@@ -19,9 +19,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'tools', 'supplied', 'stefanie-portrait.jpg')
 OUT = os.path.join(ROOT, 'assets', 'img')
 
-# the window, found by matching against the crop already in the site so
-# the picture does not move when it is re-cut
-BOX = (98, 0, 849, 939)
+# In the original she is at x 230-620 and the flacon she is holding runs
+# from 740 to 880, with her fingers round it to about 900. The window the
+# site inherited was 98-849, which cut the flacon — a quarter of it and
+# two of her fingertips were outside the frame. 175-926 is the same 751
+# wide, moved along so the bottle and her hand are whole; it loses a
+# little hair on the left, which runs off frame the way hair does.
+BOX = (175, 0, 926, 939)
 WIDTHS = (560, 751)
 QUALITY = 90
 

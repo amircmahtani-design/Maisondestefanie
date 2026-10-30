@@ -48,16 +48,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Commissioner:wght@200;300;400;500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
-<!-- Chapter one, the rose, is the first thing painted, and the script can
-     only ask for it once content.json has landed — so it is started here
-     instead. It was pointed at the hero still, which the page stopped
-     showing when the four chapters came in: the browser fetched it at high
-     priority on every visit and then never used it. If chapter one's
-     photograph changes in Studio -> Pictures, change this line to match,
-     or delete it; the page works either way. -->
-<link rel="preload" as="image" href="/assets/img/scene-rose-941.webp"
-      imagesrcset="/assets/img/scene-rose-470.webp 470w, /assets/img/scene-rose-700.webp 700w, /assets/img/scene-rose-941.webp 941w"
-      imagesizes="(min-width:900px) 54vw, 100vw" fetchpriority="high">
+<!-- What a page needs before anything else is its own business, and
+     tools/pages.py writes it here: the home page starts its first plate,
+     the other five have their opening artwork chosen by script and
+     cannot say in advance which of the three shapes they will want. The
+     shell used to preload the rose for all six, which five of them do
+     not show. -->
 
 <link rel="stylesheet" href="/assets/site.css">
 </head>
@@ -288,5 +284,6 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 <script type="application/ld+json" id="ldjson"></script>
 <script src="config.js"></script>
 <script type="module" src="/assets/site.js"></script>
+
 </body>
 </html>

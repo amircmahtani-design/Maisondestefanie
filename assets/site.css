@@ -799,10 +799,16 @@ blockquote{margin:0}
 .herword .byline .sig{font-size:1.46rem}
 .herword .body{max-width:44ch;margin-bottom:var(--s6)}
 @media (max-width:899px){
-  /* on a phone she comes first and the words sit under her, which is
-     the order the page is read in anyway */
-  .herword .portrait-fig{aspect-ratio:3/4;margin-bottom:var(--s5)}
-  .herword .pull-q{max-width:22ch}
+  /* On a phone she comes first and the words sit under her, centred on
+     the column the way the section below this one is — and the frame
+     keeps the photograph's own proportion, because a 3/4 box took
+     twelve pixels off each side and the flacon is at the very edge.
+     Nothing here crops anything. */
+  .herword .portrait-fig{margin-bottom:var(--s6)}
+  .herword .split > div{text-align:center}
+  .herword .lab{justify-content:center}
+  .herword .pull-q{max-width:20ch;margin-inline:auto}
+  .herword .body{margin-inline:auto}
 }
 
 /* ── 15. THE SESSION ───────────────────────────────────────── */
