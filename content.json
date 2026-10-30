@@ -99,16 +99,15 @@
   },
   "portrait": {
    "label": "Stefanie",
-   "ratio": "4/5",
-   "note": "TEMPORARY ARTWORK — replace with a photograph. Her at the bench, working. Not looking at the camera.",
-   "src": "assets/img/bench-900.webp",
-   "alt": "Stefanie at the bench, composing a perfume by hand.",
-   "srcset": "assets/img/bench-560.webp 560w, assets/img/bench-900.webp 900w",
+   "ratio": "751/939",
+   "note": "Stefanie at the Maison with one of her flacons. Her own photograph.",
+   "src": "assets/img/stefanie-751.webp",
+   "alt": "Stefanie, perfumer, holding a flacon of her bespoke extrait de parfum.",
+   "srcset": "assets/img/stefanie-560.webp 560w, assets/img/stefanie-751.webp 751w, assets/img/stefanie-751.webp 751w",
    "sizes": "(min-width:900px) 45vw, 92vw",
-   "srcsetFor": "assets/img/bench-900.webp",
-   "w": 900,
-   "h": 1125,
-   "placeholder": true
+   "srcsetFor": "assets/img/stefanie-751.webp",
+   "w": 751,
+   "h": 939
   },
   "quoteLeft": {
    "label": "Beside her words — the essence on the bench",

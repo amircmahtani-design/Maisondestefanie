@@ -16,7 +16,6 @@
      See assets/PUT-HER-FILES-HERE.txt.
      ========================================================== -->
 <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
@@ -312,6 +311,46 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 .chapters a:hover,.chapters a.on{color:var(--gold-lit)}
 .chapters a:hover i,.chapters a.on i{width:2.4rem}
 .chapters a:hover span.t,.chapters a:focus-visible span.t{max-width:12rem;opacity:1}
+
+/* ══════════════════════════════════════════════════════════════
+   THE CURTAIN
+   Her mark, then the flacon drawn in a single gold line, then the page.
+   Every stroke is normalised with pathLength="1", so one rule animates
+   paths of wildly different lengths and each carries its own delay and
+   duration as a custom property.
+   ══════════════════════════════════════════════════════════════ */
+.curtain{position:fixed;inset:0;z-index:600;background:var(--noir);
+  display:grid;place-items:center;
+  transition:opacity .8s var(--e),visibility .8s}
+.curtain[hidden]{display:none}
+.curtain.gone{opacity:0;visibility:hidden;pointer-events:none}
+.curtain-in{display:grid;justify-items:center;gap:clamp(var(--s5),3.4vh,var(--s7));
+  padding:var(--s7);text-align:center}
+
+/* her own mark, the one already on her tab */
+.curtain-mark{display:block;width:clamp(54px,7.5vh,68px);height:auto;
+  border-radius:var(--r-md);
+  opacity:0;animation:curtainIn .7s var(--e) .15s forwards}
+
+.curtain-bottle{width:auto;height:clamp(176px,38vh,300px);overflow:visible}
+.curtain-bottle path{
+  stroke:var(--gold-lit);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:draw var(--t,.6s) cubic-bezier(.65,0,.35,1) var(--d,0s) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.curtain-word{margin:0;font-family:var(--display);text-transform:uppercase;
+  font-size:var(--t-h4);letter-spacing:.2em;color:var(--ivory);
+  opacity:0;animation:curtainIn .8s var(--e) 2.35s forwards}
+.curtain-word small{display:block;margin-top:var(--s3);
+  font-family:var(--sans);font-size:.56rem;letter-spacing:.44em;color:var(--dim)}
+@keyframes curtainIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* asked for less movement, or no script: there is no curtain at all */
+@media (prefers-reduced-motion:reduce){ .curtain{display:none} }
+.no-js .curtain{display:none}
+body.curtained{overflow:hidden}
 
 /* ══════════════════════════════════════════════════════════════
    THE HERO
@@ -631,16 +670,29 @@ blockquote{margin:0}
 .acts{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;margin-top:.4rem}
 
 /* ── 13. COMPOSED BY HAND + the written formula ────────────── */
+/* The card is as tall as what is on it. It used to hold a fixed 22rem
+   whatever was written, so a three-line accord left a third of the paper
+   blank. */
 .paper{position:relative;background:linear-gradient(168deg,#EDE4D2,#DCCDB4);color:#3A2E20;
-  padding:clamp(1.8rem,4vw,2.8rem);min-height:22rem;border-radius:var(--r-lg);
+  padding:clamp(1.8rem,4vw,2.8rem);border-radius:var(--r-lg);
   box-shadow:0 26px 60px rgba(0,0,0,.5);overflow:hidden}
 .paper::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
   background:radial-gradient(80% 60% at 22% 12%,rgba(255,255,255,.5),transparent 60%),
              radial-gradient(70% 70% at 88% 92%,rgba(120,90,50,.16),transparent 60%)}
 .paper .lab{color:#6F5A3C;position:relative}
 .paper .lab::before{background:#A8813F}
-.hand{position:relative;font-family:var(--hand);font-size:clamp(1.35rem,1.1rem + 1vw,1.85rem);
-  line-height:1.62;color:#3F3122;white-space:pre-wrap;min-height:9rem}
+/* Ruled like the pad it is meant to be: a dotted line for every ingredient
+   the formula could hold, so the lines she has not written yet read as
+   room left for them rather than as a gap. The rule pitch is the line
+   height, so the writing lands on the rules. */
+.hand{--rule:1.62em;
+  position:relative;font-family:var(--hand);font-size:clamp(1.35rem,1.1rem + 1vw,1.85rem);
+  line-height:1.62;color:#3F3122;white-space:pre-wrap;
+  min-height:calc(var(--rule) * 7);
+  background-image:radial-gradient(circle at 1px 50%,rgba(58,46,32,.26) .75px,transparent 1.1px);
+  background-size:7px var(--rule);
+  background-position:0 calc(var(--rule) - 2px);
+  background-repeat:repeat}
 .hand .ch{opacity:0}
 .hand .ch.on{opacity:1}
 .hand .nib{position:absolute;width:1px;height:1.15em;background:#5A4530;opacity:0;
@@ -845,9 +897,75 @@ body.noscroll{overflow:hidden}
 </style>
 </head>
 <body class="lang-en no-js">
+<!-- ══════════════ THE CURTAIN ══════════════
+     Black, her mark, and the flacon drawn in one gold line. It is added by
+     script and only on a first arrival, so it can never be the thing that
+     stands between somebody and the page. -->
+<div class="curtain" id="curtain" aria-hidden="true" hidden>
+  <div class="curtain-in">
+    <img class="curtain-mark" src="assets/apple-touch-icon.png" alt=""
+         width="180" height="180" decoding="async" fetchpriority="high">
+    <svg class="curtain-bottle" viewBox="0 0 200 392" fill="none" aria-hidden="true">
+      <!-- the cap, a pebble of the same stone as the flacon -->
+      <path pathLength="1" style="--d:.55s;--t:.70s"
+        d="M62 62C62 38 77 24 100 24C123 24 138 38 138 62C138 84 123 98 100 98C77 98 62 84 62 62Z"/>
+      <!-- the collar -->
+      <path pathLength="1" style="--d:1.05s;--t:.34s"
+        d="M71 100h58a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H71a5 5 0 0 1-5-5v-10a5 5 0 0 1 5-5Z"/>
+      <path pathLength="1" style="--d:1.22s;--t:.22s" d="M84 100v20M100 100v20M116 100v20"/>
+      <!-- the shoulders -->
+      <path pathLength="1" style="--d:1.26s;--t:.40s" d="M74 120c-7 9-20 14-30 22"/>
+      <path pathLength="1" style="--d:1.26s;--t:.40s" d="M126 120c7 9 20 14 30 22"/>
+      <!-- the flacon -->
+      <path pathLength="1" style="--d:1.42s;--t:.84s"
+        d="M50 142h100a10 10 0 0 1 10 10v206a10 10 0 0 1-10 10H50a10 10 0 0 1-10-10V152a10 10 0 0 1 10-10Z"/>
+      <!-- the house plate -->
+      <path pathLength="1" style="--d:2.02s;--t:.42s"
+        d="M70 192h60a5 5 0 0 1 5 5v62a5 5 0 0 1-5 5H70a5 5 0 0 1-5-5v-62a5 5 0 0 1 5-5Z"/>
+      <!-- the light in the glass -->
+      <path pathLength="1" style="--d:2.24s;--t:.36s" d="M55 168v174" opacity=".5"/>
+      <path pathLength="1" style="--d:2.32s;--t:.36s" d="M145 182v146" opacity=".35"/>
+    </svg>
+    <p class="curtain-word">La Maison de Stefanie<small>Athens</small></p>
+  </div>
+</div>
+
 <script>document.body.classList.replace('no-js','js');
 /* the headline is animated in, but never at the cost of being read */
-setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1400);</script>
+setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1400);
+
+/* The curtain. Run inline and early, so it is already black before the
+   page paints rather than flashing the hero and then covering it.
+
+   It plays once a visit, never for anyone who asked for less movement,
+   and it lifts on a timer, on a click, on Escape, and on a hard backstop
+   — four ways out, because a decorative overlay must never be the thing
+   that strands somebody on a blank screen. */
+(function(){
+  var c = document.getElementById('curtain');
+  if (!c) return;
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seen;
+  try { seen = sessionStorage.getItem('lms-curtain'); } catch(e){ seen = null; }
+  if (still || seen) return;
+  try { sessionStorage.setItem('lms-curtain','1'); } catch(e){}
+
+  c.hidden = false;
+  document.body.classList.add('curtained');
+
+  var lifted = false;
+  function lift(){
+    if (lifted) return; lifted = true;
+    c.classList.add('gone');
+    document.body.classList.remove('curtained');
+    setTimeout(function(){ c.remove(); }, 900);
+  }
+  var t = setTimeout(lift, 3300);
+  var hard = setTimeout(lift, 6000);          /* if anything above fails */
+  c.addEventListener('click', lift);
+  addEventListener('keydown', function(e){ if (e.key === 'Escape') lift(); });
+  addEventListener('pagehide', function(){ clearTimeout(t); clearTimeout(hard); lift(); });
+})();</script>
 
 <a class="skip" href="#main">Skip to content</a>
 <div class="grain" aria-hidden="true"></div>
@@ -1411,7 +1529,7 @@ function renderHero(){
   HERO.still = REDUCED;
   HERO.held = false;
   showScene(HERO.still ? Math.min(3, HERO.n - 1) : 0);
-  if (!HERO.still) startHero();
+  beginHero();
 }
 
 function showScene(i){
@@ -1438,6 +1556,20 @@ function startHero(){
 }
 function stopHero(){ clearTimeout(HERO.timer); HERO.timer = 0; }
 function restartHero(){ stopHero(); startHero(); }
+
+/* The curtain is drawn by an inline script that runs long before this
+   module does, so the two cannot call each other reliably — whichever
+   finishes first would win. The hero simply waits for the curtain to go
+   instead, and nobody arrives mid-sequence. */
+function beginHero(){
+  if (HERO.still) return;
+  if (!document.body.classList.contains('curtained')){ startHero(); return; }
+  const ob = new MutationObserver(()=>{
+    if (document.body.classList.contains('curtained')) return;
+    ob.disconnect(); showScene(0); startHero();
+  });
+  ob.observe(document.body, {attributes:true, attributeFilter:['class']});
+}
 
 /* Anyone reading, hovering or tabbing through the hero has the scenes
    hold still — auto-changing content that cannot be paused is a trap. */
