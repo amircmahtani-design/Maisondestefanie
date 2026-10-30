@@ -7,6 +7,11 @@ the wrong thing to serve a photograph over a phone connection, so each
 one is written out as WebP beside it. Drop a replacement PNG in and run
 this again; the names on the page never change.
 
+The artwork is 1672 x 941 and that is the ceiling — the WebP is written
+at the PNG's own size, never enlarged. Quality is 86: at 74 the encoder
+was smoothing away the grain and the specular edges that make these read
+as photographs, for about 60 KB a page.
+
     python3 tools/heroes.py <folder-of-pages> [<folder-of-pages> ...]
 
 Each folder holds one directory per page (home, maison, bespoke, story,
@@ -20,7 +25,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'assets', 'heroes')
 PAGES = ('home', 'maison', 'bespoke', 'story', 'creations', 'visit')
 DEVICES = ('desktop', 'ipad', 'iphone')
-QUALITY = 74
+QUALITY = 86
 
 
 def main(folders):
