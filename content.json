@@ -61,8 +61,8 @@
    "srcsetFor": "assets/img/frame-04-880.webp",
    "w": 941,
    "h": 1672,
-   "focus": "50% 46%",
-   "focusM": "100% 0%"
+   "focus": "50% 50%",
+   "focusM": "50% 50%"
   },
   "heroBotanical": {
    "label": "Chapter one — the rose",
@@ -75,8 +75,8 @@
    "srcsetFor": "assets/img/scene-rose-941.webp",
    "w": 941,
    "h": 1672,
-   "focus": "50% 0%",
-   "focusM": "95% 76%"
+   "focus": "50% 50%",
+   "focusM": "50% 50%"
   },
   "heroVessel": {
    "label": "Chapter two — the essences",
@@ -89,8 +89,8 @@
    "srcsetFor": "assets/img/scene-essence-941.webp",
    "w": 941,
    "h": 1672,
-   "focus": "50% 63%",
-   "focusM": "28% 0%"
+   "focus": "50% 50%",
+   "focusM": "50% 50%"
   },
   "portrait": {
    "label": "Stefanie",
@@ -202,8 +202,8 @@
    "srcsetFor": "assets/img/scene-still-940.webp",
    "w": 940,
    "h": 1672,
-   "focus": "50% 35%",
-   "focusM": "100% 0%"
+   "focus": "50% 50%",
+   "focusM": "50% 50%"
   },
   "bottleFrame00": {
    "label": "Bottle loop — frame 00",
