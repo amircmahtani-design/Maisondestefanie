@@ -983,6 +983,16 @@ function toggleMenu(open){
 }
 $('#burger').onclick = ()=>toggleMenu();
 
+/* which of the five you are on, so its tab is the struck one */
+(function(){
+  const here = location.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
+  $$('.nav a[href]').forEach(a=>{
+    const to = new URL(a.getAttribute('href'), location.href).pathname
+                 .replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
+    if (to === here) a.setAttribute('aria-current','page');
+  });
+})();
+
 /* smooth, but never in the way: anchors still work if this fails */
 $$('a[data-nav]').forEach(a=>{
   a.addEventListener('click', e=>{

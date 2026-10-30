@@ -213,7 +213,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 .bar.stuck::before{opacity:1}
 .bar.stuck{padding-block:.7rem}
 
+/* the house's own name is never the thing that gets squeezed */
 .mark{display:flex;align-items:center;gap:.85rem;flex:0 1 auto;min-width:0}
+@media (min-width:1240px){ .bar .mark{flex:none} }
 .monogram{width:2.5rem;height:2.5rem;flex:none;display:grid;place-items:center;
   border:1px solid var(--edge-2);border-radius:50%;font-family:var(--display);
   font-size:.82rem;letter-spacing:.06em;color:var(--gold-lit);transition:border-color .4s}
@@ -234,20 +236,47 @@ ul,ol{margin:0;padding:0;list-style:none}
   .lang{font-size:.62rem}
 }
 
-.nav{display:flex;gap:clamp(1rem,2.2vw,2.2rem);margin-inline:auto}
-.nav a{font-size:var(--lab);letter-spacing:.22em;text-transform:uppercase;color:#CBBDAC;
-  position:relative;padding-block:.35rem;transition:color .3s}
-.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
-  background:var(--gold);transition:right .45s var(--e)}
-.nav a:hover,.nav a[aria-current="true"]{color:var(--ivory)}
-.nav a:hover::after,.nav a[aria-current="true"]::after{right:0}
+/* The five pages sit in a track, one pill each, and the one you are on
+   is struck copper — the same metal as the pills and the chosen
+   category on the shelf. */
+.nav{display:flex;align-items:center;gap:var(--s1);margin-inline:auto;
+  padding:var(--s1);border-radius:var(--r-pill);
+  border:1px solid rgba(243,237,226,.1);
+  background:rgba(243,237,226,.035);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.nav a{position:relative;display:inline-flex;align-items:center;
+  min-height:2.3rem;padding:0 clamp(var(--s4),1.4vw,var(--s6));
+  border-radius:var(--r-pill);
+  font-size:var(--lab);letter-spacing:.16em;text-transform:uppercase;
+  color:#CBBDAC;white-space:nowrap;
+  transition:color .3s var(--e),background .3s var(--e)}
+@media (hover:hover) and (pointer:fine){
+  .nav a:hover{color:var(--ivory);background:rgba(243,237,226,.07)}
+}
+/* between the breakpoint and a wide screen everything pulls its elbows
+   in so the five tabs, the house's name and the tools all fit on one
+   line without any of them being cut */
+@media (max-width:1400px){
+  .nav{gap:0;padding:3px}
+  .nav a{padding-inline:var(--s3);letter-spacing:.08em;min-height:2.15rem}
+  .bar{gap:.75rem}
+  .tools{gap:.5rem}
+  .bar .btn{padding:.6rem .95rem;letter-spacing:.14em}
+  .lang button{min-width:2rem;padding-inline:.15rem}
+}
+.nav a[aria-current]{background:var(--metal);color:var(--metal-ink);font-weight:500;
+  box-shadow:var(--metal-edge),0 4px 12px rgba(62,32,10,.42);
+  text-shadow:0 1px 0 rgba(255,242,218,.5)}
+@media (hover:hover) and (pointer:fine){
+  .nav a[aria-current]:hover{background:var(--metal-lit);color:var(--metal-ink)}
+}
 
 .tools{display:flex;align-items:center;gap:.9rem;flex:none;margin-left:auto}
 .lang{display:flex;align-items:center;gap:.35rem;font-size:var(--lab);letter-spacing:.18em;color:var(--dimmer)}
 .lang button{padding:.35rem;min-width:2.5rem;min-height:2.75rem;transition:color .3s}
 .lang button[aria-pressed="true"]{color:var(--ivory)}
 .bar .btn{display:none}
-@media (min-width:1080px){ .bar .btn{display:inline-flex;min-height:2.6rem;padding:.6rem 1.25rem} }
+@media (min-width:1240px){ .bar .btn{display:inline-flex;min-height:2.6rem;padding:.6rem 1.25rem} }
 
 .burger{width:2.75rem;height:2.75rem;flex:none;border:1px solid var(--edge-2);border-radius:50%;
   display:none;place-items:center;align-content:center;gap:5px;transition:border-color .3s}
@@ -256,14 +285,19 @@ ul,ol{margin:0;padding:0;list-style:none}
 body.menu .burger i:first-child{transform:translateY(3px) rotate(45deg)}
 body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 
-@media (max-width:1079px){
+@media (max-width:1239px){
   .burger{display:grid}
   .nav{position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:center;
     gap:1.6rem;margin:0;padding:5rem var(--pad) 7rem;background:rgba(8,5,4,.985);
     -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
     opacity:0;visibility:hidden;transition:opacity .4s var(--e),visibility .4s}
+  /* the menu is the whole screen here, so the track goes away and the
+     page you are on is simply the one in copper */
+  .nav{padding:5rem var(--pad) 7rem;border:0;border-radius:0;background:rgba(8,5,4,.985)}
   .nav a{font-family:var(--display);font-size:clamp(1.25rem,5vw,1.8rem);letter-spacing:.1em;
-    text-transform:uppercase;padding-block:.5rem}
+    text-transform:uppercase;padding:.35rem 1.2rem;min-height:0}
+  .nav a[aria-current]{background:none;box-shadow:none;text-shadow:none;
+    color:var(--gold-lit);font-weight:400}
   body.menu .nav{opacity:1;visibility:visible}
 }
 
@@ -903,7 +937,7 @@ blockquote{margin:0}
   background:rgba(10,7,5,.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
   border-top:1px solid var(--edge)}
 .dock.on{transform:none}
-@media (min-width:1080px){ .dock{display:none} }
+@media (min-width:1240px){ .dock{display:none} }
 .dock a{display:grid;place-items:center;min-height:3.4rem;padding:.9rem .6rem;
   font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;text-align:center}
 .dock a + a{border-left:1px solid var(--edge);background:var(--gold);color:#120E09;font-weight:400}
