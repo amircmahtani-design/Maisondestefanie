@@ -67,12 +67,21 @@
   /* cream panels — daylight through the shop door */
   --cream:#EDE5D6; --cream-2:#E1D6C2; --ink:#241C16;
   /* type */
-  --ivory:#F3EDE2; --ivory-2:#DED3C2; --dim:#A2917C; --dimmer:#8A7A67;
+  --ivory:#F3EDE2; --ivory-2:#E6DCCC; --dim:#B8A892; --dimmer:#A6947E;
   /* metal and glass */
   --gold:#B99358; --gold-lit:#DCBF8B; --amber:#C98A3A;
   /* the same gold, darkened just enough for small text on the paper ground */
   --gold-ink:#82591C;
   --rose:#C2818A; --burgundy:#6E2333;
+  /* polished gold: the sheen runs across the middle, the edge above it
+     catches the light and the one below it is in shadow */
+  --metal:linear-gradient(177deg,#F6E3B4 0%,#DCBB78 16%,#C2984F 38%,
+                          #9C7231 52%,#C59F58 70%,#E6CC92 88%,#F3DFAE 100%);
+  --metal-lit:linear-gradient(177deg,#FDF0CE 0%,#E9CE92 16%,#D2AC67 38%,
+                          #AE8440 52%,#D4B271 70%,#F0DCA9 88%,#FBEDC6 100%);
+  --metal-edge:inset 0 1px 0 rgba(255,250,228,.8),
+               inset 0 -1px 0 rgba(72,48,14,.55),
+               inset 0 0 0 1px rgba(120,86,30,.35);
   /* edges */
   --edge:rgba(243,237,226,.11); --edge-2:rgba(243,237,226,.2);
   --edge-ink:rgba(36,28,22,.16);
@@ -93,10 +102,10 @@
      A 1.333 fourth, editorial. Each step is fluid between a phone and a
      wide desktop, so there is one ladder rather than a clamp invented at
      each call site. */
-  --t-micro:clamp(.62rem,.60rem + .10vw,.70rem);   /* labels, eyebrows   */
-  --t-small:clamp(.78rem,.75rem + .16vw,.88rem);   /* captions, notes    */
-  --t-body:clamp(.94rem,.90rem + .22vw,1.06rem);   /* running text       */
-  --t-lede:clamp(1.06rem,.98rem + .42vw,1.30rem);  /* standfirsts        */
+  --t-micro:clamp(.74rem,.70rem + .16vw,.84rem);   /* labels, eyebrows   */
+  --t-small:clamp(.88rem,.84rem + .20vw,1.00rem);  /* captions, notes    */
+  --t-body:clamp(1.02rem,.96rem + .26vw,1.16rem);  /* running text       */
+  --t-lede:clamp(1.14rem,1.04rem + .46vw,1.40rem); /* standfirsts        */
   --t-h4:clamp(1.12rem,1.02rem + .50vw,1.42rem);
   --t-h3:clamp(1.40rem,1.20rem + 1.00vw,1.90rem);
   --t-h2:clamp(1.90rem,1.45rem + 2.25vw,3.30rem);
@@ -105,7 +114,7 @@
   /* line-height and tracking move opposite to size: large type wants less
      of both, small caps want a great deal of tracking to stay legible */
   --lh-tight:1.06; --lh-head:1.16; --lh-body:1.62;
-  --tr-head:-.012em; --tr-caps:.26em; --tr-micro:.34em;
+  --tr-head:-.012em; --tr-caps:.2em; --tr-micro:.26em;
 
   /* ── RADIUS ──
      Soft throughout. The pill is for anything that reads as a control. */
@@ -195,8 +204,11 @@ ul,ol{margin:0;padding:0;list-style:none}
   transition:background .35s var(--e),color .35s,border-color .35s,
     transform .12s var(--e)}
 .btn:active{transform:scale(.97)}
-.btn-solid{background:var(--gold);color:#120E09;font-weight:400}
-.btn-solid:hover{background:var(--gold-lit)}
+.btn-solid{background:var(--metal);color:#1A1206;font-weight:500;
+  box-shadow:var(--metal-edge),0 8px 20px rgba(0,0,0,.42);
+  text-shadow:0 1px 0 rgba(255,246,222,.45)}
+.btn-solid:hover{background:var(--metal-lit)}
+.btn-solid:active{box-shadow:var(--metal-edge),0 3px 10px rgba(0,0,0,.5)}
 .btn-line{border:1px solid var(--edge-2);color:var(--ivory)}
 .btn-line:hover{border-color:var(--gold);color:var(--gold-lit);background:rgba(185,147,88,.07)}
 .pale .btn-line{border-color:rgba(36,28,22,.28);color:var(--ink)}
@@ -392,11 +404,14 @@ body.curtained{overflow:hidden}
   transform:translateZ(0);backface-visibility:hidden}
 .scene .lay.b{opacity:0}
 .scene.xf .lay{transition:opacity 520ms cubic-bezier(.22,.61,.36,1)}
-/* three and a half percent over four seconds, out and back */
-@keyframes kenburns{from{transform:scale(1) translate3d(0,0,0)}
-  to{transform:scale(1.035) translate3d(0,-.9%,0)}}
+/* A slow push: eight percent and a drift across, out and back over nine
+   seconds, which reads as a camera breathing. It was three and a half
+   percent over four — about nine hundredths of a percent a second, which
+   is below what an eye registers as movement at all. */
+@keyframes kenburns{from{transform:scale(1.005) translate3d(0,0,0)}
+  to{transform:scale(1.085) translate3d(-1.1%,-2.2%,0)}}
 .scene[data-motion="burns"].on .lay.a{
-  animation:kenburns 4s cubic-bezier(.37,0,.63,1) infinite alternate}
+  animation:kenburns 9s cubic-bezier(.42,0,.58,1) infinite alternate}
 .hero.hold .scene .lay{animation-play-state:paused!important}
 
 /* the light in the room, and the dark the words are read on */
@@ -414,57 +429,44 @@ body.curtained{overflow:hidden}
 /* the words */
 .hero-copy{position:relative;z-index:4;max-width:min(34rem,46vw);
   margin-left:clamp(0rem,4vw,5rem)}
-.hero-eyebrow{margin:0 0 var(--s5);font-size:var(--t-micro);
-  letter-spacing:var(--tr-micro);text-transform:uppercase;color:var(--dim-lit)}
+.hero-eyebrow{margin:0 0 var(--s5);font-size:var(--t-small);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lit)}
 .hero h1{font-family:var(--display);text-transform:uppercase;
   font-size:var(--t-h1);line-height:var(--lh-tight);
   letter-spacing:.01em;color:#F7F2E9;margin:0 0 var(--s5);text-wrap:balance}
 .hero h1 em{display:block;font-style:normal}
-.hero-lede{font-size:var(--t-lede);line-height:1.52;font-family:var(--serif);
-  color:var(--ivory-2);max-width:30ch;margin:0 0 var(--s7);text-wrap:pretty}
+.hero-lede{font-size:clamp(1.22rem,1.06rem + .62vw,1.62rem);line-height:1.46;
+  font-family:var(--serif);color:var(--ivory);max-width:28ch;
+  margin:0 0 var(--s7);text-wrap:pretty}
 .hero-acts{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4) var(--s7)}
-.hero-cta{display:inline-flex;align-items:center;gap:var(--s4);min-height:3.25rem;
-  padding:var(--s3) var(--s7);border:1px solid var(--edge-2);color:var(--ivory);
-  border-radius:var(--r-pill);background:rgba(243,237,226,.045);
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+.hero-cta{display:inline-flex;align-items:center;gap:var(--s4);min-height:3.4rem;
+  padding:var(--s3) var(--s7);border:1px solid rgba(120,86,30,.5);color:#1A1206;
+  border-radius:var(--r-pill);background:var(--metal);font-weight:500;
+  box-shadow:var(--metal-edge),0 10px 26px rgba(0,0,0,.5);
+  text-shadow:0 1px 0 rgba(255,246,222,.45);
   font-size:var(--t-micro);letter-spacing:var(--tr-caps);text-transform:uppercase;
-  transition:border-color .35s var(--e),background .35s var(--e),color .35s var(--e),
-    transform .12s var(--e)}
-.hero-cta svg{width:.62rem;height:.62rem;flex:none;transition:transform .35s var(--e)}
-.hero-alt{font-size:var(--t-micro);letter-spacing:var(--tr-caps);text-transform:uppercase;
-  color:var(--dim-lit);border-bottom:1px solid var(--edge);padding-bottom:var(--s1);
+  transition:background .35s var(--e),box-shadow .35s var(--e),transform .12s var(--e)}
+.hero-cta svg{width:.72rem;height:.72rem;flex:none;transition:transform .35s var(--e)}
+.hero-alt{font-size:var(--t-small);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ivory-2);border-bottom:1px solid var(--edge);padding-bottom:var(--s1);
   min-height:2.75rem;display:inline-flex;align-items:center;
   transition:color .3s,border-color .3s}
 @media (hover:hover) and (pointer:fine){
-  .hero-cta:hover{border-color:var(--gold);background:rgba(185,147,88,.1);color:var(--gold-lit)}
+  .hero-cta:hover{background:var(--metal-lit);
+    box-shadow:var(--metal-edge),0 12px 30px rgba(0,0,0,.55)}
   .hero-cta:hover svg{transform:translateX(4px)}
   .hero-alt:hover{color:var(--gold-lit);border-color:var(--gold)}
 }
 .hero-cta:active{transform:scale(.985)}
 
-/* the five words down the left edge */
-.hero-words{position:absolute;z-index:3;left:calc(var(--pad) * .48);top:50%;
-  transform:translateY(-50%);display:none;flex-direction:column;gap:var(--s3);
-  font-size:.58rem;letter-spacing:var(--tr-micro);text-transform:uppercase;
-  color:var(--dim-lit);opacity:.66;pointer-events:none}
-@media (min-width:1240px){ .hero-words{display:flex} }
-
-/* the rail: what this place is, and which of the four you are on */
-.hero-rail{position:absolute;z-index:4;right:calc(var(--pad) * .5);top:0;bottom:0;
-  display:none;flex-direction:column;align-items:center;justify-content:center;
-  gap:clamp(1.4rem,4vh,2.6rem);padding-block:clamp(5rem,10vh,7rem)}
-@media (min-width:900px){ .hero-rail{display:flex} }
-.hero-rail-t{margin:0;writing-mode:vertical-rl;font-size:.58rem;
-  letter-spacing:var(--tr-micro);text-transform:uppercase;
-  color:var(--dim-lit);opacity:.82}
 .hero-nums{display:flex;flex-direction:column;align-items:center;gap:.1rem;
   position:relative;padding-block:.4rem}
 .hero-nums::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;
   background:var(--edge);transform:translateX(-50%)}
 .hero-nums button{position:relative;padding:var(--s2);min-width:2.75rem;min-height:2.75rem;
   border-radius:var(--r-pill);
-  display:grid;place-items:center;font-family:var(--fancy);font-size:.76rem;
-  letter-spacing:.06em;color:var(--dim-lit);opacity:.62;
+  display:grid;place-items:center;font-family:var(--fancy);font-size:.95rem;
+  letter-spacing:.06em;color:var(--dim-lit);opacity:.78;
   transition:color .35s var(--e),opacity .35s var(--e)}
 .hero-nums button[aria-current="true"]{color:var(--ivory);opacity:1}
 .hero-nums button::after{content:"";position:absolute;left:50%;top:.35rem;bottom:.35rem;
@@ -472,13 +474,6 @@ body.curtained{overflow:hidden}
   transform-origin:top;transition:transform .4s var(--e)}
 .hero-nums button[aria-current="true"]::after{transform:translateX(-50%) scaleY(1)}
 @media (hover:hover) and (pointer:fine){ .hero-nums button:hover{color:var(--ivory)} }
-
-/* the line along the foot */
-.hero-foot{position:absolute;z-index:4;right:calc(var(--pad) + 3.4rem);
-  bottom:clamp(1.4rem,3.4vh,2.4rem);margin:0;
-  font-size:.58rem;letter-spacing:var(--tr-micro);text-transform:uppercase;
-  color:var(--dim-lit);opacity:.72;display:none}
-@media (min-width:900px){ .hero-foot{display:block} }
 
 @media (max-width:899px){
   /* the picture takes the top of the screen on its own, the words sit
@@ -546,9 +541,10 @@ body.curtained{overflow:hidden}
 .band .ph{position:absolute;inset:0;display:grid;place-items:center;
   font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dimmer)}
 @media (max-width:760px){
-  /* taller crop, so the rose comes up behind the line — the foot has to
-     carry more of the weight here than it does on a wide screen */
-  .band{aspect-ratio:4/3}
+  /* Taller than the 21:9 it is on a wide screen, so the rose comes up
+     behind the line — but 4:3 threw away two fifths of the picture's
+     width, and the rose went with it. 5:4 keeps the flower in frame. */
+  .band{aspect-ratio:5/4}
   .band::after{background:linear-gradient(0deg,rgba(10,7,5,.95) 0%,
     rgba(10,7,5,.68) 38%,rgba(10,7,5,.22) 64%,rgba(10,7,5,0) 84%)}
 }
@@ -616,10 +612,13 @@ blockquote{margin:0}
 .thread .im{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--char-2)}
 .thread .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;transform:scale(1.02);transition:opacity 1s var(--e),transform .9s var(--slow)}
-.thread .im img.on{opacity:.62}
+.thread .im img.on{opacity:.92}
 .thread::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(0deg,rgba(10,7,5,.95) 6%,rgba(10,7,5,.42) 52%,rgba(10,7,5,.55) 100%)}
-.thread > *:not(.im){position:relative;z-index:2}
+  background:linear-gradient(0deg,rgba(10,7,5,.96) 12%,rgba(10,7,5,.78) 34%,
+    rgba(10,7,5,.34) 64%,rgba(10,7,5,.14) 100%)}
+/* the words now lie on a photograph, so they carry their own shadow */
+.thread > *:not(.im){position:relative;z-index:2;
+  text-shadow:0 1px 12px rgba(10,7,5,.92),0 0 2px rgba(10,7,5,.6)}
 .thread .n{font-family:var(--display);font-size:.72rem;letter-spacing:.28em;color:var(--gold);
   margin-bottom:auto}
 .thread .ttl{display:block;font-family:var(--serif);font-weight:300;line-height:1.15;
@@ -652,9 +651,9 @@ blockquote{margin:0}
    photograph in it is mostly void. The card lies down, and the mark grows
    to fill what is left beside the words. */
 @media (max-width:619px){
-  .thread{aspect-ratio:16/9;min-height:11rem}
+  .thread:has(.emb){aspect-ratio:16/9;min-height:11rem}
   .thread .emb{top:50%;transform:translateY(-58%);width:min(34%,116px)}
-  .thread .ttl,.thread p{max-width:62%}
+  .thread:has(.emb) .ttl,.thread:has(.emb) p{max-width:62%}
 }
 .thread:hover,.thread:focus-visible{border-color:rgba(185,147,88,.5)}
 .thread:hover .im img{transform:scale(1.06)}
@@ -691,7 +690,11 @@ blockquote{margin:0}
 .chip:active:not([disabled]){transform:scale(.97)}
 .chip .dot{width:.6rem;height:.6rem;border-radius:50%;flex:none}
 .chip:hover:not([disabled]){border-color:var(--gold);color:var(--ivory)}
-.chip[aria-pressed="true"]{border-color:var(--gold);background:rgba(185,147,88,.14);color:var(--ivory)}
+.chip[aria-pressed="true"]{border-color:rgba(120,86,30,.55);background:var(--metal);
+  color:#1A1206;font-weight:500;
+  box-shadow:var(--metal-edge),0 6px 16px rgba(0,0,0,.34);
+  text-shadow:0 1px 0 rgba(255,246,222,.4)}
+.chip[aria-pressed="true"] .dot{box-shadow:0 0 0 1px rgba(26,18,6,.45)}
 .chip[disabled]{opacity:.35;cursor:not-allowed}
 .flask{display:grid;gap:1.2rem;justify-items:start;
   border-left:1px solid var(--edge);padding-left:clamp(1.2rem,3vw,2.4rem)}
@@ -730,7 +733,7 @@ blockquote{margin:0}
   min-height:calc(var(--rule) * 7);
   background-image:radial-gradient(circle at 1px 50%,rgba(58,46,32,.26) .75px,transparent 1.1px);
   background-size:7px var(--rule);
-  background-position:0 calc(var(--rule) - 2px);
+  background-position:0 calc(var(--rule) * .095);
   background-repeat:repeat}
 .hand .ch{opacity:0}
 .hand .ch.on{opacity:1}
@@ -747,7 +750,9 @@ blockquote{margin:0}
 
 /* ── 14. LEGACY ────────────────────────────────────────────── */
 .wide-fig{aspect-ratio:21/9;width:100%;margin:0}
-@media (max-width:760px){ .wide-fig{aspect-ratio:3/2} }
+/* a 21:9 picture in a 3:2 box loses a third of its width; 16:9 keeps most
+   of the room in the room */
+@media (max-width:760px){ .wide-fig{aspect-ratio:16/9} }
 /* the room sits on the cream, so it keeps a hairline the way the shelf
    cards do rather than floating as a dark hole */
 .room-fig{border:1px solid rgba(36,28,22,.1)}
@@ -800,7 +805,11 @@ blockquote{margin:0}
   transition:border-color .3s,background .3s,color .3s,transform .12s var(--e)}
 .filters button:active{transform:scale(.97)}
 .filters button:hover{border-color:#8A5F1E;color:#8A5F1E}
-.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.filters button[aria-pressed="true"]{background:var(--metal);border-color:rgba(120,86,30,.5);
+  color:#1A1206;font-weight:500;
+  box-shadow:var(--metal-edge),0 6px 16px rgba(72,48,14,.3);
+  text-shadow:0 1px 0 rgba(255,246,222,.4)}
+.filters button[aria-pressed="true"]:hover{background:var(--metal-lit);color:#1A1206}
 .grid{display:grid;gap:clamp(1.5rem,3vw,2.4rem);
   grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr))}
 /* a shelf, not a column: twelve one at a time was most of the page */
@@ -991,7 +1000,7 @@ body.noscroll{overflow:hidden}
   .hero-plate .m-rose,.hero-plate .m-bottle{animation:none;transform:none}
   .cue i{animation:none;opacity:.5}
   .fig img,.thread .im img,.card .shot img{opacity:1}
-  .thread .im img{opacity:.62}
+  .thread .im img{opacity:.92}
 }
 /* the same courtesy for anyone who never gets the script */
 .no-js .rv{opacity:1;transform:none}
@@ -1092,7 +1101,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
       <span aria-hidden="true">/</span>
       <button type="button" data-lang="el" aria-pressed="false">ΕΛ</button>
     </div>
-    <a class="btn btn-line" id="barCta" href="#threads" data-nav data-t="ui.book">Book</a>
+    <a class="btn btn-solid" id="barCta" href="#threads" data-nav data-t="ui.book">Book</a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">
       <i></i><i></i>
     </button>
@@ -1105,8 +1114,6 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 <!-- ══════════════ THE HERO ══════════════ -->
 <section class="hero" id="top">
   <div class="hero-scenes" id="heroScenes" aria-hidden="true"></div>
-
-  <ul class="hero-words" id="heroWords" aria-hidden="true"></ul>
 
   <div class="hero-copy">
     <p class="hero-eyebrow" data-t="hero.eyebrow"></p>
@@ -1122,13 +1129,6 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
     </div>
   </div>
 
-  <div class="hero-rail">
-    <p class="hero-rail-t" data-t="hero.rail"></p>
-    <div class="hero-nums" id="heroNums" role="tablist"
-         aria-label="Which of the four you are looking at"></div>
-  </div>
-
-  <p class="hero-foot" data-t="hero.foot"></p>
 </section>
 
 <!-- ══════════════ A MEMORY, DISTILLED ══════════════ -->
@@ -1553,7 +1553,7 @@ function renderDistilled(){
    as tall as its content.                                        */
 const HERO = { scenes: [], n: 0, el: null, at: 0, timer: 0,
                still: false, held: false, flat: false };
-const SCENE_HOLD = 5200;          /* long enough to look, short enough to move */
+const SCENE_HOLD = 4400;          /* long enough to look, short enough to move */
 
 /* How tall one screen is — and whether this page is being shown inside
    something that has sized itself to fit the whole page.
@@ -1606,16 +1606,18 @@ function renderHero(){
     img.src = url;
   });
 
-  /* the count on the right, which is also how you take control of it */
-  $('#heroNums').innerHTML = data.map((c,i)=>
-    `<button type="button" role="tab" data-i="${i}" aria-current="${i===0}"
-       aria-label="${esc(c.word || c.num)}">${esc(c.num)}</button>`).join('');
-  $$('#heroNums button').forEach(btn=>{
-    btn.addEventListener('click', ()=>{ showScene(+btn.dataset.i); restartHero(); });
-  });
-
-  const words = L(DATA.hero, 'words') || [];
-  $('#heroWords').innerHTML = words.map(w=>`<li>${esc(w)}</li>`).join('');
+  /* The chapter count used to sit down the right edge as a tab list. It
+     is gone: the chapters turn by themselves and the page is meant to be
+     looked at. Anything left that wants to drive them still can. */
+  const nums = $('#heroNums');
+  if (nums){
+    nums.innerHTML = data.map((c,i)=>
+      `<button type="button" role="tab" data-i="${i}" aria-current="${i===0}"
+         aria-label="${esc(c.word || c.num)}">${esc(c.num)}</button>`).join('');
+    $$('#heroNums button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ showScene(+btn.dataset.i); restartHero(); });
+    });
+  }
 
   /* whichever scene carries a run of frames gets the two-layer player */
   stopLoop(); LOOP.ready = false; LOOP.live = false; LOOP.urls = [];
@@ -1653,13 +1655,13 @@ function showScene(i){
   }
 }
 
-function startHero(){
+function startHero(firstHold){
   stopHero();
   if (HERO.still || HERO.held || document.hidden || HERO.n < 2) return;
   HERO.timer = setTimeout(function step(){
     showScene(HERO.at + 1);
     HERO.timer = setTimeout(step, SCENE_HOLD);
-  }, SCENE_HOLD);
+  }, firstHold || SCENE_HOLD);
 }
 function stopHero(){ clearTimeout(HERO.timer); HERO.timer = 0; }
 function restartHero(){ stopHero(); startHero(); }
@@ -1673,7 +1675,7 @@ function beginHero(){
   if (!document.body.classList.contains('curtained')){ startHero(); return; }
   const ob = new MutationObserver(()=>{
     if (document.body.classList.contains('curtained')) return;
-    ob.disconnect(); showScene(0); startHero();
+    ob.disconnect(); showScene(0); startHero(1800);
   });
   ob.observe(document.body, {attributes:true, attributeFilter:['class']});
 }
@@ -1938,7 +1940,10 @@ function renderThreads(){
       <p>${esc(L(t,'blurb'))}</p>
       <span class="open">${esc(L(DATA.organ,'open')||'Open')}</span>
     </button>`).join('');
-  $$('#threadGrid .im').forEach(el=>{ if (el.dataset.ref) io.observe(el); });
+  /* a thread carries its own crop at two widths, like every other picture */
+  const TH = (DATA.organ?.threads||[]);
+  $$('#threadGrid .im').forEach((el,i)=>{ el.__slot = TH[i];
+    if (el.dataset.ref) io.observe(el); });
   $$('#threadGrid .thread').forEach(b=>b.addEventListener('click',()=>openStage(b)));
 }
 
