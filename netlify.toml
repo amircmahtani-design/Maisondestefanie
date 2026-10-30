@@ -15,6 +15,20 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# The pictures under assets/ are immutable because a new picture gets a new
+# name. These two do not: every page loads assets/site.css and
+# assets/site.js by those exact names, so a year of immutable caching would
+# mean a returning visitor never sees a change to either of them again.
+[[headers]]
+  for = "/assets/site.css"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/site.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 [[headers]]
   for = "/content.json"
   [headers.values]
