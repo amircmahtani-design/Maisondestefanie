@@ -28,7 +28,7 @@
 .fh-scene.on{opacity:1}
 
 /* ── the plate, and the camera on it ───────────────────────────── */
-.fh-plate{position:absolute;inset:-6% -6%;width:112%;height:112%;
+.fh-plate{position:absolute;inset:-4% -4%;width:108%;height:108%;
   display:block;object-fit:cover;object-position:50% 50%;
   transform:translateZ(0);backface-visibility:hidden}
 .fh-scene.on .fh-plate{animation:fh-cam 22s cubic-bezier(.5,0,.5,1) infinite alternate}
@@ -39,12 +39,12 @@
 
 /* a drift across and a breath of a dolly, a different one each act */
 @keyframes fh-cam-1{from{transform:translate3d(1.4%,0,0) scale(1.01)}
-  to{transform:translate3d(-1.2%,-.8%,0) scale(1.045)}}
-@keyframes fh-cam-2{from{transform:translate3d(-1.6%,-.6%,0) scale(1.045)}
+  to{transform:translate3d(-1.2%,-.8%,0) scale(1.03)}}
+@keyframes fh-cam-2{from{transform:translate3d(-1.6%,-.6%,0) scale(1.03)}
   to{transform:translate3d(1.2%,.4%,0) scale(1.01)}}
 @keyframes fh-cam-3{from{transform:translate3d(-1.2%,.6%,0) scale(1.02)}
-  to{transform:translate3d(1.6%,-.6%,0) scale(1.055)}}
-@keyframes fh-cam-4{from{transform:translate3d(1.2%,.5%,0) scale(1.05)}
+  to{transform:translate3d(1.6%,-.6%,0) scale(1.035)}}
+@keyframes fh-cam-4{from{transform:translate3d(1.2%,.5%,0) scale(1.03)}
   to{transform:translate3d(-1.0%,-.5%,0) scale(1.012)}}
 
 .fh-fx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -52,7 +52,7 @@
 /* ── a petal: it lets go, turns as it goes, and is gone ─────────── */
 .fh-petal{position:absolute;left:var(--x0);top:var(--y0);
   width:var(--sz);height:auto;display:block;
-  transform-origin:50% 40%;opacity:0;
+  transform-origin:50% 40%;opacity:0;filter:blur(var(--bl,0));
   will-change:transform,opacity;
   animation:fh-fall var(--t) cubic-bezier(.36,.06,.5,1) var(--d) infinite both}
 @keyframes fh-fall{
@@ -132,7 +132,7 @@
 @media (max-width:899px){
   .filmhero{align-items:end;
     padding:clamp(7rem,16vh,10rem) var(--pad) clamp(2.6rem,7vh,4rem)}
-  .fh-plate{inset:-4% -4%;width:108%;height:108%}
+  .fh-plate{inset:-3% -3%;width:106%;height:106%}
   /* the words sit in the dark under the picture, so the scrim turns */
   /* far enough up the screen to carry the eyebrow, which is gold and
      would otherwise be read against a lit petal; the picture still
@@ -142,7 +142,6 @@
       rgba(10,7,5,.8) 50%,rgba(10,7,5,.44) 66%,rgba(10,7,5,.1) 86%,
       rgba(10,7,5,0) 100%),
     linear-gradient(180deg,rgba(10,7,5,.74) 0%,transparent 22%)}
-  .fh-petal{--sz:7vmin}
 }
 
 /* ── nobody is shown anything moving who asked not to be ───────── */

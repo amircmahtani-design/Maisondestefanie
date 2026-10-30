@@ -69,10 +69,14 @@ function petal(from, to, opts = {}) {
   p.style.setProperty('--dy', (to[1] - from[1]) * 100 + 'vh');
   p.style.setProperty('--r0', (opts.r0 ?? 0) + 'deg');
   p.style.setProperty('--r1', (opts.r1 ?? 200) + 'deg');
-  p.style.setProperty('--sz', (opts.size ?? 8) + 'vmin');
+  p.style.setProperty('--sz', (opts.size ?? 15) + 'vmin');
   p.style.setProperty('--d', (opts.delay ?? 0) + 'ms');
   p.style.setProperty('--t', (opts.dur ?? 5200) + 'ms');
   p.style.setProperty('--op', opts.opacity ?? 0.92);
+  /* depth: the ones further back are smaller, dimmer and a little out
+     of focus, which is what puts them behind the subject rather than
+     in front of it */
+  if (opts.blur) p.style.setProperty('--bl', opts.blur + 'px');
   return p;
 }
 
@@ -110,12 +114,18 @@ function drop(from, fall, delay) {
 function populate(fx, act) {
   if (act.n === 1) {
     const [rx, ry] = act.rose;
-    [[0, 6.4, -14, 150], [700, 5.2, 8, -170], [1500, 7.0, -4, 210],
-     [2300, 4.6, 16, -140], [3100, 5.8, -20, 190]
-    ].forEach(([delay, size, r0, r1], i) => {
+    /* The rose fills most of the frame, so a petal off it is a hand's
+       width on screen, not a confetto. delay, size, start angle, end
+       angle, and where on the bloom it lets go. */
+    [[0,    18.5, -14,  150, -0.06,  0.02],
+     [900,  14.0,   8, -170,  0.06,  0.10],
+     [1900, 21.0,  -4,  210, -0.14,  0.14],
+     [2800, 12.5,  16, -140,  0.13,  0.04],
+     [3700, 16.0, -20,  190, -0.01,  0.18]
+    ].forEach(([delay, size, r0, r1, ox, oy], i) => {
       fx.append(petal(
-        [rx - 0.02 + i * 0.012, ry + 0.04 + i * 0.02],
-        [rx - 0.30 - i * 0.05, 1.12],
+        [rx + ox, ry + oy],
+        [rx + ox - 0.26 - i * 0.06, 1.18],
         { delay, size, r0, r1, dur: 5600 + i * 420, sprite: i % PETALS.length }
       ));
     });
@@ -124,8 +134,8 @@ function populate(fx, act) {
   if (act.n === 2) {
     act.land.forEach(([lx, ly], i) => {
       const t = 300 + i * 1500;
-      fx.append(petal([lx + 0.05, -0.12], [lx, ly - 0.01], {
-        delay: t, size: 6.2, r0: -18, r1: 26, dur: 1500, sprite: i + 2
+      fx.append(petal([lx + 0.05, -0.16], [lx, ly - 0.01], {
+        delay: t, size: 13.5, r0: -18, r1: 26, dur: 1500, sprite: i + 2
       }));
       fx.append(ripple([lx, ly], t + 1450, 14));
       fx.append(ripple([lx, ly], t + 1850, 22));
@@ -142,12 +152,22 @@ function populate(fx, act) {
 
   if (act.n === 4) {
     fx.append(drop([act.neck[0], act.neck[1] - 0.16], 13, 600));
-    fx.append(petal([1.06, 0.18], [-0.10, 0.62], {
-      delay: 400, size: 5.4, r0: 10, r1: -160, dur: 7200, sprite: 0, opacity: 0.6
-    }));
-    fx.append(petal([-0.08, 0.74], [1.05, 0.42], {
-      delay: 2200, size: 4.2, r0: -30, r1: 120, dur: 7600, sprite: 3, opacity: 0.45
-    }));
+    /* x, delay, size, start angle, end angle, how far it drifts, opacity,
+       blur. The small, dim, soft ones read as falling behind the bottle;
+       the large, bright, sharp ones as falling in front of it, which is
+       what makes a flat layer look like a room with depth in it. */
+    [[0.14,  200,  19.0, -16,  170, -0.10, 0.95, 0  ],
+     [0.33, 1500,  10.0,  22, -130,  0.07, 0.52, 1.6],
+     [0.52,  800,  13.0,  -8,  150, -0.06, 0.66, 1.0],
+     [0.71, 2400,  21.0,  12, -180,  0.09, 0.92, 0  ],
+     [0.88, 1100,   9.0, -24,  120, -0.05, 0.46, 2.0],
+     [0.62, 3300,  15.5,   4,  200,  0.12, 0.74, 0.6]
+    ].forEach(([x, delay, size, r0, r1, dx, opacity, blur], i) => {
+      fx.append(petal([x, -0.22], [x + dx, 1.22], {
+        delay, size, r0, r1, opacity, blur,
+        dur: 7600 - size * 90, sprite: i % PETALS.length
+      }));
+    });
   }
 }
 
