@@ -35,8 +35,12 @@
   --edge:rgba(243,237,226,.11); --edge-2:rgba(243,237,226,.2);
   --edge-ink:rgba(36,28,22,.16);
   /* type stacks */
-  --display:"Bodoni Moda","GFS Didot",Didot,'Times New Roman',Georgia,serif;
-  --serif:"Cormorant Garamond","GFS Didot",Georgia,serif;
+  /* Playfair Display draws its Greek with the same hand as its Latin, so
+     ΙΣΤΟΡΙΑ and STORY are one typeface. The headline used to be Bodoni
+     for Latin and GFS Didot for Greek — two faces, visibly different
+     widths and weights, on the same line of the same site. */
+  --display:"Playfair Display",Didot,'Times New Roman',Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
   --sans:"Commissioner",system-ui,-apple-system,"Segoe UI",sans-serif;
   --hand:"Caveat","Cormorant Garamond",cursive;
   --fancy:var(--display);
@@ -82,7 +86,7 @@
 @media (min-width:1180px){ :root{ --rail:4.5rem } }
 
 *,*::before,*::after{box-sizing:border-box}
-/* Bodoni Moda carries an optical-size axis: let the browser use it, so a
+/* A display face with an optical-size axis gets to use it, so a
    headline keeps its hairlines and a 10px label does not */
 h1,h2,h3,h4,.wordmark,.h-display,.monogram{font-optical-sizing:auto}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:5.5rem}
