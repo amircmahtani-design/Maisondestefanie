@@ -224,7 +224,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .bar.stuck{padding-block:.7rem}
 
 /* the house's own name is never the thing that gets squeezed */
-.mark{display:flex;align-items:center;gap:.85rem;flex:0 1 auto;min-width:0}
+.mark{display:flex;align-items:center;gap:.85rem;flex:0 1 auto;min-width:0;
+  min-height:2.75rem}
 @media (min-width:1240px){ .bar .mark{flex:none} }
  /* Her own mark: the flacon from the plaque on her bottle, on a plaque
     of its own. The wordmark is set the way her label sets it — title

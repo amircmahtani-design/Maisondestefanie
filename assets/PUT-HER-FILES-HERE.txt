@@ -148,15 +148,22 @@ Still needed for a fully documentary site:
 
 FOUND, NOT YET USED
 -------------------
-lamaisondestefanie.com — the site still on her domain — carries real
-material of Stefanie that this repository does not:
-  assets/stefanie-portrait.jpg        1400 x 939, her holding a flacon
-  assets/og-image.jpg                 1200 x 630, the same photograph
-  assets/stefanie_hero_loop.mp4/.webm and the 9:16 crops of it
-  assets/house.mp4
-That portrait is a real photograph of her and the loop is real footage of
-the shop; both would replace concept artwork. Nothing from them is used
-here yet.
+lamaisondestefanie.com — the site still on her domain — carries one file
+this repository does not, and it is the one the list above was missing:
+
+  assets/house.mp4   2.4 MB, 9:16, real footage of Stefanie at her own
+                     bench, in the shop, with the real products on the
+                     counter and the amber stock bottles on the shelves
+                     behind her.
+
+It is daylight and documentary, so it cannot be dropped into a dark
+cinematic page as it stands — it wants grading, and probably a slower
+cut. Stills from it are also the only real photographs of the twelve
+products that exist anywhere.
+
+Its assets/stefanie_hero_loop.mp4 is the same generated bottle artwork
+already noted below, not footage of her. Its stefanie-portrait.jpg is
+the photograph already in this repository as assets/img/stefanie-751.webp.
   - Real shelf photographs of the twelve actual products, shot together
     on the same dark surface under one warm side light.
   - Real location photographs: doorway room/bench, Mnisikleous 10 at
