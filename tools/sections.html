@@ -1,0 +1,236 @@
+<!-- ══════════════ THE HERO ══════════════ -->
+<section class="hero" id="top">
+  <div class="hero-scenes" id="heroScenes" aria-hidden="true"></div>
+
+  <div class="hero-copy">
+    <p class="hero-eyebrow" data-t="hero.eyebrow"></p>
+    <h1><span data-t="hero.titleA"></span> <em data-t="hero.titleB"></em></h1>
+    <p class="hero-lede" data-t="hero.lede"></p>
+    <div class="hero-acts">
+      <a class="hero-cta" href="#bespoke" data-nav>
+        <span data-t="hero.ctaPrimary"></span>
+        <svg viewBox="0 0 8 8" fill="none" aria-hidden="true">
+          <path d="M1 0.6 4.4 4 1 7.4" stroke="currentColor" stroke-width="1.1"/></svg>
+      </a>
+      <a class="hero-alt" href="#visit" data-nav data-t="hero.ctaSecondary"></a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════ A MEMORY, DISTILLED ══════════════ -->
+<section class="distilled" id="distilled" aria-labelledby="distilledTitle">
+  <h2 id="distilledTitle" class="rv" data-t="distilled.title"></h2>
+  <hr class="rule short">
+  <ol class="steps" id="distilledSteps"></ol>
+  <p class="aside" data-t="distilled.aside"></p>
+</section>
+
+<!-- ══════════════ THE FIVE DOORS ══════════════ -->
+<section class="sec" id="doors" aria-labelledby="doorsTitle">
+  <div class="wrap">
+    <p class="lab rv" data-t="doors.eyebrow">The house</p>
+    <h2 class="h-soft rv" id="doorsTitle" style="margin-bottom:clamp(2rem,5vw,3rem)"
+        data-t="doors.title"></h2>
+    <div class="doors" id="doorGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════════ HER WORDS ══════════════ -->
+<section class="sec" id="maison" aria-labelledby="maisonTitle">
+  <div class="wrap split wide-left">
+    <figure class="fig words-fig rv" data-pic="quoteLeft" style="margin:0"></figure>
+    <div class="rv" data-d="1">
+      <p class="lab" data-t="quote.eyebrow">The house</p>
+      <blockquote>
+        <p class="pull-q" id="maisonTitle" data-t="quote.quote"></p>
+        <span class="byline">
+          <span class="face" data-pic-face="portrait" aria-hidden="true"></span>
+          <span class="sig" data-t="quote.sig"></span>
+        </span>
+      </blockquote>
+      <p class="body" style="margin-top:2rem" data-t="quote.body"></p>
+      <a class="more" href="#legacy" data-nav><span data-t="quote.link">Read her story</span><span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 03 · THE BENCH ══════════════ -->
+<section class="sec" id="threads" aria-labelledby="benchTitle">
+  <div class="wrap">
+    <div class="bench-head">
+      <div class="rv">
+        <p class="lab" data-t="organ.eyebrow">The perfumer's bench</p>
+        <h2 class="h-soft" id="benchTitle"><span data-t="organ.title"></span> <em data-t="organ.titleEm"></em></h2>
+      </div>
+      <div class="rv" data-d="1">
+        <p class="body" style="margin:0" data-t="organ.lede"></p>
+        <p class="lab bare" style="margin:1.4rem 0 0;color:var(--gold)"><span data-t="organ.select">Choose a thread</span></p>
+      </div>
+    </div>
+    <div class="threads" id="threadGrid"></div>
+    <p class="coda rv" data-t="organ.coda"></p>
+  </div>
+</section>
+
+<!-- ══════════════ 04 · COMPOSED BY HAND ══════════════ -->
+<section class="sec" id="alchemy" aria-labelledby="alchemyTitle">
+  <div class="wrap split wide-right">
+    <div class="rv">
+      <p class="lab" data-t="alchemy.eyebrow">Composed by hand</p>
+      <h2 class="h-display" id="alchemyTitle"><span data-t="alchemy.title"></span> <em data-t="alchemy.titleEm"></em></h2>
+      <blockquote class="pull-q" style="margin-top:1.8rem" data-t="alchemy.quote"></blockquote>
+      <span class="byline" style="margin-bottom:2rem">
+        <span class="face" data-pic-face="portrait" aria-hidden="true"></span>
+        <span class="sig" data-t="alchemy.sig"></span>
+      </span>
+      <p><a class="more" href="#bespoke" data-nav><span data-t="alchemy.link">See how a session runs</span><span class="arrow" aria-hidden="true">→</span></a></p>
+    </div>
+    <div class="paper rv" data-d="1" id="paper">
+      <p class="lab" data-t="alchemy.formulaLabel">Your formula, kept on file</p>
+      <div class="hand" id="hand" aria-live="polite"><span class="nib" id="nib" aria-hidden="true"></span></div>
+      <div class="foot"><span id="fRef"></span><span id="fFor"></span></div>
+      <span class="blot" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:var(--gap)">
+    <figure class="fig wide-fig rv" data-pic="workshop" style="margin:0"></figure>
+  </div>
+</section>
+
+<!-- ══════════════ 05 · BOTTLED AND SEALED ══════════════ -->
+<section class="sec" id="sealed" aria-labelledby="sealedTitle">
+  <div class="wrap split wide-left flip">
+    <div class="rv" data-d="1">
+      <p class="lab" data-t="sealed.eyebrow">Bottled and sealed</p>
+      <h2 class="h-display" id="sealedTitle"><span data-t="sealed.title"></span> <em data-t="sealed.titleEm"></em></h2>
+      <p class="body" style="margin-top:1.6rem" data-t="sealed.body"></p>
+      <p class="body" style="color:var(--dim);font-size:.88rem" data-t="sealed.note"></p>
+      <a class="btn btn-solid" id="sealedCta" href="#" target="_blank" rel="noopener" data-t="bespoke.cta">Book a bench</a>
+    </div>
+    <figure class="fig portrait-fig rv" data-pic="sealing" style="margin:0"></figure>
+  </div>
+</section>
+
+<!-- ══════════════ A BREATH ══════════════ -->
+<figure class="band rv" data-pic="botanical">
+  <figcaption><span data-t="quote.band"></span></figcaption>
+</figure>
+
+<!-- ══════════════ THE STORY ══════════════ -->
+<section class="sec" id="legacy" aria-labelledby="legacyTitle">
+  <div class="wrap split wide-right">
+    <figure class="fig portrait-fig rv" data-pic="portrait" style="margin:0">
+      <figcaption data-t="ui.perfumer">Stefanie · perfumer</figcaption>
+    </figure>
+    <div class="rv" data-d="1">
+      <p class="lab" data-t="legacy.eyebrow">The house</p>
+      <h2 class="h-display" id="legacyTitle" style="margin-bottom:2rem"><span data-t="legacy.title"></span> <em data-t="legacy.titleEm"></em></h2>
+      <div class="legacy-body" id="legacyBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ THE SESSION ══════════════ -->
+<section class="sec" id="bespoke" aria-labelledby="bespokeTitle">
+  <div class="wrap narrow">
+    <p class="lab rv" data-t="bespoke.eyebrow">The session</p>
+    <h2 class="h-soft rv" id="bespokeTitle" style="max-width:17ch;margin-bottom:1.5rem" data-t="bespoke.title"></h2>
+    <p class="body rv" data-d="1" data-t="bespoke.lede"></p>
+  </div>
+  <div class="wrap">
+    <ol class="session" id="session"></ol>
+    <div class="session-foot rv">
+      <p data-t="bespoke.priceNote"></p>
+      <a class="btn btn-solid" id="bespokeCta" href="#" target="_blank" rel="noopener" data-t="bespoke.cta"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ THE SHELF ══════════════ -->
+<section class="sec pale" id="shelf" aria-labelledby="shelfTitle">
+  <div class="wrap">
+    <div class="shelf-head">
+      <div class="rv">
+        <p class="lab" data-t="shop.eyebrow">The shelf</p>
+        <h2 class="h-display" id="shelfTitle"><span data-t="shop.title"></span> <em data-t="shop.titleEm"></em></h2>
+      </div>
+      <p class="body rv" data-d="1" style="align-self:end" data-t="shop.lede"></p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Categories"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- ══════════════ GUEST BOOK ══════════════ -->
+<section class="sec" id="reviews" aria-labelledby="reviewsTitle">
+  <div class="wrap gb">
+    <div class="rv">
+      <p class="lab" data-t="reviews_intro.eyebrow">The guest book</p>
+      <h2 class="sr" id="reviewsTitle">Reviews</h2>
+      <div class="score">
+        <b id="score">5.0</b>
+        <div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <div style="font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dimmer)" id="count"></div>
+        </div>
+      </div>
+      <p class="body" style="max-width:28ch" data-t="reviews_intro.lead"></p>
+      <p class="body" style="max-width:28ch;font-size:.85rem;color:var(--dim)" data-t="reviews_intro.sub"></p>
+      <a class="linky" id="gbLink" style="display:inline-block;margin-top:.6rem" href="#" target="_blank" rel="noopener" data-t="reviews_intro.link"></a>
+    </div>
+    <div class="qs" id="quotes"></div>
+  </div>
+</section>
+
+<section class="pullband"><p data-t="reviews_intro.pull"></p></section>
+
+<!-- ══════════════ 06 · VISIT ══════════════ -->
+<section class="sec pale" id="visit" aria-labelledby="visitTitle">
+  <div class="wrap split wide-left">
+    <div class="rv">
+      <p class="lab" data-t="visit.eyebrow">Visit</p>
+      <h2 class="h-display" id="visitTitle"><span data-t="visit.title"></span> <em data-t="visit.titleEm"></em></h2>
+      <p class="body" style="margin-top:1.4rem" data-t="visit.lede"></p>
+      <address class="addr" id="addr" style="font-style:normal"></address>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem 1.8rem;align-items:center">
+        <a class="btn btn-solid" id="vWhats" href="#" target="_blank" rel="noopener" data-t="visit.book"></a>
+        <a class="more" id="dirs" href="#" target="_blank" rel="noopener"><span data-t="visit.directions"></span><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <dl class="hours">
+        <dt data-t="visit.hoursLabel">Hours</dt><dd id="hours"></dd>
+        <dt data-t="ui.phone">Telephone</dt><dd><a id="phone" href="#"></a></dd>
+        <dt data-t="ui.follow">Follow</dt><dd><a id="ig" href="#" target="_blank" rel="noopener"></a></dd>
+      </dl>
+    </div>
+    <div class="visit-figs rv" data-d="1">
+      <figure class="fig" data-pic="shopfront"></figure>
+      <figure class="fig" data-pic="neighbourhood">
+        <div class="overlay-note"><p data-t="visit.near"></p></div>
+      </figure>
+    </div>
+  </div>
+  <!-- The room from the doorway was in the Studio, in content.json and in
+       the repository at three sizes, and no part of the page ever asked for
+       it. It belongs here, where somebody is deciding whether to walk in. -->
+  <div class="wrap" style="margin-top:clamp(var(--s7),6vw,var(--s9))">
+    <figure class="fig wide-fig room-fig rv" data-pic="atwork"></figure>
+  </div>
+</section>
+
+<div class="mapwrap" id="mapwrap">
+  <div id="mapAsk">
+    <p style="font-size:.85rem;color:#5A4E42;max-width:38ch;margin:0 auto 1.3rem" data-t="visit.mapNote"></p>
+    <button class="btn btn-line" id="mapLoad" type="button" data-t="visit.mapLoad">Show the map</button>
+  </div>
+</div>
+
+<!-- ══════════════ GOOD TO KNOW ══════════════ -->
+<section class="sec faq" id="faq" aria-labelledby="faqTitle">
+  <div class="wrap narrow">
+    <p class="lab rv" data-t="faq.eyebrow">Good to know</p>
+    <h2 class="h-soft rv" id="faqTitle" style="margin-bottom:2rem" data-t="faq.title"></h2>
+    <div id="faqList"></div>
+    <p style="margin-top:2rem"><a class="linky" href="privacy.html" data-t="ui.fullPrivacy">Read the full Privacy &amp; Cookies policy</a></p>
+  </div>
+</section>

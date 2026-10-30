@@ -935,6 +935,12 @@ async function reapplyAll(){
 
 /* ---------- words ---------- */
 const WORDS=[
+  ['pageMaison','The Maison — page top',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',2]]],
+  ['pageBespoke','Bespoke Experience — page top',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',2]]],
+  ['pageStory','The Story — page top',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',2]]],
+  ['pageCreations','Creations — page top',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',2]]],
+  ['pageVisit','Visit — page top',[['eyebrow','Small line above'],['title','Headline'],['lede','Paragraph',2]]],
+  ['doors','The five doors on the home page',[['eyebrow','Small line above'],['title','Headline']]],
   ['hero','The first screen',[['eyebrow','Small line above'],['titleA','Headline, line one'],['titleB','Headline, gold line'],['titleC','Headline, last line'],['lede','Paragraph',3],['ctaPrimary','First link'],['ctaSecondary','Second link']]],
   ['quote','Her words',[['eyebrow','Small line above'],['quote','The quote',3],['sig','Signature'],['body','Column beside it',5],['link','Link under it']]],
   ['organ','The five threads',[['eyebrow','Question above'],['title','Headline, first part'],['titleEm','Headline, gold part'],['lede','Paragraph beside it',5],['coda','Line under the five cards',2],['select','Select-one label'],['open','Word on each card'],['picked','Label above the notes'],['empty','Before anything is picked',2],['chipNote','Note under the memories'],['cta','Send button'],['reset','Start-again link']]],
@@ -1105,6 +1111,10 @@ async function vPics(){
       </div>
       ${P[k].note?`<p class="hint" style="margin:.4rem 0 .9rem">${esc(P[k].note)}</p>`:'<div style="height:.6rem"></div>'}
       <div data-lab></div>
+      ${P[k].srcTablet!==undefined?`<div class="row" style="margin-top:.9rem">
+        ${F('Tablet file (4:3)','pictures.'+k+'.srcTablet',P[k].srcTablet||'',{ph:'assets/heroes/…/ipad.webp'})}
+        ${F('Phone file (9:16)','pictures.'+k+'.srcPhone',P[k].srcPhone||'',{ph:'assets/heroes/…/iphone.webp'})}
+      </div>`:''}
     </div>`).join('');
   for(const k of keys) await picSlot($(`[data-slot="${k}"] [data-lab]`,box),k);
 }

@@ -45,15 +45,10 @@
   "heroPoster": {
    "label": "Hero still",
    "ratio": "16/9",
-   "note": "GENERATED CONCEPT — not a photograph. The whole first screen, shot dark and wide across the counter. See assets/GENERATED-CONCEPTS.md.",
-   "src": "assets/img/hero-still-1600.webp",
-   "alt": "The counter at La Maison de Stefanie, lit by a single warm lamp.",
-   "srcset": "assets/img/hero-still-1100.webp 1100w, assets/img/hero-still-1600.webp 1600w, assets/img/hero-still-2200.webp 2200w",
-   "sizes": "100vw",
-   "srcsetFor": "assets/img/hero-still-1600.webp",
-   "w": 2400,
-   "h": 1350,
-   "placeholder": true
+   "note": "Her artwork for the home page. The four chapters play over it; this is what shows when they cannot — reduced motion, a data-saver connection, or before the first chapter lands.",
+   "src": "assets/heroes/home/desktop.webp",
+   "alt": "A rose and a flacon on dark walnut, lit from one side.",
+   "sizes": "100vw"
   },
   "heroBottle": {
    "label": "Chapter four — the bottle (resting frame)",
@@ -335,6 +330,56 @@
    "alt": "",
    "focus": "50% 46%",
    "focusM": "100% 0%"
+  },
+  "pageMaison": {
+   "label": "The Maison — the first screen",
+   "ratio": "16/9",
+   "note": "Her artwork, one file per shape of screen: wide, tablet and phone. Subject on the right with the left half dark for the words; on a phone the subject is in the top half. Replace assets/heroes/maison/desktop.png, ipad.png or iphone.png and run tools/heroes.py.",
+   "src": "assets/heroes/maison/desktop.webp",
+   "alt": "The counter and the shelves of essences, lit from one side.",
+   "sizes": "100vw",
+   "srcTablet": "assets/heroes/maison/ipad.webp",
+   "srcPhone": "assets/heroes/maison/iphone.webp"
+  },
+  "pageBespoke": {
+   "label": "Bespoke Experience — the first screen",
+   "ratio": "16/9",
+   "note": "Her artwork, one file per shape of screen: wide, tablet and phone. Subject on the right with the left half dark for the words; on a phone the subject is in the top half. Replace assets/heroes/bespoke/desktop.png, ipad.png or iphone.png and run tools/heroes.py.",
+   "src": "assets/heroes/bespoke/desktop.webp",
+   "alt": "Hands at the bench with a pipette over a blending vessel.",
+   "sizes": "100vw",
+   "srcTablet": "assets/heroes/bespoke/ipad.webp",
+   "srcPhone": "assets/heroes/bespoke/iphone.webp"
+  },
+  "pageStory": {
+   "label": "The Story — the first screen",
+   "ratio": "16/9",
+   "note": "Her artwork, one file per shape of screen: wide, tablet and phone. Subject on the right with the left half dark for the words; on a phone the subject is in the top half. Replace assets/heroes/story/desktop.png, ipad.png or iphone.png and run tools/heroes.py.",
+   "src": "assets/heroes/story/desktop.webp",
+   "alt": "An old perfumer’s notebook, a flacon and a dried rose.",
+   "sizes": "100vw",
+   "srcTablet": "assets/heroes/story/ipad.webp",
+   "srcPhone": "assets/heroes/story/iphone.webp"
+  },
+  "pageCreations": {
+   "label": "Creations — the first screen",
+   "ratio": "16/9",
+   "note": "Her artwork, one file per shape of screen: wide, tablet and phone. Subject on the right with the left half dark for the words; on a phone the subject is in the top half. Replace assets/heroes/creations/desktop.png, ipad.png or iphone.png and run tools/heroes.py.",
+   "src": "assets/heroes/creations/desktop.webp",
+   "alt": "A flacon, a candle, an oil and a soap on dark walnut.",
+   "sizes": "100vw",
+   "srcTablet": "assets/heroes/creations/ipad.webp",
+   "srcPhone": "assets/heroes/creations/iphone.webp"
+  },
+  "pageVisit": {
+   "label": "Visit — the first screen",
+   "ratio": "16/9",
+   "note": "Her artwork, one file per shape of screen: wide, tablet and phone. Subject on the right with the left half dark for the words; on a phone the subject is in the top half. Replace assets/heroes/visit/desktop.png, ipad.png or iphone.png and run tools/heroes.py.",
+   "src": "assets/heroes/visit/desktop.webp",
+   "alt": "The stepped lane in Plaka at blue hour, light from a doorway.",
+   "sizes": "100vw",
+   "srcTablet": "assets/heroes/visit/ipad.webp",
+   "srcPhone": "assets/heroes/visit/iphone.webp"
   }
  },
  "hero": {
@@ -2017,6 +2062,76 @@
      ]
     }
    ]
+  }
+ },
+ "doors": {
+  "en": {
+   "eyebrow": "The house",
+   "title": "Five rooms."
+  },
+  "el": {
+   "eyebrow": "Το σπίτι",
+   "title": "Πέντε δωμάτια."
+  }
+ },
+ "pageMaison": {
+  "en": {
+   "eyebrow": "The Maison",
+   "title": "One room in Plaka",
+   "lede": "A bench, a shelf of essences, and whatever you walk in remembering."
+  },
+  "el": {
+   "eyebrow": "Το Σπίτι",
+   "title": "Ένα δωμάτιο στην Πλάκα",
+   "lede": "Ένας πάγκος, ένα ράφι με εσάνς, και ό,τι θυμάσαι όταν μπαίνεις."
+  }
+ },
+ "pageBespoke": {
+  "en": {
+   "eyebrow": "Composed by hand",
+   "title": "Your memory. Made perfume.",
+   "lede": "An hour at the bench. A fragrance that belongs only to you."
+  },
+  "el": {
+   "eyebrow": "Φτιαγμένο στο χέρι",
+   "title": "Η ανάμνησή σου. Σε άρωμα.",
+   "lede": "Μια ώρα στον πάγκο. Ένα άρωμα που ανήκει μόνο σε σένα."
+  }
+ },
+ "pageStory": {
+  "en": {
+   "eyebrow": "The Story",
+   "title": "A legacy of scent",
+   "lede": "A grandmother’s hands, a craft inherited, and a conviction about what a perfume is for."
+  },
+  "el": {
+   "eyebrow": "Η Ιστορία",
+   "title": "Μια κληρονομιά αρώματος",
+   "lede": "Τα χέρια μιας γιαγιάς, μια τέχνη που κληρονομήθηκε, και μια πεποίθηση για το τι υπηρετεί ένα άρωμα."
+  }
+ },
+ "pageCreations": {
+  "en": {
+   "eyebrow": "The shelf",
+   "title": "More than perfume.",
+   "lede": "Small creations, made by hand in Plaka."
+  },
+  "el": {
+   "eyebrow": "Το ράφι",
+   "title": "Περισσότερα από άρωμα.",
+   "lede": "Μικρές δημιουργίες, φτιαγμένες στο χέρι στην Πλάκα."
+  }
+ },
+ "pageVisit": {
+  "en": {
+   "eyebrow": "Visit",
+   "title": "Mnisikleous 10, Plaka",
+   "lede": "A short walk up from Monastiraki, below the Acropolis. Walk in; there is always a bottle open."
+  },
+  "el": {
+   "eyebrow": "Επίσκεψη",
+   "title": "Μνησικλέους 10, Πλάκα",
+   "lede": "Λίγα βήματα πάνω από το Μοναστηράκι, κάτω από την Ακρόπολη. Πέρνα· πάντα υπάρχει ένα ανοιχτό μπουκάλι."
   }
  }
 }

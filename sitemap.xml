@@ -9,6 +9,41 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://lamaisondestefanie.com/maison.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lamaisondestefanie.com/maison.html"/>
+    <xhtml:link rel="alternate" hreflang="el" href="https://lamaisondestefanie.com/maison.html?lang=el"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://lamaisondestefanie.com/bespoke.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lamaisondestefanie.com/bespoke.html"/>
+    <xhtml:link rel="alternate" hreflang="el" href="https://lamaisondestefanie.com/bespoke.html?lang=el"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://lamaisondestefanie.com/story.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lamaisondestefanie.com/story.html"/>
+    <xhtml:link rel="alternate" hreflang="el" href="https://lamaisondestefanie.com/story.html?lang=el"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lamaisondestefanie.com/creations.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lamaisondestefanie.com/creations.html"/>
+    <xhtml:link rel="alternate" hreflang="el" href="https://lamaisondestefanie.com/creations.html?lang=el"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://lamaisondestefanie.com/visit.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lamaisondestefanie.com/visit.html"/>
+    <xhtml:link rel="alternate" hreflang="el" href="https://lamaisondestefanie.com/visit.html?lang=el"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://lamaisondestefanie.com/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>

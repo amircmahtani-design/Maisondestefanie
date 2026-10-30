@@ -90,3 +90,21 @@ kept in `assets/source/generated-products/`,
 `assets/source/generated-places/`, and `assets/img/`. They share the
 same dark surface and warm side light. They are clearly marked as
 generated concept artwork in `assets/GENERATED-CONCEPTS.md`.
+
+## The six pages, and their first screens
+
+The site is no longer one scrolling page. index.html keeps the four
+chapters; maison, bespoke, story, creations and visit each open on a
+still of their own, under `assets/heroes/<page>/`, in three
+compositions — 16:9 for a wide screen, 4:3 for a tablet, 9:16 for a
+phone. The browser chooses between them with `<picture>` media queries,
+so each shape of screen gets a photograph composed for it rather than a
+crop of one composed for something else.
+
+The composition rule is the same on every page: subject on the right,
+the left half dark and quiet for the headline; on a phone the subject
+moves to the top half and the words sit in the dark beneath it.
+
+The home artwork is wired to `heroPoster` — the still the first screen
+falls back to when the chapters cannot play (reduced motion, data
+saver, or before the first chapter lands).
