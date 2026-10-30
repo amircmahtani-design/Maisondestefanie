@@ -426,7 +426,7 @@
  },
  "quote": {
   "en": {
-   "eyebrow": "The house",
+   "eyebrow": "The Maison",
    "quote": "Every perfume has a soul. Give me your memory and I will give you back something that only belongs to you.",
    "sig": "Stefanie, perfumer",
    "body": "In the heart of Plaka, where the old city still keeps its own hours, La Maison de Stefanie grew out of a family legacy and a lifetime spent close to essences.",
@@ -434,7 +434,7 @@
    "band": "A perfume should not simply be worn. It should belong to you."
   },
   "el": {
-   "eyebrow": "Το σπίτι",
+   "eyebrow": "Η Μεζόν",
    "quote": "Κάθε άρωμα έχει ψυχή. Δώσε μου την ανάμνησή σου και θα σου δώσω πίσω κάτι που ανήκει μόνο σ' εσένα.",
    "sig": "Στεφανί, αρωματοποιός",
    "body": "Στην καρδιά της Πλάκας, εκεί όπου η παλιά πόλη κρατά ακόμη τους δικούς της ρυθμούς, το La Maison de Stefanie γεννήθηκε από μια οικογενειακή κληρονομιά και μια ζωή δίπλα στις πρώτες ύλες.",
@@ -447,13 +447,13 @@
    "eyebrow": "The perfumer's bench",
    "title": "Choose what you",
    "titleEm": "remember.",
-   "lede": "Stefanie does not sell you a bottle from a shelf — she reads what you tell her. Pick up to three memories and see the shape your perfume would take. Then send it to her and she will finish it in front of you.",
-   "coda": "Whatever you pick, she will read it back to you at the bench and change it until it is right.",
+   "lede": "She does not sell you a bottle from a shelf. Choose three memories, see the shape your perfume would take, and she will finish it in front of you.",
+   "coda": "Whatever you choose, she reads it back to you and changes it until it is right.",
    "select": "Choose a thread",
    "open": "Open",
    "picked": "Your accord so far",
    "empty": "Pick a memory to begin.",
-   "chipNote": "Up to three. This is a sketch, not the finished perfume.",
+   "chipNote": "Three at most. A sketch, not the finished perfume.",
    "cta": "Send this to Stefanie",
    "reset": "Start again"
   },
@@ -461,13 +461,13 @@
    "eyebrow": "Ο πάγκος της αρωματοποιού",
    "title": "Διάλεξε αυτό που",
    "titleEm": "θυμάσαι.",
-   "lede": "Η Στεφανί δεν σου πουλάει ένα μπουκάλι από το ράφι — διαβάζει αυτό που της λες. Διάλεξε ως τρεις αναμνήσεις και δες τι σχήμα θα έπαιρνε το άρωμά σου. Στείλ' το της και θα το ολοκληρώσει μπροστά σου.",
-   "coda": "Ό,τι κι αν διαλέξεις, θα στο διαβάσει ξανά στον πάγκο και θα το αλλάξει μέχρι να είναι σωστό.",
+   "lede": "Δεν σου πουλάει ένα μπουκάλι από το ράφι. Διάλεξε τρεις αναμνήσεις, δες τι σχήμα θα έπαιρνε το άρωμά σου, και θα το ολοκληρώσει μπροστά σου.",
+   "coda": "Ό,τι κι αν διαλέξεις, στο διαβάζει ξανά και το αλλάζει μέχρι να είναι σωστό.",
    "select": "Διάλεξε ένα νήμα",
    "open": "Άνοιξε",
    "picked": "Η συγχορδία σου μέχρι τώρα",
    "empty": "Διάλεξε μια ανάμνηση για να ξεκινήσεις.",
-   "chipNote": "Έως τρεις. Είναι ένα σκίτσο, όχι το τελικό άρωμα.",
+   "chipNote": "Το πολύ τρεις. Ένα σκίτσο, όχι το τελικό άρωμα.",
    "cta": "Στείλ' το στη Στεφανί",
    "reset": "Ξεκίνα ξανά"
   },
@@ -844,8 +844,8 @@
  "alchemy": {
   "en": {
    "eyebrow": "Composed by hand",
-   "title": "She reads the story,",
-   "titleEm": "then chooses the essences.",
+   "title": "First the story.",
+   "titleEm": "Then the essences.",
    "quote": "Everything here is made by hand, in the shop, in front of you.",
    "sig": "Stefanie, perfumer",
    "formulaLabel": "Your formula, kept on file",
@@ -853,8 +853,8 @@
   },
   "el": {
    "eyebrow": "Φτιαγμένο στο χέρι",
-   "title": "Διαβάζει την ιστορία,",
-   "titleEm": "και διαλέγει τις ύλες.",
+   "title": "Πρώτα η ιστορία.",
+   "titleEm": "Έπειτα οι ύλες.",
    "quote": "Όλα εδώ γίνονται στο χέρι, μέσα στο μαγαζί, μπροστά σου.",
    "sig": "Στεφανί, αρωματοποιός",
    "formulaLabel": "Η συνταγή σου, στο αρχείο",
@@ -916,9 +916,9 @@
   "en": {
    "eyebrow": "The session",
    "title": "How a bespoke perfume is made.",
-   "lede": "Allow about an hour. Come alone, or come with the person you are buying it for. There is no charge to sit down and try.",
+   "lede": "An hour at the bench. Come alone, or with the person it is for. There is no charge to sit down and try.",
    "priceNote": "Bespoke extrait de parfum from €80 · 30ml · your formula kept on file for life",
-   "cta": "Book a bench",
+   "cta": "Book the bench",
    "steps": [
     {
      "t": "You talk",
@@ -941,9 +941,9 @@
   "el": {
    "eyebrow": "Η συνεδρία",
    "title": "Πώς γεννιέται ένα προσωπικό άρωμα.",
-   "lede": "Υπολόγισε περίπου μία ώρα. Έλα μόνος ή με το άτομο για το οποίο το φτιάχνεις. Δεν χρεώνεται να καθίσεις και να δοκιμάσεις.",
+   "lede": "Μία ώρα στον πάγκο. Έλα μόνος, ή με το άτομο για το οποίο προορίζεται. Δεν χρεώνεται να καθίσεις και να δοκιμάσεις.",
    "priceNote": "Προσωπικό extrait de parfum από 80€ · 30ml · η συνταγή σου φυλάσσεται για πάντα",
-   "cta": "Κλείσε ραντεβού",
+   "cta": "Κλείσε τον πάγκο",
    "steps": [
     {
      "t": "Μιλάς",
@@ -969,14 +969,14 @@
    "eyebrow": "The shelf",
    "title": "More than",
    "titleEm": "perfume.",
-   "lede": "Everything below is made in the Plaka shop, in small quantities, and can be made in your own bespoke scent. Ask for anything you do not see.",
+   "lede": "Made in the Plaka shop, in small quantities. Any of it can be made in your own bespoke scent.",
    "all": "Everything"
   },
   "el": {
    "eyebrow": "Το ράφι",
    "title": "Περισσότερα από",
    "titleEm": "άρωμα.",
-   "lede": "Όλα παρακάτω φτιάχνονται στο μαγαζί στην Πλάκα, σε μικρές ποσότητες, και μπορούν να γίνουν στο δικό σου προσωπικό άρωμα. Ζήτησε ό,τι δεν βλέπεις.",
+   "lede": "Φτιάχνονται στο μαγαζί στην Πλάκα, σε μικρές ποσότητες. Οτιδήποτε μπορεί να γίνει στο δικό σου προσωπικό άρωμα.",
    "all": "Όλα"
   }
  },
@@ -1605,7 +1605,7 @@
    "eyebrow": "Visit",
    "title": "Find us on",
    "titleEm": "Mnisikleous Street.",
-   "lede": "A short walk up from Monastiraki, below the Acropolis. There is always a bottle open on the counter and someone who knows how to read a nose. Walk in — no appointment needed to try.",
+   "lede": "A short walk up from Monastiraki, below the Acropolis. There is always a bottle open on the counter. Walk in; no appointment is needed to try.",
    "near": "A short walk up from Monastiraki, below the Acropolis.",
    "hoursLabel": "Hours",
    "book": "Message the shop",
@@ -1617,7 +1617,7 @@
    "eyebrow": "Επίσκεψη",
    "title": "Θα μας βρεις",
    "titleEm": "στη Μνησικλέους.",
-   "lede": "Λίγα βήματα πάνω από το Μοναστηράκι, κάτω από την Ακρόπολη. Πάντα υπάρχει ένα ανοιχτό μπουκάλι στον πάγκο. Πέρνα — δεν χρειάζεται ραντεβού για να δοκιμάσεις.",
+   "lede": "Λίγα βήματα πάνω από το Μοναστηράκι, κάτω από την Ακρόπολη. Πάντα υπάρχει ένα ανοιχτό μπουκάλι στον πάγκο. Πέρνα· δεν χρειάζεται ραντεβού για να δοκιμάσεις.",
    "near": "Λίγα βήματα πάνω από το Μοναστηράκι, κάτω από την Ακρόπολη.",
    "hoursLabel": "Ώρες",
    "book": "Στείλε μήνυμα",
