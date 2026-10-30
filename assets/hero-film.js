@@ -25,6 +25,23 @@ const WIDE  = matchMedia('(min-aspect-ratio: 1/1)');
 
 const PETALS = [1, 2, 3, 4, 5, 6].map(n => `assets/hero/petal-${n}.webp`);
 
+/* Where each act's plate comes from, per shape of screen.
+   A 16:9 screen takes the motion pack's frame, which is 1280 x 720 and
+   the best wide source there is.
+   An upright screen used to take a 9:16 window of that same frame — 405
+   by 720, a third of a megapixel, stretched across a phone that wants
+   three. The house's own four photographs are upright already, within a
+   thousandth of 9:16, and carry 1.4 to 1.6 megapixels each: five times
+   the detail, no crop at all, and they are the same rose, the same bowl,
+   the same still and the same flacon. They are used as they are, not
+   re-encoded, so nothing is lost a second time. */
+const PLATES = [
+  { wide: 'assets/hero/plate-1-wide.webp', tall: 'assets/img/scene-rose-941.webp' },
+  { wide: 'assets/hero/plate-2-wide.webp', tall: 'assets/img/scene-essence-941.webp' },
+  { wide: 'assets/hero/plate-3-wide.webp', tall: 'assets/img/scene-still-940.webp' },
+  { wide: 'assets/hero/plate-4-wide.webp', tall: 'assets/img/frame-00-880.webp' },
+];
+
 /* Where things are in each plate, as a fraction of it. Measured off the
    keyframes, not guessed: the rose's heart, the line of the liquid, the
    lip of the spout, the mouth of the bottle. */
@@ -51,7 +68,7 @@ function plate(act) {
   const img = el('fh-plate', 'img');
   img.alt = '';
   img.decoding = 'async';
-  img.src = `assets/hero/plate-${act.n}-${WIDE.matches ? 'wide' : 'tall'}.webp`;
+  img.src = PLATES[act.n - 1][WIDE.matches ? 'wide' : 'tall'];
   if (act.n === 1) img.fetchPriority = 'high';
   else img.loading = 'lazy';
   return img;

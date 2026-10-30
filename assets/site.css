@@ -500,7 +500,13 @@ body.curtained{overflow:hidden}
 .hero-nums button[aria-current="true"]::after{transform:translateX(-50%) scaleY(1)}
 @media (hover:hover) and (pointer:fine){ .hero-nums button:hover{color:var(--ivory)} }
 
-@media (max-width:899px){
+/* An upright screen — a phone, or a tablet held tall — gives the picture
+   the top of the screen on its own and sets the words under it. The same
+   phone turned on its side is a wide screen 390px tall, where that
+   layout puts the standfirst and both buttons below the fold, so the
+   aspect ratio decides this and not the width. It is the same question
+   the player asks when it chooses which plate to load. */
+@media (max-width:899px) and (max-aspect-ratio:1/1){
   /* the picture takes the top of the screen on its own, the words sit
      under it on the scrim — nothing is read over the subject */
   .hero{align-items:end;padding-top:clamp(4.5rem,42vh,22rem)}
@@ -515,6 +521,24 @@ body.curtained{overflow:hidden}
   .hero-eyebrow{color:#F8E8C8}
   .hero-lede{max-width:32ch}
   .scene .lay{object-position:var(--pos-m,50% 34%)}
+}
+
+/* A screen wider than it is tall and shorter than a laptop's: a phone or
+   a tablet on its side. The first screen keeps the wide composition —
+   words beside the picture — but everything comes down a size, so the
+   eyebrow, the headline, the standfirst and both calls to action are all
+   above the fold in 390px of height. */
+@media (min-aspect-ratio:1/1) and (max-height:600px){
+  .hero{align-items:center;
+    padding:clamp(4.2rem,15vh,5.6rem) var(--pad) clamp(1.4rem,6vh,2.4rem)}
+  .hero-copy{max-width:min(30rem,52vw)}
+  .hero-eyebrow{margin-bottom:var(--s3);font-size:var(--t-small)}
+  .hero h1{font-size:clamp(1.85rem,.9rem + 3.3vw,3rem)}
+  .hero-lede{font-size:clamp(.98rem,.88rem + .5vw,1.18rem);
+    margin-bottom:var(--s5);max-width:30ch}
+  .hero-acts{gap:var(--s3) var(--s5)}
+  .hero-cta{min-height:2.9rem;padding:var(--s2) var(--s6)}
+  .hero-alt{min-height:2.75rem}
 }
 
 /* ══ A MEMORY, DISTILLED ══════════════════════════════════════ */
