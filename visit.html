@@ -115,6 +115,27 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
   };
   var to = moved[location.hash.slice(1)];
   if (to) location.replace(to + location.search);
+})();
+
+/* The language used to be settled only once content.json had landed, so a
+   Greek visitor watched the page repaint. It is settled here instead,
+   before anything is drawn, and the content is asked for in the same
+   breath rather than waiting for the module to parse. */
+(function(){
+  var l;
+  try{
+    var q = new URLSearchParams(location.search).get('lang');
+    l = (q === 'el' || q === 'en') ? q : localStorage.getItem('lms-lang');
+  }catch(e){}
+  if (l !== 'el' && l !== 'en')
+    l = /^el/i.test(navigator.language || '') ? 'el' : 'en';
+  document.documentElement.lang = l;
+  document.body.classList.remove('lang-en','lang-el');
+  document.body.classList.add('lang-' + l);
+  try{
+    window.__lmsContent = fetch('content.json',{cache:'no-cache'})
+      .then(function(r){ return r.json(); });
+  }catch(e){}
 })();</script>
 
 <a class="skip" href="#main">Skip to content</a>

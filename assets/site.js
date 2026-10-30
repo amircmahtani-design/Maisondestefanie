@@ -55,7 +55,9 @@ async function boot(){
     }catch(e){ console.warn('Live content unavailable; using content.json.', e); }
   }
   if (!DATA){
-    try{ DATA = await (await fetch('content.json',{cache:'no-cache'})).json(); }
+    /* the fetch was started in the head before this module was parsed */
+    try{ DATA = await (window.__lmsContent
+           || fetch('content.json',{cache:'no-cache'}).then(r=>r.json())); }
     catch(e){ console.error(e); }
   }
   if (!DATA){ console.error('Content could not be loaded.'); return; }
