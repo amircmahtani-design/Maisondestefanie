@@ -28,7 +28,12 @@
 .fh-scene.on{opacity:1}
 
 /* ── the plate, and the camera on it ───────────────────────────── */
-.fh-plate{position:absolute;inset:-4% -4%;width:108%;height:108%;
+/* max-width:none is load-bearing. site.css resets every img to
+   max-width:100%, which clamped this to the width of the scene and threw
+   the bleed away — so the moment the camera panned, a bare strip of
+   ground showed down one edge. It was visible on a phone, on an iPad and
+   on the desktop alike. */
+.fh-plate{position:absolute;inset:-4% -4%;width:108%;height:108%;max-width:none;
   display:block;object-fit:cover;object-position:50% 50%;
   transform:translateZ(0);backface-visibility:hidden}
 .fh-scene.on .fh-plate{animation:fh-cam 22s cubic-bezier(.5,0,.5,1) infinite alternate}
@@ -128,20 +133,39 @@
 .filmhero.hold .fh-plate,
 .filmhero.hold .fh-fx *{animation-play-state:paused}
 
-/* ── a phone ───────────────────────────────────────────────────── */
-@media (max-width:899px){
+/* ── an upright screen: a phone, or a tablet held tall ─────────── */
+@media (max-width:899px) and (max-aspect-ratio:1/1){
   .filmhero{align-items:end;
     padding:clamp(7rem,16vh,10rem) var(--pad) clamp(2.6rem,7vh,4rem)}
-  .fh-plate{inset:-3% -3%;width:106%;height:106%}
+  /* These four photographs are composed subject-high, dark-beneath. A
+     screen less tall than 9:16 — a tablet held upright — crops that
+     evenly top and bottom with the default centre, which drops the bloom
+     into the headline and takes the dark away from under it. Anchoring
+     near the top keeps the composition the photographer gave it. */
+  .fh-plate{inset:-3% -3%;width:106%;height:106%;object-position:50% 20%}
   /* the words sit in the dark under the picture, so the scrim turns */
   /* far enough up the screen to carry the eyebrow, which is gold and
      would otherwise be read against a lit petal; the picture still
      shows through everywhere the words are not */
   .filmhero::after{background:
-    linear-gradient(0deg,rgba(10,7,5,.96) 8%,rgba(10,7,5,.92) 34%,
-      rgba(10,7,5,.8) 50%,rgba(10,7,5,.44) 66%,rgba(10,7,5,.1) 86%,
+    linear-gradient(0deg,rgba(10,7,5,.97) 8%,rgba(10,7,5,.95) 36%,
+      rgba(10,7,5,.87) 52%,rgba(10,7,5,.5) 68%,rgba(10,7,5,.12) 88%,
       rgba(10,7,5,0) 100%),
     linear-gradient(180deg,rgba(10,7,5,.74) 0%,transparent 22%)}
+}
+
+/* turned on its side it is a wide screen, so it keeps the wide scrim and
+   only loses the deep top padding that would push the words off it */
+@media (min-aspect-ratio:1/1) and (max-height:600px){
+  .filmhero{align-items:center;
+    padding:clamp(4.2rem,15vh,5.6rem) var(--pad) clamp(1.4rem,6vh,2.4rem)}
+  /* the words take a narrower column here, so the dark they are read on
+     stops sooner and lets more of the picture through */
+  .filmhero::after{background:
+    linear-gradient(90deg,rgba(10,7,5,.95) 0%,rgba(10,7,5,.92) 30%,
+      rgba(10,7,5,.78) 44%,rgba(10,7,5,.42) 56%,rgba(10,7,5,.12) 68%,
+      rgba(10,7,5,0) 80%),
+    linear-gradient(180deg,rgba(10,7,5,.72) 0%,transparent 26%)}
 }
 
 /* ── nobody is shown anything moving who asked not to be ───────── */

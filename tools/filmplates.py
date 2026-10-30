@@ -16,15 +16,19 @@ thirds of its width — so each act names its own frame and its own crop
 for a phone, chosen so the subject survives the window rather than being
 cut by it.
 
+This writes the 16:9 plates only. An upright screen does not take a 9:16
+window of these frames any more: that window is 405 x 720, a third of a
+megapixel behind a phone that wants three, and the house already owns
+four upright photographs of the same four subjects at 1.4 to 1.6
+megapixels. assets/hero-film.js names those directly.
+
 ON SHARPNESS. Every frame in the motion pack is 1280 x 720. That is the
 ceiling: no detail can be recovered that was not in the file. What CAN be
 thrown away is most of it, and the first pass did — it enlarged to
 1920 x 1080 and then wrote WebP at quality 78, so the quantiser spent its
 bytes on interpolated gradient and smeared the copper. The pass now
 resizes once with LANCZOS, puts a real unsharp mask over the result, and
-writes at quality 90. A phone's frame is a 405 x 720 window of a 720p
-file, which is the worst case in the whole set, so it is enlarged 2x and
-no further — an exact factor resamples cleanly, and CSS covers the rest.
+writes at quality 90.
 
 If the full-resolution originals turn up, drop them in and run this
 again; nothing else needs to change.
@@ -37,21 +41,14 @@ import sys
 
 OUT = '/home/user/Maisondestefanie/assets/hero'
 WIDE = (1920, 1080)
-TALL = (810, 1440)
 QUALITY = 90
 
-# act, the wide frame, the phone's frame, and where the phone's window
-# sits across it — the rose at 0.68, the bottle at 0.54, and for the bowl
-# and the still a frame that has no edge to lose
+# act, and the frame it is held on
 PLATES = [
-    (1, 'keyframe-02.jpg', 'keyframe-02.jpg', 0.68, 0.46),
-    (2, 'keyframe-06.jpg', 'keyframe-08.jpg', 0.50, 0.50),
-    # keyframe-10's copper is all on the right and its left two thirds
-    # are vapour, so a 9:16 window placed anywhere near its middle is a
-    # brown smear. The phone takes the same frame as the wide plate,
-    # placed on the gooseneck, the collar and the swell of the body.
-    (3, 'keyframe-09.jpg', 'keyframe-09.jpg', 0.56, 0.50),
-    (4, 'keyframe-16.jpg', 'keyframe-16.jpg', 0.54, 0.52),
+    (1, 'keyframe-02.jpg'),
+    (2, 'keyframe-06.jpg'),
+    (3, 'keyframe-09.jpg'),
+    (4, 'keyframe-16.jpg'),
 ]
 
 
@@ -85,32 +82,15 @@ def sharpen(im):
     return im.filter(ImageFilter.UnsharpMask(radius=1.6, percent=118, threshold=3))
 
 
-def crop_to(im, size, cx, cy):
-    """The largest window of `size`'s shape that fits, placed on the
-    subject. Nothing is invented and nothing is feathered."""
-    W, H = size
-    ar = W / H
-    if im.width / im.height > ar:
-        h = im.height; w = round(h * ar)
-    else:
-        w = im.width; h = round(w / ar)
-    l = max(0, min(im.width - w, round(cx * im.width - w / 2)))
-    t = max(0, min(im.height - h, round(cy * im.height - h / 2)))
-    return im.crop((l, t, l + w, t + h)).resize(size, Image.LANCZOS)
-
-
 def main(folder):
     os.makedirs(OUT, exist_ok=True)
-    for act, wide_src, tall_src, cx, cy in PLATES:
+    for act, wide_src in PLATES:
         wide = deframe(Image.open(os.path.join(folder, wide_src)).convert('RGB'))
-        tall = deframe(Image.open(os.path.join(folder, tall_src)).convert('RGB'))
-        for suffix, img, src in (
-                ('wide', sharpen(wide.resize(WIDE, Image.LANCZOS)), wide_src),
-                ('tall', sharpen(crop_to(tall, TALL, cx, cy)), tall_src)):
-            p = os.path.join(OUT, f'plate-{act}-{suffix}.webp')
-            img.save(p, 'WEBP', quality=QUALITY, method=6)
-            print(f'  {os.path.basename(p):22} {img.size[0]}x{img.size[1]}  '
-                  f'{os.path.getsize(p)//1024} KB   <- {src}')
+        img = sharpen(wide.resize(WIDE, Image.LANCZOS))
+        p = os.path.join(OUT, f'plate-{act}-wide.webp')
+        img.save(p, 'WEBP', quality=QUALITY, method=6)
+        print(f'  {os.path.basename(p):22} {img.size[0]}x{img.size[1]}  '
+              f'{os.path.getsize(p)//1024} KB   <- {wide_src}')
 
 
 if __name__ == '__main__':
