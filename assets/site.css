@@ -18,18 +18,27 @@
   /* the same gold, darkened just enough for small text on the paper ground */
   --gold-ink:#82591C;
   --rose:#C2818A; --burgundy:#6E2333;
-  /* Polished metal: the sheen runs across the middle, the edge above it
-     catches the light and the one below it is in shadow. Pulled towards
-     copper rather than pure gold, so the pills belong to the same house
-     as the still she distils on — the highlight stays warm cream, which
-     is where her mark lives. */
-  --metal:linear-gradient(177deg,#F8E2BC 0%,#E2B47A 15%,#C4824A 36%,
-                          #93522A 52%,#BE8250 70%,#E4BC90 88%,#F7E0B9 100%);
-  --metal-lit:linear-gradient(177deg,#FEF0D6 0%,#EEC793 15%,#D4985C 36%,
-                              #A66338 52%,#CF9663 70%,#F0D2A6 88%,#FDEDCD 100%);
-  --metal-edge:inset 0 1px 0 rgba(255,246,226,.82),
-               inset 0 -1px 0 rgba(62,32,10,.6),
-               inset 0 0 0 1px rgba(110,64,26,.4);
+  /* Struck copper. A flat ramp reads as paint; metal is a narrow bright
+     band where the light actually catches, a dark band under it where
+     the room is reflected, and a warm bounce off whatever the piece is
+     lying on. Two gradients: one down it for the turn of the surface,
+     one across it for its curve. */
+  --metal-sheen:linear-gradient(92deg,rgba(26,10,2,.26) 0%,
+                 rgba(255,236,206,.1) 22%,rgba(255,240,214,.14) 50%,
+                 rgba(255,236,206,.08) 76%,rgba(26,10,2,.3) 100%);
+  --metal:var(--metal-sheen),
+          linear-gradient(177deg,#FEEDD2 0%,#F2CB9A 6%,#DC9C62 18%,
+                          #EFBE8C 29%,#C87C41 40%,#9A5326 50%,
+                          #6E3417 60%,#8E4A22 68%,#B87440 78%,
+                          #DCA169 88%,#F5D6AA 96%,#FDEAC9 100%);
+  --metal-lit:var(--metal-sheen),
+          linear-gradient(177deg,#FFF6E6 0%,#F9DCB6 6%,#EBB37D 18%,
+                          #FAD3A8 29%,#D9904F 40%,#AF6531 50%,
+                          #84431E 60%,#A75C2C 68%,#CE8A51 78%,
+                          #ECBA81 88%,#FBE5C2 96%,#FFF3DC 100%);
+  --metal-edge:inset 0 1px 0 rgba(255,248,232,.92),
+               inset 0 -1px 0 rgba(44,18,4,.8),
+               inset 0 0 0 1px rgba(124,62,22,.55);
   --metal-ink:#1C1007;
   /* edges */
   --edge:rgba(243,237,226,.11); --edge-2:rgba(243,237,226,.2);
@@ -217,22 +226,26 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* the house's own name is never the thing that gets squeezed */
 .mark{display:flex;align-items:center;gap:.85rem;flex:0 1 auto;min-width:0}
 @media (min-width:1240px){ .bar .mark{flex:none} }
-.monogram{width:2.5rem;height:2.5rem;flex:none;display:grid;place-items:center;
-  border:1px solid var(--edge-2);border-radius:50%;font-family:var(--display);
-  font-size:.82rem;letter-spacing:.06em;color:var(--gold-lit);transition:border-color .4s}
+ /* Her own mark: the flacon from the plaque on her bottle, on a plaque
+    of its own. The wordmark is set the way her label sets it — title
+    case in the display serif with the "de" in italic — and at a size
+    that reads as the name of the house rather than a caption. */
+.flacon{width:2.8rem;height:2.17rem;flex:none;display:grid;place-items:center;
+  color:var(--gold-lit);transition:color .4s}
+.flacon svg{width:100%;height:100%;display:block}
 
-.wordmark{font-family:var(--display);font-size:clamp(.78rem,.7rem + .35vw,.95rem);
-  letter-spacing:.24em;text-transform:uppercase;line-height:1.35;white-space:nowrap}
+.wordmark{font-family:var(--display);font-size:clamp(1.04rem,.92rem + .52vw,1.34rem);
+  letter-spacing:-.005em;line-height:1.12;white-space:nowrap;color:#F7F2E9}
+.wordmark em{font-style:italic;color:var(--gold-lit)}
 .wordmark small{display:block;font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;
-  color:var(--dim);margin-top:.25rem}
+  color:var(--dim);margin-top:.4rem;text-transform:uppercase}
 /* below this the wordmark stops being one line, or it walks the
    language switch and the menu button straight off the screen */
 @media (max-width:600px){
-  .mark{gap:.6rem}
-  .monogram{width:2.2rem;height:2.2rem;font-size:.72rem}
-  .wordmark{white-space:normal;font-size:.64rem;letter-spacing:.13em;
-    line-height:1.45;max-width:8.6rem}
-  .wordmark small{font-size:.44rem;letter-spacing:.34em;margin-top:.15rem}
+  .mark{gap:.55rem}
+  .flacon{width:2.2rem;height:1.71rem}
+  .wordmark{white-space:normal;font-size:.98rem;line-height:1.18;max-width:7.6rem}
+  .wordmark small{font-size:.44rem;letter-spacing:.34em;margin-top:.22rem}
   .tools{gap:.6rem}
   .lang{font-size:.62rem}
 }
@@ -429,24 +442,25 @@ body.curtained{overflow:hidden}
   background:radial-gradient(54% 60% at 56% 44%,rgba(201,138,58,.16),transparent 70%)}
 .hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(10,7,5,.9) 0%,rgba(10,7,5,.84) 22%,
-      rgba(10,7,5,.6) 34%,rgba(10,7,5,.26) 46%,rgba(10,7,5,.06) 58%,rgba(10,7,5,0) 70%),
+    linear-gradient(90deg,rgba(10,7,5,.92) 0%,rgba(10,7,5,.88) 26%,
+      rgba(10,7,5,.72) 40%,rgba(10,7,5,.4) 52%,rgba(10,7,5,.12) 64%,rgba(10,7,5,0) 76%),
     linear-gradient(270deg,rgba(10,7,5,.93) 0%,rgba(10,7,5,.86) 6%,
       rgba(10,7,5,.54) 13%,rgba(10,7,5,.18) 20%,rgba(10,7,5,0) 28%),
-    linear-gradient(0deg,rgba(10,7,5,.80) 0%,rgba(10,7,5,.10) 26%,transparent 46%),
+    linear-gradient(0deg,rgba(10,7,5,.86) 0%,rgba(10,7,5,.5) 20%,
+      rgba(10,7,5,.18) 34%,transparent 50%),
     linear-gradient(180deg,rgba(10,7,5,.72) 0%,rgba(10,7,5,0) 22%)}
 
 /* the words */
-.hero-copy{position:relative;z-index:4;max-width:min(34rem,46vw);
+.hero-copy{position:relative;z-index:4;max-width:min(38rem,48vw);
   margin-left:clamp(0rem,4vw,5rem)}
-.hero-eyebrow{margin:0 0 var(--s5);font-size:var(--t-small);
+.hero-eyebrow{margin:0 0 var(--s5);font-size:var(--t-body);
   letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lit)}
 .hero h1{font-family:var(--display);text-transform:uppercase;
-  font-size:var(--t-h1);line-height:var(--lh-tight);
+  font-size:clamp(3rem,1.2rem + 5.4vw,6.2rem);line-height:var(--lh-tight);
   letter-spacing:var(--tr-head);color:#F7F2E9;margin:0 0 var(--s5);text-wrap:balance}
 .hero h1 em{display:block;font-style:normal}
-.hero-lede{font-size:clamp(1.22rem,1.06rem + .62vw,1.62rem);line-height:1.46;
-  font-family:var(--serif);color:var(--ivory);max-width:28ch;
+.hero-lede{font-size:clamp(1.3rem,1.08rem + .86vw,2rem);line-height:1.44;
+  font-family:var(--serif);color:var(--ivory);max-width:26ch;
   margin:0 0 var(--s7);text-wrap:pretty}
 .hero-acts{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4) var(--s7)}
 .hero-cta{display:inline-flex;align-items:center;gap:var(--s4);min-height:3.4rem;
@@ -494,7 +508,11 @@ body.curtained{overflow:hidden}
       rgba(10,7,5,.74) 56%,rgba(10,7,5,.24) 76%,rgba(10,7,5,0) 92%),
     linear-gradient(180deg,rgba(10,7,5,.74) 0%,rgba(10,7,5,0) 20%)}
   .hero-copy{max-width:none;margin-left:0}
-  .hero-lede{max-width:34ch}
+  .hero h1{font-size:clamp(2.5rem,1.5rem + 4.6vw,4.3rem)}
+  /* on a phone the words are read over the picture, so the eyebrow is
+     lifted off the house gold to one that survives a lit petal */
+  .hero-eyebrow{color:#F8E8C8}
+  .hero-lede{max-width:32ch}
   .scene .lay{object-position:var(--pos-m,50% 34%)}
 }
 
@@ -1094,7 +1112,7 @@ body.noscroll{overflow:hidden}
 /* A phone has no pointer: a hover painted on tap stays painted until
    something else is tapped. These only exist where a pointer does. */
 @media (hover:hover) and (pointer:fine){
-  .mark:hover .monogram{border-color:var(--gold)}
+  .mark:hover .flacon{color:var(--gold)}
   .burger:hover{border-color:var(--gold)}
   .dclose:hover{border-color:var(--gold)}
   .sclose:hover{border-color:var(--gold)}

@@ -188,10 +188,13 @@ function renderHero(){
   const data = L(DATA.sequence, 'chapters') || [];
   HERO.scenes = data; HERO.n = data.length;
   HERO.el = $('.hero');
-  if (!HERO.el || !HERO.n) return;
+  /* a first screen can exist without the four chapters in it — the home
+     page's film has its own player */
+  const sceneHost = $('#heroScenes');
+  if (!HERO.el || !sceneHost || !HERO.n) return;
   sizeStage();
 
-  $('#heroScenes').innerHTML = data.map((c,i)=>{
+  sceneHost.innerHTML = data.map((c,i)=>{
     const pic = slot(c.subject) || {};
     /* a tall photograph in a wide frame loses most of its height, so each
        one says which part of itself to keep */

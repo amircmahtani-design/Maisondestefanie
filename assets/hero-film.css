@@ -1,0 +1,153 @@
+/* ══════════════════════════════════════════════════════════════
+   THE FIRST SCREEN, AS A FILM — the look of it
+
+   Four plates, cross-faded. Over each one, the things that move: petals
+   that let go and turn as they fall, the ring a petal makes on the
+   water, vapour off the still, a drop at a lip. Each is its own element
+   with its own trajectory, so nothing morphs and nothing jumps.
+
+   Only transform and opacity are animated. The plate's camera move is a
+   drift across with a breath of a dolly, and it is different in each
+   act so the screen never reads as scrolling.
+   ══════════════════════════════════════════════════════════════ */
+
+/* It wears the .hero class as well, so the headline, the standfirst and
+   the two calls to action are typeset exactly as they already are. These
+   rules load after site.css, so where the two name the same thing — the
+   scrims, the ground — this one wins. */
+.filmhero{position:relative;min-height:var(--stage,100svh);overflow:hidden;
+  background:var(--noir);isolation:isolate;
+  display:grid;align-items:center;
+  padding:clamp(6rem,13vh,9rem) var(--pad) clamp(4rem,9vh,6rem)}
+
+.fh-scenes{position:absolute;inset:0;z-index:0}
+
+.fh-scene{position:absolute;inset:0;opacity:0;overflow:hidden;
+  transition:opacity var(--fade,1400ms) cubic-bezier(.16,.84,.28,1);
+  will-change:opacity}
+.fh-scene.on{opacity:1}
+
+/* ── the plate, and the camera on it ───────────────────────────── */
+.fh-plate{position:absolute;inset:-6% -6%;width:112%;height:112%;
+  display:block;object-fit:cover;object-position:50% 50%;
+  transform:translateZ(0);backface-visibility:hidden}
+.fh-scene.on .fh-plate{animation:fh-cam 22s cubic-bezier(.5,0,.5,1) infinite alternate}
+.fh-scene[data-act="1"].on .fh-plate{animation-name:fh-cam-1}
+.fh-scene[data-act="2"].on .fh-plate{animation-name:fh-cam-2}
+.fh-scene[data-act="3"].on .fh-plate{animation-name:fh-cam-3}
+.fh-scene[data-act="4"].on .fh-plate{animation-name:fh-cam-4}
+
+/* a drift across and a breath of a dolly, a different one each act */
+@keyframes fh-cam-1{from{transform:translate3d(1.4%,0,0) scale(1.01)}
+  to{transform:translate3d(-1.2%,-.8%,0) scale(1.045)}}
+@keyframes fh-cam-2{from{transform:translate3d(-1.6%,-.6%,0) scale(1.045)}
+  to{transform:translate3d(1.2%,.4%,0) scale(1.01)}}
+@keyframes fh-cam-3{from{transform:translate3d(-1.2%,.6%,0) scale(1.02)}
+  to{transform:translate3d(1.6%,-.6%,0) scale(1.055)}}
+@keyframes fh-cam-4{from{transform:translate3d(1.2%,.5%,0) scale(1.05)}
+  to{transform:translate3d(-1.0%,-.5%,0) scale(1.012)}}
+
+.fh-fx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+
+/* ── a petal: it lets go, turns as it goes, and is gone ─────────── */
+.fh-petal{position:absolute;left:var(--x0);top:var(--y0);
+  width:var(--sz);height:auto;display:block;
+  transform-origin:50% 40%;opacity:0;
+  will-change:transform,opacity;
+  animation:fh-fall var(--t) cubic-bezier(.36,.06,.5,1) var(--d) infinite both}
+@keyframes fh-fall{
+  0%  {opacity:0;   transform:translate3d(0,0,0) rotate(var(--r0)) scale(.92)}
+  8%  {opacity:var(--op)}
+  /* it swings as it falls, the way a petal does — never a straight line */
+  45% {transform:translate3d(calc(var(--dx) * .52),calc(var(--dy) * .42),0)
+       rotate(calc((var(--r0) + var(--r1)) * .5)) scale(1)}
+  88% {opacity:var(--op)}
+  100%{opacity:0;   transform:translate3d(var(--dx),var(--dy),0)
+       rotate(var(--r1)) scale(.96)}
+}
+
+/* ── the ring a petal leaves on the water ──────────────────────── */
+.fh-ring{position:absolute;left:var(--x);top:var(--y);
+  width:var(--sz);height:calc(var(--sz) * .3);
+  margin:calc(var(--sz) * -.15) 0 0 calc(var(--sz) * -.5);
+  border:1px solid rgba(255,226,186,.5);border-radius:50%;
+  opacity:0;will-change:transform,opacity;
+  animation:fh-ring 2600ms cubic-bezier(.16,.84,.28,1) var(--d) infinite both}
+@keyframes fh-ring{
+  0%  {opacity:0;   transform:scale(.18)}
+  12% {opacity:.72}
+  100%{opacity:0;   transform:scale(1)}
+}
+
+/* ── vapour ────────────────────────────────────────────────────── */
+.fh-steam{position:absolute;left:var(--x);top:var(--y);
+  width:var(--sz);height:var(--sz);
+  margin:calc(var(--sz) * -.5) 0 0 calc(var(--sz) * -.5);
+  border-radius:50%;
+  background:radial-gradient(circle at 50% 60%,
+    rgba(255,238,214,.17),rgba(255,232,204,.07) 46%,transparent 70%);
+  filter:blur(10px);opacity:0;will-change:transform,opacity;
+  animation:fh-steam 7400ms cubic-bezier(.4,0,.6,1) var(--d) infinite both}
+@keyframes fh-steam{
+  0%  {opacity:0;   transform:translate3d(0,0,0) scale(.6)}
+  18% {opacity:.85}
+  /* it leans as it rises, then thins out */
+  55% {transform:translate3d(2.2vmin,-9vmin,0) scale(1.15)}
+  100%{opacity:0;   transform:translate3d(-1.6vmin,-19vmin,0) scale(1.7)}
+}
+
+/* ── a drop gathering at a lip, then falling ───────────────────── */
+.fh-drop{position:absolute;left:var(--x);top:var(--y);
+  width:.62vmin;height:.9vmin;margin:0 0 0 -.31vmin;
+  border-radius:50% 50% 46% 46%;
+  background:linear-gradient(180deg,rgba(255,236,200,.95),rgba(214,150,86,.85));
+  box-shadow:0 0 .5vmin rgba(255,216,160,.6);
+  opacity:0;will-change:transform,opacity;
+  animation:fh-drop 3200ms cubic-bezier(.45,0,.75,1) var(--d) infinite both}
+@keyframes fh-drop{
+  0%  {opacity:0;   transform:translate3d(0,0,0) scale(.3,.3)}
+  /* it swells at the lip before it has the weight to go */
+  22% {opacity:.95; transform:translate3d(0,0,0) scale(1,1)}
+  34% {opacity:.95; transform:translate3d(0,.4vh,0) scale(.86,1.3)}
+  88% {opacity:.8;  transform:translate3d(0,var(--fall),0) scale(.7,1.5)}
+  100%{opacity:0;   transform:translate3d(0,calc(var(--fall) + 1.5vh),0) scale(.6,1.2)}
+}
+
+/* ── the light in the room, and the dark the words are read on ─── */
+.filmhero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(54% 60% at 62% 44%,rgba(201,138,58,.14),transparent 70%)}
+.filmhero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(10,7,5,.92) 0%,rgba(10,7,5,.88) 26%,
+      rgba(10,7,5,.72) 40%,rgba(10,7,5,.4) 52%,rgba(10,7,5,.12) 64%,rgba(10,7,5,0) 76%),
+    linear-gradient(0deg,rgba(10,7,5,.86) 0%,rgba(10,7,5,.5) 20%,
+      rgba(10,7,5,.18) 34%,transparent 50%),
+    linear-gradient(180deg,rgba(10,7,5,.72) 0%,transparent 22%)}
+
+/* anything that says somebody is reading it stops it moving under them */
+.filmhero.hold .fh-plate,
+.filmhero.hold .fh-fx *{animation-play-state:paused}
+
+/* ── a phone ───────────────────────────────────────────────────── */
+@media (max-width:899px){
+  .filmhero{align-items:end;
+    padding:clamp(7rem,16vh,10rem) var(--pad) clamp(2.6rem,7vh,4rem)}
+  .fh-plate{inset:-4% -4%;width:108%;height:108%}
+  /* the words sit in the dark under the picture, so the scrim turns */
+  /* far enough up the screen to carry the eyebrow, which is gold and
+     would otherwise be read against a lit petal; the picture still
+     shows through everywhere the words are not */
+  .filmhero::after{background:
+    linear-gradient(0deg,rgba(10,7,5,.96) 8%,rgba(10,7,5,.92) 34%,
+      rgba(10,7,5,.8) 50%,rgba(10,7,5,.44) 66%,rgba(10,7,5,.1) 86%,
+      rgba(10,7,5,0) 100%),
+    linear-gradient(180deg,rgba(10,7,5,.74) 0%,transparent 22%)}
+  .fh-petal{--sz:7vmin}
+}
+
+/* ── nobody is shown anything moving who asked not to be ───────── */
+@media (prefers-reduced-motion:reduce){
+  .fh-scene.on .fh-plate{animation:none;transform:scale(1.02)}
+  .fh-fx{display:none}
+  .fh-scene{transition:none}
+}

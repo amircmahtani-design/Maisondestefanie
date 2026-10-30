@@ -34,6 +34,22 @@ It writes the WebP the page actually serves — the PNGs are around 2 MB
 each and the WebP about 80 KB, which is the difference between a page
 that opens and one that waits.
 
+THE MARK
+--------
+assets/mark-flacon.svg is her own mark, drawn from the plaque on the
+bottle she is holding in the photograph on lamaisondestefanie.com: the
+flacon with its wide flat stopper, its ribbed collar and the plinth it
+stands on. It replaces the invented "S" monogram that was on the header,
+the footer and the opening curtain. The header and footer carry the same
+shape inline so it can take the gold from the stylesheet; the curtain
+uses the file.
+
+The wordmark beside it is set the way her label sets it — title case in
+the display serif with the "de" in italic — not as letterspaced capitals.
+
+If a vector of the real mark turns up, replace assets/mark-flacon.svg and
+the two inline copies in tools/shell.html, then run tools/pages.py.
+
 CURRENT ARTWORK
 ---------------
 The twelve shelf images and three location images in assets/img are
@@ -87,6 +103,27 @@ Their paths are already wired into content.json:
 The wide room source is 2400 × 1028 px; shopfront and Plaka sources are
 1280 × 1600 px.
 
+THE FIRST SCREEN AS A FILM (hero-preview.html)
+----------------------------------------------
+Not on the home page. hero-preview.html is a noindex copy of the home
+page whose only difference is the first screen, for approval before it
+replaces the one that is live.
+
+  assets/hero/plate-{1..4}-wide.webp   16:9, one locked plate per act
+  assets/hero/plate-{1..4}-tall.webp   9:16, the phone's own composition
+  assets/hero/petal-{1..6}.webp        petals cut out of the keyframes
+  assets/hero-film.css                 the look of it
+  assets/hero-film.js                  the player
+
+The plates are locked frames — camera and subject do not move between
+them, so nothing morphs. Everything that moves is built as its own layer
+over the plate: petals that let go and turn as they fall, the ring a
+petal leaves on the water, vapour off the still, a drop at a lip. Four
+acts, cross-faded, 3.6s each with a 1.4s dissolve.
+
+Rebuild the plates with tools/filmplates.py, the petals with
+tools/petals.py, and the page itself with tools/preview.py.
+
 HERO STORY AND MOTION
 ---------------------
 The existing hero images and all nine frames of the bottle/petal loop
@@ -108,6 +145,18 @@ MISSING AUTHENTIC MATERIAL
 Still needed for a fully documentary site:
   - Four original full-resolution scene photographs: rose, essence bowl,
     copper still, bottle among roses.
+
+FOUND, NOT YET USED
+-------------------
+lamaisondestefanie.com — the site still on her domain — carries real
+material of Stefanie that this repository does not:
+  assets/stefanie-portrait.jpg        1400 x 939, her holding a flacon
+  assets/og-image.jpg                 1200 x 630, the same photograph
+  assets/stefanie_hero_loop.mp4/.webm and the 9:16 crops of it
+  assets/house.mp4
+That portrait is a real photograph of her and the loop is real footage of
+the shop; both would replace concept artwork. Nothing from them is used
+here yet.
   - Real shelf photographs of the twelve actual products, shot together
     on the same dark surface under one warm side light.
   - Real location photographs: doorway room/bench, Mnisikleous 10 at
