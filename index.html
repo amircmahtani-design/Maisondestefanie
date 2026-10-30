@@ -376,13 +376,13 @@ body.curtained{overflow:hidden}
 .hero-scenes{position:absolute;inset:0 0 0 46%;z-index:0}
 @media (max-width:899px){ .hero-scenes{inset:0} }
 .scene{position:absolute;inset:0;opacity:0;overflow:hidden;
-  transition:opacity 820ms cubic-bezier(.4,0,.2,1);will-change:opacity}
+  transition:opacity 1250ms cubic-bezier(.16,.84,.28,1);will-change:opacity}
 .scene.on{opacity:1}
 .scene .lay{position:absolute;inset:0;display:block;width:100%;height:100%;
   object-fit:cover;object-position:var(--pos,50% 42%);
   transform:translateZ(0);backface-visibility:hidden}
 .scene .lay.b{opacity:0}
-.scene.xf .lay{transition:opacity 110ms linear}
+.scene.xf .lay{transition:opacity 520ms cubic-bezier(.22,.61,.36,1)}
 /* three and a half percent over four seconds, out and back */
 @keyframes kenburns{from{transform:scale(1) translate3d(0,0,0)}
   to{transform:scale(1.035) translate3d(0,-.9%,0)}}
@@ -1603,8 +1603,8 @@ const LOOP = {
   el:null, lays:null, urls:[], order:[], at:0, timer:0,
   ready:false, loading:false, showing:0, live:false
 };
-const FRAME_HOLD  = 140;   /* how long a frame stands still */
-const FRAME_BLEND = 110;   /* and how long it takes to become the next */
+const FRAME_HOLD  = 220;   /* a brief breath between petal positions */
+const FRAME_BLEND = 520;   /* a soft, overlapping dissolve into the next */
 
 function loopOrder(n){                 /* 0,1,…,n-1,…,1  — out and back */
   const a = [];

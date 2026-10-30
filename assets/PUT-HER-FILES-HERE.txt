@@ -1,106 +1,79 @@
-La Maison de Stefanie — the assets folder
-=========================================
+La Maison de Stefanie — asset guide
+==================================
 
-Everything in assets/img is TEMPORARY. It is original artwork, rendered
-for this build so the layout could be judged with real pictures in it.
-None of it is a photograph and none of it is stock. It is there to be
-replaced by Stefanie's own photography.
+The site is built around one visual language: near-black surroundings,
+warm ivory, antique gold, and one warm source of light falling across
+the subject. The hero story stays rose → essence → copper still →
+finished bottle with petals moving through the frame.
 
+CURRENT ARTWORK
+---------------
+The twelve shelf images and three location images in assets/img are
+generated concept artwork. They are cohesive review assets, not verified
+photographs of Stefanie's actual products, shop, or neighbourhood. Their
+full-resolution generated source files are kept under
+assets/source/generated-products/ and assets/source/generated-places/.
+Replace a concept with a real photograph when available; preserve the
+same crop, charcoal surface, and single warm side light for the twelve
+shelf objects.
 
-1. HER ICON — DONE
-------------------
-Her logo was copied across from the live site and is in place:
+The product image slots retain their existing paths and are already
+wired into content.json:
+  p1  The Bespoke Session
+  p2  Made Again
+  p3  Mnisikleous
+  p4  Chios
+  p5  Kyria
+  p6  The Perfume You Lost
+  p7  Body Oil
+  p8  Cold-Pressed Soap
+  p9  House Candle
+  p10 Reed Diffuser
+  p11 Bespoke Voucher
+  p12 Weddings & Events
 
-  /favicon.ico                     the top level, not in here
-  assets/favicon-32x32.png
-  assets/favicon-16x16.png
-  assets/apple-touch-icon.png      180x180, her gold "S"
-  assets/curtain-mark.png          the same mark cut out on transparency,
-                                   used by the opening screen
-  assets/android-chrome-192x192.png
-  assets/android-chrome-512x512.png
-  assets/og-image.jpg              1200x630, used by Google and WhatsApp
+Each source is upright 4:5, 1120 × 1400 px. Responsive WebP files at
+420 and 700 px are served by the existing product slots.
 
-Nothing to do here. Do not rename any of them.
+LOCATION CONCEPTS
+-----------------
+The room, shopfront and Plaka images are also generated concept artwork.
+Their paths are already wired into content.json:
+  assets/img/atwork-900.webp, atwork-1500.webp, atwork-2000.webp
+  assets/img/shopfront-560.webp, shopfront-900.webp
+  assets/img/plaka-560.webp, plaka-900.webp
 
+The wide room source is 2400 × 1028 px; shopfront and Plaka sources are
+1280 × 1600 px.
 
-2. THE PICTURES STILL STANDING IN
----------------------------------
-Nine of the twelve picture slots are now hers. Three are not, and these
-are the ones worth shooting first. Go to Studio -> Pictures, upload the
-real one, and it takes over; the temporary file stops being used.
+HERO STORY AND MOTION
+---------------------
+The existing hero images and all nine frames of the bottle/petal loop
+are preserved. The timing is now slower and overlapping so the petals
+read as continuous motion:
+  chapter dissolve: 1250 ms
+  bottle/petal frame hold: 220 ms
+  bottle/petal crossfade: 520 ms
 
-  Wide shot of the shop   the room from the doorway, the whole bench in
-                          frame. Runs the full width of the page, so
-                          shoot it WIDE — landscape, roughly 21:9 of
-                          usable picture. 2400px on the long edge.
+The exact creative prompt and full hero asset map are in
+docs/hero-motion-prompt.md. The original four full-resolution source
+photographs were not in the repository or commit history. Their WebP
+derivatives remain in assets/img, but cannot restore their original
+resolution or grading latitude. Drop those originals into tools/supplied/
+when available; that directory is now tracked.
 
-  The shopfront           Mnisikleous 10 from the street, at dusk, light
-                          coming out of the door. Upright, 4:5.
-                          1600px on the long edge.
-
-  Plaka                   the steps just outside, the neighbourhood.
-                          Upright, 4:5. 1600px on the long edge.
-
-Already hers and not to be re-shot unless she wants to: the portrait,
-the rose, the essence bowl, the copper still, the sealed bottle, and the
-nine bottle frames.
-
-Shoot dark. One warm light source off to one side, everything else
-falling away into shadow. Do not light the room evenly — the whole site
-is built around that contrast and a flat, brightly lit photograph will
-look wrong in it.
-
-
-3. THE TWELVE ON THE SHELF
+MISSING AUTHENTIC MATERIAL
 --------------------------
-Every product is still showing artwork. Studio -> The shelf -> a product
--> its photograph. They get the house grade automatically, so a phone
-photograph on a plain dark surface is enough — but it must be the real
-object.
+Still needed for a fully documentary site:
+  - Four original full-resolution scene photographs: rose, essence bowl,
+    copper still, bottle among roses.
+  - Real shelf photographs of the twelve actual products, shot together
+    on the same dark surface under one warm side light.
+  - Real location photographs: doorway room/bench, Mnisikleous 10 at
+    dusk, and the Plaka steps.
+  - Optional 6–10 second clip of Stefanie working at the bench.
 
-  p1   The Bespoke Session      30ml extrait
-  p2   Made Again               30ml extrait
-  p3   Mnisikleous              50ml extrait
-  p4   Chios                    50ml extrait
-  p5   Kyria                    50ml extrait
-  p6   The Perfume You Lost     30ml extrait
-  p7   Body Oil                 100ml
-  p8   Cold-Pressed Soap        120g
-  p9   House Candle             220g
-  p10  Reed Diffuser            200ml, 8 reeds
-  p11  Bespoke Voucher          any value
-  p12  Weddings & Events        from 20 pieces
-
-Upright, 4:5, one object per frame, 1400px on the long edge. Same
-surface and same light for all twelve or the shelf will not read as one
-shelf.
-
-
-4. THE HERO FILM (optional)
----------------------------
-If there is a loop of her working, drop it in as:
-
-  assets/stefanie_hero_loop.webm         desktop, under about 4 MB
-  assets/stefanie_hero_loop_mobile.webm  phone, under about 1.5 MB
-
-then type the filenames into Studio -> Pictures -> The hero film. With no
-film the hero still is used and the page is faster. The film never loads
-for anyone on a data-saver connection or with reduced motion turned on.
-
-
-5. THE SOURCE PHOTOGRAPHS
--------------------------
-tools/supplied is where her full-resolution originals go, and it is in
-.gitignore, which means a rebuilt machine loses them. Commit the
-originals of anything that matters. The derived WebP files in assets/img
-are committed and safe, but without the originals nothing can be
-re-cropped or re-graded.
-
-
-6. A NOTE ON THE PRELOAD
-------------------------
-index.html preloads the hero still by name so it starts downloading
-immediately. If you change the hero photograph, update that one <link
-rel="preload"> line near the top of index.html to match, or simply
-delete it — the page works either way, it is only a head start.
+The referenced favicon, apple-touch icon, Open Graph image, hero chapter
+WebPs, all nine bottle/petal frame WebPs, and both temporary hero-loop
+video formats are present in the repository. The supplied video files
+are temporary artwork and are not footage of Stefanie.
