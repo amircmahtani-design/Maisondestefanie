@@ -328,8 +328,9 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
   padding:var(--s7);text-align:center}
 
 /* her own mark, the one already on her tab */
-.curtain-mark{display:block;width:clamp(54px,7.5vh,68px);height:auto;
-  border-radius:var(--r-md);
+/* her own mark, cut out of the app icon so the icon's near-black tile
+   does not sit as a lighter square on the curtain's black */
+.curtain-mark{display:block;width:clamp(58px,8vh,74px);height:auto;
   opacity:0;animation:curtainIn .7s var(--e) .15s forwards}
 
 .curtain-bottle{width:auto;height:clamp(176px,38vh,300px);overflow:visible}
@@ -903,8 +904,8 @@ body.noscroll{overflow:hidden}
      stands between somebody and the page. -->
 <div class="curtain" id="curtain" aria-hidden="true" hidden>
   <div class="curtain-in">
-    <img class="curtain-mark" src="assets/apple-touch-icon.png" alt=""
-         width="180" height="180" decoding="async" fetchpriority="high">
+    <img class="curtain-mark" src="assets/curtain-mark.png" alt=""
+         width="162" height="162" decoding="async" fetchpriority="high">
     <svg class="curtain-bottle" viewBox="0 0 200 392" fill="none" aria-hidden="true">
       <!-- the cap, a pebble of the same stone as the flacon -->
       <path pathLength="1" style="--d:.55s;--t:.70s"
