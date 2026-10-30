@@ -121,6 +121,18 @@ over the plate: petals that let go and turn as they fall, the ring a
 petal leaves on the water, vapour off the still, a drop at a lip. Four
 acts, cross-faded, 3.6s each with a 1.4s dissolve.
 
+THE CEILING ON SHARPNESS. Every frame in the motion pack is 1280 x 720 —
+all 64 of them, one stray 1600 x 900 aside. That is the whole of the
+detail there is; nothing can put back what was never in the file. The
+plates now resize once, take a real unsharp mask and are written at WebP
+quality 90 rather than 78, which recovers about 40 per cent more edge
+energy than the first pass and nearly doubles the bytes spent on the
+still. The copper reads as copper again, but it is still a 720p source.
+
+If the full-resolution originals exist, drop them in and run
+tools/filmplates.py again — nothing else has to change, and the result
+would be properly sharp rather than as sharp as 720p allows.
+
 Rebuild the plates with tools/filmplates.py, the petals with
 tools/petals.py, and the page itself with tools/preview.py.
 
