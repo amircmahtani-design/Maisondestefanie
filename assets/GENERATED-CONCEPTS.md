@@ -16,3 +16,8 @@ Location sources:
   (1280 × 1600 px)
 - Plaka steps: assets/source/generated-places/plaka.jpg
   (1280 × 1600 px)
+
+The five thread cards and the flask inside a thread are not artwork at
+all. Both are drawn in code, in the same single gold line as the opening
+curtain, and need no replacing. A thread's mark gives way to a real
+photograph as soon as that thread is given an `image` in content.json.
