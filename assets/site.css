@@ -316,15 +316,41 @@ body.menu .burger i:last-child{transform:translateY(-3px) rotate(-45deg)}
 
 @media (max-width:1239px){
   .burger{display:grid}
-  .nav{position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:center;
-    gap:1.6rem;margin:0;padding:5rem var(--pad) 7rem;background:rgba(8,5,4,.985);
+  /* The menu is the screen, so it is set as the screen: five rows that
+     share the height between them, each the full width of it with a
+     hairline under it. Five pills floating in the middle left most of
+     the page black and nothing to aim at; a row you read down fills it,
+     and every name is a target the width of the phone.
+
+     The pills are the track in the header. Here the track is gone, so
+     everything that drew one — the border, the copper wash behind it,
+     the rounded ends, the inner light — goes with it, and the page you
+     are reading is simply the name in gold. */
+  .nav{position:fixed;inset:0;display:grid;grid-template-rows:repeat(5,1fr);
+    align-items:stretch;gap:0;margin:0;border:0;border-radius:0;
+    padding:calc(4.75rem + env(safe-area-inset-top,0px)) 0
+            max(env(safe-area-inset-bottom,0px),1.25rem) 0;
+    background:rgba(8,5,4,.985);
     -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
     opacity:0;visibility:hidden;transition:opacity .4s var(--e),visibility .4s}
-  /* the menu is the whole screen here, so the track goes away and the
-     page you are on is simply the one in copper */
-  .nav{padding:5rem var(--pad) 7rem;border:0;border-radius:0;background:rgba(8,5,4,.985)}
-  .nav a{font-family:var(--display);font-size:clamp(1.25rem,5vw,1.8rem);letter-spacing:.1em;
-    text-transform:uppercase;padding:.35rem 1.2rem;min-height:0}
+  .nav a{display:flex;align-items:center;justify-content:center;
+    width:100%;min-height:0;padding:0 var(--pad);
+    border:0;border-top:1px solid var(--edge);border-radius:0;
+    background:none;box-shadow:none;white-space:normal;text-align:center;
+    /* the name carries the row, so it is sized off the short side of the
+       screen: on a tablet the rows are 200px deep and 1.8rem left them
+       looking empty, and on a phone turned sideways they are 59px deep
+       and anything sized off the width would not fit in one */
+    font-family:var(--display);font-size:clamp(1.25rem,4.6vmin,2.6rem);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ivory)}
+  .nav a:last-child{border-bottom:1px solid var(--edge)}
+  @media (hover:hover) and (pointer:fine){
+    .nav a:hover{background:rgba(214,150,92,.06);border-color:var(--edge);
+      color:#FAE6C8;box-shadow:none}
+  }
+  /* the four you could go to are set in the house ivory; the one you
+     are reading is the gold one, which only reads as gold if the others
+     are not nearly gold themselves */
   .nav a[aria-current]{background:none;box-shadow:none;text-shadow:none;
     color:var(--gold-lit);font-weight:400}
   body.menu .nav{opacity:1;visibility:visible}
