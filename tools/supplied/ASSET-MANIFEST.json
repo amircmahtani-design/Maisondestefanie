@@ -1,0 +1,97 @@
+{
+  "project": "La Maison de Stefanie",
+  "scope": "homepage hero only",
+  "source_visual": "previous approved dark-copper source plates",
+  "hero_assets": [
+    {
+      "scene": 1,
+      "name": "rose",
+      "source": "source-masters/01-rose.png",
+      "source_native_px": [
+        1600,
+        900
+      ],
+      "wide": "tools/supplied/01-rose-wide-3840x2160.jpg",
+      "wide_export_px": [
+        3840,
+        2160
+      ],
+      "upright": "tools/supplied/01-rose-upright-1620x2880.jpg",
+      "upright_export_px": [
+        1620,
+        2880
+      ],
+      "resolution_warning": "Both exports are recompositions/resamples of 1600x900 source artwork, NOT native 4K image detail."
+    },
+    {
+      "scene": 2,
+      "name": "essence",
+      "source": "source-masters/02-essence.png",
+      "source_native_px": [
+        1600,
+        900
+      ],
+      "wide": "tools/supplied/02-essence-wide-3840x2160.jpg",
+      "wide_export_px": [
+        3840,
+        2160
+      ],
+      "upright": "tools/supplied/02-essence-upright-1620x2880.jpg",
+      "upright_export_px": [
+        1620,
+        2880
+      ],
+      "resolution_warning": "Both exports are recompositions/resamples of 1600x900 source artwork, NOT native 4K image detail."
+    },
+    {
+      "scene": 3,
+      "name": "still",
+      "source": "source-masters/03-distillation.png",
+      "source_native_px": [
+        1600,
+        900
+      ],
+      "wide": "tools/supplied/03-still-wide-3840x2160.jpg",
+      "wide_export_px": [
+        3840,
+        2160
+      ],
+      "upright": "tools/supplied/03-still-upright-1620x2880.jpg",
+      "upright_export_px": [
+        1620,
+        2880
+      ],
+      "resolution_warning": "Both exports are recompositions/resamples of 1600x900 source artwork, NOT native 4K image detail."
+    },
+    {
+      "scene": 4,
+      "name": "flacon",
+      "source": "source-masters/04-bottle.png",
+      "source_native_px": [
+        1600,
+        900
+      ],
+      "wide": "tools/supplied/04-flacon-wide-3840x2160.jpg",
+      "wide_export_px": [
+        3840,
+        2160
+      ],
+      "upright": "tools/supplied/04-flacon-upright-1620x2880.jpg",
+      "upright_export_px": [
+        1620,
+        2880
+      ],
+      "resolution_warning": "Both exports are recompositions/resamples of 1600x900 source artwork, NOT native 4K image detail."
+    }
+  ],
+  "color_space": "sRGB",
+  "jpeg_quality": 98,
+  "sharpening": "none",
+  "embedded_text": false,
+  "native_4k": false,
+  "notes": [
+    "These exports fulfill the exact container dimensions and crop requirements but do not fix original scene softness.",
+    "For authentic 4K detail, replace the original 1600x900 masters with newly generated/captured 3840x2160 wide and 1620x2880 upright plates depicting identical subjects and the same locked camera.",
+    "Do not apply the chapter-film script automatically until plate sharpness is approved."
+  ]
+}

@@ -1,73 +1,76 @@
 # -*- coding: utf-8 -*-
-"""The four landscape plates for the home page's first screen.
+"""The eight scene plates for the home page's first screen.
 
-WHY THESE COME FROM THE HOUSE'S OWN PHOTOGRAPHS AND NOT THE MOTION PACK
+Source: tools/supplied/0N-<name>-wide-3840x2160.jpg and
+        tools/supplied/0N-<name>-upright-1620x2880.jpg
 
-The pack was never a resolution problem. Measured as the variance of the
-Laplacian with every file resampled to the same 1280 x 720 — so the
-number is about the picture and not its size — the sixteen keyframes
-score 3.7 to 24.0, mean 11.3. The house's four scene photographs score
-228 to 706, mean 397. Forty times the detail at the same pixel count.
-The pack is not a small version of a sharp picture; it is a soft
-picture, which is also why an unsharp mask over it bought only 1.39x:
-there was almost no edge in it to find.
+WHAT THOSE EXPORTS ACTUALLY CARRY, AND WHY THIS RESIZES THEM DOWN
 
-So a 16:9 band cut out of a 941 x 1672 photograph — 941 pixels wide,
-twenty-six per cent fewer than the pack's 1280 — lands on screen with
-2.2x the detail. Fewer pixels, sharper result. The pack remains the
-storyboard: it is what the four acts and their movement were designed
-from. It is no longer what the page paints.
+Their own README and manifest say it plainly: both exports are resamples
+of four 1600 x 900 masters, not native 4K. Measured, that is exactly what
+they are — detail per pixel keeps climbing all the way down, which is the
+signature of an enlargement.
 
-Enlarging the band to 1600 x 900 and sharpening it beats both leaving it
-native and going to 1920: measured on a 1440 laptop at 2x, 8.96 against
-2.87 native and 8.63 at 1920, for 57 KB.
+So the plates are written at the size where the detail actually lives.
+Measured as the variance of the Laplacian at what a 1440 laptop at 2x and
+a 390 phone at 3x really paint:
 
-An upright screen takes the master itself, uncut and unencoded a second
-time; assets/hero-film.js names those directly.
+  wide     1600 x 900  + unsharp      50.4     (the 3840 export, taken
+                                                down to 1920, scores
+                                                50.7 for 71 KB more)
+  upright  1080 x 1920 + unsharp      65.9     (the 1620 export as it
+                                                stands scores 25.5 —
+                                                downscaling it recovers
+                                                two and a half times)
+
+Quality 78 is the knee on both: 72 loses a little, 86 costs a quarter
+more bytes for nothing.
+
+For comparison, what these replace: the first motion pack scored 11.3 at
+a common size against these scenes' 351, and the house's own photographs
+— which the first screen used in between — gave 8.96 wide and 56.9
+upright on the same screen measure. So this is 5.6x wide and 1.16x
+upright over the photographs, and far past the old pack either way.
+
+If genuinely native 3840 x 2160 and 1620 x 2880 scenes ever arrive, drop
+them in the same place: raise WIDE and TALL to match and change nothing
+else.
 
     python3 tools/filmplates.py
 """
 from PIL import Image, ImageFilter
+import glob
 import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, 'assets', 'img')
+SRC = os.path.join(ROOT, 'tools', 'supplied')
 OUT = os.path.join(ROOT, 'assets', 'hero')
 
 WIDE = (1600, 900)
-QUALITY = 86
-
-# act, the master, and where down it the 16:9 band is taken — chosen so
-# the subject keeps to the right of the frame and the left stays dark,
-# which is where the headline is read
-PLATES = [
-    (1, 'scene-rose-941', 0.30),
-    (2, 'scene-essence-941', 0.34),
-    (3, 'scene-still-940', 0.26),
-    (4, 'frame-00-880', 0.30),
-]
+TALL = (1080, 1920)
+QUALITY = 78
+USM_WIDE = (1.5, 110, 3)
+USM_TALL = (1.3, 95, 3)
 
 
-def band(im, ty):
-    """The widest 16:9 window the photograph holds, placed down it by
-    `ty`. Nothing is extended, nothing is feathered, and the picture runs
-    edge to edge."""
-    w = im.width
-    h = round(w * 9 / 16)
-    top = max(0, min(im.height - h, round((im.height - h) * ty)))
-    return im.crop((0, top, w, top + h))
+def one(act, shape, size, usm):
+    hits = sorted(glob.glob(os.path.join(SRC, f'0{act}-*-{shape}-*.jpg')))
+    if not hits:
+        print(f'  missing: 0{act}-*-{shape}-*.jpg')
+        return
+    im = Image.open(hits[0]).convert('RGB')
+    out = im.resize(size, Image.LANCZOS).filter(ImageFilter.UnsharpMask(*usm))
+    p = os.path.join(OUT, f'plate-{act}-{shape}.webp')
+    out.save(p, 'WEBP', quality=QUALITY, method=6)
+    print(f'  plate-{act}-{shape}.webp  {size[0]}x{size[1]}  '
+          f'{os.path.getsize(p)//1024:4} KB   <- {os.path.basename(hits[0])}')
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    for act, master, ty in PLATES:
-        im = Image.open(os.path.join(SRC, master + '.webp')).convert('RGB')
-        out = band(im, ty).resize(WIDE, Image.LANCZOS) \
-                          .filter(ImageFilter.UnsharpMask(1.5, 110, 3))
-        p = os.path.join(OUT, f'plate-{act}-wide.webp')
-        out.save(p, 'WEBP', quality=QUALITY, method=6)
-        print(f'  plate-{act}-wide.webp  {out.size[0]}x{out.size[1]}  '
-              f'{os.path.getsize(p)//1024} KB   <- {master}')
+    for act in (1, 2, 3, 4):
+        one(act, 'wide', WIDE, USM_WIDE)
+        one(act, 'upright', TALL, USM_TALL)
 
 
 if __name__ == '__main__':

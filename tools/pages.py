@@ -48,7 +48,7 @@ PAGES = [
 FILM_HEAD = (
     '<link rel="preload" as="image" href="/assets/hero/plate-1-wide.webp"\n'
     '      media="(min-aspect-ratio: 1/1)" fetchpriority="high">\n'
-    '<link rel="preload" as="image" href="/assets/img/scene-rose-941.webp"\n'
+    '<link rel="preload" as="image" href="/assets/hero/plate-1-upright.webp"\n'
     '      media="(max-aspect-ratio: 1/1)" fetchpriority="high">\n'
     '<link rel="stylesheet" href="/assets/hero-film.css">')
 
