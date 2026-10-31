@@ -1100,4 +1100,43 @@ motionQ.addEventListener?.('change', e=>{
   if (DATA) renderHero();              /* still, or breathing */
 });
 
+/* ── quiet films ─────────────────────────────────────────────
+   Her two films: Stefanie at the counter, and the bottle in its light.
+   Each plays only while it is on screen, and not at all for anyone who
+   asked for less movement — they get the first frame, held. The bottle
+   band picks a wide or upright cut by the shape of the screen, and
+   fetches nothing until it is nearly in view. */
+function quietFilms(){
+  const WIDEQ = matchMedia('(min-aspect-ratio: 1/1)');
+  const films = $$('video.lms-film');
+  if (!films.length) return;
+  const cut = v => {
+    if (!v.dataset.wide) return;
+    const wide = WIDEQ.matches;
+    const src = wide ? v.dataset.wide : v.dataset.tall;
+    if (v.dataset.on === src) return;
+    v.dataset.on = src;
+    v.poster = wide ? v.poster.replace('-tall.', '-wide.') : (v.dataset.posterTall || v.poster);
+    v.src = src;
+    v.load();
+  };
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting){
+      cut(v);
+      if (!REDUCED) v.play().catch(()=>{});
+    } else v.pause();
+  }), { rootMargin: '200px 0px' });
+  films.forEach(v => { v.muted = true; io.observe(v); });
+  WIDEQ.addEventListener?.('change', () => films.forEach(v => {
+    if (!v.dataset.on) return;
+    const playing = !v.paused; cut(v); if (playing && !REDUCED) v.play().catch(()=>{});
+  }));
+  motionQ.addEventListener?.('change', e => films.forEach(v => e.matches ? v.pause() : null));
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) films.forEach(v => v.pause());
+  });
+}
+quietFilms();
+
 boot();

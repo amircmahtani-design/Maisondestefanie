@@ -27,7 +27,8 @@ SECTIONS = os.path.join(ROOT, 'tools', 'sections.html')
 # A content key of None means the page writes its own first screen.
 PAGES = [
     ('index.html', None, None,
-     ['THE HERO', 'HER WORD', 'A MEMORY, DISTILLED', 'THE FIVE DOORS']),
+     ['THE HERO', 'HER WORD', 'A MEMORY, DISTILLED',
+      'THE BOTTLE, IN ITS LIGHT', 'THE FIVE DOORS']),
     ('maison.html', 'maison', 'The Maison',
      ['HER WORDS', '03 · THE BENCH', 'A BREATH', 'HER LINE']),
     ('bespoke.html', 'bespoke', 'Bespoke Experience',
@@ -50,11 +51,11 @@ FILM_HEAD = (
     '      media="(min-aspect-ratio: 1/1)" fetchpriority="high">\n'
     '<link rel="preload" as="image" href="/assets/hero/plate-1-upright.webp"\n'
     '      media="(max-aspect-ratio: 1/1)" fetchpriority="high">\n'
-    '<link rel="stylesheet" href="/assets/hero-film.css?v=9">')
+    '<link rel="stylesheet" href="/assets/hero-film.css?v=11">')
 
 FILM_FOOT = (
     '<script type="module">\n'
-    '  import { mountFilmHero } from "/assets/hero-film.js?v=9";\n'
+    '  import { mountFilmHero } from "/assets/hero-film.js?v=11";\n'
     '  mountFilmHero(document.querySelector(".filmhero"));\n'
     '</script>')
 

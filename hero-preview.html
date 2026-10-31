@@ -49,7 +49,7 @@
      shell used to preload the rose for all six, which five of them do
      not show. -->
 <!--HEAD-->
-<link rel="stylesheet" href="/assets/site.css?v=10">
+<link rel="stylesheet" href="/assets/site.css?v=11">
 </head>
 <body class="lang-en no-js">
 
@@ -184,7 +184,16 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 <!-- ══════════════ HER WORD ══════════════ -->
 <section class="sec herword" id="herword" aria-labelledby="herwordTitle">
   <div class="wrap split wide-right">
-    <figure class="fig portrait-fig rv" data-pic="portrait" style="margin:0"></figure>
+    <!-- Stefanie at her counter, in motion. Her own film from the shop,
+         so it stands where her photograph stood: she comes before the
+         words. Muted, looping, and held on its first frame for anyone
+         who asked for less movement (assets/site.js, "quiet films"). -->
+    <figure class="fig portrait-fig vid-fig rv" style="margin:0">
+      <video class="lms-film" muted loop playsinline preload="metadata"
+             poster="/assets/video/stefanie-at-work.webp" aria-hidden="true" tabindex="-1">
+        <source src="/assets/video/stefanie-at-work.mp4" type="video/mp4">
+      </video>
+    </figure>
     <div class="rv" data-d="1">
       <p class="lab" data-t="quote.eyebrow"></p>
       <blockquote>
@@ -277,7 +286,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 
 <script type="application/ld+json" id="ldjson"></script>
 <script src="config.js"></script>
-<script type="module" src="/assets/site.js?v=10"></script>
+<script type="module" src="/assets/site.js?v=11"></script>
 <!--FOOT-->
 <script type="module">
   import { mountFilmHero } from "/assets/hero-film.js";

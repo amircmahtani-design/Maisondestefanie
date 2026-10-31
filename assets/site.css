@@ -607,7 +607,7 @@ body.curtained{overflow:hidden}
      the rose went with it; 5:4 still cut the right of the bloom, because
      the flower is wider than a 5:4 window of a 2.3:1 picture. 3:2 is the
      tallest frame the whole bloom fits in. */
-  .band{aspect-ratio:3/2}
+  .band[data-pic="botanical"]{aspect-ratio:3/2}
   .band::after{background:linear-gradient(0deg,rgba(10,7,5,.95) 0%,
     rgba(10,7,5,.68) 38%,rgba(10,7,5,.22) 64%,rgba(10,7,5,0) 84%)}
 }
@@ -1408,3 +1408,15 @@ p > .linky{font-size:inherit}
    the way down it. In a 40px circle, centred, the circle held her
    shoulder and the bottle and cut her head at the edge. */
 .byline .face img{object-position:31% 24%}
+/* ── HER FILMS ─────────────────────────────────────────────────
+   Stefanie at the counter (home, beside her words) and the bottle in
+   its light (home, a full-bleed breath). Cover-cropped like every other
+   picture; the counter film is held a little high so her face and
+   hands stay in the frame at 4:5. */
+.vid-fig video,.filmband video{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block}
+.vid-fig video{object-position:50% 30%}
+.filmband{aspect-ratio:2/1}
+.filmband video{object-position:50% 20%}
+.filmband::after{background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(10,7,5,.55) 100%)}
+@media (max-aspect-ratio:1/1){ .filmband{aspect-ratio:4/5} .filmband video{object-position:50% 50%} }
