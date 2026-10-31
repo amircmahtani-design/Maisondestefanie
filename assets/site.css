@@ -922,18 +922,18 @@ blockquote{margin:0}
 /* ── 16. THE SHELF ─────────────────────────────────────────── */
 .shelf-head{display:grid;gap:clamp(1.4rem,3.5vw,3rem);align-items:end;margin-bottom:clamp(2rem,4vw,3rem)}
 @media (min-width:900px){ .shelf-head{grid-template-columns:1.05fr .95fr} }
-.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(1.8rem,4vw,2.6rem)}
-/* On a phone, seven categories wrapped into four rows and pushed the
-   shelf itself below the fold. They run along one line now and are
-   pushed sideways, with the edge of the next one showing so it is clear
-   there are more. */
+.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;
+  margin-bottom:clamp(1.8rem,4vw,2.6rem)}
+/* The seven categories used to run along one line on a phone and be
+   pushed sideways, because wrapping them at full size took four rows
+   and put the shelf below the fold. A category you cannot see is a
+   category nobody presses, so they wrap again — in levels, centred —
+   and the room for them is found by tightening the pills rather than
+   by hiding four of them off the edge of the screen. Three rows, and
+   the shelf still starts on the first screen. */
 @media (max-width:699px){
-  .filters{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;
-    margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);
-    padding-bottom:var(--s2)}
-  .filters::-webkit-scrollbar{display:none}
-  .filters button{flex:none;scroll-snap-align:start}
+  .filters{gap:.4rem;margin-bottom:var(--s6)}
+  .filters button{min-height:2.5rem;padding:var(--s2) var(--s3);letter-spacing:.1em}
 }
 .filters button{min-height:2.75rem;padding:var(--s3) var(--s5);font-size:var(--t-micro);
   letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--edge-2);
