@@ -645,6 +645,15 @@ body.curtained{overflow:hidden}
    break, so the section after it only needs half a gap to clear it. */
 .sec + .sec{padding-top:0}
 .distilled + .sec,.pullband + .sec,.band + .sec{padding-top:calc(var(--sec) * .55)}
+/* The first screen already holds a gap of its own: it is a full-height
+   picture with the words set against its bottom edge, and the space
+   under them is the hero's own padding. A full section gap on top of
+   that is the two-paddings-stacked problem in another shape — on a
+   phone it put 143px between the last line of the hero and the top of
+   her film, which reads as the page having forgotten what comes next.
+   What is added here brings the total to about one gap: 92px on a
+   phone, 126 on a desktop. */
+.filmhero + .sec,.phero + .sec{padding-top:clamp(0rem,4vw,3.4rem)}
 /* proximity: the heading belongs to its standfirst, the standfirst to the
    block below it, and each is a smaller gap than the gap between sections */
 .sec .lab + *{margin-top:0}
