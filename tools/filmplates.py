@@ -1,97 +1,74 @@
 # -*- coding: utf-8 -*-
-"""The four scene plates for the home page's first screen.
+"""The four landscape plates for the home page's first screen.
 
-The storyboard is sixteen keyframes in which the camera and the subject
-move between one and the next, so playing them would jump. One frame per
-act is taken as a fixed plate instead — locked camera, locked subject —
-and everything that moves is animated over it as its own layer.
+WHY THESE COME FROM THE HOUSE'S OWN PHOTOGRAPHS AND NOT THE MOTION PACK
 
-Nothing is extended and nothing is composited. A keyframe is already
-16:9, so on a wide screen it fills the viewport edge to edge: real
-photograph everywhere, including under the headline, with no seam for a
-feathered panel to leave behind.
+The pack was never a resolution problem. Measured as the variance of the
+Laplacian with every file resampled to the same 1280 x 720 — so the
+number is about the picture and not its size — the sixteen keyframes
+score 3.7 to 24.0, mean 11.3. The house's four scene photographs score
+228 to 706, mean 397. Forty times the detail at the same pixel count.
+The pack is not a small version of a sharp picture; it is a soft
+picture, which is also why an unsharp mask over it bought only 1.39x:
+there was almost no edge in it to find.
 
-A phone is 9:16, which a 16:9 frame cannot cover without losing two
-thirds of its width — so each act names its own frame and its own crop
-for a phone, chosen so the subject survives the window rather than being
-cut by it.
+So a 16:9 band cut out of a 941 x 1672 photograph — 941 pixels wide,
+twenty-six per cent fewer than the pack's 1280 — lands on screen with
+2.2x the detail. Fewer pixels, sharper result. The pack remains the
+storyboard: it is what the four acts and their movement were designed
+from. It is no longer what the page paints.
 
-This writes the 16:9 plates only. An upright screen does not take a 9:16
-window of these frames any more: that window is 405 x 720, a third of a
-megapixel behind a phone that wants three, and the house already owns
-four upright photographs of the same four subjects at 1.4 to 1.6
-megapixels. assets/hero-film.js names those directly.
+Enlarging the band to 1600 x 900 and sharpening it beats both leaving it
+native and going to 1920: measured on a 1440 laptop at 2x, 8.96 against
+2.87 native and 8.63 at 1920, for 57 KB.
 
-ON SHARPNESS. Every frame in the motion pack is 1280 x 720. That is the
-ceiling: no detail can be recovered that was not in the file. What CAN be
-thrown away is most of it, and the first pass did — it enlarged to
-1920 x 1080 and then wrote WebP at quality 78, so the quantiser spent its
-bytes on interpolated gradient and smeared the copper. The pass now
-resizes once with LANCZOS, puts a real unsharp mask over the result, and
-writes at quality 90.
+An upright screen takes the master itself, uncut and unencoded a second
+time; assets/hero-film.js names those directly.
 
-If the full-resolution originals turn up, drop them in and run this
-again; nothing else needs to change.
-
-    python3 tools/filmplates.py <folder-of-keyframes>
+    python3 tools/filmplates.py
 """
 from PIL import Image, ImageFilter
 import os
-import sys
 
-OUT = '/home/user/Maisondestefanie/assets/hero'
-WIDE = (1920, 1080)
-QUALITY = 90
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, 'assets', 'img')
+OUT = os.path.join(ROOT, 'assets', 'hero')
 
-# act, and the frame it is held on
+WIDE = (1600, 900)
+QUALITY = 86
+
+# act, the master, and where down it the 16:9 band is taken — chosen so
+# the subject keeps to the right of the frame and the left stays dark,
+# which is where the headline is read
 PLATES = [
-    (1, 'keyframe-02.jpg'),
-    (2, 'keyframe-06.jpg'),
-    (3, 'keyframe-09.jpg'),
-    (4, 'keyframe-16.jpg'),
+    (1, 'scene-rose-941', 0.30),
+    (2, 'scene-essence-941', 0.34),
+    (3, 'scene-still-940', 0.26),
+    (4, 'frame-00-880', 0.30),
 ]
 
 
-def deframe(im, limit=6):
-    """A few of the frames carry two or three rows of pure black along an
-    edge. Enlarged they become a hairline across the screen."""
-    import numpy as np
-    a = np.asarray(im.convert('L')).astype(int)
-    col, row = a.mean(axis=0), a.mean(axis=1)
-
-    def run(v, forward):
-        n = 0
-        for i in (range(len(v)) if forward else range(len(v) - 1, -1, -1)):
-            if v[i] < limit:
-                n += 1
-            else:
-                break
-        return n
-
-    l, r = run(col, True), run(col, False)
-    t, b = run(row, True), run(row, False)
-    if l or r or t or b:
-        im = im.crop((l, t, im.width - r, im.height - b))
-    return im
+def band(im, ty):
+    """The widest 16:9 window the photograph holds, placed down it by
+    `ty`. Nothing is extended, nothing is feathered, and the picture runs
+    edge to edge."""
+    w = im.width
+    h = round(w * 9 / 16)
+    top = max(0, min(im.height - h, round((im.height - h) * ty)))
+    return im.crop((0, top, w, top + h))
 
 
-def sharpen(im):
-    """Enlarging is interpolation, and interpolation is a low-pass filter.
-    This puts the edge back — enough to read as the photograph it came
-    from, not so much that the copper picks up a halo."""
-    return im.filter(ImageFilter.UnsharpMask(radius=1.6, percent=118, threshold=3))
-
-
-def main(folder):
+def main():
     os.makedirs(OUT, exist_ok=True)
-    for act, wide_src in PLATES:
-        wide = deframe(Image.open(os.path.join(folder, wide_src)).convert('RGB'))
-        img = sharpen(wide.resize(WIDE, Image.LANCZOS))
+    for act, master, ty in PLATES:
+        im = Image.open(os.path.join(SRC, master + '.webp')).convert('RGB')
+        out = band(im, ty).resize(WIDE, Image.LANCZOS) \
+                          .filter(ImageFilter.UnsharpMask(1.5, 110, 3))
         p = os.path.join(OUT, f'plate-{act}-wide.webp')
-        img.save(p, 'WEBP', quality=QUALITY, method=6)
-        print(f'  {os.path.basename(p):22} {img.size[0]}x{img.size[1]}  '
-              f'{os.path.getsize(p)//1024} KB   <- {wide_src}')
+        out.save(p, 'WEBP', quality=QUALITY, method=6)
+        print(f'  plate-{act}-wide.webp  {out.size[0]}x{out.size[1]}  '
+              f'{os.path.getsize(p)//1024} KB   <- {master}')
 
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else '.')
+    main()

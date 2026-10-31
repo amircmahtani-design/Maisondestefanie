@@ -52,6 +52,16 @@
 @keyframes fh-cam-4{from{transform:translate3d(1.2%,.5%,0) scale(1.03)}
   to{transform:translate3d(-1.0%,-.5%,0) scale(1.012)}}
 
+/* The still is the brightest of the four and its glass elbow, full of
+   lit amber, sits exactly where the second line of the headline falls on
+   a wide screen — 3.6:1 against ivory. The other three need no help, so
+   this act carries a little extra dark of its own rather than making
+   every act darker to fix one. */
+.fh-scene[data-act="3"]::after{content:"";position:absolute;inset:0;z-index:1;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(10,7,5,.46) 0%,rgba(10,7,5,.4) 34%,
+    rgba(10,7,5,.22) 50%,rgba(10,7,5,0) 64%)}
+
 .fh-fx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 
 /* ── a petal: it lets go, turns as it goes, and is gone ─────────── */
@@ -123,8 +133,8 @@
   background:radial-gradient(54% 60% at 62% 44%,rgba(201,138,58,.14),transparent 70%)}
 .filmhero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(10,7,5,.92) 0%,rgba(10,7,5,.88) 26%,
-      rgba(10,7,5,.72) 40%,rgba(10,7,5,.4) 52%,rgba(10,7,5,.12) 64%,rgba(10,7,5,0) 76%),
+    linear-gradient(90deg,rgba(10,7,5,.94) 0%,rgba(10,7,5,.91) 28%,
+      rgba(10,7,5,.82) 42%,rgba(10,7,5,.55) 54%,rgba(10,7,5,.2) 66%,rgba(10,7,5,0) 80%),
     linear-gradient(0deg,rgba(10,7,5,.86) 0%,rgba(10,7,5,.5) 20%,
       rgba(10,7,5,.18) 34%,transparent 50%),
     linear-gradient(180deg,rgba(10,7,5,.72) 0%,transparent 22%)}
@@ -162,9 +172,9 @@
   /* the words take a narrower column here, so the dark they are read on
      stops sooner and lets more of the picture through */
   .filmhero::after{background:
-    linear-gradient(90deg,rgba(10,7,5,.95) 0%,rgba(10,7,5,.92) 30%,
-      rgba(10,7,5,.78) 44%,rgba(10,7,5,.42) 56%,rgba(10,7,5,.12) 68%,
-      rgba(10,7,5,0) 80%),
+    linear-gradient(90deg,rgba(10,7,5,.96) 0%,rgba(10,7,5,.94) 32%,
+      rgba(10,7,5,.86) 46%,rgba(10,7,5,.58) 58%,rgba(10,7,5,.2) 70%,
+      rgba(10,7,5,0) 84%),
     linear-gradient(180deg,rgba(10,7,5,.72) 0%,transparent 26%)}
 }
 
