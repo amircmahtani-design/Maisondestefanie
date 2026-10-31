@@ -23,7 +23,7 @@
 const STILL = matchMedia('(prefers-reduced-motion: reduce)');
 const WIDE  = matchMedia('(min-aspect-ratio: 1/1)');
 
-const PETALS = [1, 2, 3, 4, 5, 6].map(n => `assets/hero/petal-${n}.webp`);
+const PETALS = [1, 2, 3, 4, 5].map(n => `assets/hero/petal-${n}.webp`);
 
 /* Where each act's plate comes from, per shape of screen. Both shapes
    are now the four scenes delivered for this film; tools/filmplates.py
@@ -35,15 +35,43 @@ const PLATES = [
   { wide: 'assets/hero/plate-3-wide.webp', tall: 'assets/hero/plate-3-upright.webp' },
   { wide: 'assets/hero/plate-4-wide.webp', tall: 'assets/hero/plate-4-upright.webp' },
 ];
-/* Where things are in each plate, as a fraction of it. Measured off the
-   keyframes, not guessed: the rose's heart, the line of the liquid, the
-   lip of the spout, the mouth of the bottle. */
+/* Where things are in each plate, as a fraction of it, measured off the
+   delivered scenes with a grid laid over them. A 16:9 screen and an
+   upright one are different photographs of the same table, so each act
+   carries both sets and the player takes the one in use.
+
+     rose   the head of the bloom, where a petal lets go
+     water  the surface of the essence, where a petal lands and rings
+     steam  the mouths the vapour leaves by
+     drip   the lip a drop gathers on, and how far it falls
+     neck   the mouth of the flacon
+*/
 const ACTS = [
-  { n: 1, rose:  [0.72, 0.33] },
-  { n: 2, water: 0.71, land: [[0.61, 0.71], [0.44, 0.74]] },
-  { n: 3, spout: [0.13, 0.83], steam: [[0.30, 0.55], [0.46, 0.44], [0.17, 0.62]] },
-  { n: 4, neck:  [0.54, 0.26] },
+  { n: 1,
+    wide: { rose: [0.73, 0.14] },
+    tall: { rose: [0.46, 0.21] } },
+
+  { n: 2,
+    /* The bowl is wide and low in a 16:9 frame and sits left in an
+       upright one, so the three places a petal can land differ. On a
+       wide screen they also keep right of x=0.52, because the headline
+       is read to the left of that and a petal landing under it is a
+       petal nobody sees. */
+    wide: { water: [[0.560, 0.585], [0.630, 0.600], [0.685, 0.590]] },
+    tall: { water: [[0.160, 0.400], [0.300, 0.385], [0.440, 0.402]] } },
+
+  { n: 3,
+    wide: { steam: [[0.475, 0.30], [0.50, 0.24], [0.45, 0.35]],
+            drip:  [0.845, 0.575], fall: 11 },
+    tall: { steam: [[0.405, 0.125], [0.43, 0.075], [0.385, 0.175]],
+            drip:  [0.615, 0.335], fall: 9 } },
+
+  { n: 4,
+    wide: { neck: [0.635, 0.525] },
+    tall: { neck: [0.385, 0.205] } },
 ];
+
+const shape = () => (WIDE.matches ? 'wide' : 'tall');
 
 const HOLD  = 3600;   /* each act */
 const FADE  = 1400;   /* and the dissolve between two of them */
@@ -67,7 +95,11 @@ function plate(act) {
   return img;
 }
 
-/* ── petals: they let go, turn as they go, and are gone ─────────── */
+/* ── petals ──────────────────────────────────────────────────────
+   `to` is where it ends up. A petal given `land` decelerates into that
+   point and stays there, once, which is what settling on water looks
+   like; every other petal passes through and leaves. `sway` is how far
+   it swings either side of its path on the way down. */
 function petal(from, to, opts = {}) {
   const p = el('fh-petal', 'img');
   p.alt = '';
@@ -77,8 +109,12 @@ function petal(from, to, opts = {}) {
   p.style.setProperty('--y0', from[1] * 100 + '%');
   p.style.setProperty('--dx', (to[0] - from[0]) * 100 + 'vw');
   p.style.setProperty('--dy', (to[1] - from[1]) * 100 + 'vh');
+  p.style.setProperty('--sw', (opts.sway ?? 2.2) + 'vmin');
   p.style.setProperty('--r0', (opts.r0 ?? 0) + 'deg');
   p.style.setProperty('--r1', (opts.r1 ?? 200) + 'deg');
+  p.style.setProperty('--ra', ((opts.r0 ?? 0) + ((opts.r1 ?? 200) - (opts.r0 ?? 0)) * 0.26) + 'deg');
+  p.style.setProperty('--rb', ((opts.r0 ?? 0) + ((opts.r1 ?? 200) - (opts.r0 ?? 0)) * 0.53) + 'deg');
+  p.style.setProperty('--rc', ((opts.r0 ?? 0) + ((opts.r1 ?? 200) - (opts.r0 ?? 0)) * 0.78) + 'deg');
   p.style.setProperty('--sz', (opts.size ?? 15) + 'vmin');
   p.style.setProperty('--d', (opts.delay ?? 0) + 'ms');
   p.style.setProperty('--t', (opts.dur ?? 5200) + 'ms');
@@ -87,6 +123,7 @@ function petal(from, to, opts = {}) {
      of focus, which is what puts them behind the subject rather than
      in front of it */
   if (opts.blur) p.style.setProperty('--bl', opts.blur + 'px');
+  if (opts.land) p.classList.add('lands');
   return p;
 }
 
@@ -122,60 +159,72 @@ function drop(from, fall, delay) {
 
 /* ── what moves in each act ────────────────────────────────────── */
 function populate(fx, act) {
+  const A = act[shape()];
+
   if (act.n === 1) {
-    const [rx, ry] = act.rose;
-    /* The rose fills most of the frame, so a petal off it is a hand's
-       width on screen, not a confetto. delay, size, start angle, end
-       angle, and where on the bloom it lets go. */
-    [[0,    18.5, -14,  150, -0.06,  0.02],
-     [900,  14.0,   8, -170,  0.06,  0.10],
-     [1900, 21.0,  -4,  210, -0.14,  0.14],
-     [2800, 12.5,  16, -140,  0.13,  0.04],
-     [3700, 16.0, -20,  190, -0.01,  0.18]
-    ].forEach(([delay, size, r0, r1, ox, oy], i) => {
+    const [rx, ry] = A.rose;
+    /* Petals let go from different places on the bloom and fall away
+       across the table. delay, size, start angle, end angle, where on
+       the head it parts, how far it drifts sideways, how wide it swings
+       on the way down. */
+    [[0,    17.0, -12,  164, -0.045, -0.26, 2.6],
+     [1100, 12.5,  14, -148,  0.050,  0.14, 1.9],
+     [2200, 19.5,  -6,  196, -0.015,  0.30, 3.1],
+     [3300, 10.5,  20, -126,  0.065, -0.10, 1.6],
+     [4400, 14.5, -18,  178,  0.010,  0.22, 2.3]
+    ].forEach(([delay, size, r0, r1, ox, dx, sway], i) => {
       fx.append(petal(
-        [rx + ox, ry + oy],
-        [rx + ox - 0.26 - i * 0.06, 1.18],
-        { delay, size, r0, r1, dur: 5600 + i * 420, sprite: i % PETALS.length }
+        [rx + ox, ry + 0.03],
+        [rx + ox + dx, 1.16],
+        { delay, size, r0, r1, sway, dur: 6400 + i * 360, sprite: i % PETALS.length }
       ));
     });
   }
 
   if (act.n === 2) {
-    act.land.forEach(([lx, ly], i) => {
-      const t = 300 + i * 1500;
-      fx.append(petal([lx + 0.05, -0.16], [lx, ly - 0.01], {
-        delay: t, size: 13.5, r0: -18, r1: 26, dur: 1500, sprite: i + 2
+    /* Each petal falls from above the frame and settles on the essence,
+       and the rings open from where it touched — three of them, a beat
+       apart, widening and going as the surface takes it. */
+    A.water.forEach(([lx, ly], i) => {
+      const t = 200 + i * 1500;
+      const dur = 2400;
+      fx.append(petal([lx + 0.055, -0.14], [lx, ly], {
+        delay: t, dur, land: true, sway: 2.4,
+        /* the size of the petals already lying in that bowl, not the
+           size of the ones falling past the rose */
+        size: [7.6, 6.4, 5.6][i] ?? 6, r0: -22 + i * 14, r1: 18 + i * 10,
+        sprite: (i + 1) % PETALS.length
       }));
-      fx.append(ripple([lx, ly], t + 1450, 14));
-      fx.append(ripple([lx, ly], t + 1850, 22));
-      fx.append(ripple([lx, ly], t + 2300, 30));
+      const hit = t + dur;
+      fx.append(ripple([lx, ly], hit +   0,  7));
+      fx.append(ripple([lx, ly], hit + 420, 12));
+      fx.append(ripple([lx, ly], hit + 900, 18));
     });
   }
 
   if (act.n === 3) {
-    act.steam.forEach(([sx, sy], i) =>
-      fx.append(steam([sx, sy], i * 1300, 26 + i * 8)));
-    fx.append(drop(act.spout, 14, 1400));
-    fx.append(drop(act.spout, 14, 3900));
+    A.steam.forEach(([sx, sy], i) =>
+      fx.append(steam([sx, sy], i * 1300, 22 + i * 7)));
+    fx.append(drop(A.drip, A.fall, 1400));
+    fx.append(drop(A.drip, A.fall, 4200));
   }
 
   if (act.n === 4) {
-    fx.append(drop([act.neck[0], act.neck[1] - 0.16], 13, 600));
-    /* x, delay, size, start angle, end angle, how far it drifts, opacity,
-       blur. The small, dim, soft ones read as falling behind the bottle;
-       the large, bright, sharp ones as falling in front of it, which is
-       what makes a flat layer look like a room with depth in it. */
-    [[0.14,  200,  19.0, -16,  170, -0.10, 0.95, 0  ],
-     [0.33, 1500,  10.0,  22, -130,  0.07, 0.52, 1.6],
-     [0.52,  800,  13.0,  -8,  150, -0.06, 0.66, 1.0],
-     [0.71, 2400,  21.0,  12, -180,  0.09, 0.92, 0  ],
-     [0.88, 1100,   9.0, -24,  120, -0.05, 0.46, 2.0],
-     [0.62, 3300,  15.5,   4,  200,  0.12, 0.74, 0.6]
+    fx.append(drop([A.neck[0], A.neck[1] - 0.14], 11, 700));
+    /* x, delay, size, start angle, end angle, how far it drifts,
+       opacity, blur. The small, dim, soft ones read as falling behind
+       the flacon; the large, bright, sharp ones as falling in front of
+       it, which is what makes a flat layer look like a room with depth
+       in it. */
+    [[0.12,  200,  17.0, -16,  170, -0.09, 0.95, 0  ],
+     [0.31, 1500,   9.5,  22, -130,  0.07, 0.52, 1.6],
+     [0.50,  800,  12.5,  -8,  150, -0.06, 0.66, 1.0],
+     [0.73, 2400,  19.0,  12, -180,  0.08, 0.92, 0  ],
+     [0.89, 1100,   8.5, -24,  120, -0.05, 0.46, 2.0]
     ].forEach(([x, delay, size, r0, r1, dx, opacity, blur], i) => {
-      fx.append(petal([x, -0.22], [x + dx, 1.22], {
-        delay, size, r0, r1, opacity, blur,
-        dur: 7600 - size * 90, sprite: i % PETALS.length
+      fx.append(petal([x, -0.20], [x + dx, 1.20], {
+        delay, size, r0, r1, opacity, blur, sway: 2.0 + i * 0.3,
+        dur: 8200 - size * 90, sprite: i % PETALS.length
       }));
     });
   }

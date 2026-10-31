@@ -65,21 +65,53 @@
 
 .fh-fx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 
-/* ── a petal: it lets go, turns as it goes, and is gone ─────────── */
+/* ── a petal ─────────────────────────────────────────────────────
+   The fall is read as one continuous movement, so the timing function
+   is linear and the pacing lives in the keyframes themselves: a little
+   acceleration out of the first quarter, then an even rate, which is
+   what a petal does once the air is holding it. Between those it swings
+   either side of its line — a petal never falls straight — and turns
+   the whole way down rather than snapping round at one point. */
+/* A petal is placed by its middle, not its corner. It matters for the
+   ones that land: given a corner, a petal settles half its own width
+   down and right of the spot it was aimed at, which on a wide screen
+   put it on the glass of the bowl instead of on the essence. */
 .fh-petal{position:absolute;left:var(--x0);top:var(--y0);
+  margin:calc(var(--sz) * -.42) 0 0 calc(var(--sz) * -.5);
   width:var(--sz);height:auto;display:block;
   transform-origin:50% 40%;opacity:0;filter:blur(var(--bl,0));
   will-change:transform,opacity;
-  animation:fh-fall var(--t) cubic-bezier(.36,.06,.5,1) var(--d) infinite both}
+  animation:fh-fall var(--t) linear var(--d) infinite both}
 @keyframes fh-fall{
-  0%  {opacity:0;   transform:translate3d(0,0,0) rotate(var(--r0)) scale(.92)}
-  8%  {opacity:var(--op)}
-  /* it swings as it falls, the way a petal does — never a straight line */
-  45% {transform:translate3d(calc(var(--dx) * .52),calc(var(--dy) * .42),0)
-       rotate(calc((var(--r0) + var(--r1)) * .5)) scale(1)}
-  88% {opacity:var(--op)}
-  100%{opacity:0;   transform:translate3d(var(--dx),var(--dy),0)
-       rotate(var(--r1)) scale(.96)}
+  0%  {opacity:0;          transform:translate3d(0,0,0) rotate(var(--r0)) scale(.94)}
+  7%  {opacity:var(--op)}
+  25% {transform:translate3d(calc(var(--dx) * .18 + var(--sw)),calc(var(--dy) * .22),0)
+       rotate(var(--ra)) scale(1)}
+  50% {transform:translate3d(calc(var(--dx) * .46 - var(--sw)),calc(var(--dy) * .48),0)
+       rotate(var(--rb)) scale(1)}
+  75% {transform:translate3d(calc(var(--dx) * .74 + calc(var(--sw) * .6)),calc(var(--dy) * .74),0)
+       rotate(var(--rc)) scale(1)}
+  90% {opacity:var(--op)}
+  100%{opacity:0;          transform:translate3d(var(--dx),var(--dy),0)
+       rotate(var(--r1)) scale(.97)}
+}
+
+/* One that is going to land. It comes down the same way and then the
+   surface takes it: the last quarter is all deceleration, and it stays
+   where it stopped instead of looping, because water does not give a
+   petal back. */
+.fh-petal.lands{animation:fh-land var(--t) cubic-bezier(.33,.02,.3,1) var(--d) 1 forwards}
+@keyframes fh-land{
+  0%  {opacity:0;          transform:translate3d(0,0,0) rotate(var(--r0)) scale(.94)}
+  9%  {opacity:var(--op)}
+  34% {transform:translate3d(calc(var(--dx) * .30 + var(--sw)),calc(var(--dy) * .30),0)
+       rotate(var(--ra)) scale(1)}
+  64% {transform:translate3d(calc(var(--dx) * .64 - var(--sw)),calc(var(--dy) * .66),0)
+       rotate(var(--rb)) scale(1)}
+  88% {transform:translate3d(calc(var(--dx) * .93 + calc(var(--sw) * .25)),calc(var(--dy) * .95),0)
+       rotate(var(--rc)) scale(1)}
+  100%{opacity:var(--op);  transform:translate3d(var(--dx),var(--dy),0)
+       rotate(var(--r1)) scale(.98)}
 }
 
 /* ── the ring a petal leaves on the water ──────────────────────── */
