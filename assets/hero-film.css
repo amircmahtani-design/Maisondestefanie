@@ -96,22 +96,28 @@
        rotate(var(--r1)) scale(.97)}
 }
 
-/* One that is going to land. It comes down the same way and then the
-   surface takes it: the last quarter is all deceleration, and it stays
-   where it stopped instead of looping, because water does not give a
-   petal back. */
-.fh-petal.lands{animation:fh-land var(--t) cubic-bezier(.33,.02,.3,1) var(--d) 1 forwards}
+/* One that is going to land. It used to come down on an ease of its own
+   and in under half the time the others take, which read as a different
+   kind of falling in the middle of one film. It is the same fall now,
+   keyframe for keyframe — linear, the same pacing, the same swing either
+   side of its line, the same turn — and only the last tenth differs,
+   where the surface takes it and it stays, because water does not give
+   a petal back. */
+.fh-petal.lands{animation:fh-land var(--t) linear var(--d) 1 forwards}
 @keyframes fh-land{
   0%  {opacity:0;          transform:translate3d(0,0,0) rotate(var(--r0)) scale(.94)}
-  9%  {opacity:var(--op)}
-  34% {transform:translate3d(calc(var(--dx) * .30 + var(--sw)),calc(var(--dy) * .30),0)
+  7%  {opacity:var(--op)}
+  25% {transform:translate3d(calc(var(--dx) * .18 + var(--sw)),calc(var(--dy) * .22),0)
        rotate(var(--ra)) scale(1)}
-  64% {transform:translate3d(calc(var(--dx) * .64 - var(--sw)),calc(var(--dy) * .66),0)
+  50% {transform:translate3d(calc(var(--dx) * .46 - var(--sw)),calc(var(--dy) * .48),0)
        rotate(var(--rb)) scale(1)}
-  88% {transform:translate3d(calc(var(--dx) * .93 + calc(var(--sw) * .25)),calc(var(--dy) * .95),0)
+  75% {transform:translate3d(calc(var(--dx) * .74 + calc(var(--sw) * .6)),calc(var(--dy) * .74),0)
        rotate(var(--rc)) scale(1)}
+  /* the water, taking it */
+  92% {transform:translate3d(calc(var(--dx) * .93 + calc(var(--sw) * .2)),calc(var(--dy) * .94),0)
+       rotate(var(--rd)) scale(1)}
   100%{opacity:var(--op);  transform:translate3d(var(--dx),var(--dy),0)
-       rotate(var(--r1)) scale(.98)}
+       rotate(var(--r1)) scale(.985)}
 }
 
 /* ── the ring a petal leaves on the water ──────────────────────── */

@@ -73,8 +73,15 @@ const ACTS = [
 
 const shape = () => (WIDE.matches ? 'wide' : 'tall');
 
-const HOLD  = 3600;   /* each act */
-const FADE  = 1400;   /* and the dissolve between two of them */
+/* How long each act is held before it dissolves. They were all the same
+   3600, which gave the bowl less time than its petals need to fall at
+   the speed the rest of the film falls at, and gave the flacon no more
+   than the rose — when the flacon is what the whole thing is for. The
+   bowl is held until all three petals are down, and the bottle is held
+   nearly three times as long as the opening, so the film arrives
+   somewhere rather than just coming round again. */
+const HOLD  = [3600, 7000, 3600, 9000];
+const FADE  = 1400;   /* the dissolve between two acts */
 
 let at = 0, timer = 0, host = null, held = false;
 
@@ -115,6 +122,7 @@ function petal(from, to, opts = {}) {
   p.style.setProperty('--ra', ((opts.r0 ?? 0) + ((opts.r1 ?? 200) - (opts.r0 ?? 0)) * 0.26) + 'deg');
   p.style.setProperty('--rb', ((opts.r0 ?? 0) + ((opts.r1 ?? 200) - (opts.r0 ?? 0)) * 0.53) + 'deg');
   p.style.setProperty('--rc', ((opts.r0 ?? 0) + ((opts.r1 ?? 200) - (opts.r0 ?? 0)) * 0.78) + 'deg');
+  p.style.setProperty('--rd', ((opts.r0 ?? 0) + ((opts.r1 ?? 200) - (opts.r0 ?? 0)) * 0.93) + 'deg');
   p.style.setProperty('--sz', (opts.size ?? 15) + 'vmin');
   p.style.setProperty('--d', (opts.delay ?? 0) + 'ms');
   p.style.setProperty('--t', (opts.dur ?? 5200) + 'ms');
@@ -196,8 +204,12 @@ function populate(fx, act) {
        and the rings open from where it touched — three of them, a beat
        apart, widening and going as the surface takes it. */
     A.water.forEach(([lx, ly], i) => {
-      const t = 200 + i * 1500;
-      const dur = 2400;
+      /* These three used to come down in 2400ms over two thirds of the
+         screen — about 30vh a second, where the rose and the flacon
+         drop theirs at 15 to 21. Same rate as the rest of the film now,
+         which for this shorter drop is 4600ms. */
+      const t = 200 + i * 900;
+      const dur = 4600;
       fx.append(petal([lx + 0.055, -0.14], [lx, ly], {
         delay: t, dur, land: true, sway: 2.4,
         /* the size of the petals already lying in that bowl, not the
@@ -282,10 +294,12 @@ function show(i) {
 function start() {
   stop();
   if (STILL.matches || held) return;
+  /* read after each turn, so the wait belongs to the act now on screen */
+  const wait = () => (HOLD[at] ?? 3600) + FADE;
   timer = setTimeout(function step() {
     show(at + 1);
-    timer = setTimeout(step, HOLD + FADE);
-  }, HOLD + FADE);
+    timer = setTimeout(step, wait());
+  }, wait());
 }
 function stop() { clearTimeout(timer); timer = 0; }
 

@@ -51,11 +51,11 @@ FILM_HEAD = (
     '      media="(min-aspect-ratio: 1/1)" fetchpriority="high">\n'
     '<link rel="preload" as="image" href="/assets/hero/plate-1-upright.webp"\n'
     '      media="(max-aspect-ratio: 1/1)" fetchpriority="high">\n'
-    '<link rel="stylesheet" href="/assets/hero-film.css?v=11">')
+    '<link rel="stylesheet" href="/assets/hero-film.css?v=12">')
 
 FILM_FOOT = (
     '<script type="module">\n'
-    '  import { mountFilmHero } from "/assets/hero-film.js?v=11";\n'
+    '  import { mountFilmHero } from "/assets/hero-film.js?v=12";\n'
     '  mountFilmHero(document.querySelector(".filmhero"));\n'
     '</script>')
 
