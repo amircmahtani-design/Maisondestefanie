@@ -931,10 +931,6 @@ blockquote{margin:0}
    and the room for them is found by tightening the pills rather than
    by hiding four of them off the edge of the screen. Three rows, and
    the shelf still starts on the first screen. */
-@media (max-width:699px){
-  .filters{gap:.4rem;margin-bottom:var(--s6)}
-  .filters button{min-height:2.5rem;padding:var(--s2) var(--s3);letter-spacing:.1em}
-}
 .filters button{min-height:2.75rem;padding:var(--s3) var(--s5);font-size:var(--t-micro);
   letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--edge-2);
   color:var(--ivory-2);background:rgba(243,237,226,.045);border-radius:var(--r-pill);
@@ -946,6 +942,13 @@ blockquote{margin:0}
   box-shadow:var(--metal-edge),0 6px 16px rgba(62,32,10,.34);
   text-shadow:0 1px 0 rgba(255,242,218,.5)}
 .filters button[aria-pressed="true"]:hover{background:var(--metal-lit);color:var(--metal-ink)}
+
+@media (max-width:699px){
+  .filters{gap:.4rem;margin-bottom:var(--s6)}
+  /* narrow, not short: the width is what made five ragged levels, and
+     the height is the thing you have to hit with a thumb */
+  .filters button{min-height:2.75rem;padding:var(--s2) .6rem;letter-spacing:.05em}
+}
 .grid{display:grid;gap:clamp(1.5rem,3vw,2.4rem);
   grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr))}
 .card .shot{display:block;position:relative;aspect-ratio:4/5;overflow:hidden;
