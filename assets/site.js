@@ -17,7 +17,7 @@ const UI = {
  en:{nav:{maison:'The Maison',experience:'Bespoke Experience',legacy:'The Story',
           shelf:'Creations',bespoke:'Bespoke',visit:'Visit'},
      ui:{onGoogle:'on Google',phone:'Telephone',follow:'Follow',perfumer:'Stefanie · perfumer',
-         book:'Book',scroll:'Scroll',theMaterial:'The material',dockOrgan:'Find your scent',dockMessage:'Message Stefanie',
+         book:'Book',scroll:'Scroll',theMaterial:'The material',
          reviews:'reviews',top:'Top',heart:'Heart',base:'Base',size:'Size',price:'Price',
          onRequest:'On request',buy:'Order this',enquire:'Ask Stefanie',
          made:'Made to order in the shop',nothing:'Nothing on this shelf yet.',
@@ -26,7 +26,7 @@ const UI = {
  el:{nav:{maison:'Το Σπίτι',experience:'Η Εμπειρία',legacy:'Η Ιστορία',
           shelf:'Δημιουργίες',bespoke:'Προσωπικά',visit:'Επίσκεψη'},
      ui:{onGoogle:'στη Google',phone:'Τηλέφωνο',follow:'Ακολούθησε',perfumer:'Στεφανί · αρωματοποιός',
-         book:'Ραντεβού',scroll:'Κύλισε',theMaterial:'Η ύλη',dockOrgan:'Βρες το άρωμά σου',dockMessage:'Στείλε μήνυμα',
+         book:'Ραντεβού',scroll:'Κύλισε',theMaterial:'Η ύλη',
          reviews:'κριτικές',top:'Κορυφή',heart:'Καρδιά',base:'Βάση',size:'Μέγεθος',price:'Τιμή',
          onRequest:'Κατόπιν ζήτησης',buy:'Παράγγειλέ το',enquire:'Ρώτησε τη Στεφανί',
          made:'Φτιάχνεται κατά παραγγελία',nothing:'Τίποτα εδώ ακόμη.',
@@ -498,7 +498,7 @@ function render(){
 
   /* every route to Stefanie */
   const msg = askMsg();
-  ['#dockWhats','#bespokeCta','#vWhats','#sealedCta','#send'].forEach(s=>{ const e=$(s); if(e) e.href = wa(msg); });
+  ['#bespokeCta','#vWhats','#sealedCta','#send'].forEach(s=>{ const e=$(s); if(e) e.href = wa(msg); });
   const put = (sel, prop, val)=>{ const e = $(sel); if (e) e[prop] = val; };
   put('#dirs','href', S.mapsUrl);
   put('#gbLink','href', S.reviewsUrl);
@@ -1083,7 +1083,6 @@ let tick = false;
 function frame(){
   const y = scrollY;
   $('#bar').classList.toggle('stuck', y > 60);
-  $('#dock').classList.toggle('on', y > innerHeight*.8);
   tick = false;
 }
 addEventListener('scroll', ()=>{ if(!tick){ tick = true; requestAnimationFrame(frame); } },{passive:true});

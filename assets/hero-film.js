@@ -137,14 +137,24 @@ function ripple(at, delay, size = 16) {
   return r;
 }
 
-/* ── vapour: soft, slow, and never the same twice ──────────────── */
-function steam(at, delay, scale) {
+/* ── vapour: a plume and the wisp shearing inside it ───────────── */
+function steam(at, delay, scale, dur) {
   const s = el('fh-steam');
   s.style.setProperty('--x', at[0] * 100 + '%');
   s.style.setProperty('--y', at[1] * 100 + '%');
   s.style.setProperty('--sz', scale + 'vmin');
   s.style.setProperty('--d', delay + 'ms');
+  s.style.setProperty('--t', dur + 'ms');
   return s;
+}
+function wisp(at, delay, scale, dur) {
+  const w = el('fh-wisp');
+  w.style.setProperty('--x', at[0] * 100 + '%');
+  w.style.setProperty('--y', at[1] * 100 + '%');
+  w.style.setProperty('--sz', scale + 'vmin');
+  w.style.setProperty('--d', delay + 'ms');
+  w.style.setProperty('--t', dur + 'ms');
+  return w;
 }
 
 /* ── a drop gathering at a lip, then falling ───────────────────── */
@@ -203,8 +213,12 @@ function populate(fx, act) {
   }
 
   if (act.n === 3) {
-    A.steam.forEach(([sx, sy], i) =>
-      fx.append(steam([sx, sy], i * 1300, 22 + i * 7)));
+    /* Three plumes, each on its own clock so they never pulse together,
+       and a faster wisp inside each one shearing the other way. */
+    A.steam.forEach(([sx, sy], i) => {
+      fx.append(steam([sx, sy], i * 1150,        20 + i * 7, 8200 + i * 900));
+      fx.append(wisp ([sx, sy], i * 1150 + 600,  20 + i * 7, 5900 + i * 700));
+    });
     fx.append(drop(A.drip, A.fall, 1400));
     fx.append(drop(A.drip, A.fall, 4200));
   }

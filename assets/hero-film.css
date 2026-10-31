@@ -127,21 +127,49 @@
   100%{opacity:0;   transform:scale(1)}
 }
 
-/* ── vapour ────────────────────────────────────────────────────── */
+/* ── vapour ──────────────────────────────────────────────────────
+   Three plumes off the still, each on its own clock. A single blurred
+   disc rising reads as a disc rising, so each one is two: a body that
+   lifts and swells, and a wisp inside it drifting the other way at a
+   different rate. That shear is what makes smoke look like smoke.
+
+   It was also far too faint to see against the copper — .17 at the
+   core, which the scrim then took most of — so the core is .30 and the
+   plume is wider. */
 .fh-steam{position:absolute;left:var(--x);top:var(--y);
   width:var(--sz);height:var(--sz);
   margin:calc(var(--sz) * -.5) 0 0 calc(var(--sz) * -.5);
   border-radius:50%;
-  background:radial-gradient(circle at 50% 60%,
-    rgba(255,238,214,.17),rgba(255,232,204,.07) 46%,transparent 70%);
-  filter:blur(10px);opacity:0;will-change:transform,opacity;
-  animation:fh-steam 7400ms cubic-bezier(.4,0,.6,1) var(--d) infinite both}
+  background:radial-gradient(circle at 50% 62%,
+    rgba(255,240,218,.30),rgba(255,234,208,.13) 42%,
+    rgba(255,232,204,.05) 64%,transparent 78%);
+  filter:blur(12px);opacity:0;will-change:transform,opacity;
+  animation:fh-steam var(--t,8600ms) linear var(--d) infinite both}
 @keyframes fh-steam{
-  0%  {opacity:0;   transform:translate3d(0,0,0) scale(.6)}
-  18% {opacity:.85}
-  /* it leans as it rises, then thins out */
-  55% {transform:translate3d(2.2vmin,-9vmin,0) scale(1.15)}
-  100%{opacity:0;   transform:translate3d(-1.6vmin,-19vmin,0) scale(1.7)}
+  0%  {opacity:0;    transform:translate3d(0,0,0) scale(.52)}
+  14% {opacity:.9}
+  /* it leans one way, then the other, and thins as it goes */
+  34% {opacity:.85;  transform:translate3d(1.6vmin,-5.5vmin,0) scale(.88)}
+  58% {opacity:.6;   transform:translate3d(-1.1vmin,-11vmin,0) scale(1.22)}
+  80% {opacity:.3;   transform:translate3d(2.0vmin,-16vmin,0) scale(1.5)}
+  100%{opacity:0;    transform:translate3d(-0.6vmin,-21vmin,0) scale(1.82)}
+}
+
+/* the wisp inside the plume, smaller and faster, shearing across it */
+.fh-wisp{position:absolute;left:var(--x);top:var(--y);
+  width:calc(var(--sz) * .52);height:calc(var(--sz) * .52);
+  margin:calc(var(--sz) * -.26) 0 0 calc(var(--sz) * -.26);
+  border-radius:50%;
+  background:radial-gradient(circle at 50% 60%,
+    rgba(255,244,228,.26),rgba(255,236,212,.08) 52%,transparent 74%);
+  filter:blur(7px);opacity:0;will-change:transform,opacity;
+  animation:fh-wisp var(--t,6200ms) linear var(--d) infinite both}
+@keyframes fh-wisp{
+  0%  {opacity:0;    transform:translate3d(0,0,0) scale(.44)}
+  16% {opacity:.72}
+  40% {transform:translate3d(-1.9vmin,-6.5vmin,0) scale(.8)}
+  68% {opacity:.42;  transform:translate3d(1.7vmin,-12.5vmin,0) scale(1.15)}
+  100%{opacity:0;    transform:translate3d(-1.2vmin,-18vmin,0) scale(1.5)}
 }
 
 /* ── a drop gathering at a lip, then falling ───────────────────── */
