@@ -27,7 +27,8 @@ SECTIONS = os.path.join(ROOT, 'tools', 'sections.html')
 # A content key of None means the page writes its own first screen.
 PAGES = [
     ('index.html', None, None,
-     ['THE HERO', 'HER WORD', 'A MEMORY, DISTILLED', 'THE FIVE DOORS']),
+     ['THE HERO', 'HER WORD', 'A MEMORY, DISTILLED',
+      'THE BOTTLE, IN ITS LIGHT', 'THE FIVE DOORS']),
     ('maison.html', 'maison', 'The Maison',
      ['HER WORDS', '03 · THE BENCH', 'A BREATH']),
     ('bespoke.html', 'bespoke', 'Bespoke Experience',

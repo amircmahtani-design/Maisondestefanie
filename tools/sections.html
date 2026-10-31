@@ -21,7 +21,16 @@
 <!-- ══════════════ HER WORD ══════════════ -->
 <section class="sec herword" id="herword" aria-labelledby="herwordTitle">
   <div class="wrap split wide-right">
-    <figure class="fig portrait-fig rv" data-pic="portrait" style="margin:0"></figure>
+    <!-- Stefanie at her counter, in motion. Her own film from the shop,
+         so it stands where her photograph stood: she comes before the
+         words. Muted, looping, and held on its first frame for anyone
+         who asked for less movement (assets/site.js, "quiet films"). -->
+    <figure class="fig portrait-fig vid-fig rv" style="margin:0">
+      <video class="lms-film" muted loop playsinline preload="metadata"
+             poster="/assets/video/stefanie-at-work.webp" aria-hidden="true" tabindex="-1">
+        <source src="/assets/video/stefanie-at-work.mp4" type="video/mp4">
+      </video>
+    </figure>
     <div class="rv" data-d="1">
       <p class="lab" data-t="quote.eyebrow"></p>
       <blockquote>
@@ -41,6 +50,19 @@
   <ol class="steps" id="distilledSteps"></ol>
   <p class="aside" data-t="distilled.aside"></p>
 </section>
+
+<!-- ══════════════ THE BOTTLE, IN ITS LIGHT ══════════════ -->
+<!-- The house bottle on the bar, with the light moving slowly across the
+     glass. Slowed to two-and-a-half times its length with interpolated
+     frames, and its end dissolved into its beginning, so the loop has no
+     seam. A wide cut for wide screens and an upright one for phones. -->
+<figure class="band filmband rv" aria-hidden="true">
+  <video class="lms-film" muted loop playsinline preload="none"
+         poster="/assets/video/bottle-light-wide.webp" tabindex="-1"
+         data-wide="/assets/video/bottle-light-wide.mp4"
+         data-tall="/assets/video/bottle-light-tall.mp4"
+         data-poster-tall="/assets/video/bottle-light-tall.webp"></video>
+</figure>
 
 <!-- ══════════════ THE FIVE DOORS ══════════════ -->
 <section class="sec" id="doors" aria-labelledby="doorsTitle">
