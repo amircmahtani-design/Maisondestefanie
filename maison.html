@@ -55,7 +55,7 @@
      shell used to preload the rose for all six, which five of them do
      not show. -->
 
-<link rel="stylesheet" href="/assets/site.css?v=8">
+<link rel="stylesheet" href="/assets/site.css?v=9">
 </head>
 <body class="lang-en no-js">
 
@@ -175,6 +175,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
     <p class="phero-eyebrow" data-t="pageMaison.eyebrow"></p>
     <h1 data-t="pageMaison.title">The Maison</h1>
     <p class="phero-lede" data-t="pageMaison.lede"></p>
+    <p class="phero-lede phero-ledeB" data-opt data-t="pageMaison.ledeB"></p>
   </div>
 </section>
 
@@ -185,13 +186,14 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
     <div class="rv" data-d="1">
       <p class="lab" data-t="quote.eyebrow">The house</p>
       <blockquote>
-        <p class="pull-q" id="maisonTitle" data-t="quote.quote"></p>
+        <p class="pull-q" id="maisonTitle" data-t="quote.quoteFull"></p>
         <span class="byline">
           <span class="face" data-pic-face="portrait" aria-hidden="true"></span>
           <span class="sig" data-t="quote.sig"></span>
         </span>
       </blockquote>
       <p class="body" style="margin-top:2rem" data-t="quote.body"></p>
+      <p class="body" data-t="quote.bodyB"></p>
       <a class="more" href="/story.html"><span data-t="quote.link">Read her story</span><span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -219,6 +221,9 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 <figure class="band rv" data-pic="botanical">
   <figcaption><span data-t="quote.band"></span></figcaption>
 </figure>
+
+<!-- ══════════════ HER LINE ══════════════ -->
+<section class="pullband"><p data-t="pageMaison.band"></p></section>
 
 
 </main>
@@ -279,7 +284,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 
 <script type="application/ld+json" id="ldjson"></script>
 <script src="config.js"></script>
-<script type="module" src="/assets/site.js?v=8"></script>
+<script type="module" src="/assets/site.js?v=9"></script>
 
 </body>
 </html>

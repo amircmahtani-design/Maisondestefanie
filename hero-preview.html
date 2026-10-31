@@ -49,7 +49,7 @@
      shell used to preload the rose for all six, which five of them do
      not show. -->
 <!--HEAD-->
-<link rel="stylesheet" href="/assets/site.css?v=8">
+<link rel="stylesheet" href="/assets/site.css?v=9">
 </head>
 <body class="lang-en no-js">
 
@@ -192,6 +192,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
         <span class="byline"><span class="sig" data-t="quote.sig"></span></span>
       </blockquote>
       <p class="body" data-t="quote.body"></p>
+      <p class="body" data-t="quote.bodyB"></p>
       <a class="more" href="/maison.html"><span data-t="quote.link"></span><span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -201,7 +202,9 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 <section class="distilled" id="distilled" aria-labelledby="distilledTitle">
   <h2 id="distilledTitle" class="rv" data-t="distilled.title"></h2>
   <hr class="rule short">
+  <p class="body distilled-lede rv" data-t="distilled.lede"></p>
   <ol class="steps" id="distilledSteps"></ol>
+  <p class="distilled-coda rv" data-t="distilled.coda"></p>
   <p class="aside" data-t="distilled.aside"></p>
 </section>
 
@@ -274,7 +277,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 
 <script type="application/ld+json" id="ldjson"></script>
 <script src="config.js"></script>
-<script type="module" src="/assets/site.js?v=8"></script>
+<script type="module" src="/assets/site.js?v=9"></script>
 <!--FOOT-->
 <script type="module">
   import { mountFilmHero } from "/assets/hero-film.js";

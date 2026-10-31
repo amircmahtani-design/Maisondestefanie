@@ -17,7 +17,14 @@ Location sources:
 - Plaka steps: assets/source/generated-places/plaka.jpg
   (1280 × 1600 px)
 
-The five thread cards and the flask inside a thread are not artwork at
-all. Both are drawn in code, in the same single gold line as the opening
-curtain, and need no replacing. A thread's mark gives way to a real
-photograph as soon as that thread is given an `image` in content.json.
+The flask inside a thread is not artwork at all. It is drawn in code, in
+the same single gold line as the opening curtain, and needs no replacing.
+
+The five thread cards now carry pictures, supplied 31/10/2026 as
+assets/img/thread-{places,sea,someone,moment,lost}-{560,900}.webp with
+their 1400 x 1800 masters kept in tools/supplied/maison-threads/. They
+are GENERATED CONCEPT artwork, not documentary photographs: the figure in
+"Someone in particular" is not a real identifiable person and the
+night-time doorway in "A moment that stayed" is not Mnisikleous 10.
+Neither may be presented as a photograph of the shop or of anyone real.
+Replace them with real photographs when there are any.

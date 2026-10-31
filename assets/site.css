@@ -1328,7 +1328,9 @@ body.noscroll{overflow:hidden}
 #maison .words-fig{aspect-ratio:3/2;width:100%;max-width:46rem}
 #maison blockquote,#maison .body{text-align:center;margin-inline:auto}
 #maison .lab{justify-content:center}
-#maison .pull-q{max-width:24ch;margin-inline:auto}
+/* her full sentence, and Greek runs a third longer than English, so the
+   column takes a few more characters than a short pull would */
+#maison .pull-q{max-width:min(32ch,34rem);margin-inline:auto}
 #maison .byline{justify-content:center}
 #maison .more{justify-content:center}
 #maison .split > div{display:grid;justify-items:center;gap:var(--s5)}
@@ -1344,3 +1346,21 @@ body.noscroll{overflow:hidden}
 .chip-note{font-size:var(--t-small);color:var(--dimmer);margin-top:1.1rem}
 /* a link set in a paragraph of body copy matches the copy, not the labels */
 p > .linky{font-size:inherit}
+
+/* ══ HER OWN WORDS ═══════════════════════════════════════════════
+   Text taken from lamaisondestefanie.com, set in the places the
+   house pages left for it. Nothing here replaces a line that was
+   already on the page; each rule is a slot that was empty. */
+.distilled-lede{max-width:56ch;margin:0 auto clamp(2.4rem,5vw,3.4rem);
+  text-align:center;color:var(--ivory-2)}
+.distilled-coda{max-width:44ch;margin:clamp(2.2rem,5vw,3.2rem) auto 0;
+  text-align:center;font-family:var(--serif);font-style:italic;
+  font-size:var(--t-lede);line-height:1.5;color:var(--ivory)}
+.session-pull{margin:var(--s5) 0 0;font-family:var(--display);
+  text-transform:uppercase;font-size:var(--t-h4);letter-spacing:.16em;
+  color:var(--gold-lit)}
+.gb-band{margin:var(--s5) auto 0;max-width:40ch;text-align:center;
+  font-family:var(--serif);font-style:italic;font-size:var(--t-lede);
+  line-height:1.5;color:var(--ivory-2)}
+#guestlines .body{text-align:center;margin-inline:auto;max-width:44ch}
+.phero-ledeB{margin-top:var(--s4);color:var(--ivory-2)}

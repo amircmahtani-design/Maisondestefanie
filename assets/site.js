@@ -483,7 +483,12 @@ function render(){
     $('meta[property="og:title"]')?.setAttribute('content', L(DATA.seo,'title'));
     $('meta[property="og:description"]')?.setAttribute('content', L(DATA.seo,'description'));
   }
-  $$('[data-t]').forEach(el=>{ const v = tGet(el.dataset.t); if (v) el.textContent = v; });
+  /* A slot marked data-opt is one a page may or may not fill — her own
+     standfirst, a line she wrote for one room and not the others. An
+     empty one would still take its margin, so it takes itself out. */
+  $$('[data-t]').forEach(el=>{ const v = tGet(el.dataset.t);
+    if (v) el.textContent = v;
+    if (el.hasAttribute('data-opt')) el.hidden = !v; });
   /* the third headline line only exists if she has written one */
   const tc = $('[data-optional]');
   if (tc) tc.hidden = !tGet('hero.titleC');

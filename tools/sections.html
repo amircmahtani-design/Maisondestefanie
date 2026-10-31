@@ -29,6 +29,7 @@
         <span class="byline"><span class="sig" data-t="quote.sig"></span></span>
       </blockquote>
       <p class="body" data-t="quote.body"></p>
+      <p class="body" data-t="quote.bodyB"></p>
       <a class="more" href="/maison.html"><span data-t="quote.link"></span><span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -38,7 +39,9 @@
 <section class="distilled" id="distilled" aria-labelledby="distilledTitle">
   <h2 id="distilledTitle" class="rv" data-t="distilled.title"></h2>
   <hr class="rule short">
+  <p class="body distilled-lede rv" data-t="distilled.lede"></p>
   <ol class="steps" id="distilledSteps"></ol>
+  <p class="distilled-coda rv" data-t="distilled.coda"></p>
   <p class="aside" data-t="distilled.aside"></p>
 </section>
 
@@ -59,13 +62,14 @@
     <div class="rv" data-d="1">
       <p class="lab" data-t="quote.eyebrow">The house</p>
       <blockquote>
-        <p class="pull-q" id="maisonTitle" data-t="quote.quote"></p>
+        <p class="pull-q" id="maisonTitle" data-t="quote.quoteFull"></p>
         <span class="byline">
           <span class="face" data-pic-face="portrait" aria-hidden="true"></span>
           <span class="sig" data-t="quote.sig"></span>
         </span>
       </blockquote>
       <p class="body" style="margin-top:2rem" data-t="quote.body"></p>
+      <p class="body" data-t="quote.bodyB"></p>
       <a class="more" href="/story.html"><span data-t="quote.link">Read her story</span><span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -133,6 +137,9 @@
   <figcaption><span data-t="quote.band"></span></figcaption>
 </figure>
 
+<!-- ══════════════ HER LINE ══════════════ -->
+<section class="pullband"><p data-t="pageMaison.band"></p></section>
+
 <!-- ══════════════ THE STORY ══════════════ -->
 <section class="sec" id="legacy" aria-labelledby="legacyTitle">
   <div class="wrap split wide-right">
@@ -153,6 +160,7 @@
     <p class="lab rv" data-t="bespoke.eyebrow">The session</p>
     <h2 class="h-soft rv" id="bespokeTitle" style="max-width:17ch;margin-bottom:1.5rem" data-t="bespoke.title"></h2>
     <p class="body rv" data-d="1" data-t="bespoke.lede"></p>
+    <p class="session-pull rv" data-d="1" data-t="bespoke.pull"></p>
   </div>
   <div class="wrap">
     <ol class="session" id="session"></ol>
@@ -193,6 +201,7 @@
       </div>
       <p class="body" style="max-width:28ch" data-t="reviews_intro.lead"></p>
       <p class="body" style="max-width:28ch;color:var(--dim)" data-t="reviews_intro.sub"></p>
+      <p class="body" style="max-width:28ch;color:var(--dim)" data-t="reviews_intro.fives"></p>
       <a class="linky" id="gbLink" style="display:inline-block;margin-top:.6rem" href="#" target="_blank" rel="noopener" data-t="reviews_intro.link"></a>
     </div>
     <div class="qs" id="quotes"></div>
@@ -200,6 +209,14 @@
 </section>
 
 <section class="pullband"><p data-t="reviews_intro.pull"></p></section>
+
+<!-- her two lines about the guest book, from her own site -->
+<section class="sec tight" id="guestlines">
+  <div class="wrap narrow rv">
+    <p class="body" data-t="reviews_intro.pullB"></p>
+    <p class="gb-band" data-t="reviews_intro.band"></p>
+  </div>
+</section>
 
 <!-- ══════════════ 06 · VISIT ══════════════ -->
 <section class="sec" id="visit" aria-labelledby="visitTitle">

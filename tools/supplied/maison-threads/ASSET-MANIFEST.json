@@ -1,0 +1,77 @@
+[
+  {
+    "card": "Places You Remember",
+    "stem": "01-places-you-remember",
+    "description": "A nostalgic Mediterranean stone courtyard at dusk",
+    "input_px": [
+      1086,
+      1448
+    ],
+    "export_px": [
+      1400,
+      1800
+    ],
+    "webp_slot": "thread-places",
+    "extended_background": false
+  },
+  {
+    "card": "The Sea",
+    "stem": "02-the-sea",
+    "description": "Rocky Mediterranean shoreline and dark water at sunset",
+    "input_px": [
+      1122,
+      1402
+    ],
+    "export_px": [
+      1400,
+      1800
+    ],
+    "webp_slot": "thread-sea",
+    "extended_background": false
+  },
+  {
+    "card": "Someone in Particular",
+    "stem": "03-someone-in-particular",
+    "description": "A clearly visible anonymous figure, half-turned in warm light",
+    "input_px": [
+      379,
+      1024
+    ],
+    "export_px": [
+      1400,
+      1800
+    ],
+    "webp_slot": "thread-someone",
+    "extended_background": true
+  },
+  {
+    "card": "A Moment That Stayed",
+    "stem": "04-a-moment-that-stayed",
+    "description": "Night-time old-world boutique doorway glowing with bottles and lanterns",
+    "input_px": [
+      378,
+      1024
+    ],
+    "export_px": [
+      1400,
+      1800
+    ],
+    "webp_slot": "thread-moment",
+    "extended_background": true
+  },
+  {
+    "card": "Something You Lost",
+    "stem": "05-something-you-lost",
+    "description": "Old amber perfume bottle with personal keepsakes and faded letters",
+    "input_px": [
+      1122,
+      1402
+    ],
+    "export_px": [
+      1400,
+      1800
+    ],
+    "webp_slot": "thread-lost",
+    "extended_background": false
+  }
+]

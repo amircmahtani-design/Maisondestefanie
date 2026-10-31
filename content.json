@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-09-12",
+ "updated": "2026-10-31",
  "settings": {
   "phone": "+30 694 747 8033",
   "whatsapp": "306947478033",
@@ -422,7 +422,9 @@
      "d": "A unique creation, yours alone, made to carry forward."
     }
    ],
-   "aside": "Mnisikleous 10 · Plaka, Athens"
+   "aside": "Mnisikleous 10 · Plaka, Athens",
+   "lede": "Every fragrance tells a story — and yours is unlike any other. Share a cherished memory, the scent of the sea, a favourite place, someone you love, or simply the feeling you wish to capture. As a perfumer, I will transform your emotions and memories into a bespoke fragrance, handcrafted before your eyes.",
+   "coda": "A perfume created exclusively for you. One story. One scent. Yours forever."
   },
   "el": {
    "title": "Μια ανάμνηση, αποσταγμένη",
@@ -443,7 +445,9 @@
      "d": "Μια μοναδική δημιουργία, μόνο δική σου, φτιαγμένη για να τη συνεχίσεις."
     }
    ],
-   "aside": "Μνησικλέους 10 · Πλάκα, Αθήνα"
+   "aside": "Μνησικλέους 10 · Πλάκα, Αθήνα",
+   "lede": "Μοιραστείτε μαζί μου μια αγαπημένη ανάμνηση, μια βόλτα δίπλα στη θάλασσα, έναν τόπο που αγαπάτε, ένα αγαπημένο πρόσωπο ή απλώς το συναίσθημα που θέλετε να αποτυπώσετε. Ως αρωματοποιός, θα δημιουργήσω μπροστά στα μάτια σας ένα μοναδικό, εξατομικευμένο άρωμα, σχεδιασμένο αποκλειστικά για εσάς.",
+   "coda": "Μία σύνθεση φτιαγμένη αποκλειστικά για εσάς. Παγιδεύουμε μια ιστορία σε ένα άρωμα. Δικό σας για πάντα."
   }
  },
  "quote": {
@@ -453,15 +457,19 @@
    "sig": "Stefanie, perfumer",
    "body": "The shop is one room in Plaka: a bench, a shelf of essences, and a perfumer who has spent a lifetime learning to read them.",
    "link": "Read her story",
-   "band": "A perfume should not simply be worn. It should belong to you."
+   "band": "A perfume should not simply be worn. It should belong to you.",
+   "bodyB": "I can make you exactly what you imagine. The memory of a person, of a first date, of your grandmother's courtyard, of a perfume that no longer exists — I create it and make it your personal perfume. Something that belongs only to you, something that speaks for you. In extrait de parfum strength.",
+   "quoteFull": "Every perfume has a soul! Use my passion — together we will make a perfume that expresses your character, combined with your memories."
   },
   "el": {
    "eyebrow": "Η Μεζόν",
    "quote": "Κάθε άρωμα έχει ψυχή. Δώσε μου την ανάμνησή σου και θα σου δώσω πίσω κάτι που ανήκει μόνο σ' εσένα.",
-   "sig": "Στεφανί, αρωματοποιός",
+   "sig": "Στεφανία, αρωματοποιός",
    "body": "Το μαγαζί είναι ένα δωμάτιο στην Πλάκα: ένας πάγκος, ένα ράφι με εσάνς, και μια αρωματοποιός που έμαθε μια ζωή να τις διαβάζει.",
    "link": "Διάβασε την ιστορία της",
-   "band": "Το άρωμα δεν αρκεί να το φοράς. Πρέπει να σου ανήκει."
+   "band": "Το άρωμα δεν αρκεί να το φοράς. Πρέπει να σου ανήκει.",
+   "bodyB": "Μπορούμε μαζί να φτιάξουμε ακριβώς τη μυρωδιά που έχετε φανταστεί! Η ανάμνηση ενός προσώπου, του πρώτου ραντεβού, η αυλή της γιαγιάς σας, ένα άρωμα που δεν υπάρχει πια — τη δημιουργώ και την κάνω το προσωπικό σας άρωμα. Κάτι που ανήκει μόνο σε εσάς, κάτι που σας αντιπροσωπεύει. Σε ποιότητα extrait de parfum.",
+   "quoteFull": "Κάθε άρωμα έχει μία ψυχή! Χρησιμοποιήστε το πάθος μου, γιατί μαζί θα φτιάξουμε ένα άρωμα που θα εκφράζει τον χαρακτήρα σας σε συνδυασμό με τις αναμνήσεις σας."
   }
  },
  "organ": {
@@ -490,14 +498,14 @@
    "picked": "Η συγχορδία σου μέχρι τώρα",
    "empty": "Διάλεξε μια ανάμνηση για να ξεκινήσεις.",
    "chipNote": "Το πολύ τρεις. Ένα σκίτσο, όχι το τελικό άρωμα.",
-   "cta": "Στείλ' το στη Στεφανί",
+   "cta": "Στείλ' το στη Στεφανία",
    "reset": "Ξεκίνα ξανά"
   },
   "threads": [
    {
     "id": "t1",
     "num": "01",
-    "image": "assets/img/thread-places-900.webp",
+    "image": "assets/img/thread-places-900.webp?v=2",
     "en": {
      "label": "Places you remember",
      "blurb": "A courtyard, a road, a green thing after rain."
@@ -576,8 +584,8 @@
       }
      }
     ],
-    "srcset": "assets/img/thread-places-560.webp 560w, assets/img/thread-places-900.webp 900w",
-    "srcsetFor": "assets/img/thread-places-900.webp",
+    "srcset": "assets/img/thread-places-560.webp?v=2 560w, assets/img/thread-places-900.webp?v=2 900w",
+    "srcsetFor": "assets/img/thread-places-900.webp?v=2",
     "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
     "w": 900,
     "h": 1200
@@ -585,7 +593,7 @@
    {
     "id": "t2",
     "num": "02",
-    "image": "assets/img/thread-sea-900.webp",
+    "image": "assets/img/thread-sea-900.webp?v=2",
     "en": {
      "label": "The sea",
      "blurb": "Salt, pine and the walk down to the water."
@@ -664,8 +672,8 @@
       }
      }
     ],
-    "srcset": "assets/img/thread-sea-560.webp 560w, assets/img/thread-sea-900.webp 900w",
-    "srcsetFor": "assets/img/thread-sea-900.webp",
+    "srcset": "assets/img/thread-sea-560.webp?v=2 560w, assets/img/thread-sea-900.webp?v=2 900w",
+    "srcsetFor": "assets/img/thread-sea-900.webp?v=2",
     "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
     "w": 900,
     "h": 1200
@@ -673,7 +681,7 @@
    {
     "id": "t3",
     "num": "03",
-    "image": "assets/img/thread-someone-900.webp",
+    "image": "assets/img/thread-someone-900.webp?v=2",
     "en": {
      "label": "Someone in particular",
      "blurb": "A person you can still smell when you think of them."
@@ -748,8 +756,8 @@
       }
      }
     ],
-    "srcset": "assets/img/thread-someone-560.webp 560w, assets/img/thread-someone-900.webp 900w",
-    "srcsetFor": "assets/img/thread-someone-900.webp",
+    "srcset": "assets/img/thread-someone-560.webp?v=2 560w, assets/img/thread-someone-900.webp?v=2 900w",
+    "srcsetFor": "assets/img/thread-someone-900.webp?v=2",
     "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
     "w": 900,
     "h": 1200
@@ -757,7 +765,7 @@
    {
     "id": "t4",
     "num": "04",
-    "image": "assets/img/thread-moment-900.webp",
+    "image": "assets/img/thread-moment-900.webp?v=2",
     "en": {
      "label": "A moment that stayed",
      "blurb": "An August church, a night that ran too late."
@@ -832,8 +840,8 @@
       }
      }
     ],
-    "srcset": "assets/img/thread-moment-560.webp 560w, assets/img/thread-moment-900.webp 900w",
-    "srcsetFor": "assets/img/thread-moment-900.webp",
+    "srcset": "assets/img/thread-moment-560.webp?v=2 560w, assets/img/thread-moment-900.webp?v=2 900w",
+    "srcsetFor": "assets/img/thread-moment-900.webp?v=2",
     "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
     "w": 900,
     "h": 1200
@@ -841,7 +849,7 @@
    {
     "id": "t5",
     "num": "05",
-    "image": "assets/img/thread-lost-900.webp",
+    "image": "assets/img/thread-lost-900.webp?v=2",
     "en": {
      "label": "Something you lost",
      "blurb": "A perfume that is no longer made. Bring the bottle, or the name."
@@ -880,8 +888,8 @@
       }
      }
     ],
-    "srcset": "assets/img/thread-lost-560.webp 560w, assets/img/thread-lost-900.webp 900w",
-    "srcsetFor": "assets/img/thread-lost-900.webp",
+    "srcset": "assets/img/thread-lost-560.webp?v=2 560w, assets/img/thread-lost-900.webp?v=2 900w",
+    "srcsetFor": "assets/img/thread-lost-900.webp?v=2",
     "sizes": "(min-width:1240px) 19vw, (min-width:620px) 46vw, 92vw",
     "w": 900,
     "h": 1200
@@ -903,7 +911,7 @@
    "title": "Πρώτα η ιστορία.",
    "titleEm": "Έπειτα οι ύλες.",
    "quote": "Όλα εδώ γίνονται στο χέρι, μέσα στο μαγαζί, μπροστά σου.",
-   "sig": "Στεφανί, αρωματοποιός",
+   "sig": "Στεφανία, αρωματοποιός",
    "formulaLabel": "Η συνταγή σου, στο αρχείο",
    "link": "Δες πώς γίνεται η συνεδρία"
   }
@@ -945,7 +953,10 @@
    "body": [
     "In the heart of Plaka, where the old city still keeps its own hours, La Maison de Stefanie grew out of a family legacy and a lifetime spent close to essences.",
     "My earliest memories are of my grandmother's hands, a perfumer who turned raw materials into feeling. From her I inherited a craft, and a conviction: a perfume should not simply be worn. It should belong to you.",
-    "Everything here is made by hand, in the shop, in front of you. Every bottle is filled and sealed at the counter with the house plate. Nothing leaves this room that I have not composed myself."
+    "Everything here is made by hand, in the shop, in front of you. Every bottle is filled and sealed at the counter with the house plate. Nothing leaves this room that I have not composed myself.",
+    "Through years of dedication, I have preserved this intimate craftsmanship and transformed it into a personal journey for each guest who enters La Maison de Stefanie. Every bespoke fragrance I create is an invisible portrait, carefully composed to reveal memories, desires, emotions, and the unique essence of the person who wears it.",
+    "Inside my perfume house in the magical neighbourhood of Plaka, I invite you to discover a world where tradition meets artistry, where each ingredient is selected with passion, and where your own story is translated into an unforgettable scent.",
+    "La Maison de Stefanie is not only a destination for perfume; it is a sanctuary of memories, elegance, and individuality — a place where the heritage of my grandmother lives on, and where every fragrance is created as a timeless expression of your own identity."
    ]
   },
   "el": {
@@ -955,7 +966,10 @@
    "body": [
     "Στην καρδιά της Πλάκας, εκεί όπου η παλιά πόλη κρατά ακόμη τους δικούς της ρυθμούς, το La Maison de Stefanie γεννήθηκε από μια οικογενειακή κληρονομιά και μια ζωή δίπλα στις πρώτες ύλες.",
     "Οι πρώτες μου αναμνήσεις είναι τα χέρια της γιαγιάς μου, μιας αρωματοποιού που μετέτρεπε τις ύλες σε συναίσθημα. Από εκείνη κληρονόμησα μια τέχνη και μια πεποίθηση: το άρωμα δεν αρκεί να το φοράς. Πρέπει να σου ανήκει.",
-    "Όλα εδώ γίνονται στο χέρι, μέσα στο μαγαζί, μπροστά σου. Κάθε μπουκάλι γεμίζει και σφραγίζεται στον πάγκο με τη σφραγίδα του σπιτιού."
+    "Όλα εδώ γίνονται στο χέρι, μέσα στο μαγαζί, μπροστά σου. Κάθε μπουκάλι γεμίζει και σφραγίζεται στον πάγκο με τη σφραγίδα του σπιτιού.",
+    "Με χρόνια αφοσίωσης κράτησα ζωντανή αυτή τη λεπτή τέχνη του χεριού και την έκανα ένα προσωπικό ταξίδι για κάθε επισκέπτη που περνά το κατώφλι της La Maison de Stefanie. Κάθε άρωμα που δημιουργώ κατά παραγγελία είναι ένα αόρατο πορτρέτο με προσεκτική σύνθεση, που αποκαλύπτει αναμνήσεις, επιθυμίες, συναισθήματα, με μία μοναδικότητα στο άτομο που το φορά.",
+    "Μέσα στον οίκο αρωμάτων μου, στη μαγική γειτονιά της Πλάκας, σας προσκαλώ να ανακαλύψετε έναν κόσμο όπου η παράδοση συναντά την τέχνη, όπου κάθε συστατικό διαλέγεται με πάθος και όπου η δική σας ιστορία γίνεται ένα άρωμα που δεν ξεχνιέται.",
+    "Η La Maison de Stefanie δεν είναι απλώς ένας προορισμός για το άρωμα· είναι ένα καταφύγιο μνήμης, κομψότητας και μοναδικότητας — ένας τόπος όπου ζει ακόμη η κληρονομιά της γιαγιάς μου και όπου κάθε άρωμα γεννιέται ως διαχρονική έκφραση της δικής σας ταυτότητας."
    ]
   }
  },
@@ -983,7 +997,8 @@
      "t": "It is yours, and it is kept",
      "d": "Filled, sealed and named at the counter. Your formula stays on file — write from anywhere in the world and she will make it again."
     }
-   ]
+   ],
+   "pull": "Luxury is handmade."
   },
   "el": {
    "eyebrow": "Η συνεδρία",
@@ -994,7 +1009,7 @@
    "steps": [
     {
      "t": "Μιλάς",
-     "d": "Ένας τόπος, ένα πρόσωπο, μια εποχή, ένα άρωμα που χάθηκε. Η Στεφανί ακούει περισσότερο απ' όσο μιλά. Δεν υπάρχει λάθος απάντηση."
+     "d": "Ένας τόπος, ένα πρόσωπο, μια εποχή, ένα άρωμα που χάθηκε. Η Στεφανία ακούει περισσότερο απ' όσο μιλά. Δεν υπάρχει λάθος απάντηση."
     },
     {
      "t": "Διαβάζει τη μύτη σου",
@@ -1008,7 +1023,8 @@
      "t": "Είναι δικό σου και μένει",
      "d": "Γεμίζει, σφραγίζεται και ονομάζεται στον πάγκο. Η συνταγή μένει στο αρχείο — γράψε από οπουδήποτε στον κόσμο και θα το ξαναφτιάξει."
     }
-   ]
+   ],
+   "pull": "Η πολυτέλεια είναι χειροποίητη."
   }
  },
  "shop": {
@@ -1142,7 +1158,7 @@
    "el": {
     "name": "Η Προσωπική Συνεδρία",
     "tagline": "Μία ώρα στον πάγκο. Ένα άρωμα που υπάρχει μία φορά.",
-    "story": "Κάθεσαι, μιλάς, και η Στεφανί χτίζει μια συγχορδία πάνω στο δέρμα σου μέχρι να πάψει να είναι άρωμα και να γίνει δικό σου. Η συνταγή φυλάσσεται για πάντα.",
+    "story": "Κάθεσαι, μιλάς, και η Στεφανία χτίζει μια συγχορδία πάνω στο δέρμα σου μέχρι να πάψει να είναι άρωμα και να γίνει δικό σου. Η συνταγή φυλάσσεται για πάντα.",
     "top": [
      "επιλέγονται μαζί"
     ],
@@ -1389,7 +1405,7 @@
    "el": {
     "name": "Το Άρωμα που Έχασες",
     "tagline": "Καταργημένο, αλλαγμένο ή απλώς χαμένο.",
-    "story": "Φέρε το άδειο μπουκάλι, το όνομα ή μόνο την ανάμνηση. Η αναδημιουργία θέλει χρόνο και κοστολογείται αφού η Στεφανί μυρίσει ή ερευνήσει το πρωτότυπο.",
+    "story": "Φέρε το άδειο μπουκάλι, το όνομα ή μόνο την ανάμνηση. Η αναδημιουργία θέλει χρόνο και κοστολογείται αφού η Στεφανία μυρίσει ή ερευνήσει το πρωτότυπο.",
     "top": [
      "κατόπιν συνεννόησης"
     ],
@@ -1611,16 +1627,16 @@
    "stars": 5,
    "name": "David Young",
    "meta": "Google review",
-   "en": "Stefanie is truly the master of her craft. She perfectly crafted a scent for someone she had never met.",
-   "el": "Η Στεφανί είναι πραγματικά δασκάλα της τέχνης της. Έφτιαξε τέλεια ένα άρωμα για κάποια που δεν είχε γνωρίσει ποτέ."
+   "en": "Stefanie is truly the master of her craft. She perfectly crafted a scent for someone she had never met. Visit her in Athens.",
+   "el": "Η Στεφανία κατέχει την τέχνη της όσο κανείς άλλος. Έφτιαξε στην εντέλεια ένα άρωμα για έναν άνθρωπο που δεν είχε γνωρίσει ποτέ. Αν βρεθείτε στην Αθήνα, επισκεφθείτε την."
   },
   {
    "id": "r2",
    "stars": 5,
    "name": "shahruz ebrahimzadeh",
    "meta": "Local Guide, Google",
-   "en": "The most pleasurable experience. Patient and warm, she found the perfect scent for my custom perfume.",
-   "el": "Η πιο ευχάριστη εμπειρία. Υπομονετική και ζεστή, βρήκε το τέλειο άρωμα για μένα."
+   "en": "The most pleasurable experience. Patient and warm, she found the perfect scent for my custom perfume. Fair prices, real quality.",
+   "el": "Η πιο ευχάριστη εμπειρία. Υπομονετική και ζεστή, βρήκε την τέλεια μυρωδιά για το προσωπικό μου άρωμα. Λογικές τιμές, πραγματική ποιότητα."
   },
   {
    "id": "r3",
@@ -1628,7 +1644,7 @@
    "name": "Corinne Mok",
    "meta": "Google review",
    "en": "Stefanie let us try so many perfumes and tailor-mixed one just for me. A lovely afternoon, and excellent prices too.",
-   "el": "Μας άφησε να δοκιμάσουμε τόσα αρώματα και έφτιαξε ένα μόνο για μένα. Υπέροχο απόγευμα και εξαιρετικές τιμές."
+   "el": "Η Στεφανία μας άφησε να δοκιμάσουμε τόσα αρώματα και ανέμειξε ένα ειδικά για μένα. Ένα υπέροχο απόγευμα, και εξαιρετικές τιμές."
   }
  ],
  "reviews_intro": {
@@ -1637,14 +1653,20 @@
    "lead": "Sixty-three guests have written about an hour spent at this bench.",
    "sub": "Every one of them left with a perfume nobody else has.",
    "link": "Read them on Google",
-   "pull": "Stefanie is truly the master of her craft."
+   "pull": "Stefanie is truly the master of her craft.",
+   "fives": "Every guest who leaves a review leaves five stars.",
+   "pullB": "No one leaves without finding their scent. Stefanie keeps it that way.",
+   "band": "Stefanie is a perfume mixologist — your memories are her ingredients."
   },
   "el": {
    "eyebrow": "Το βιβλίο επισκεπτών",
    "lead": "Εξήντα τρεις επισκέπτες έγραψαν για μια ώρα σε αυτόν τον πάγκο.",
    "sub": "Κάθε ένας έφυγε με ένα άρωμα που δεν το έχει κανείς άλλος.",
    "link": "Διάβασέ τες στη Google",
-   "pull": "Η Στεφανί είναι πραγματικά δασκάλα της τέχνης της."
+   "pull": "Η Στεφανία είναι πραγματικά δασκάλα της τέχνης της.",
+   "fives": "Κάθε επισκέπτης που την αξιολογεί, της δίνει πέντε αστέρια.",
+   "pullB": "Κανείς δεν φεύγει χωρίς να βρει το άρωμά του. Η Στεφανία φροντίζει γι' αυτό.",
+   "band": "Η Στεφανία είναι αλχημίστρια των αρωμάτων — μεταμορφώνει τις αναμνήσεις σας σε άρωμα."
   }
  },
  "visit": {
@@ -1737,6 +1759,28 @@
      "q": "Πώς να το φυλάξω;",
      "a": "Μακριά από ήλιο και ζέστη, με το καπάκι κλειστό. Το extrait κρατά τον χαρακτήρα του για χρόνια στο σκοτάδι."
     }
+   },
+   {
+    "id": "f6",
+    "en": {
+     "q": "Bespoke & made to order",
+     "a": "Custom blends are made by hand, to order, so they take a little time. A personalised bottle is made only for you — so please confirm the details with Stefanie before she mixes it."
+    },
+    "el": {
+     "q": "Κατά παραγγελία",
+     "a": "Οι ειδικές συνθέσεις φτιάχνονται στο χέρι και κατά παραγγελία, οπότε θέλουν λίγο χρόνο. Η προσωποποιημένη φιάλη φτιάχνεται μόνο για εσάς — γι' αυτό επιβεβαιώστε τις λεπτομέρειες με τη Στεφανία πριν την ετοιμάσει."
+    }
+   },
+   {
+    "id": "f7",
+    "en": {
+     "q": "Care & authenticity",
+     "a": "Every bottle is filled and sealed in the Plaka shop with the house plate. Keep your fragrance away from sunlight and heat and it will hold its character far longer."
+    },
+    "el": {
+     "q": "Φροντίδα & γνησιότητα",
+     "a": "Κάθε φιάλη γεμίζει και σφραγίζεται στο κατάστημα της Πλάκας με το έμβλημα του οίκου. Κρατήστε το άρωμά σας μακριά από τον ήλιο και τη ζέστη και θα διατηρήσει τον χαρακτήρα του πολύ περισσότερο."
+    }
    }
   ]
  },
@@ -1757,7 +1801,7 @@
   },
   "el": {
    "title": "La Maison de Stefanie · Προσωπικά Αρώματα στην Πλάκα",
-   "description": "Ένα οικογενειακό σπίτι αρωμάτων στην Πλάκα. Πες στη Στεφανί μια ανάμνηση και τη μετατρέπει σε extrait de parfum στο χέρι."
+   "description": "Ένα οικογενειακό σπίτι αρωμάτων στην Πλάκα. Πες στη Στεφανία μια ανάμνηση και τη μετατρέπει σε extrait de parfum στο χέρι."
   }
  },
  "sequence": {
@@ -1920,7 +1964,7 @@
      "word": "Η Ανάμνηση",
      "titleA": "Η ιστορία σου,",
      "titleB": "το άρωμά σου.",
-     "body": "Ένας τόπος, ένα πρόσωπο, μια εποχή, ένα άρωμα που χάθηκε. Η Στεφανί ακούει περισσότερο απ' όσο μιλά. Δεν υπάρχει λάθος απάντηση.",
+     "body": "Ένας τόπος, ένα πρόσωπο, μια εποχή, ένα άρωμα που χάθηκε. Η Στεφανία ακούει περισσότερο απ' όσο μιλά. Δεν υπάρχει λάθος απάντηση.",
      "link": "Ξεκίνα το ταξίδι σου",
      "material": "Μια ανάμνηση",
      "subject": "heroBotanical",
@@ -2078,12 +2122,16 @@
   "en": {
    "eyebrow": "The Maison",
    "title": "One room in Plaka",
-   "lede": "A bench, a shelf of essences, and whatever you walk in remembering."
+   "lede": "A bench, a shelf of essences, and whatever you walk in remembering.",
+   "band": "The perfume they'll remember you by.",
+   "ledeB": "A perfume shop with soul, in the heart of Athens. Create your own unique, personal scent — together with Stefanie."
   },
   "el": {
    "eyebrow": "Το Σπίτι",
    "title": "Ένα δωμάτιο στην Πλάκα",
-   "lede": "Ένας πάγκος, ένα ράφι με εσάνς, και ό,τι θυμάσαι όταν μπαίνεις."
+   "lede": "Ένας πάγκος, ένα ράφι με εσάνς, και ό,τι θυμάσαι όταν μπαίνεις.",
+   "band": "Ένα άρωμα για να σας θυμούνται.",
+   "ledeB": "Ένα αρωματοπωλείο με ψυχή, στην καρδιά της Αθήνας. Δημιουργήστε το δικό σας μοναδικό, προσωπικό άρωμα μαζί με τη Στεφανία."
   }
  },
  "pageBespoke": {

@@ -29,7 +29,7 @@ PAGES = [
     ('index.html', None, None,
      ['THE HERO', 'HER WORD', 'A MEMORY, DISTILLED', 'THE FIVE DOORS']),
     ('maison.html', 'maison', 'The Maison',
-     ['HER WORDS', '03 · THE BENCH', 'A BREATH']),
+     ['HER WORDS', '03 · THE BENCH', 'A BREATH', 'HER LINE']),
     ('bespoke.html', 'bespoke', 'Bespoke Experience',
      ['THE SESSION', '04 · COMPOSED BY HAND', '05 · BOTTLED AND SEALED']),
     ('story.html', 'story', 'The Story',
@@ -50,11 +50,11 @@ FILM_HEAD = (
     '      media="(min-aspect-ratio: 1/1)" fetchpriority="high">\n'
     '<link rel="preload" as="image" href="/assets/hero/plate-1-upright.webp"\n'
     '      media="(max-aspect-ratio: 1/1)" fetchpriority="high">\n'
-    '<link rel="stylesheet" href="/assets/hero-film.css?v=8">')
+    '<link rel="stylesheet" href="/assets/hero-film.css?v=9">')
 
 FILM_FOOT = (
     '<script type="module">\n'
-    '  import { mountFilmHero } from "/assets/hero-film.js?v=8";\n'
+    '  import { mountFilmHero } from "/assets/hero-film.js?v=9";\n'
     '  mountFilmHero(document.querySelector(".filmhero"));\n'
     '</script>')
 
@@ -79,6 +79,9 @@ def first_screen(key, title):
         f'    <p class="phero-eyebrow" data-t="page{key_cap}.eyebrow"></p>\n'
         f'    <h1 data-t="page{key_cap}.title">{title}</h1>\n'
         f'    <p class="phero-lede" data-t="page{key_cap}.lede"></p>\n'
+        # a second standfirst where she has written one of her own; the
+        # slot sits on every page and removes itself where the key is empty
+        f'    <p class="phero-lede phero-ledeB" data-opt data-t="page{key_cap}.ledeB"></p>\n'
         f'  </div>\n'
         f'</section>\n')
 
