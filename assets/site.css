@@ -1488,3 +1488,6 @@ p > .linky{font-size:inherit}
 .filmband video{object-position:50% 20%}
 .filmband::after{background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(10,7,5,.55) 100%)}
 @media (max-aspect-ratio:1/1){ .filmband{aspect-ratio:4/5} .filmband video{object-position:50% 50%} }
+
+/* the house that built the site, a line under the copyright */
+.byline-zenith{margin-top:.5rem;color:var(--dimmer)}
