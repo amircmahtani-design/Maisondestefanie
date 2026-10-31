@@ -656,10 +656,16 @@ body.curtained{overflow:hidden}
 .wrap.narrow{max-width:52rem}
 
 /* two-column editorial split */
+/* One column until there is room for two. The base used to be an
+   auto-fit track, which takes a second column as soon as 40rem fit —
+   so on a tablet a wide-right split was still two half-width columns
+   while everything around it had come down to one, and its text sat in
+   a 354px column on the left of a 759px row. wide-left said 1fr below
+   900 and wide-right said nothing, which is where that came from. */
 .split{display:grid;gap:var(--gap);align-items:center;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
-.split.wide-left{grid-template-columns:1fr}
+  grid-template-columns:1fr}
 @media (min-width:900px){
+  .split{grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
   .split.wide-left{grid-template-columns:1.05fr .95fr}
   .split.wide-right{grid-template-columns:.95fr 1.05fr}
   .split.flip > :first-child{order:2}
@@ -1314,6 +1320,15 @@ body.noscroll{overflow:hidden}
 .sec > .wrap > .lab{justify-content:center}
 .sec > .wrap > .body,
 .sec > .wrap > p{margin-inline:auto}
+/* A heading with a measure on it — the session's is 17ch — is a narrow
+   box inside a wide one. Centring its text only centres the words
+   inside that box; the box itself has to be centred too, or the
+   heading sits against the left edge with its words neatly centred
+   over nothing. */
+.sec > .wrap > h2,
+.sec > .wrap > .h-display,
+.sec > .wrap > .h-soft,
+.sec > .wrap > h3{margin-inline:auto}
 
 /* the two section openings that were a heading beside its own
    standfirst: one centred column instead */
@@ -1353,7 +1368,25 @@ body.noscroll{overflow:hidden}
    one column like everything under them — so they centre too. */
 @media (max-width:899px){
   .phero-in{text-align:center}
+  /* the headline keeps its 14ch measure here, so it needs centring as a
+     box as well as as text */
+  .phero h1{margin-inline:auto}
   .phero-lede{margin-inline:auto}
+}
+
+/* Three rows that are laid out rather than written, so centring the text
+   in them moves nothing: the score beside its stars, and the two lines
+   under the rules on the formula card, which were pushed to the two ends
+   of their row and landed on the left once the card was too narrow to
+   hold them side by side. */
+@media (max-width:899px){
+  .score{justify-content:center}
+  .paper .foot{justify-content:center;gap:.5rem 1.6rem}
+  /* and the label over them: a rule and a line of words side by side,
+     which on a card this narrow put the rule on the left of a heading
+     that had wrapped onto two lines. The rule goes above the words,
+     the way the page sets a centred heading everywhere else. */
+  .paper .lab{flex-direction:column;align-items:center;gap:var(--s3)}
 }
 
 /* Her words on the Maison page were a photograph on the left and a
