@@ -52,6 +52,17 @@
 @keyframes fh-cam-4{from{transform:translate3d(1.2%,.5%,0) scale(1.03)}
   to{transform:translate3d(-1.0%,-.5%,0) scale(1.012)}}
 
+/* A wash inside each scene, under the words. The scrim on .filmhero is
+   one gradient for all four acts, and these four pictures are not
+   equally bright in the same places — the still's lit amber elbow lands
+   under the second line of the headline, the bowl's water under the
+   standfirst in landscape. Rather than darken every act to carry the
+   brightest, each scene takes a little of its own, and the plate stays
+   as light as it can be. */
+.fh-scene::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(10,7,5,.42) 0%,rgba(10,7,5,.38) 36%,
+    rgba(10,7,5,.22) 54%,rgba(10,7,5,0) 70%)}
+
 .fh-fx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 
 /* ── a petal: it lets go, turns as it goes, and is gone ─────────── */
@@ -123,8 +134,8 @@
   background:radial-gradient(54% 60% at 62% 44%,rgba(201,138,58,.14),transparent 70%)}
 .filmhero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(10,7,5,.92) 0%,rgba(10,7,5,.88) 26%,
-      rgba(10,7,5,.72) 40%,rgba(10,7,5,.4) 52%,rgba(10,7,5,.12) 64%,rgba(10,7,5,0) 76%),
+    linear-gradient(90deg,rgba(10,7,5,.94) 0%,rgba(10,7,5,.91) 28%,
+      rgba(10,7,5,.82) 42%,rgba(10,7,5,.55) 54%,rgba(10,7,5,.2) 66%,rgba(10,7,5,0) 80%),
     linear-gradient(0deg,rgba(10,7,5,.86) 0%,rgba(10,7,5,.5) 20%,
       rgba(10,7,5,.18) 34%,transparent 50%),
     linear-gradient(180deg,rgba(10,7,5,.72) 0%,transparent 22%)}
@@ -162,9 +173,9 @@
   /* the words take a narrower column here, so the dark they are read on
      stops sooner and lets more of the picture through */
   .filmhero::after{background:
-    linear-gradient(90deg,rgba(10,7,5,.95) 0%,rgba(10,7,5,.92) 30%,
-      rgba(10,7,5,.78) 44%,rgba(10,7,5,.42) 56%,rgba(10,7,5,.12) 68%,
-      rgba(10,7,5,0) 80%),
+    linear-gradient(90deg,rgba(10,7,5,.96) 0%,rgba(10,7,5,.95) 34%,
+      rgba(10,7,5,.89) 48%,rgba(10,7,5,.64) 60%,rgba(10,7,5,.24) 72%,
+      rgba(10,7,5,0) 86%),
     linear-gradient(180deg,rgba(10,7,5,.72) 0%,transparent 26%)}
 }
 

@@ -1,20 +1,15 @@
-# Full-resolution supplied originals
+# Stefanie: Homepage Film Scene Plates (layout-ready, not native 4K detail)
 
-Place original, unmodified source photographs here before deriving
-WebP crops or grades. This folder is tracked by Git so originals remain
-available after a workspace/container rebuild.
+This package contains 8 JPEG layouts in `tools/supplied/`: four 3840x2160 wide and four 1620x2880 mobile. All are produced from the four original 1600x900 dark scene masters, to preserve artwork, proportions and consistent camera. No sharpening or burned-in text; full-quality sRGB JPEG.
 
-Expected four hero scene originals:
-- rose
-- essence bowl
-- copper still
-- bottle among roses
+**Critical limitation:** export pixel dimensions are NOT native effective detail. This kit helps Claude correctly stage the four scenes and the required motion while staying visually faithful. To completely resolve 4K sharpness, get genuine 3840x2160 and 1620x2880 *new source scenes*, or use an explicitly disclosed AI-detail restoration workflow. Do not regard upsampling as an adequate substitute.
 
-The repository contains their derived WebP images under assets/img, but
-the four full-resolution originals were not present in the repository or
-its available commit history. Do not recreate these files from the
-WebPs; add the originals here when they can be re-sent.
+Files:
+- `tools/supplied/01-rose-wide-3840x2160.jpg` and `01-rose-upright-1620x2880.jpg`
+- `02-essence-...` clear glass rose-water bowl
+- `03-still-...` copper distillation still
+- `04-flacon-...` finished perfume bottle among roses
 
-Optional later additions: the room from the doorway, the shopfront at
-Mnisikleous 10, and the Plaka steps. Use descriptive filenames and keep
-the source files unedited.
+Also includes `source-masters/`, `reference-motion-layers/` (previously approved experimental masks), `VISUAL-REVIEW.jpg`, `ASSET-MANIFEST.json`, `CLAUDE-IMPLEMENTATION-PROMPT.md`, and `OTHER-ASSETS-NOT-YET-CREATED.md` (the full request list supplied in this conversation; not part of this homepage-only deliverable).
+
+Keep all scene objects fixed; apply petal, steam, liquid and light motion on separate layers. Do not just replay frames from the old 720p storyboard.
