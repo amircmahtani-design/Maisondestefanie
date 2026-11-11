@@ -984,7 +984,10 @@ blockquote{margin:0}
 
 .card .sub{display:block;font-size:var(--t-body);color:var(--ivory-2);
   margin-bottom:var(--s2);line-height:var(--lh-body);text-wrap:pretty}
-.card .price{display:block;font-size:var(--t-small);letter-spacing:.18em;
+/* tracking pulled in from .18em: at .18 the longest of these lines
+   needed 341px in a 283px column and wrapped, which threw that card's
+   last line out of step with the three beside it */
+.card .price{display:block;font-size:var(--t-small);letter-spacing:.11em;
   text-transform:uppercase;color:var(--gold-lit);font-variant-numeric:tabular-nums}
 .card .price s{opacity:.75;text-decoration:none}
 

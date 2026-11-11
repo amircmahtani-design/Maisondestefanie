@@ -1022,16 +1022,21 @@ function renderGrid(){
   const cn = id=>{ const c = cats().find(x=>x.id===id); return c ? L(c,'name') : ''; };
   if (!list.length){ host.innerHTML = `<p style="color:#6A5C4E;font-size:.85rem">${U('nothing')}</p>`; return; }
   host.innerHTML = list.map((p,i)=>{
-    const price = p.price
-      ? `${DATA.settings.currency||'€'}${esc(p.price)}`
-      : `<s>${U('onRequest')}</s>`;
+    /* Nothing invented goes on this shelf. The prices that were here
+       were mine, not hers, so they are gone and the field is left empty
+       in the Studio for her to fill. Where she has entered one it shows;
+       where she has not, the line is simply the size, and where there is
+       neither, there is no line. */
+    const bits = [];
+    if (p.price) bits.push(`${DATA.settings.currency||'€'}${esc(p.price)}`);
+    if (p.size)  bits.push(esc(p.size));
     return `<article class="card rv" data-d="${i%3}">
       <span class="shot" data-ref="${esc(p.image||'')}" data-alt="${esc(L(p,'name'))}" data-pid="${esc(p.id)}">
         ${p.image?'':`<span class="ph">${esc(L(p,'name'))}</span>`}
         ${CAT==='all'?`<span class="tag">${esc(cn(p.cat))}</span>`:''}</span>
       <h3><button type="button" data-p="${esc(p.id)}">${esc(L(p,'name'))}</button></h3>
       <span class="sub">${esc(L(p,'tagline'))}</span>
-      <span class="price">${price}${p.size?` · ${esc(p.size)}`:''}</span></article>`;
+      ${bits.length?`<span class="price">${bits.join(' · ')}</span>`:''}</article>`;
   }).join('');
   $$('#grid .card').forEach(c=>{
     c.querySelector('h3 button').onclick = e=>openDrawer(e.currentTarget.dataset.p);
@@ -1052,7 +1057,7 @@ async function openDrawer(id){
   $('#dStory').innerHTML   = `<p>${esc(L(p,'story'))}</p>`;
   $('#dSpec').innerHTML =
     (p.size?`<span><b>${U('size')}</b>${esc(p.size)}</span>`:'') +
-    `<span><b>${U('price')}</b>${p.price?(DATA.settings.currency||'€')+esc(p.price):U('onRequest')}</span>` +
+    (p.price?`<span><b>${U('price')}</b>${(DATA.settings.currency||'€')+esc(p.price)}</span>`:'') +
     `<span><b>${LANG==='el'?'Παραγωγή':'Made'}</b>${U('made')}</span>`;
   const tiers = [['top',U('top')],['heart',U('heart')],['base',U('base')]].filter(([k])=>(L(p,k)||[]).length);
   $('#dNotes').innerHTML = tiers.length
@@ -1133,8 +1138,9 @@ function ld(){
        reviewBody:r.en})),
      makesOffer:prods().slice(0,12).map(p=>({"@type":"Offer",
        itemOffered:{"@type":"Product",name:L(p,'name'),description:L(p,'tagline')},
-       priceCurrency:"EUR",
-       ...(p.price?{price:String(p.price)}:{availability:"https://schema.org/InStock"})}))},
+       /* a price goes to Google only when she has entered one */
+       ...(p.price?{priceCurrency:"EUR",price:String(p.price)}
+                  :{availability:"https://schema.org/InStock"})}))},
     {"@type":"FAQPage","@id":site+"#faq",
      mainEntity:(DATA.faq?.items||[]).map(f=>({"@type":"Question",name:L(f,'q'),
        acceptedAnswer:{"@type":"Answer",text:L(f,'a')}}))}
