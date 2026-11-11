@@ -1370,6 +1370,9 @@ body.noscroll{overflow:hidden}
   .sec .lab,.split .lab{justify-content:center}
   .sec .body,.sec p,.pull-q,.split .body{margin-inline:auto}
   .sec .more,.split .more,.session-foot{justify-content:center}
+  /* the two actions on the Visit page are a flex row, so they ignored
+     the centring the column around them takes */
+  .visit-acts{justify-content:center}
   .session .item{text-align:center}
   .session .item .n{display:block}
 }
@@ -1494,3 +1497,33 @@ p > .linky{font-size:inherit}
 
 /* the house that built the site, a line under the copyright */
 .byline-zenith{margin-top:.5rem;color:var(--dimmer)}
+
+/* ══ THE MAP, AND WHAT SITS UNDER IT ══════════════════════════════
+   The same three things her own site puts under the map: the name of
+   the house, the street it is on, and the way to open it in Google
+   Maps for directions. A map with no name on it is a pin in a city. */
+.map-info{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:var(--s4) var(--s6);padding:var(--s5) var(--pad);
+  background:var(--soot);border-top:1px solid var(--edge)}
+.mi-name{margin:0;font-family:var(--display);font-size:var(--t-h4);
+  letter-spacing:.02em;color:var(--ivory)}
+.mi-addr{margin:.2rem 0 0;font-size:var(--t-small);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim)}
+.map-info .mi-btn{flex:none}
+@media (max-width:600px){
+  .map-info{flex-direction:column;align-items:center;text-align:center}
+  .map-info .mi-btn{width:100%}
+}
+
+/* her rating, as a mark you can follow to the reviews */
+.cred{display:inline-flex;align-items:center;gap:var(--s3);margin-top:var(--s5);
+  min-height:2.75rem;padding:var(--s2) var(--s4);
+  border:1px solid var(--edge-2);border-radius:var(--r-pill);
+  transition:border-color .3s var(--e),background .3s var(--e)}
+.cred-stars{color:var(--gold-lit);letter-spacing:.12em;font-size:var(--t-small)}
+.cred-txt{font-size:var(--t-small);letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-2)}
+.cred-txt b{font-family:var(--display);font-weight:400;font-size:var(--t-h4);
+  letter-spacing:0;color:var(--ivory);margin-right:.25rem}
+@media (hover:hover) and (pointer:fine){
+  .cred:hover{border-color:var(--gold);background:rgba(185,147,88,.07)}
+}

@@ -25,7 +25,7 @@ const UI = {
          openMenu:'Menu',closeMenu:'Close menu'}},
  el:{nav:{maison:'Το Σπίτι',experience:'Η Εμπειρία',legacy:'Η Ιστορία',
           shelf:'Δημιουργίες',bespoke:'Προσωπικά',visit:'Επίσκεψη'},
-     ui:{onGoogle:'στη Google',phone:'Τηλέφωνο',follow:'Ακολούθησε',perfumer:'Στεφανί · αρωματοποιός',
+     ui:{onGoogle:'στο Google',phone:'Τηλέφωνο',follow:'Ακολούθησε',perfumer:'Στεφανία · αρωματοποιός',
          book:'Ραντεβού',scroll:'Κύλισε',theMaterial:'Η ύλη',
          reviews:'κριτικές',top:'Κορυφή',heart:'Καρδιά',base:'Βάση',size:'Μέγεθος',price:'Τιμή',
          onRequest:'Κατόπιν ζήτησης',buy:'Παράγγειλέ το',enquire:'Ρώτησε τη Στεφανί',
@@ -507,6 +507,21 @@ function render(){
   const put = (sel, prop, val)=>{ const e = $(sel); if (e) e[prop] = val; };
   put('#dirs','href', S.mapsUrl);
   put('#gbLink','href', S.reviewsUrl);
+  /* Her rating, as a link to the reviews themselves — the one piece of
+     her own site's Google furniture this one had the words for and no
+     place to put them. */
+  set('#credLink', e => {
+    e.href = S.reviewsUrl || '#';
+    const n = Number(S.rating || 0), full = Math.round(n) || 5;
+    e.setAttribute('aria-label', LANG === 'el'
+      ? `${n} στα 5 στο Google, από ${S.reviewCount} κριτικές`
+      : `Rated ${n} out of 5 on Google from ${S.reviewCount} reviews`);
+    /* Stars and the score, and no count: the map on this same page
+       carries Google's own live count, and a second number beside it
+       that comes from a file would be the one that goes stale. */
+    e.innerHTML = `<span class="cred-stars" aria-hidden="true">${'★'.repeat(full)}</span>`
+      + `<span class="cred-txt"><b>${esc(String(S.rating))}</b> ${esc(U('onGoogle'))}</span>`;
+  });
   put('#footIg','href', S.instagram);
   put('#ig','href', S.instagram);
   set('#ig',    e => e.textContent = '@' + String(S.instagram||'').replace(/\/$/,'').split('/').pop());
@@ -1068,9 +1083,29 @@ function showMap(){
      tap of "Show the map" left every other page throwing on load. */
   if (!box || box.classList.contains('loaded')) return;
   box.classList.add('loaded');
+  /* The query is the house's name and street address, not a pair of
+     coordinates: a coordinate drops a nameless pin, while the name
+     resolves to the business itself, so the card on the map carries
+     "La Maison de Stefanie" and its rating. hl follows the page, so the
+     Greek side of the site gets a Greek map. */
+  const street = L(S, 'street') || 'Mnisikleous 10, Plaka';
+  /* The query itself stays in English whichever language the page is in:
+     the house's name is Latin and Google resolves the English address
+     reliably, where the Greek one can fall back to a nearby match. Only
+     hl changes, which is what translates the map's own labels. */
+  const q = encodeURIComponent(
+    `La Maison de Stefanie, ${S.en?.street || 'Mnisikleous 10, Plaka'}, ${S.en?.city || 'Athens 105 56, Greece'}`);
   box.innerHTML = `<iframe title="${LANG==='el'?'Χάρτης — Μνησικλέους 10, Πλάκα':'Map — Mnisikleous 10, Plaka'}"
     loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
-    src="https://www.google.com/maps?q=${S.lat},${S.lng}&z=17&output=embed"></iframe>`;
+    src="https://www.google.com/maps?q=${q}&z=16&output=embed&hl=${LANG}"></iframe>
+  <div class="map-info">
+    <div>
+      <p class="mi-name">La Maison de Stefanie</p>
+      <p class="mi-addr">${esc(street)}</p>
+    </div>
+    <a class="btn btn-solid mi-btn" href="${esc(S.mapsUrl||'#')}" target="_blank" rel="noopener">${
+      esc(tGet('visit.directions') || 'Get directions')}</a>
+  </div>`;
 }
 set('#mapLoad', e => e.onclick = ()=>{ try{ localStorage.setItem('lms-map','1'); }catch(e){} showMap(); });
 

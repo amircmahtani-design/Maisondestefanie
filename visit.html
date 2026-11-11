@@ -55,7 +55,7 @@
      shell used to preload the rose for all six, which five of them do
      not show. -->
 
-<link rel="stylesheet" href="/assets/site.css?v=19">
+<link rel="stylesheet" href="/assets/site.css?v=20">
 </head>
 <body class="lang-en no-js">
 
@@ -187,10 +187,12 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
       <h2 class="h-display" id="visitTitle"><span data-t="visit.title"></span> <em data-t="visit.titleEm"></em></h2>
       <p class="body" style="margin-top:1.4rem" data-t="visit.lede"></p>
       <address class="addr" id="addr" style="font-style:normal"></address>
-      <div style="display:flex;flex-wrap:wrap;gap:1rem 1.8rem;align-items:center">
+      <div class="visit-acts" style="display:flex;flex-wrap:wrap;gap:1rem 1.8rem;align-items:center">
         <a class="btn btn-solid" id="vWhats" href="#" target="_blank" rel="noopener" data-t="visit.book"></a>
         <a class="more" id="dirs" href="#" target="_blank" rel="noopener"><span data-t="visit.directions"></span><span class="arrow" aria-hidden="true">→</span></a>
       </div>
+      <!-- her five stars, straight through to the reviews on Google -->
+      <a class="cred" id="credLink" href="#" target="_blank" rel="noopener"></a>
       <dl class="hours">
         <dt data-t="visit.hoursLabel">Hours</dt><dd id="hours"></dd>
         <dt data-t="ui.phone">Telephone</dt><dd><a id="phone" href="#"></a></dd>
@@ -290,7 +292,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 
 <script type="application/ld+json" id="ldjson"></script>
 <script src="config.js"></script>
-<script type="module" src="/assets/site.js?v=19"></script>
+<script type="module" src="/assets/site.js?v=20"></script>
 
 </body>
 </html>
