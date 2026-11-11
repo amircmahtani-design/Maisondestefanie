@@ -29,6 +29,9 @@ exports.handler = async () => {
     };
   } catch (e) {
     console.error('reviews: ' + e.message);
+    /* Temporary while we find out why the store will not open. Says
+       nothing secret: it is the storage library's own message. */
+    headers['X-Store-Note'] = String(e.message || e).slice(0, 180).replace(/[^\x20-\x7e]/g, ' ');
     return { statusCode: 204, headers };
   }
 };

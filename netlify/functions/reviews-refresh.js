@@ -57,8 +57,11 @@ exports.handler = async () => {
     return { statusCode: 200, body: 'no key' };
   }
 
-  const store = getStore(STORE);
   try {
+    /* getStore can throw on its own, and when it did the whole function
+       fell over with a 502 instead of the quiet 200 everything else here
+       is built to return. It belongs inside the net, not outside it. */
+    const store = getStore(STORE);
     const id = await placeId(key, store);
     const r = await fetch(
       'https://places.googleapis.com/v1/places/' + encodeURIComponent(id)
