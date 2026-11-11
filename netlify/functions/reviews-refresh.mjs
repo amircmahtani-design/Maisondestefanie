@@ -1,28 +1,30 @@
 /* ------------------------------------------------------------------
    Her rating on Google, fetched once a week.
 
-   The number of reviews is on three parts of the site — the sentence
-   that opens the guest book, the figure under the stars, and the
-   structured data Google itself reads — and all three take it from one
-   field. That field was typed by hand and had gone stale by 119.
+   The number of reviews appears in three places — the sentence that
+   opens the guest book, the figure under the stars, and the structured
+   data Google itself reads — and all three take it from one field.
+   That field was typed by hand and had gone stale by 119.
 
    This runs on a schedule (netlify.toml, [functions."reviews-refresh"])
-   and writes what Google says into a blob. reviews.js serves it. The
+   and writes what Google says into storage. reviews.mjs serves it. The
    page asks for it after it has already drawn itself, so nothing waits
-   on Google and a failure here leaves the number in content.json
-   showing, which is the behaviour the site had before.
+   on Google, and a failure here leaves the number in content.json
+   showing, which is what the site did before any of this existed.
 
-   Set GOOGLE_PLACES_KEY in Netlify → Site configuration → Environment
+   Written in Netlify's second function format, because the storage
+   credentials are only handed to functions in this format.
+
+   Set GOOGLE_PLACES_KEY in Netlify, Site configuration, Environment
    variables. Nothing works without it and nothing breaks either.
-   Optionally set GOOGLE_PLACE_ID to skip the one lookup that finds it.
+   Optionally set GOOGLE_PLACE_ID to skip the lookup that finds it.
 
    Billing: rating and userRatingCount are Places API "Enterprise"
    fields, $20 per 1,000 requests with the first 1,000 a month free.
-   Once a week is 4.3 a month. Put a quota cap on the key in Google
-   Cloud so a mistake here can never cost anything.
+   Once a week is 4.3 a month.
    ------------------------------------------------------------------ */
 
-const { getStore } = require('@netlify/blobs');
+import { getStore } from '@netlify/blobs';
 
 const PLACE = 'La Maison de Stefanie, Mnisikleous 10, Plaka, Athens 105 56, Greece';
 const STORE = 'reviews';
@@ -50,17 +52,14 @@ async function placeId(key, store) {
   return id;
 }
 
-exports.handler = async () => {
+export default async () => {
   const key = process.env.GOOGLE_PLACES_KEY;
   if (!key) {
     console.log('reviews-refresh: no GOOGLE_PLACES_KEY set, nothing to do');
-    return { statusCode: 200, body: 'no key' };
+    return new Response('no key', { status: 200 });
   }
 
   try {
-    /* getStore can throw on its own, and when it did the whole function
-       fell over with a 502 instead of the quiet 200 everything else here
-       is built to return. It belongs inside the net, not outside it. */
     const store = getStore(STORE);
     const id = await placeId(key, store);
     const r = await fetch(
@@ -80,11 +79,10 @@ exports.handler = async () => {
     /* Google hands back up to five and does not say in what order.
        Only the five-star ones are kept — the guest book's own line is
        that every guest who writes leaves five stars, and a four beside
-       it would make a liar of her — and of those, the three most
-       recently written. Her guests' words are stored exactly as they
-       came, never trimmed or tidied, with the name, the score and when
-       it was written, which is what Google asks of anyone showing
-       them. */
+       it would make a liar of her — and of those, the three written
+       most recently. Her guests' words are stored exactly as they came,
+       never trimmed or tidied, with the name, the score and when it was
+       written, which is what Google asks of anyone showing them. */
     const newest = (Array.isArray(j.reviews) ? j.reviews : [])
       .filter(v => v && v.text && v.text.text && v.authorAttribution)
       .filter(v => Number(v.rating) === 5)
@@ -110,13 +108,13 @@ exports.handler = async () => {
       reviews: newest.length ? newest : (was && was.reviews) || [],
       checkedAt: new Date().toISOString()
     });
-    console.log('reviews-refresh: ' + (was ? was.count + ' → ' : '') + count
+    console.log('reviews-refresh: ' + (was ? was.count + ' -> ' : '') + count
       + ' reviews, ' + rating + ', kept ' + newest.length + ' five-star of '
       + ((j.reviews || []).length) + ' returned');
-    return { statusCode: 200, body: JSON.stringify({ rating, count }) };
+    return new Response(JSON.stringify({ rating, count }), { status: 200 });
   } catch (e) {
     /* Leave whatever is stored alone: a stale real number beats none. */
-    console.error('reviews-refresh failed, keeping what is stored:', e.message);
-    return { statusCode: 200, body: 'kept: ' + e.message };
+    console.error('reviews-refresh failed, keeping what is stored: ' + e.message);
+    return new Response('kept: ' + e.message, { status: 200 });
   }
 };
