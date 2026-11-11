@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-10-31",
+ "updated": "2026-11-11",
  "settings": {
   "phone": "+30 694 747 8033",
   "whatsapp": "306947478033",
@@ -9,7 +9,7 @@
   "mapsUrl": "https://www.google.com/maps/place/La+Maison+de+Stefanie/@37.9748836,23.728559,17z/data=!3m1!4b1!4m6!3m5!1s0x14a1bde77115780b:0xccf580926935dbd3!8m2!3d37.9748836!4d23.728559!16s%2Fg%2F11x66c5jp8",
   "reviewsUrl": "https://www.google.com/maps/place/La+Maison+de+Stefanie/@37.9748836,23.728559,17z/data=!4m8!3m7!1s0x14a1bde77115780b:0xccf580926935dbd3!8m2!3d37.9748836!4d23.728559!9m1!1b1!16s%2Fg%2F11x66c5jp8",
   "rating": "5.0",
-  "reviewCount": 63,
+  "reviewCount": 182,
   "lat": 37.9748836,
   "lng": 23.728559,
   "currency": "€",
@@ -1650,7 +1650,7 @@
  "reviews_intro": {
   "en": {
    "eyebrow": "The guest book",
-   "lead": "Sixty-three guests have written about an hour spent at this bench.",
+   "lead": "{n} guests have written about an hour spent at this bench.",
    "sub": "Every one of them left with a perfume nobody else has.",
    "link": "Read them on Google",
    "pull": "Stefanie is truly the master of her craft.",
@@ -1660,7 +1660,7 @@
   },
   "el": {
    "eyebrow": "Το βιβλίο επισκεπτών",
-   "lead": "Εξήντα τρεις επισκέπτες έγραψαν για μια ώρα σε αυτόν τον πάγκο.",
+   "lead": "{n} επισκέπτες έγραψαν για μια ώρα σε αυτόν τον πάγκο.",
    "sub": "Κάθε ένας έφυγε με ένα άρωμα που δεν το έχει κανείς άλλος.",
    "link": "Διάβασέ τες στη Google",
    "pull": "Η Στεφανία είναι πραγματικά δασκάλα της τέχνης της.",

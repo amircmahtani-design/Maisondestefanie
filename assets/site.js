@@ -12,6 +12,10 @@ const motionQ = matchMedia('(prefers-reduced-motion: reduce)');
 let REDUCED = motionQ.matches;
 /* parallax is for a mouse on a large screen only — never on a phone */
 
+/* Written in a line of copy where the number of reviews belongs, so the
+   sentence is never a second place that number has to be kept right. */
+const REVIEW_N = '{' + 'n}';
+
 /* ── interface words that are not the shop's to edit ─────────── */
 const UI = {
  en:{nav:{maison:'The Maison',experience:'Bespoke Experience',legacy:'The Story',
@@ -486,7 +490,13 @@ function render(){
   /* A slot marked data-opt is one a page may or may not fill — her own
      standfirst, a line she wrote for one room and not the others. An
      empty one would still take its margin, so it takes itself out. */
-  $$('[data-t]').forEach(el=>{ const v = tGet(el.dataset.t);
+  /* A string may carry the placeholder for the number of reviews, so the
+     one figure in Studio keeps the sentence, the count under the stars
+     and the structured data all saying the same thing. Spelled out in
+     the copy it was a second number to remember, and it went stale. */
+  const nsub = v => typeof v === 'string'
+    ? v.split(REVIEW_N).join(String(DATA?.settings?.reviewCount ?? '')) : v;
+  $$('[data-t]').forEach(el=>{ const v = nsub(tGet(el.dataset.t));
     if (v) el.textContent = v;
     if (el.hasAttribute('data-opt')) el.hidden = !v; });
   /* the third headline line only exists if she has written one */
