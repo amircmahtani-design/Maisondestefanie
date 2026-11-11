@@ -28,6 +28,7 @@ const UI = {
          onRequest:'On request',buy:'Order this',enquire:'Ask Stefanie',
          made:'Made to order in the shop',nothing:'Nothing on this shelf yet.',
          everything:'Everything',fullPrivacy:'Read the full Privacy & Cookies policy',
+         readFull:'Read it in full on Google',
          openMenu:'Menu',closeMenu:'Close menu'}},
  el:{nav:{maison:'Το Σπίτι',experience:'Η Εμπειρία',legacy:'Η Ιστορία',
           shelf:'Δημιουργίες',bespoke:'Προσωπικά',visit:'Επίσκεψη'},
@@ -37,6 +38,7 @@ const UI = {
          onRequest:'Κατόπιν ζήτησης',buy:'Παράγγειλέ το',enquire:'Ρώτησε τη Στεφανί',
          made:'Φτιάχνεται κατά παραγγελία',nothing:'Τίποτα εδώ ακόμη.',
          everything:'Όλα',fullPrivacy:'Διάβασε την πλήρη πολιτική απορρήτου',
+         readFull:'Διάβασέ την ολόκληρη στο Google',
          openMenu:'Μενού',closeMenu:'Κλείσε το μενού'}}
 };
 
@@ -626,10 +628,22 @@ async function freshenRating(){
    set exactly as they wrote them, under their own name and when they
    wrote it, and the quote links to the review itself. Nothing here is
    edited or shortened. */
+/* People type their own stars at the top of a review, and Google hands
+   the text back exactly as written — so one of hers arrived as
+   "\u2605\u2605\u2605\u2605\u2605\\n\\nSuch a wonderful experience", which put a second row
+   of stars under ours. Those, and the blank lines, are display noise
+   rather than her guest's words; nothing else is touched. */
+function tidy(t){
+  return String(t || '')
+    .replace(/^[\s\u2605\u2606\u2b50\u22c6*]+/, '')
+    .replace(/\s*\n\s*\n\s*/g, '\n')
+    .trim();
+}
+
 function paintQuotes(live){
   const rows = (live || []).map(v => ({
     stars: Number(v.stars) || 5,
-    text:  String(v.text || ''),
+    text:  tidy(v.text),
     name:  String(v.name || ''),
     meta:  String(v.when || ''),
     href:  String(v.href || v.profile || DATA.settings.reviewsUrl || '')
@@ -648,10 +662,18 @@ function paintQuotes(live){
      later, when Google's answer arrives, the reveal has already run
      and they have to be shown as they are */
   const cls = live ? 'rv in' : 'rv';
+  /* One guest wrote 1,063 characters beside another's 407, which left
+     the middle card twice the height of its neighbours. Her words are
+     kept whole and unedited in the page; the card simply holds them to
+     an even height and offers the rest on Google. */
+  const LONG = 420;
   set('#quotes', e => e.innerHTML = list.map((r,i)=>`
-    <figure class="${cls}" data-d="${i}">
+    <figure class="${cls}${r.text.length > LONG ? ' long' : ''}" data-d="${i}">
       <div class="stars" aria-hidden="true">${'★'.repeat(Math.max(1,Math.min(5,r.stars)))}</div>
       <blockquote>${esc(r.text)}</blockquote>
+      ${r.text.length > LONG && r.href
+        ? `<a class="rv-more" href="${esc(r.href)}" target="_blank" rel="noopener">${esc(U('readFull'))}</a>`
+        : ''}
       <cite>${r.href ? `<a href="${esc(r.href)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
                      : esc(r.name)}${r.meta ? ' · ' + esc(r.meta) : ''}</cite></figure>`).join(''));
 }

@@ -32,7 +32,6 @@ export default async () => {
     }), { status: 200, headers });
   } catch (e) {
     console.error('reviews: ' + e.message);
-    headers['X-Store-Note'] = String(e.message || e).slice(0, 180).replace(/[^\x20-\x7e]/g, ' ');
     return new Response(null, { status: 204, headers });
   }
 };
