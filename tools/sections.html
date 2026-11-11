@@ -276,8 +276,13 @@
 </section>
 
 <div class="mapwrap" id="mapwrap">
-  <div id="mapAsk">
-    <p class="body" style="max-width:38ch;margin:0 auto 1.3rem" data-t="visit.mapNote"></p>
+  <div id="mapAsk" role="button" tabindex="0">
+    <svg class="map-pin" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+      <path d="M12 21.2s6.8-6.1 6.8-10.9a6.8 6.8 0 1 0-13.6 0c0 4.8 6.8 10.9 6.8 10.9z"
+            fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="12" cy="10.1" r="2.4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    </svg>
+    <p class="body" data-t="visit.mapNote"></p>
     <button class="btn btn-line" id="mapLoad" type="button" data-t="visit.mapLoad">Show the map</button>
   </div>
 </div>

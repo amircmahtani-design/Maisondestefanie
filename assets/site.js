@@ -645,13 +645,12 @@ function paintQuotes(live){
     stars: Number(v.stars) || 5,
     text:  tidy(v.text),
     name:  String(v.name || ''),
-    meta:  String(v.when || ''),
     href:  String(v.href || v.profile || DATA.settings.reviewsUrl || '')
   })).filter(v => v.text && v.name && v.stars === 5);
 
   const fallback = (DATA.reviews || []).map(r => ({
-    stars: r.stars || 5, text: r[LANG] || r.en, name: r.name,
-    meta: r.meta || '', href: DATA.settings.reviewsUrl || ''
+    stars: r.stars || 5, text: tidy(r[LANG] || r.en), name: r.name,
+    href: DATA.settings.reviewsUrl || ''
   }));
 
   /* Three or the stored three: a guest book with one quote in it next
@@ -675,7 +674,7 @@ function paintQuotes(live){
         ? `<a class="rv-more" href="${esc(r.href)}" target="_blank" rel="noopener">${esc(U('readFull'))}</a>`
         : ''}
       <cite>${r.href ? `<a href="${esc(r.href)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
-                     : esc(r.name)}${r.meta ? ' · ' + esc(r.meta) : ''}</cite></figure>`).join(''));
+                     : esc(r.name)}</cite></figure>`).join(''));
 }
 
 /* ── the first screen of an inner page ───────────────────────────
@@ -1227,7 +1226,13 @@ function showMap(){
       esc(tGet('visit.directions') || 'Get directions')}</a>
   </div>`;
 }
-set('#mapLoad', e => e.onclick = ()=>{ try{ localStorage.setItem('lms-map','1'); }catch(e){} showMap(); });
+/* The panel standing in for the map is itself the target: a bordered
+   box the size of the map, so it reads as something that opens rather
+   than as a sentence with a button after it. The button stays for the
+   keyboard and for anyone reading the page as a list of controls. */
+const askMap = ()=>{ try{ localStorage.setItem('lms-map','1'); }catch(e){} showMap(); };
+set('#mapLoad', e => e.onclick = ev => { ev.stopPropagation(); askMap(); });
+set('#mapAsk', e => e.onclick = askMap);
 
 /* ── the note about what is kept ─────────────────────────────────
    Shown once, a moment after the page has settled so it never arrives
