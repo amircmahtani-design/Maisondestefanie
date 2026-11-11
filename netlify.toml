@@ -7,7 +7,7 @@
 # keeps that field honest. 52 calls a year against a free allowance of
 # 1,000 a month. See netlify/functions/reviews-refresh.js.
 [functions."reviews-refresh"]
-  schedule = "17 4 * * 1"
+  schedule = "8,14,20 9 * * *"
 
 [[headers]]
   for = "/*"
