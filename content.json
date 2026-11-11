@@ -1679,8 +1679,8 @@
    "hoursLabel": "Hours",
    "book": "Message the shop",
    "directions": "Get directions",
-   "mapNote": "The map is loaded from Google, which sets its own cookies. It appears only if you ask for it.",
-   "mapLoad": "Show the map"
+   "mapNote": "The map comes from Google Maps, which may set its own cookies. Load it if you'd like to see exactly where we are.",
+   "mapLoad": "Load the map"
   },
   "el": {
    "eyebrow": "Επίσκεψη",
@@ -1691,8 +1691,8 @@
    "hoursLabel": "Ώρες",
    "book": "Στείλε μήνυμα",
    "directions": "Οδηγίες",
-   "mapNote": "Ο χάρτης φορτώνει από την Google, που βάζει δικά της cookies. Εμφανίζεται μόνο αν το ζητήσεις.",
-   "mapLoad": "Δείξε τον χάρτη"
+   "mapNote": "Ο χάρτης προέρχεται από τους Χάρτες Google, που μπορεί να ορίσουν δικά τους cookies. Φορτώστε τον αν θέλετε να δείτε πού ακριβώς βρισκόμαστε.",
+   "mapLoad": "Φόρτωση χάρτη"
   }
  },
  "faq": {
@@ -2180,6 +2180,18 @@
    "eyebrow": "Επίσκεψη",
    "title": "Μνησικλέους 10, Πλάκα",
    "lede": "Λίγα βήματα πάνω από το Μοναστηράκι, κάτω από την Ακρόπολη. Πέρνα· πάντα υπάρχει ένα ανοιχτό μπουκάλι."
+  }
+ },
+ "cookies": {
+  "en": {
+   "note": "We keep only your language choice on your device, and the map loads only when you ask. No tracking, no ads.",
+   "privacy": "Privacy",
+   "ok": "Got it"
+  },
+  "el": {
+   "note": "Κρατάμε μόνο την επιλογή γλώσσας στη συσκευή σας και ο χάρτης φορτώνεται μόνο όταν το ζητήσετε. Καμία παρακολούθηση, καμία διαφήμιση.",
+   "privacy": "Απόρρητο",
+   "ok": "Εντάξει"
   }
  }
 }

@@ -55,7 +55,7 @@
      shell used to preload the rose for all six, which five of them do
      not show. -->
 
-<link rel="stylesheet" href="/assets/site.css?v=22">
+<link rel="stylesheet" href="/assets/site.css?v=26">
 </head>
 <body class="lang-en no-js">
 
@@ -258,6 +258,17 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
   </div>
 </footer>
 
+<!-- What the site keeps, said once. It is a note, not a gate: nothing is
+     set until somebody asks for the map, so there is nothing to refuse
+     and no second button. Dismissed, it stays dismissed. -->
+<div class="cookies" id="cookies" role="note" hidden>
+  <p data-t="cookies.note"></p>
+  <div class="cookies-acts">
+    <a class="linky" href="/privacy.html" data-t="cookies.privacy"></a>
+    <button class="btn btn-solid" id="cookiesOk" type="button" data-t="cookies.ok"></button>
+  </div>
+</div>
+
 
 <!-- the memory, taken full screen -->
 <div class="stage" id="stage" role="dialog" aria-modal="true" aria-labelledby="stTitle">
@@ -296,7 +307,7 @@ setTimeout(function(){document.querySelector('.hero')?.classList.add('ready')},1
 
 <script type="application/ld+json" id="ldjson"></script>
 <script src="config.js"></script>
-<script type="module" src="/assets/site.js?v=22"></script>
+<script type="module" src="/assets/site.js?v=26"></script>
 
 </body>
 </html>

@@ -1,0 +1,8 @@
+{
+  "name": "maisondestefanie",
+  "private": true,
+  "description": "La Maison de Stefanie — static site plus two Netlify functions.",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

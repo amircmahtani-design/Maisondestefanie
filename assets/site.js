@@ -15,6 +15,8 @@ let REDUCED = motionQ.matches;
 /* Written in a line of copy where the number of reviews belongs, so the
    sentence is never a second place that number has to be kept right. */
 const REVIEW_N = '{' + 'n}';
+const nsubCount = v => typeof v === 'string'
+  ? v.split(REVIEW_N).join(String(DATA?.settings?.reviewCount ?? '')) : v;
 
 /* ── interface words that are not the shop's to edit ─────────── */
 const UI = {
@@ -494,9 +496,7 @@ function render(){
      one figure in Studio keeps the sentence, the count under the stars
      and the structured data all saying the same thing. Spelled out in
      the copy it was a second number to remember, and it went stale. */
-  const nsub = v => typeof v === 'string'
-    ? v.split(REVIEW_N).join(String(DATA?.settings?.reviewCount ?? '')) : v;
-  $$('[data-t]').forEach(el=>{ const v = nsub(tGet(el.dataset.t));
+  $$('[data-t]').forEach(el=>{ const v = nsubCount(tGet(el.dataset.t));
     if (v) el.textContent = v;
     if (el.hasAttribute('data-opt')) el.hidden = !v; });
   /* the third headline line only exists if she has written one */
@@ -517,21 +517,7 @@ function render(){
   const put = (sel, prop, val)=>{ const e = $(sel); if (e) e[prop] = val; };
   put('#dirs','href', S.mapsUrl);
   put('#gbLink','href', S.reviewsUrl);
-  /* Her rating, as a link to the reviews themselves — the one piece of
-     her own site's Google furniture this one had the words for and no
-     place to put them. */
-  set('#credLink', e => {
-    e.href = S.reviewsUrl || '#';
-    const n = Number(S.rating || 0), full = Math.round(n) || 5;
-    e.setAttribute('aria-label', LANG === 'el'
-      ? `${n} στα 5 στο Google, από ${S.reviewCount} κριτικές`
-      : `Rated ${n} out of 5 on Google from ${S.reviewCount} reviews`);
-    /* Stars and the score, and no count: the map on this same page
-       carries Google's own live count, and a second number beside it
-       that comes from a file would be the one that goes stale. */
-    e.innerHTML = `<span class="cred-stars" aria-hidden="true">${'★'.repeat(full)}</span>`
-      + `<span class="cred-txt"><b>${esc(String(S.rating))}</b> ${esc(U('onGoogle'))}</span>`;
-  });
+  paintCred();
   put('#footIg','href', S.instagram);
   put('#ig','href', S.instagram);
   set('#ig',    e => e.textContent = '@' + String(S.instagram||'').replace(/\/$/,'').split('/').pop());
@@ -555,17 +541,119 @@ function render(){
       <span class="n">${esc(mv[i]||'')}</span>
       <h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></li>`).join(''));
 
-  set('#quotes', e => e.innerHTML = (DATA.reviews||[]).map((r,i)=>`
-    <figure class="rv" data-d="${i}">
-      <div class="stars" aria-hidden="true">${'★'.repeat(r.stars||5)}</div>
-      <blockquote>${esc(r[LANG]||r.en)}</blockquote>
-      <cite>${esc(r.name)}${r.meta?' · '+esc(r.meta):''}</cite></figure>`).join(''));
+  paintQuotes();
 
   set('#faqList', e => e.innerHTML = (DATA.faq?.items||[]).map(f=>`
     <details class="rv"><summary>${esc(L(f,'q'))}</summary><p>${esc(L(f,'a'))}</p></details>`).join(''));
 
   ld(); reveal(); armHandwriting();
   if (localStorage.getItem('lms-map') === '1') showMap();
+  freshenRating();
+  cookieNote();
+}
+
+/* Her rating, as a link to the reviews themselves — the one piece of
+   her own site's Google furniture this one had the words for and no
+   place to put them. Drawn whole each time, so that when the weekly
+   check moves the figure the label a screen reader announces moves
+   with it. Stars and the score, and no count: the map on the same page
+   carries Google's own, and a second number beside it would be the one
+   that goes stale. */
+function paintCred(){
+  const S = DATA?.settings; if (!S) return;
+  set('#credLink', e => {
+    e.href = S.reviewsUrl || '#';
+    const n = Number(S.rating || 0), full = Math.round(n) || 5;
+    e.setAttribute('aria-label', LANG === 'el'
+      ? `${n} στα 5 στο Google, από ${S.reviewCount} κριτικές`
+      : `Rated ${n} out of 5 on Google from ${S.reviewCount} reviews`);
+    e.innerHTML = `<span class="cred-stars" aria-hidden="true">${'★'.repeat(full)}</span>`
+      + `<span class="cred-txt"><b>${esc(String(S.rating))}</b> ${esc(U('onGoogle'))}</span>`;
+  });
+}
+
+/* ── what Google says today ──────────────────────────────────────
+   A function here asks Google once a week what her rating is and who
+   last wrote about her, and stores it; this asks for what it stored.
+   It runs after the page has drawn itself, and if the endpoint is
+   quiet — no key set, the job has not run yet, anything at all — the
+   figure and the three quotes in content.json stay, which is exactly
+   what the site did before any of this existed. */
+let freshened = false;
+async function freshenRating(){
+  if (freshened || !DATA?.settings) return;
+  freshened = true;
+  let live;
+  try{
+    const r = await fetch('/.netlify/functions/reviews', {cache:'no-cache'});
+    if (!r.ok || r.status === 204) return;
+    live = await r.json();
+  }catch(e){ return; }
+  if (!live) return;
+
+  const S = DATA.settings;
+  const n = Number(live.count), rating = Number(live.rating);
+
+  if (Number.isFinite(n) && n >= 1) {
+    const moved = String(S.reviewCount) !== String(n)
+               || (Number.isFinite(rating) && String(S.rating) !== String(rating));
+    if (moved) {
+      S.reviewCount = n;
+      if (Number.isFinite(rating)) S.rating = rating;
+      /* the sentence that opens the guest book, which carries the number */
+      $$('[data-t]').forEach(el=>{
+        const v = tGet(el.dataset.t);
+        if (typeof v === 'string' && v.includes(REVIEW_N)) el.textContent = nsubCount(v);
+      });
+      /* the figure under the stars, the mark on the Visit page, and the
+         markup Google itself reads */
+      set('#count', e => e.textContent = n + ' ' + U('reviews'));
+      paintCred();
+      ld();
+    }
+  }
+
+  /* and the three most recent, in the guests' own words */
+  if (Array.isArray(live.reviews) && live.reviews.length) paintQuotes(live.reviews);
+}
+
+/* ── the guest book's three quotes ───────────────────────────────
+   Either the three kept in content.json, or, once the weekly check
+   has been somewhere, the three most recent five-star reviews on
+   Google. Five stars only, on both sides of the fence: the line
+   beside them says every guest who writes leaves five, and anything
+   less sitting under it would make that untrue. A guest's words are
+   set exactly as they wrote them, under their own name and when they
+   wrote it, and the quote links to the review itself. Nothing here is
+   edited or shortened. */
+function paintQuotes(live){
+  const rows = (live || []).map(v => ({
+    stars: Number(v.stars) || 5,
+    text:  String(v.text || ''),
+    name:  String(v.name || ''),
+    meta:  String(v.when || ''),
+    href:  String(v.href || v.profile || DATA.settings.reviewsUrl || '')
+  })).filter(v => v.text && v.name && v.stars === 5);
+
+  const fallback = (DATA.reviews || []).map(r => ({
+    stars: r.stars || 5, text: r[LANG] || r.en, name: r.name,
+    meta: r.meta || '', href: DATA.settings.reviewsUrl || ''
+  }));
+
+  /* Three or the stored three: a guest book with one quote in it next
+     to the score reads as a fault, and the three in content.json are
+     real reviews of hers too. Never a mix of the two. */
+  const list = rows.length >= 3 ? rows.slice(0, 3) : fallback;
+  /* painted with the page, they fade in with everything else; painted
+     later, when Google's answer arrives, the reveal has already run
+     and they have to be shown as they are */
+  const cls = live ? 'rv in' : 'rv';
+  set('#quotes', e => e.innerHTML = list.map((r,i)=>`
+    <figure class="${cls}" data-d="${i}">
+      <div class="stars" aria-hidden="true">${'★'.repeat(Math.max(1,Math.min(5,r.stars)))}</div>
+      <blockquote>${esc(r.text)}</blockquote>
+      <cite>${r.href ? `<a href="${esc(r.href)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
+                     : esc(r.name)}${r.meta ? ' · ' + esc(r.meta) : ''}</cite></figure>`).join(''));
 }
 
 /* ── the first screen of an inner page ───────────────────────────
@@ -1118,6 +1206,26 @@ function showMap(){
   </div>`;
 }
 set('#mapLoad', e => e.onclick = ()=>{ try{ localStorage.setItem('lms-map','1'); }catch(e){} showMap(); });
+
+/* ── the note about what is kept ─────────────────────────────────
+   Shown once, a moment after the page has settled so it never arrives
+   on top of the first screen, and not again once it has been read.
+   If the browser will not keep the fact that it was read, it is not
+   shown at all: a note that returns on every page is worse than one
+   nobody ever saw. */
+function cookieNote(){
+  const box = $('#cookies'); if (!box) return;
+  let seen = null, canStore = true;
+  try{ seen = localStorage.getItem('lms-cookies'); }catch(e){ canStore = false; }
+  if (seen || !canStore) return;
+  box.hidden = false;
+  setTimeout(()=> box.classList.add('up'), 1200);
+  set('#cookiesOk', e => e.onclick = ()=>{
+    try{ localStorage.setItem('lms-cookies','1'); }catch(e){}
+    box.classList.remove('up');
+    setTimeout(()=>{ box.hidden = true; }, 500);
+  });
+}
 
 /* ── reveal, rail, drift ─────────────────────────────────────── */
 let ro;

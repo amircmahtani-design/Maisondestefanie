@@ -1540,3 +1540,25 @@ p > .linky{font-size:inherit}
 /* a question that runs to two lines splits them evenly rather than
    leaving one short word under a full line */
 .faq summary{text-wrap:balance}
+
+/* ══ WHAT THE SITE KEEPS ═════════════════════════════════════════
+   Said once, at the foot of the screen, and gone when it is read. It
+   is a note rather than a gate: the language choice is the only thing
+   kept, and the map sets nothing until somebody asks for it — so
+   there is nothing here to refuse and no second button. */
+.cookies{position:fixed;left:0;right:0;z-index:260;
+  bottom:max(env(safe-area-inset-bottom,0px),calc(100lvh - 100dvh));
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:var(--s4) var(--s6);padding:var(--s4) var(--pad);
+  background:rgba(10,7,5,.96);border-top:1px solid var(--edge);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transform:translateY(110%);transition:transform .5s var(--e)}
+.cookies.up{transform:none}
+.cookies p{margin:0;max-width:62ch;font-size:var(--t-small);color:var(--ivory-2)}
+.cookies-acts{display:flex;align-items:center;gap:var(--s5);flex:none}
+.cookies .btn{min-height:2.75rem;padding:var(--s2) var(--s6)}
+@media (max-width:700px){
+  .cookies{flex-direction:column;align-items:center;text-align:center;
+    padding-block:var(--s5)}
+  .cookies-acts{width:100%;justify-content:center}
+}
