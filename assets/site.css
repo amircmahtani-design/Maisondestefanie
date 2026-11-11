@@ -1527,3 +1527,16 @@ p > .linky{font-size:inherit}
 @media (hover:hover) and (pointer:fine){
   .cred:hover{border-color:var(--gold);background:rgba(185,147,88,.07)}
 }
+
+/* ══ GOOD TO KNOW, READ FROM ITS LEFT EDGE ═══════════════════════
+   A disclosure list is not a centred block of prose: every question
+   has a chevron pinned to the right of its row, and centring the
+   words leaves each one starting at a different place down a column
+   of seven, with the long ones breaking into two ragged lines. The
+   section's own opening above stays centred; the list reads from one
+   left edge, and so do the answers under it. */
+.faq summary,
+.faq details p{text-align:left;margin-inline:0}
+/* a question that runs to two lines splits them evenly rather than
+   leaving one short word under a full line */
+.faq summary{text-wrap:balance}
