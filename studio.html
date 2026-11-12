@@ -220,23 +220,106 @@ async function gate(){
   }
 
   MODE='live';
+
+  /* Firebase speaks in codes. Said plainly, each of these tells whoever is
+     standing at the door what to do about it, and the code is kept beside
+     it in small type because that is what gets a problem fixed quickly. */
+  const SAYS = {
+    'auth/invalid-credential':   'That address and password do not match an account.',
+    'auth/wrong-password':       'That password is not right.',
+    'auth/user-not-found':       'There is no account for that address yet.',
+    'auth/invalid-email':        'That does not look like an email address.',
+    'auth/too-many-requests':    'Too many tries. Wait a few minutes and start again.',
+    'auth/operation-not-allowed':'This way of signing in is switched off in Firebase.',
+    'auth/unauthorized-domain':  'Firebase has not been told to trust this address yet.',
+    'auth/network-request-failed':'No connection. Check the network and try again.'
+  };
+  const sayWhy = (el, e) => {
+    const code = (e && e.code) || '';
+    el.innerHTML = (SAYS[code] || 'That did not work.')
+      + (code ? ` <span style="opacity:.55">(${code})</span>` : '');
+  };
+
+  /* Arriving back on a link that was emailed out. The address is kept from
+     when the link was asked for; if this is a different device or the
+     browser has been cleared since, it is asked for again. */
+  if (FB.authmod.isSignInWithEmailLink(FB.auth, location.href)) {
+    let waiting = '';
+    try{ waiting = localStorage.getItem('lms-link-email') || ''; }catch(e){}
+    if (!waiting) waiting = prompt('Confirm the email address the link was sent to') || '';
+    if (waiting) {
+      body.innerHTML = `<p class="hint">Signing you in…</p>`;
+      try {
+        await FB.authmod.signInWithEmailLink(FB.auth, waiting.trim(), location.href);
+        try{ localStorage.removeItem('lms-link-email'); }catch(e){}
+        history.replaceState(null, '', location.pathname);
+      } catch(e) {
+        body.innerHTML = `<p class="hint" id="gerr"></p>`;
+        sayWhy($('#gerr'), e);
+      }
+    }
+  }
+
   FB.authmod.onAuthStateChanged(FB.auth, async u=>{
     const allowed = (CFG.adminEmails||[]).map(x=>x.toLowerCase());
     if(u && (!allowed.length || allowed.includes((u.email||'').toLowerCase()))){
       USER=u; start(); return;
     }
     if(u){ await FB.authmod.signOut(FB.auth); toast('That address cannot edit this site.'); }
+
+    let lastEmail = '';
+    try{ lastEmail = localStorage.getItem('lms-link-email') || ''; }catch(e){}
+
     body.innerHTML=`
-      <div class="row"><div><label>Email</label><input id="em" type="email" autocomplete="username"></div></div>
-      <div class="row"><div><label>Password</label><input id="pw" type="password" autocomplete="current-password"></div></div>
-      <button class="btn btn-solid" id="signin">Sign in</button>
-      <p class="hint" id="gerr"></p>`;
+      <div class="row"><div><label>Email</label>
+        <input id="em" type="email" autocomplete="username" value="${esc(lastEmail)}"></div></div>
+      <button class="btn btn-solid" id="sendlink">Email me a link</button>
+      <p class="hint" style="margin:.9rem 0 0">
+        No password to remember. The link lands in your inbox and signs you in.</p>
+      <p class="hint" style="margin:1.4rem 0 .4rem">
+        <a href="#" id="usepw" style="color:inherit">Use a password instead</a></p>
+      <div id="pwbox" hidden>
+        <div class="row"><div><label>Password</label>
+          <input id="pw" type="password" autocomplete="current-password"></div></div>
+        <button class="btn btn-line" id="signin">Sign in</button>
+      </div>
+      <p class="hint" id="gerr" style="margin-top:.9rem"></p>`;
+
+    $('#usepw').onclick = e => {
+      e.preventDefault();
+      $('#pwbox').hidden = false;
+      $('#usepw').parentElement.hidden = true;
+      $('#pw').focus();
+    };
+
+    $('#sendlink').onclick = async () => {
+      const em = $('#em').value.trim();
+      $('#gerr').textContent = '';
+      if (!em) { $('#gerr').textContent = 'Put your email address in first.'; return; }
+      $('#sendlink').disabled = true;
+      try {
+        await FB.authmod.sendSignInLinkToEmail(FB.auth, em, {
+          url: location.origin + location.pathname,
+          handleCodeInApp: true
+        });
+        try{ localStorage.setItem('lms-link-email', em); }catch(e){}
+        body.innerHTML = `
+          <p>Check <b>${esc(em)}</b>. A link is on its way.</p>
+          <p class="hint" style="margin-top:.8rem">Open it on this device and it will sign you in.
+            It is good for one use. If nothing arrives in a minute, look in spam.</p>`;
+      } catch(e) {
+        $('#sendlink').disabled = false;
+        sayWhy($('#gerr'), e);
+      }
+    };
+
     $('#signin').onclick=async()=>{
       $('#gerr').textContent='';
       try{ await FB.authmod.signInWithEmailAndPassword(FB.auth,$('#em').value.trim(),$('#pw').value); }
-      catch(e){ $('#gerr').textContent = 'That did not work. Check the address and password, or reset it in Firebase.'; }
+      catch(e){ sayWhy($('#gerr'), e); }
     };
     $('#pw').addEventListener('keydown',e=>{if(e.key==='Enter')$('#signin').click()});
+    $('#em').addEventListener('keydown',e=>{if(e.key==='Enter')$('#sendlink').click()});
   });
 }
 
