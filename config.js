@@ -16,19 +16,19 @@ window.LMS_CONFIG = {
      (the Studio then saves to the browser and exports a zip).
   ---------------------------------------------------------- */
   firebase: {
-    apiKey:            "PASTE_API_KEY",
-    authDomain:        "PASTE_PROJECT.firebaseapp.com",
-    projectId:         "PASTE_PROJECT_ID",
-    storageBucket:     "PASTE_PROJECT.appspot.com",
-    messagingSenderId: "PASTE_SENDER_ID",
-    appId:             "PASTE_APP_ID"
+    apiKey:            "AIzaSyAtGisKUsNVkQQYJ2wPcsDpuUENYyAVzgI",
+    authDomain:        "maison-de-stefanie-live.firebaseapp.com",
+    projectId:         "maison-de-stefanie-live",
+    storageBucket:     "maison-de-stefanie-live.firebasestorage.app",
+    messagingSenderId: "565324349212",
+    appId:             "1:565324349212:web:f52e43059ee752327584d9"
   },
 
   /* Only these email addresses may sign in to the Studio.
      They must also be listed in the Firestore security rules
      (see README, step 4).                                    */
   adminEmails: [
-    "stefanie@lamaisondestefanie.com"
+    "amircmahtani@gmail.com"
   ],
 
   /* ---- 2. Site basics -------------------------------------- */

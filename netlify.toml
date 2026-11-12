@@ -41,6 +41,13 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
+# Which Firebase project the Studio talks to. Cached, it would keep a
+# stale answer after the project changes.
+[[headers]]
+  for = "/config.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 # The Studio is not for search engines
 [[headers]]
   for = "/studio.html"
