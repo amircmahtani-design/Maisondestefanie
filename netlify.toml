@@ -2,6 +2,20 @@
   publish = "."
   functions = "netlify/functions"
 
+# The build failed on config.js, where the scanner saw a string beginning
+# AIza and called it a leaked key. It is the Firebase web config, which is
+# public by design and sits in the page source of every Firebase site: it
+# names the project, it does not unlock it. What guards the Studio is the
+# password on the account and the Firestore rules, which allow a write only
+# from the one address named there.
+#
+# Only this one value is excused, by its exact text. Every other key-shaped
+# string still fails the build, and the scan for the real values of this
+# site's environment variables is untouched — GOOGLE_PLACES_KEY must never
+# reach a page, and that is still watched for.
+[build.environment]
+  SECRETS_SCAN_SMART_DETECTION_OMIT_VALUES = "AIzaSyAtGisKUsNVkQQYJ2wPcsDpuUENYyAVzgI"
+
 # Her rating on Google, once a week, early on a Monday. Everything on the
 # site that prints the number of reviews reads one field, and this is what
 # keeps that field honest. 52 calls a year against a free allowance of
