@@ -978,7 +978,7 @@
       "eyebrow": "The session",
       "title": "How a bespoke perfume is made.",
       "lede": "An hour at the bench. Come alone, or with the person it is for. There is no charge to sit down and try.",
-      "priceNote": "A bespoke perfume · your formula kept on file",
+      "priceNote": "Extrait de parfum: twenty to forty percent aromatic oil, the strongest a perfume is made. 30ml €15 · 50ml €25 · 100ml €40.",
       "cta": "Book the bench",
       "steps": [
         {
@@ -1004,7 +1004,7 @@
       "eyebrow": "Η συνεδρία",
       "title": "Πώς γεννιέται ένα προσωπικό άρωμα.",
       "lede": "Μία ώρα στον πάγκο. Έλα μόνος, ή με το άτομο για το οποίο προορίζεται. Δεν χρεώνεται να καθίσεις και να δοκιμάσεις.",
-      "priceNote": "Ένα προσωπικό άρωμα · η συνταγή σου φυλάσσεται",
+      "priceNote": "Extrait de parfum: είκοσι έως σαράντα τοις εκατό αρωματικά έλαια, η πιο δυνατή συγκέντρωση που φτιάχνεται. 30ml 15€ · 50ml 25€ · 100ml 40€.",
       "cta": "Κλείσε τον πάγκο",
       "steps": [
         {
@@ -1138,7 +1138,7 @@
       "featured": true,
       "sample": true,
       "image": "assets/img/prod-p1-700.webp",
-      "price": "",
+      "price": "15",
       "size": "30ml extrait",
       "payLink": "",
       "en": {
@@ -1183,7 +1183,7 @@
       "featured": false,
       "sample": true,
       "image": "assets/img/prod-p2-700.webp",
-      "price": "",
+      "price": "15",
       "size": "30ml extrait",
       "payLink": "",
       "en": {
@@ -1228,7 +1228,7 @@
       "featured": true,
       "sample": true,
       "image": "assets/img/prod-p3-700.webp",
-      "price": "",
+      "price": "25",
       "size": "50ml extrait",
       "payLink": "",
       "en": {
@@ -1281,7 +1281,7 @@
       "featured": true,
       "sample": true,
       "image": "assets/img/prod-p4-700.webp",
-      "price": "",
+      "price": "25",
       "size": "50ml extrait",
       "payLink": "",
       "en": {
@@ -1332,7 +1332,7 @@
       "featured": false,
       "sample": true,
       "image": "assets/img/prod-p5-700.webp",
-      "price": "",
+      "price": "25",
       "size": "50ml extrait",
       "payLink": "",
       "en": {
@@ -1385,7 +1385,7 @@
       "featured": false,
       "sample": true,
       "image": "assets/img/prod-p6-700.webp",
-      "price": "",
+      "price": "15",
       "size": "30ml extrait",
       "payLink": "",
       "en": {
@@ -1725,6 +1725,17 @@
         "el": {
           "q": "Πόσο διαρκεί;",
           "a": "Περίπου μία ώρα και φεύγεις με το μπουκάλι την ίδια μέρα. Οι αναδημιουργίες θέλουν περισσότερο χρόνο."
+        }
+      },
+      {
+        "id": "f8",
+        "en": {
+          "q": "What is extrait de parfum?",
+          "a": "It is the strongest a perfume is made: twenty to forty percent aromatic oil, where an eau de parfum is fifteen to twenty and an eau de toilette less again. It is also called pure perfume, or simply parfum. Everything made here is extrait. It costs more to make and it is worth it. It sits closer to the skin, moves less through a room, and is still there at the end of the day."
+        },
+        "el": {
+          "q": "Τι είναι το extrait de parfum;",
+          "a": "Είναι η πιο δυνατή μορφή αρώματος: είκοσι έως σαράντα τοις εκατό αρωματικά έλαια, όταν ένα eau de parfum έχει δεκαπέντε έως είκοσι και ένα eau de toilette ακόμη λιγότερα. Λέγεται και pure perfume ή απλώς parfum. Ό,τι φτιάχνεται εδώ είναι extrait. Κοστίζει περισσότερο και το αξίζει. Μένει πιο κοντά στο δέρμα, απλώνεται λιγότερο στον χώρο, και είναι ακόμη εκεί στο τέλος της ημέρας."
         }
       },
       {
