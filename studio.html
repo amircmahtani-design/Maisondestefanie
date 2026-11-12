@@ -12,6 +12,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;1,400&family=Commissioner:wght@300;400;500;600&family=GFS+Didot&display=swap" rel="stylesheet">
 <style>
+/* Without this, hiding something here does nothing. The sign-in panel is
+   display:grid, and a display rule beats the browser's own meaning of the
+   hidden attribute — so after a good sign-in the Studio loaded underneath
+   a panel that would not get out of the way. Every stylesheet in this
+   house carries this line; this one had been missed. */
+[hidden]{display:none!important}
 :root{
   --noir:#0E0A06;--panel:#151009;--raise:#1e1710;--edge:rgba(240,232,219,.13);
   --chalk:#F0E8DB;--muted:#A5957E;--dim:#6E6152;
