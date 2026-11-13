@@ -665,6 +665,12 @@ body.curtained{overflow:hidden}
    block below it, and each is a smaller gap than the gap between sections */
 .sec .lab + *{margin-top:0}
 .sec h2 + .body,.sec h2 + p{margin-top:var(--s5)}
+/* ...but a heading that exists only for screen readers is not something
+   anyone can see, so it must not set the spacing of what follows it.
+   Taking the shelf's hidden heading out of its wrapper made it the
+   sibling of the paragraph below, and this rule immediately gave that
+   paragraph 40px it had no reason to have. */
+.dup-head + *{margin-top:0}
 .sec.tight{padding-block:clamp(3.2rem,7vw,6rem)}
 /* Paper, not a flat fill: the dark sections have a light source in them and
    the cream ones looked switched-off beside them. Same room, other hour. */
