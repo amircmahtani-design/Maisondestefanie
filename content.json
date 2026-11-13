@@ -1223,7 +1223,7 @@
     {
       "id": "p3",
       "cat": "c2",
-      "order": 1,
+      "order": 4,
       "visible": true,
       "featured": true,
       "sample": true,
@@ -1276,7 +1276,7 @@
     {
       "id": "p4",
       "cat": "c2",
-      "order": 2,
+      "order": 5,
       "visible": true,
       "featured": true,
       "sample": true,
@@ -1327,7 +1327,7 @@
     {
       "id": "p5",
       "cat": "c2",
-      "order": 3,
+      "order": 6,
       "visible": true,
       "featured": false,
       "sample": true,
@@ -1380,7 +1380,7 @@
     {
       "id": "p6",
       "cat": "c3",
-      "order": 1,
+      "order": 3,
       "visible": true,
       "featured": false,
       "sample": true,
@@ -1425,7 +1425,7 @@
     {
       "id": "p7",
       "cat": "c4",
-      "order": 1,
+      "order": 7,
       "visible": true,
       "featured": true,
       "sample": true,
@@ -1458,7 +1458,7 @@
     {
       "id": "p8",
       "cat": "c4",
-      "order": 2,
+      "order": 8,
       "visible": true,
       "featured": false,
       "sample": true,
@@ -1491,7 +1491,7 @@
     {
       "id": "p9",
       "cat": "c5",
-      "order": 1,
+      "order": 9,
       "visible": true,
       "featured": true,
       "sample": true,
@@ -1524,7 +1524,7 @@
     {
       "id": "p10",
       "cat": "c5",
-      "order": 2,
+      "order": 10,
       "visible": true,
       "featured": false,
       "sample": true,
@@ -1557,7 +1557,7 @@
     {
       "id": "p11",
       "cat": "c6",
-      "order": 1,
+      "order": 11,
       "visible": true,
       "featured": true,
       "sample": true,
@@ -1590,7 +1590,7 @@
     {
       "id": "p12",
       "cat": "c6",
-      "order": 2,
+      "order": 12,
       "visible": true,
       "featured": false,
       "sample": true,
