@@ -1105,7 +1105,7 @@ blockquote{margin:0}
    page does not jump when it opens and so the panel reads as something
    that opens rather than a sentence with a button under it. The whole
    box is the target; the button inside it is for the keyboard. */
-#mapAsk{width:100%;max-width:62rem;min-height:clamp(20rem,45vh,28rem);
+#mapAsk{width:100%;max-width:62rem;min-height:clamp(15rem,30vh,26rem);
   display:grid;place-content:center;justify-items:center;gap:var(--s4);
   padding:clamp(2rem,5vw,3rem) var(--pad);cursor:pointer;
   border:1px dashed var(--edge-2);border-radius:var(--r-lg);
