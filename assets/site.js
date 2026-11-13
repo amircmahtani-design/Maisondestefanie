@@ -91,6 +91,11 @@ async function boot(){
 }
 
 const L = (o,k)=>(o && o[LANG] && o[LANG][k]!=null) ? o[LANG][k] : (o && o.en ? o.en[k] : '');
+/* Greek writes 15€, English €15. Her own price list is written the Greek
+   way, and the shelf was writing it the English way beside it. */
+const money = v => LANG === 'el'
+  ? `${v}${DATA?.settings?.currency || '€'}`
+  : `${DATA?.settings?.currency || '€'}${v}`;
 const U = k=>UI[LANG].ui[k];
 function tGet(p){
   const parts = p.split('.');
@@ -1050,8 +1055,7 @@ function renderGrid(){
        so a single figure on a card would be a half-truth. priceFrom marks
        the ones where it is the smallest of three, and the exact three are
        written out once above the shelf. */
-    if (p.price) bits.push((p.priceFrom ? U('from') + ' ' : '')
-      + `${DATA.settings.currency||'€'}${esc(p.price)}`);
+    if (p.price) bits.push((p.priceFrom ? U('from') + ' ' : '') + money(esc(p.price)));
     if (p.size)  bits.push(esc(p.size));
     return `<article class="card rv" data-d="${i%3}">
       <span class="shot" data-ref="${esc(p.image||'')}" data-alt="${esc(L(p,'name'))}" data-pid="${esc(p.id)}">
@@ -1080,8 +1084,7 @@ async function openDrawer(id){
   $('#dStory').innerHTML   = `<p>${esc(L(p,'story'))}</p>`;
   $('#dSpec').innerHTML =
     (p.size?`<span><b>${U('size')}</b>${esc(p.size)}</span>`:'') +
-    (p.price?`<span><b>${U('price')}</b>${(p.priceFrom?U('from')+' ':'')
-       + (DATA.settings.currency||'€') + esc(p.price)}</span>`:'') +
+    (p.price?`<span><b>${U('price')}</b>${(p.priceFrom?U('from')+' ':'') + money(esc(p.price))}</span>`:'') +
     `<span><b>${LANG==='el'?'Παραγωγή':'Made'}</b>${U('made')}</span>`;
   const tiers = [['top',U('top')],['heart',U('heart')],['base',U('base')]].filter(([k])=>(L(p,k)||[]).length);
   $('#dNotes').innerHTML = tiers.length
