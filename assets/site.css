@@ -656,7 +656,11 @@ body.curtained{overflow:hidden}
    her film, which reads as the page having forgotten what comes next.
    What is added here brings the total to about one gap: 92px on a
    phone, 126 on a desktop. */
-.filmhero + .sec,.phero + .sec{padding-top:clamp(0rem,4vw,3.4rem)}
+.filmhero + .sec{padding-top:clamp(0rem,4vw,3.4rem)}
+/* A page hero already carries its own bottom padding, and the section under
+   it was adding more on top: two gaps where the house allows one. The hero's
+   own padding is the gap now. */
+.phero + .sec{padding-top:0}
 /* proximity: the heading belongs to its standfirst, the standfirst to the
    block below it, and each is a smaller gap than the gap between sections */
 .sec .lab + *{margin-top:0}
