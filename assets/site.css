@@ -134,8 +134,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 .lab{font-size:var(--t-micro);font-weight:400;letter-spacing:var(--tr-micro);
   text-transform:uppercase;color:var(--dim);margin:0 0 var(--s5);
   display:flex;align-items:center;gap:var(--s3)}
-.lab::before{content:"";width:1.9rem;height:1px;background:var(--gold);flex:none}
-.lab.bare::before{display:none}
+/* The gold rule that sat beside every eyebrow is gone. The word on its
+   own is enough, and the line was doing the work of a decoration rather
+   than of a mark. .bare, which used to be how a label opted out of it,
+   now has nothing to opt out of and is kept only so the markup that
+   carries it goes on meaning something. */
 .lab.mid{justify-content:center}
 
 .h-display{font-family:var(--display);text-transform:uppercase;
@@ -832,7 +835,6 @@ blockquote{margin:0}
   background:radial-gradient(80% 60% at 22% 12%,rgba(255,255,255,.5),transparent 60%),
              radial-gradient(70% 70% at 88% 92%,rgba(120,90,50,.16),transparent 60%)}
 .paper .lab{color:#6F5A3C;position:relative}
-.paper .lab::before{background:#A8813F}
 /* Ruled like the pad it is meant to be: a dotted line for every ingredient
    the formula could hold, so the lines she has not written yet read as
    room left for them rather than as a gap. The rule pitch is the line
