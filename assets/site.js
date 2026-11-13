@@ -28,7 +28,7 @@ const UI = {
          onRequest:'On request',buy:'Order this',enquire:'Ask Stefanie',
          made:'Made to order in the shop',nothing:'Nothing on this shelf yet.',
          everything:'Everything',fullPrivacy:'Read the full Privacy & Cookies policy',
-         readFull:'Read it in full on Google',
+         readFull:'Read it in full on Google',from:'From',
          openMenu:'Menu',closeMenu:'Close menu'}},
  el:{nav:{maison:'Το Σπίτι',experience:'Η Εμπειρία',legacy:'Η Ιστορία',
           shelf:'Δημιουργίες',bespoke:'Προσωπικά',visit:'Επίσκεψη'},
@@ -38,7 +38,7 @@ const UI = {
          onRequest:'Κατόπιν ζήτησης',buy:'Παράγγειλέ το',enquire:'Ρώτησε τη Στεφανί',
          made:'Φτιάχνεται κατά παραγγελία',nothing:'Τίποτα εδώ ακόμη.',
          everything:'Όλα',fullPrivacy:'Διάβασε την πλήρη πολιτική απορρήτου',
-         readFull:'Διάβασέ την ολόκληρη στο Google',
+         readFull:'Διάβασέ την ολόκληρη στο Google',from:'Από',
          openMenu:'Μενού',closeMenu:'Κλείσε το μενού'}}
 };
 
@@ -1046,7 +1046,12 @@ function renderGrid(){
        where she has not, the line is simply the size, and where there is
        neither, there is no line. */
     const bits = [];
-    if (p.price) bits.push(`${DATA.settings.currency||'€'}${esc(p.price)}`);
+    /* Her perfumes are priced by volume, the same ladder for all of them,
+       so a single figure on a card would be a half-truth. priceFrom marks
+       the ones where it is the smallest of three, and the exact three are
+       written out once above the shelf. */
+    if (p.price) bits.push((p.priceFrom ? U('from') + ' ' : '')
+      + `${DATA.settings.currency||'€'}${esc(p.price)}`);
     if (p.size)  bits.push(esc(p.size));
     return `<article class="card rv" data-d="${i%3}">
       <span class="shot" data-ref="${esc(p.image||'')}" data-alt="${esc(L(p,'name'))}" data-pid="${esc(p.id)}">
@@ -1075,7 +1080,8 @@ async function openDrawer(id){
   $('#dStory').innerHTML   = `<p>${esc(L(p,'story'))}</p>`;
   $('#dSpec').innerHTML =
     (p.size?`<span><b>${U('size')}</b>${esc(p.size)}</span>`:'') +
-    (p.price?`<span><b>${U('price')}</b>${(DATA.settings.currency||'€')+esc(p.price)}</span>`:'') +
+    (p.price?`<span><b>${U('price')}</b>${(p.priceFrom?U('from')+' ':'')
+       + (DATA.settings.currency||'€') + esc(p.price)}</span>`:'') +
     `<span><b>${LANG==='el'?'Παραγωγή':'Made'}</b>${U('made')}</span>`;
   const tiers = [['top',U('top')],['heart',U('heart')],['base',U('base')]].filter(([k])=>(L(p,k)||[]).length);
   $('#dNotes').innerHTML = tiers.length
