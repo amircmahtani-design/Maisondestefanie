@@ -89,6 +89,19 @@ hr.sep{border:0;border-top:1px solid var(--edge);margin:1.4rem 0}
 .savebar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:.8rem;
   padding:.7rem clamp(1rem,3vw,2.4rem);background:rgba(9,6,3,.94);backdrop-filter:blur(12px);border-top:1px solid var(--edge)}
 .savebar .status{font-size:.8rem;color:var(--muted);margin-right:auto}
+/* On a phone the bar ran off the right edge and took Publish with it:
+   the one button the whole Studio exists for, off screen. It stacks
+   now, Publish across the full width and first to the thumb, with the
+   safe area under it so the home bar does not sit on top of it. */
+@media(max-width:620px){
+  .savebar{flex-wrap:wrap;gap:.5rem;
+    padding:.6rem .9rem calc(.6rem + env(safe-area-inset-bottom,0px))}
+  .savebar .status{order:3;flex:1 0 100%;margin:0;font-size:.74rem}
+  .savebar #btnSave{order:1;flex:1 0 100%;min-height:2.9rem}
+  .savebar .btn-ghost{order:2;flex:1 1 auto;font-size:.78rem;padding:.45rem .7rem}
+}
+/* and the toast sat on the bar it was telling you to press */
+@media(max-width:620px){ .toast{bottom:9.5rem;max-width:88vw;text-align:center} }
 .dot{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;background:var(--vetiver);margin-right:.45rem}
 .dot.dirty{background:var(--amber)}
 .dot.off{background:var(--dim)}
@@ -184,8 +197,8 @@ body.no-ai .btn-ai{display:none}
 <div class="modal" id="modal"></div>
 <div class="toast" id="toast"></div>
 
-<script src="config.js?v=30"></script>
-<script src="/assets/content-merge.js?v=30"></script>
+<script src="config.js?v=31"></script>
+<script src="/assets/content-merge.js?v=31"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script type="module">
 /* ============================================================
