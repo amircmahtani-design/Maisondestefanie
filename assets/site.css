@@ -670,7 +670,7 @@ body.curtained{overflow:hidden}
    Taking the shelf's hidden heading out of its wrapper made it the
    sibling of the paragraph below, and this rule immediately gave that
    paragraph 40px it had no reason to have. */
-.dup-head + *{margin-top:0}
+.sec .dup-head + .body,.sec .dup-head + p,.sec .dup-head + *{margin-top:0}
 .sec.tight{padding-block:clamp(3.2rem,7vw,6rem)}
 /* Paper, not a flat fill: the dark sections have a light source in them and
    the cream ones looked switched-off beside them. Same room, other hour. */
