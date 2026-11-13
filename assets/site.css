@@ -1124,7 +1124,12 @@ blockquote{margin:0}
   border-radius:var(--r-lg)}
 .mapwrap.loaded{padding:0;min-height:0}
 /* .sec + .sec keeps two sections from stacking their padding, but the map
-   is a div, so the section under it was starting a second gap. */
+   is a div, so it was left out of that rule on both sides: the section
+   above stacked its bottom padding onto the map's top, giving 115px over
+   the panel against 32 under it. The section above provides the gap over
+   it, the map's own padding the gap under, and the two now match. */
+.sec + .mapwrap{padding-top:0}
+.mapwrap{padding-bottom:clamp(3.4rem,9vw,4.6rem)}
 .mapwrap + .sec{padding-top:0}
 
 /* ── 19. FAQ ───────────────────────────────────────────────── */
