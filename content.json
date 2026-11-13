@@ -1139,7 +1139,7 @@
       "sample": true,
       "image": "assets/img/prod-p1-700.webp",
       "price": "15",
-      "size": "30ml · 50ml · 100ml",
+      "size": "30ml extrait",
       "payLink": "",
       "en": {
         "name": "The Bespoke Session",
@@ -1173,8 +1173,7 @@
       "sizes": "(min-width:900px) 22vw, 90vw",
       "srcsetFor": "assets/img/prod-p1-700.webp",
       "placeholder": true,
-      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product.",
-      "priceFrom": true
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p2",
@@ -1185,7 +1184,7 @@
       "sample": true,
       "image": "assets/img/prod-p2-700.webp",
       "price": "15",
-      "size": "30ml · 50ml · 100ml",
+      "size": "30ml extrait",
       "payLink": "",
       "en": {
         "name": "Made Again",
@@ -1219,8 +1218,7 @@
       "sizes": "(min-width:900px) 22vw, 90vw",
       "srcsetFor": "assets/img/prod-p2-700.webp",
       "placeholder": true,
-      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product.",
-      "priceFrom": true
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p3",
@@ -1230,8 +1228,8 @@
       "featured": true,
       "sample": true,
       "image": "assets/img/prod-p3-700.webp",
-      "price": "15",
-      "size": "30ml · 50ml · 100ml",
+      "price": "25",
+      "size": "50ml extrait",
       "payLink": "",
       "en": {
         "name": "Mnisikleous",
@@ -1273,8 +1271,7 @@
       "sizes": "(min-width:900px) 22vw, 90vw",
       "srcsetFor": "assets/img/prod-p3-700.webp",
       "placeholder": true,
-      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product.",
-      "priceFrom": true
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p4",
@@ -1284,8 +1281,8 @@
       "featured": true,
       "sample": true,
       "image": "assets/img/prod-p4-700.webp",
-      "price": "15",
-      "size": "30ml · 50ml · 100ml",
+      "price": "25",
+      "size": "50ml extrait",
       "payLink": "",
       "en": {
         "name": "Chios",
@@ -1325,8 +1322,7 @@
       "sizes": "(min-width:900px) 22vw, 90vw",
       "srcsetFor": "assets/img/prod-p4-700.webp",
       "placeholder": true,
-      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product.",
-      "priceFrom": true
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p5",
@@ -1336,8 +1332,8 @@
       "featured": false,
       "sample": true,
       "image": "assets/img/prod-p5-700.webp",
-      "price": "15",
-      "size": "30ml · 50ml · 100ml",
+      "price": "25",
+      "size": "50ml extrait",
       "payLink": "",
       "en": {
         "name": "Kyria",
@@ -1379,8 +1375,7 @@
       "sizes": "(min-width:900px) 22vw, 90vw",
       "srcsetFor": "assets/img/prod-p5-700.webp",
       "placeholder": true,
-      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product.",
-      "priceFrom": true
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p6",
@@ -1391,7 +1386,7 @@
       "sample": true,
       "image": "assets/img/prod-p6-700.webp",
       "price": "15",
-      "size": "30ml · 50ml · 100ml",
+      "size": "30ml extrait",
       "payLink": "",
       "en": {
         "name": "The Perfume You Lost",
@@ -1425,8 +1420,7 @@
       "sizes": "(min-width:900px) 22vw, 90vw",
       "srcsetFor": "assets/img/prod-p6-700.webp",
       "placeholder": true,
-      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product.",
-      "priceFrom": true
+      "imageNote": "TEMPORARY ARTWORK — replace with a photograph of the real product."
     },
     {
       "id": "p7",

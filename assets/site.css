@@ -1153,8 +1153,11 @@ blockquote{margin:0}
 /* The last section's bottom padding sat on top of the footer's own top
    padding and left 115px of nothing above the line on five of six pages.
    The footer's padding is the gap; the section stops where it stops. */
+/* Not nothing either: at zero the last line of the shelf sat on the
+   footer's hairline. About 40px over the line on a phone and 56 on a
+   desktop, with the footer's own padding inside it. */
 #main > .sec:last-of-type,
-#main > .mapwrap:last-of-type{padding-bottom:0}
+#main > .mapwrap:last-of-type{padding-bottom:clamp(2.5rem,4vw,3.5rem)}
 .foot-in{max-width:78rem;margin-inline:auto;display:grid;gap:2rem}
 /* The mark over the links over the line, each centred on the page —
    the house sets a footer as one centred column. The six links were

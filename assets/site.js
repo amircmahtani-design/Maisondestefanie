@@ -1051,10 +1051,10 @@ function renderGrid(){
        where she has not, the line is simply the size, and where there is
        neither, there is no line. */
     const bits = [];
-    /* Her perfumes are priced by volume, the same ladder for all of them,
-       so a single figure on a card would be a half-truth. priceFrom marks
-       the ones where it is the smallest of three, and the exact three are
-       written out once above the shelf. */
+    /* priceFrom prints "From €15" rather than "€15", for anything sold at
+       more than one size. Nothing uses it today: the three sizes read as
+       clutter six cards in a row, and the ladder is written once above the
+       shelf instead. */
     if (p.price) bits.push((p.priceFrom ? U('from') + ' ' : '') + money(esc(p.price)));
     if (p.size)  bits.push(esc(p.size));
     return `<article class="card rv" data-d="${i%3}">
