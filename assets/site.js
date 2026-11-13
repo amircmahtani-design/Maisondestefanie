@@ -52,6 +52,18 @@ const mcache = new Map();
 
 /* ── boot ────────────────────────────────────────────────────── */
 async function boot(){
+  /* The page is what was built, with Stefanie's changes laid over it.
+     She owns the sentences she has rewritten; everything she has never
+     opened follows the build, so a correction of mine reaches the page
+     without her having to do anything, and without overwriting a word
+     of hers. assets/content-merge.js has the whole of the reasoning.
+
+     The fetch was started in the head, before this module was parsed. */
+  let base = null, stored = null;
+  try{ base = await (window.__lmsContent
+         || fetch('content.json',{cache:'no-cache'}).then(r=>r.json())); }
+  catch(e){ console.error(e); }
+
   if (CFG.firebase && !String(CFG.firebase.apiKey).startsWith('PASTE')){
     try{
       const [{initializeApp}, fs] = await Promise.all([
@@ -59,15 +71,21 @@ async function boot(){
         import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js')]);
       DB = fs.getFirestore(initializeApp(CFG.firebase)); window.__fs = fs;
       const s = await fs.getDoc(fs.doc(DB,'site','content'));
-      if (s.exists()) DATA = s.data();
+      if (s.exists()) stored = s.data();
     }catch(e){ console.warn('Live content unavailable; using content.json.', e); }
   }
-  if (!DATA){
-    /* the fetch was started in the head before this module was parsed */
-    try{ DATA = await (window.__lmsContent
-           || fetch('content.json',{cache:'no-cache'}).then(r=>r.json())); }
-    catch(e){ console.error(e); }
+
+  const CM = window.LMSContent;
+  if (stored && CM && CM.isPatchDoc(stored)){
+    DATA = CM.merge(base || {}, stored.patch || {});
+  } else if (stored && stored.settings){
+    /* published by the older Studio, which saved everything in one piece.
+       It stands until the Studio is opened and brings it up to date. */
+    DATA = stored;
+  } else {
+    DATA = base;
   }
+
   if (!DATA){ console.error('Content could not be loaded.'); return; }
   render();
 }

@@ -56,6 +56,16 @@ label{display:block;font-family:var(--ff-l);font-size:.7rem;letter-spacing:.18em
 
 /* layout */
 .app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.buildnote{border:1px solid rgba(214,168,92,.42);border-radius:8px;background:rgba(214,168,92,.07);
+  padding:1rem 1.1rem;margin-bottom:1.6rem;font-size:.92rem;line-height:1.55}
+.buildnote b{display:block;margin-bottom:.4rem;color:var(--chalk)}
+.buildnote p{margin:.35rem 0;color:var(--muted)}
+.buildnote .acts{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem}
+.bnlist{list-style:none;margin:.7rem 0 0;padding:0;display:grid;gap:.5rem}
+.bnlist li{display:grid;grid-template-columns:1fr auto;gap:.6rem;align-items:center;
+  padding:.55rem .7rem;background:var(--panel);border:1px solid var(--edge);border-radius:6px}
+.bnlist code{display:block;font-size:.74rem;color:var(--dim);margin-bottom:.15rem}
+.bnlist span{color:var(--chalk)}
 @media(max-width:860px){.app{grid-template-columns:1fr}}
 aside.rail{border-right:1px solid var(--edge);background:var(--panel);padding:1.2rem 0;position:sticky;top:0;height:100vh;overflow:auto}
 @media(max-width:860px){aside.rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--edge)}}
@@ -157,7 +167,10 @@ body.no-ai .btn-ai{display:none}
     <div class="brand">Studio<b>La Maison de Stefanie</b></div>
     <nav id="rail"></nav>
   </aside>
-  <main class="stage" id="stage"></main>
+  <main class="stage">
+    <div class="buildnote" id="buildnote" hidden></div>
+    <div id="stage"></div>
+  </main>
 </div>
 
 <div class="savebar" id="savebar" hidden>
@@ -171,7 +184,8 @@ body.no-ai .btn-ai{display:none}
 <div class="modal" id="modal"></div>
 <div class="toast" id="toast"></div>
 
-<script src="config.js?v=29"></script>
+<script src="config.js?v=30"></script>
+<script src="/assets/content-merge.js?v=30"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script type="module">
 /* ============================================================
@@ -184,6 +198,11 @@ const uid=p=>p+Math.random().toString(36).slice(2,8)+Date.now().toString(36).sli
 const clone=o=>JSON.parse(JSON.stringify(o));
 
 let DATA=null, DIRTY=false, MODE='offline', FB=null, USER=null, VIEW='shelf';
+/* BASE is content.json exactly as it was built: what she is editing
+   against. WAS is the build her last publish was made against, kept
+   so the Studio can say what has changed since. LEGACY marks a doc
+   written by the older Studio, which saved everything in one piece. */
+let BASE=null, WAS=null, LEGACY=null;
 const newMedia = new Map();          // id -> {out, src}  waiting to be written
 const mediaCache = new Map();        // id -> out dataURL
 
@@ -331,15 +350,32 @@ async function gate(){
 
 /* ---------- load + save ---------- */
 async function loadContent(){
+  BASE = await (await fetch('content.json',{cache:'no-cache'})).json();
+
   if(MODE==='live'){
     try{
-      const snap = await FB.fs.getDoc(FB.fs.doc(FB.db,'site','content'));
-      if(snap.exists()) return snap.data();
+      const [snap, wasSnap] = await Promise.all([
+        FB.fs.getDoc(FB.fs.doc(FB.db,'site','content')),
+        FB.fs.getDoc(FB.fs.doc(FB.db,'site','baseline')).catch(()=>null)
+      ]);
+      if (wasSnap && wasSnap.exists && wasSnap.exists()) WAS = wasSnap.data().content || null;
+      if (snap.exists()){
+        const d = snap.data();
+        if (LMSContent.isPatchDoc(d)) return LMSContent.merge(BASE, d.patch || {});
+        /* saved whole by the older Studio. Held aside rather than loaded,
+           because taking it as it stands would freeze every one of the
+           several hundred fields in it as hers, which is the fault this
+           whole change exists to undo. */
+        LEGACY = d;
+        return LMSContent.merge(BASE, {});
+      }
     }catch(e){ console.warn(e); }
+    return LMSContent.merge(BASE, {});
   }
+
   const local = localStorage.getItem('lms-draft');
   if(local){ try{ return JSON.parse(local); }catch(e){} }
-  return await (await fetch('content.json',{cache:'no-cache'})).json();
+  return JSON.parse(JSON.stringify(BASE));
 }
 
 async function save(){
@@ -351,8 +387,22 @@ async function save(){
         await FB.fs.setDoc(FB.fs.doc(FB.db,'media',id), m);
       }
       newMedia.clear();
-      await FB.fs.setDoc(FB.fs.doc(FB.db,'site','content'), DATA);
-      setDirty(false); toast('Published. The site is updated.');
+      const patch = LMSContent.diff(BASE, DATA) || {};
+      await FB.fs.setDoc(FB.fs.doc(FB.db,'site','content'), {
+        _schema: LMSContent.SCHEMA,
+        patch,
+        updated: DATA.updated
+      });
+      /* the build this publish was made against, so next time the Studio
+         can say what has moved since rather than guess */
+      await FB.fs.setDoc(FB.fs.doc(FB.db,'site','baseline'), { content: BASE });
+      WAS = JSON.parse(JSON.stringify(BASE));
+      LEGACY = null;
+      setDirty(false);
+      const n = Object.keys(patch).length;
+      toast(n ? 'Published. The site is updated.'
+              : 'Published. Nothing of yours to keep yet, so the site shows what was built.');
+      buildNotice();
     }catch(e){
       console.error(e);
       toast('Could not publish. Check your connection and the Firestore rules.',5000);
@@ -1490,6 +1540,72 @@ Netlify rebuilds the site by itself, usually within a minute.`);
 /* ============================================================
    START
    ============================================================ */
+/* What the build has done since she last published, said out loud.
+   Most of it is already on the site, because anything she has not
+   edited follows the build on its own. The part worth her attention is
+   the wording we have both changed, where hers is showing and mine is
+   not, and she can take mine one line at a time. */
+function buildNotice(){
+  const host = $('#buildnote'); if(!host) return;
+  host.hidden = true; host.innerHTML = '';
+  if (MODE !== 'live') return;
+
+  if (LEGACY){
+    host.hidden = false;
+    host.innerHTML = `
+      <b>What is published was saved by the older Studio.</b>
+      <p>It wrote the whole site out in one piece, which quietly made every
+         field yours, the several hundred you have never opened included, and
+         stopped anything built since from reaching the page. This is the one
+         time it needs sorting out. Afterwards only what you actually change
+         is kept, and you will not see this again.</p>
+      <div class="acts">
+        <button class="btn btn-solid" id="bnFresh">Use the site's current content</button>
+        <button class="btn btn-line" id="bnKeep">Keep what is published</button>
+      </div>`;
+    $('#bnFresh').onclick = () => {
+      DATA = LMSContent.merge(BASE, {});
+      LEGACY = null; setDirty(true); renderView(); buildNotice();
+      toast('Loaded. Press Publish to put it live.');
+    };
+    $('#bnKeep').onclick = () => {
+      DATA = LMSContent.merge(BASE, LMSContent.diff(BASE, LEGACY) || {});
+      LEGACY = null; setDirty(true); renderView(); buildNotice();
+      toast('Kept. Press Publish to put it live.');
+    };
+    return;
+  }
+
+  if (!WAS) return;
+  const patch = LMSContent.diff(BASE, DATA) || {};
+  const all = LMSContent.changedFields(WAS, BASE, patch, 80);
+  if (!all.length) return;
+
+  const quiet = all.filter(c => !c.hers);
+  const clash = all.filter(c => c.hers && c.now !== undefined && typeof c.now !== 'object');
+  if (!quiet.length && !clash.length) return;
+
+  host.hidden = false;
+  host.innerHTML =
+    `<b>The site has changed since you last published.</b>` +
+    (quiet.length ? `<p>${quiet.length} ${quiet.length===1?'change is':'changes are'} already
+        showing, on wording you had not edited.</p>` : '') +
+    (clash.length ? `<p>${clash.length} ${clash.length===1?'is':'are'} on wording you have
+        changed yourself, so yours is what visitors see. Take mine instead if you would rather.</p>
+      <ul class="bnlist">${clash.map((c,i)=>`
+        <li><div><code>${esc(c.path)}</code><span>${esc(String(c.now)).slice(0,160)}</span></div>
+          <button class="btn btn-line" data-take="${i}">Use this</button></li>`).join('')}</ul>` : '') +
+    `<div class="acts"><button class="btn btn-line" id="bnOk">Got it</button></div>`;
+
+  host.querySelectorAll('[data-take]').forEach(b => b.onclick = () => {
+    const c = clash[Number(b.dataset.take)];
+    setPath(DATA, c.path, c.now);
+    setDirty(true); renderView(); buildNotice();
+    toast('Taken. Press Publish to put it live.');
+  });
+  $('#bnOk').onclick = () => { host.hidden = true; };
+}
+
 async function start(){
   $('#gate').hidden=true; $('#app').hidden=false; $('#savebar').hidden=false;
   if(MODE!=='live') loadOfflineMedia();
@@ -1498,7 +1614,7 @@ async function start(){
   DATA.reviews=DATA.reviews||[]; DATA.faq=DATA.faq||{items:[]};
   DATA.organ=DATA.organ||{memories:[]};
   setDirty(false);
-  renderRail(); renderView();
+  renderRail(); renderView(); buildNotice();
   aiAvailable().then(ok=>{ document.body.classList.toggle('no-ai',!ok); });
 }
 $('#btnSave').onclick=save;
